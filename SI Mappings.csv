@@ -1,3 +1,4 @@
+Address,Description,Comment 1,Comment 2,Occurrences
 SI00:1,SI0226 to SI5057,SD,,0
 SI00:2,SI0226 to SI0222,UE,,2238
 SI00:3,SI0229 to SI0237,DT,,218
@@ -430,7 +431,7 @@ SI35:5,,,,0
 SI35:6,,,,0
 SI35:7,,,,0
 SI35:8,,,,0
-SI36:1,,,,0,36-38 No Updates but bits are refreshed
+SI36:1,,,,0
 SI36:2,,,,0
 SI36:3,,,,0
 SI36:4,,,,0
