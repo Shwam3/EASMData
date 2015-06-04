@@ -227,9 +227,7 @@
 {"posX":1626,"posY":122,"berthIds":["SIS716"]},
 {"posX":1546,"posY":186,"berthIds":["SIS717"]},
 {"posX":1690,"posY":122,"berthIds":["SIS718"]},
-{"posX":1418,"posY":154,"berthIds":["SIS767"]},
 {"posX":1626,"posY":90,"berthIds":["SIS770"]},
-{"posX":1610,"posY":154,"berthIds":["SIS772"]},
 {"posX":1706,"posY":474,"berthIds":["SIS697"]},
 {"posX":1706,"posY":506,"berthIds":["SIS901"]}
 ],
@@ -1578,6 +1576,7 @@
 {"posX":246,"posY":694,"signalId":"SE0639","dataId":"SE39:7","direction":"left"},
 {"posX":318,"posY":694,"signalId":"SE0649","dataId":"SE39:8","direction":"left"},
 {"posX":384,"posY":694,"signalId":"SE0651","dataId":"SE3A:1","direction":"left"},
+{"posX":326,"posY":694,"signalId":"SE0692","dataId":"SE39:3","direction":"right"},
 {"posX":326,"posY":750,"signalId":"SE0694","dataId":"SE39:4","direction":"right"},
 {"posX":392,"posY":718,"signalId":"SE0696","dataId":"SE39:5","direction":"right"},
 {"posX":552,"posY":718,"signalId":"SE0708","dataId":"SE","direction":"right"}
@@ -3060,7 +3059,7 @@
 {"posX":616,"posY":430,"signalId":"CC0834","dataId":"CC82:7","direction":"right","isShunt":true},
 {"posX":446,"posY":630,"signalId":"SX2003","dataId":"SX01:1","direction":"left"},
 {"posX":455,"posY":686,"signalId":"SX2004","dataId":"SX01:2","direction":"right"},
-{"posX":454,"posY":630,"signalId":"SX2006","dataId":"SXPRED","direction":"right"},
+{"posX":454,"posY":630,"signalId":"SX2006","dataId":"SX01:3","direction":"right"},
 {"posX":560,"posY":630,"signalId":"SX2011","dataId":"SX01:4","direction":"left"},
 {"posX":568,"posY":654,"signalId":"SX2012","dataId":"SX01:5","direction":"right"},
 {"posX":710,"posY":686,"signalId":"SX2028","dataId":"SX01:7","direction":"right"},
