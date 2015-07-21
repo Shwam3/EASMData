@@ -56,14 +56,14 @@ EN06:6,,,,0
 EN06:7,EN8061,,,449
 EN06:8,EN8064,,,0
 EN07:1,EN8066,,,434
-EN07:2,,,,2
+EN07:2,EN8081,,,2
 EN07:3,EN8083,,,455
 EN07:4,EN8086,,,445
 EN07:5,,,,0
 EN07:6,EN8063,,,0
 EN07:7,,,,0
-EN07:8,,,,0
-EN08:1,,,,0
+EN07:8,,EN8069,,0
+EN08:1,,EN8078,,0
 EN08:2,,,,0
 EN08:3,EN8104,,,0
 EN08:4,EN8109,,,452
@@ -98,13 +98,13 @@ EN0B:8,,,,0
 EN0C:1,,,,0
 EN0C:2,Shippea Hill MCB-OD Raised,,,842
 EN0C:3,Shippea Hill MCB-OD Clear,,,842
-EN0C:4,Shippea Hill MCB-OD Status,ASSUMED,,2
+EN0C:4,Shippea Hill MCB-OD Status,,,2
 EN0C:5,Lakenham MCB-OD Raised,,,800
 EN0C:6,Lakenham MCB-OD Clear,,,798
-EN0C:7,Lakenham MCB-OD Status,ASSUMED,,2
+EN0C:7,Lakenham MCB-OD Status,,,2
 EN0C:8,Brandon MCB-OD Raised,,,817
 EN0D:1,Brandon MCB-OD Clear,,,817
-EN0D:2,Brandon MCB-OD Status,ASSUMED,,4
+EN0D:2,Brandon MCB-OD Status,,,4
 EN0D:3,,,,0
 EN0D:4,,,,0
 EN0D:5,,,,0
@@ -163,7 +163,7 @@ EN14:1,EN8148,,,436
 EN14:2,EN8149,,,452
 EN14:3,EN8164,,,434
 EN14:4,EN8167,,,454
-EN14:5,,EN8153,,0
+EN14:5,EN8153,,,0
 EN14:6,EN8155,,,0
 EN14:7,EN8158,,,0
 EN14:8,,,,0
@@ -183,9 +183,9 @@ EN16:5,EN8237,,,454
 EN16:6,EN8246,,,444
 EN16:7,EN8223,,,2
 EN16:8,EN8225,,,0
-EN17:1,,,,456
-EN17:2,,,,434
-EN17:3,,,,456
+EN17:1,,TC,,456
+EN17:2,,TC,,434
+EN17:3,,TC,,456
 EN17:4,,,,434
 EN17:5,,,,458
 EN17:6,,,,4
@@ -201,19 +201,19 @@ EN18:7,,,,0
 EN18:8,,,,0
 EN19:1,Harling Rd MCB-OD Raised,,,858
 EN19:2,Harling Rd MCB-OD Clear,,,854
-EN19:3,Harling Rd MCB-OD Status,ASSUMED,,2
+EN19:3,Harling Rd MCB-OD Status,,,2
 EN19:4,Eccles Rd MCB-OD Raised,,,780
 EN19:5,Eccles Rd MCB-OD Clear,,,780
-EN19:6,Eccles Rd MCB-OD Status,ASSUMED,,0
+EN19:6,Eccles Rd MCB-OD Status,,,0
 EN19:7,Poplar Farm MCB-OD Raised,,,838
 EN19:8,Poplar Farm MCB-OD Working,,,832
-EN1A:1,Poplar Farm MCB-OD Status,ASSUMED,,2
+EN1A:1,Poplar Farm MCB-OD Status,,,2
 EN1A:2,Attleborough MCB-OD Raised,,,827
 EN1A:3,Attleborough MCB-OD Working,,,827
-EN1A:4,Attleborough MCB-OD Status,ASSUMED,,2
+EN1A:4,Attleborough MCB-OD Status,,,2
 EN1A:5,Spooner Row MCB-OD Raised,,,743
 EN1A:6,Spooner Row MCB-OD Clear,,,740
-EN1A:7,Spooner Row MCB-OD Status,ASSUMED,,2
+EN1A:7,Spooner Row MCB-OD Status,,,2
 EN1A:8,Hargham AHB Raised,,,844
 EN1B:1,Hargham AHB Working,,,848
 EN1B:2,Spronces AHB-X Raised,,,841
