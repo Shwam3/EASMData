@@ -2235,7 +2235,7 @@
 {"posX":1094,"posY":742,"signalId":"LS1446","dataId":"LS2A:4","direction":"right"},
 {"posX":1094,"posY":798,"signalId":"LS1448","dataId":"LS2A:5","direction":"right"},
 {"posX":990,"posY":798,"signalId":"LS5557","dataId":"LS2A:6","direction":"left","isShunt":true},
-{"posX":1022,"posY":694,"signalId":"LS5561","dataId":"L2A:7","direction":"left","isShunt":true}
+{"posX":1022,"posY":694,"signalId":"LS5561","dataId":"LS2A:7","direction":"left","isShunt":true}
 ],
 "points":[
 ],
