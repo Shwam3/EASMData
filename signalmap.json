@@ -3433,7 +3433,7 @@
 {"posX":528,"posY":630,"signalId":"SX2011","dataId":"SX01:4","direction":"left"},
 {"posX":552,"posY":654,"signalId":"SX2012","dataId":"SX01:5","direction":"right"},
 {"posX":710,"posY":686,"signalId":"SX2028","dataId":"SX01:7","direction":"right"},
-{"posX":694,"posY":630,"signalId":"SX2029","dataId":"SX01:8","direction":"left"},
+{"posX":686,"posY":630,"signalId":"SX2029","dataId":"SX01:8","direction":"left"},
 {"posX":710,"posY":630,"signalId":"SX2032","dataId":"SX02:1","direction":"right"},
 {"posX":816,"posY":630,"signalId":"SX2033","dataId":"SX02:2","direction":"left"},
 {"posX":880,"posY":686,"signalId":"SX2035","dataId":"SX02:3","direction":"left"},

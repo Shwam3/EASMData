@@ -183,15 +183,15 @@ EN16:5,EN8237,,,454
 EN16:6,EN8246,,,444
 EN16:7,EN8223,,,2
 EN16:8,EN8225,,,0
-EN17:1,,TC,,456
-EN17:2,,TC,,434
-EN17:3,,TC,,456
-EN17:4,,,,434
-EN17:5,,,,458
-EN17:6,,,,4
-EN17:7,,,,436
-EN17:8,,,,458
-EN18:1,,,,702
+EN17:1,ECR 1st approach (EN8167),,,456
+EN17:2,HRD approach (EN8148),,,434
+EN17:3,ECR 2nd approach (EN8167),,,456
+EN17:4,SPN 1st approach (EN8198),,,434
+EN17:5,WMD 1st approach (EN8237),,,458
+EN17:6,MNR approach/send,,,4
+EN17:7,SPN 2nd approach (EN8198),,,436
+EN17:8,WMD 2nd approach (EN8237),,,458
+EN18:1,WMD approach (EN8246),,,702
 EN18:2,,,,0
 EN18:3,,,,0
 EN18:4,,,,0
