@@ -2733,7 +2733,7 @@
 {"posX":420,"posY":598,"signalId":"CC4006","dataId":"CC29:6","direction":"right"},
 {"posX":410,"posY":654,"signalId":"CC4009","dataId":"CC2A:1","direction":"left"},
 {"posX":596,"posY":598,"signalId":"CC4010","dataId":"CC2A:2","direction":"right"},
-{"posX":538,"posY":654,"signalId":"CC4013","dataId":"CC2A:4","direction":"left"},
+{"posX":538,"posY":654,"signalId":"CC4013","dataId":"CC2A:4","direction":"left"}
 ],
 "points":[
 {"posX":262,"posY":202,"description":"CC1247 Nrm","dataIds":["CCBD:5"],"direction":"text","type0":"NONE","type1":"NHzRtDn"},
@@ -2889,7 +2889,7 @@
 {"posX":854,"posY":458,"description":"CC3049 Nrm","dataIds":["CC49:3"],"direction":"text","type0":"NONE","type1":"RVtLfDn"},
 {"posX":854,"posY":458,"description":"CC3049 Rev","dataIds":["CC49:4"],"direction":"text","type0":"NONE","type1":"NVtLfDn"},
 {"posX":854,"posY":426,"description":"CC3049 Nrm","dataIds":["CC49:3"],"direction":"text","type0":"NONE","type1":"NHzLfDn"},
-{"posX":854,"posY":426,"description":"CC3049 Rev","dataIds":["CC49:4"],"direction":"text","type0":"NONE","type1":"RHzLfDn"},
+{"posX":854,"posY":426,"description":"CC3049 Rev","dataIds":["CC49:4"],"direction":"text","type0":"NONE","type1":"RHzLfDn"}
 ],
 "stations":[
 {"posX":802,"posY":746,"name":"COLCHESTER","url":"COL","isLarge":true},
@@ -4709,7 +4709,7 @@
 {"posX":1298,"posY":442,"description":"CP2531 Up Nrm","dataIds":["CCAC:3"],"direction":"text","type0":"NONE","type1":"NHzRtDn"},
 {"posX":1298,"posY":442,"description":"CP2531 Up Rev","dataIds":["CCAC:4"],"direction":"text","type0":"NONE","type1":"RHzRtDn"},
 {"posX":1298,"posY":474,"description":"CP2531 Dn Nrm","dataIds":["CCAC:3"],"direction":"text","type0":"NONE","type1":"NHzLfUp"},
-{"posX":1298,"posY":474,"description":"CP2531 Dn Rev","dataIds":["CCAC:4"],"direction":"text","type0":"NONE","type1":"RHzLfUp"},
+{"posX":1298,"posY":474,"description":"CP2531 Dn Rev","dataIds":["CCAC:4"],"direction":"text","type0":"NONE","type1":"RHzLfUp"}
 ],
 "stations":[
 {"posX":1660,"posY":442,"name":"NORWICH","url":"NRW","isLarge":true},
