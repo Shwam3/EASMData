@@ -4579,7 +4579,7 @@
 {"posX":1054,"posY":310,"signalId":"CC0877","dataId":"CC93:8","direction":"left","routes":["CC93:6"]},
 {"posX":1000,"posY":366,"signalId":"CC0878","dataId":"CC94:3","direction":"right","routes":["CC94:1"]},
 {"posX":1118,"posY":310,"signalId":"CC0889","dataId":"CC","direction":"left"},
-{"posX":1128,"posY":366,"signalId":"CC0890","dataId":"CC94:6","direction":"right","routes":["CC93:4"]},
+{"posX":1128,"posY":366,"signalId":"CC0890","dataId":"CC94:6","direction":"right","routes":["CC94:4"]},
 {"posX":1182,"posY":310,"signalId":"CC0891","dataId":"CC94:8","direction":"left","routes":["CC8E:4"]},
 {"posX":664,"posY":310,"signalId":"CC1408","dataId":"CC5E:2","direction":"right","isShunt":true,"routes":["CC56:8"]},
 {"posX":718,"posY":334,"signalId":"CC1409","dataId":"CC5E:4","direction":"left","isShunt":true,"routes":["CC57:1"]},
