@@ -1,6 +1,6 @@
-{"version":5,"signalMap":[
+{"version":6,"signalMap":[
 {
-"panelId":1,"panelName":"Liverpool St/Stratford","imageName":"Stratford+LivSt","panelDescription":"London Liverpool Street - Manor Park, Coppermill Jnc &amp; Orient Way",
+"panelId":1,"panelName":"Liverpool St","imageName":"LiverpoolSt","panelDescription":"London Liverpool Street - Bow Junction",
 "berths":[
 {"posX":330,"posY":442,"berthIds":["LS0027"]},
 {"posX":330,"posY":474,"berthIds":["LS0031"]},
@@ -692,7 +692,24 @@
 ]
 },
 {
-"panelId":2,"panelName":"Ilford","imageName":"Ilford","panelDescription":"Forest Gate - Harold Wood",
+"panelId":2,"panelName":"Stratford","imageName":"Stratford","panelDescription":"Bow Junction - Manor Park, Coppermill Jnc &amp; Orient Way",
+"berths":[
+{"posX":1706,"posY":506,"berthIds":["SIS901"]}
+],
+"signals":[
+{"posX":1624,"posY":86,"signalId":"SIS770","dataId":"SI","direction":"right"}
+],
+"points":[
+],
+"stations":[
+{"posX":906,"posY":242,"name":"MARYLAND","url":"MYL"}
+],
+"navButtons":[
+{"posX":1622,"posY":314,"name":"ILFORD","linkedPanel":2}
+]
+},
+{
+"panelId":3,"panelName":"Ilford","imageName":"Ilford","panelDescription":"Forest Gate - Harold Wood",
 "berths":[
 {"posX":170,"posY":122,"berthIds":["SI0383"]},
 {"posX":234,"posY":122,"berthIds":["SI0385"]},
@@ -1095,7 +1112,7 @@
 ]
 },
 {
-"panelId":3,"panelName":"Shenfield","imageName":"Shenfield","panelDescription":"Harold Wood - Ingatestone",
+"panelId":4,"panelName":"Shenfield","imageName":"Shenfield","panelDescription":"Harold Wood - Ingatestone",
 "berths":[
 {"posX":234,"posY":154,"berthIds":["SE0445"]},
 {"posX":298,"posY":154,"berthIds":["SE0447"]},
@@ -1643,7 +1660,7 @@
 ]
 },
 {
-"panelId":4,"panelName":"Witham","imageName":"Witham","panelDescription":"Ingatestone - Marks Tey",
+"panelId":5,"panelName":"Witham","imageName":"Witham","panelDescription":"Ingatestone - Marks Tey",
 "berths":[
 {"posX":138,"posY":202,"berthIds":["SE0747"]},
 {"posX":250,"posY":202,"berthIds":["SE0751"]},
@@ -1958,7 +1975,7 @@
 ]
 },
 {
-"panelId":5,"panelName":"Hackney/Brimsdown","imageName":"Hackney+Brimsdown","panelDescription":"Hackney Downs - Chingford, Enfield Town &amp; Cheshunt<br>Partial signal indications",
+"panelId":6,"panelName":"Hackney/Brimsdown","imageName":"Hackney+Brimsdown","panelDescription":"Hackney Downs - Chingford, Enfield Town &amp; Cheshunt<br>Partial signal indications",
 "berths":[
 {"posX":346,"posY":186,"berthIds":["LS0120"]},
 {"posX":338,"posY":154,"berthIds":["LS0121"]},
@@ -2300,7 +2317,7 @@
 ]
 },
 {
-"panelId":6,"panelName":"Harlow","imageName":"Harlow","panelDescription":"Cheshunt - Elsenham, Hertford East &amp; Stansted Airport<br>No signal indications",
+"panelId":7,"panelName":"Harlow","imageName":"Harlow","panelDescription":"Cheshunt - Elsenham, Hertford East &amp; Stansted Airport<br>No signal indications",
 "berths":[
 {"posX":122,"posY":186,"berthIds":["WG1061"]},
 {"posX":122,"posY":218,"berthIds":["WG1062"]},
@@ -2496,7 +2513,7 @@
 ]
 },
 {
-"panelId":7,"panelName":"Colchester","imageName":"Colchester+Parkeston","panelDescription":"Colchester - Ipswich",
+"panelId":8,"panelName":"Colchester","imageName":"Colchester+Parkeston","panelDescription":"Colchester - Ipswich",
 "berths":[
 {"posX":214,"posY":234,"berthIds":["CC0190"]},
 {"posX":214,"posY":202,"berthIds":["CC0191"]},
@@ -2914,7 +2931,7 @@
 ]
 },
 {
-"panelId":8,"panelName":"Clacton/Thorpe/East Gates","imageName":"EastGates+Thorpe+Clacton","panelDescription":"Colchester - Colchester Town, Clacton-on-Sea &amp; Walton-on-the-Naze",
+"panelId":9,"panelName":"Clacton/Thorpe/East Gates","imageName":"EastGates+Thorpe+Clacton","panelDescription":"Colchester - Colchester Town, Clacton-on-Sea &amp; Walton-on-the-Naze",
 "berths":[
 {"posX":202,"posY":330,"berthIds":["CC1088"]},
 {"posX":202,"posY":266,"berthIds":["CC1091"]},
@@ -3115,7 +3132,7 @@
 ]
 },
 {
-"panelId":9,"panelName":"Ipswich/Saxmundham","imageName":"Ipswich+Saxmundham","panelDescription":"Ipswich - Stowmarket/Oulton Broad",
+"panelId":10,"panelName":"Ipswich/Saxmundham","imageName":"Ipswich+Saxmundham","panelDescription":"Ipswich - Stowmarket/Oulton Broad",
 "berths":[
 {"posX":114,"posY":330,"berthIds":["CC0290"]},
 {"posX":114,"posY":250,"berthIds":["CC0295","CC0292"]},
@@ -3641,7 +3658,7 @@
 ]
 },
 {
-"panelId":10,"panelName":"Cambridge (CA)","imageName":"CambridgeCA","panelDescription":"Elsenham - Ely",
+"panelId":11,"panelName":"Cambridge (CA)","imageName":"CambridgeCA","panelDescription":"Elsenham - Ely",
 "berths":[
 {"posX":272,"posY":154,"berthIds":["CA0211"]},
 {"posX":272,"posY":186,"berthIds":["CA0212"]},
@@ -4014,7 +4031,7 @@
 ]
 },
 {
-"panelId":11,"panelName":"Cambridge (EN)","imageName":"CambridgeEN","panelDescription":"Ely North Jnc - Manea, Kings Lynn &amp; Wymondham<br>Bury St. Edmunds - Ely &amp; Cambridge",
+"panelId":12,"panelName":"Cambridge (EN)","imageName":"CambridgeEN","panelDescription":"Ely North Jnc - Manea, Kings Lynn &amp; Wymondham<br>Bury St. Edmunds - Ely &amp; Cambridge",
 "berths":[
 {"posX":98,"posY":138,"berthIds":["ENA808"]},
 {"posX":1674,"posY":106,"berthIds":["ENC877"]},
@@ -4377,7 +4394,7 @@
 ]
 },
 {
-"panelId":12,"panelName":"Norwich/Trowse Bridge","imageName":"Norwich+Trowse","panelDescription":"Stowmarket, Sheringham &amp; Whitlingham Jnc - Norwich",
+"panelId":13,"panelName":"Norwich/Trowse Bridge","imageName":"Norwich+Trowse","panelDescription":"Stowmarket, Sheringham &amp; Whitlingham Jnc - Norwich",
 "berths":[
 {"posX":186,"posY":250,"berthIds":["CC0395"]},
 {"posX":266,"posY":282,"berthIds":["CC0396"]},
