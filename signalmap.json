@@ -515,6 +515,8 @@
 {"posX":1050,"posY":226,"name":"MARYLAND","url":"MYL"}
 ],
 "navButtons":[
+{"posX":10,"posY":290,"name":"L`POOL","linkedPanel":0},
+{"posX":10,"posY":306,"name":"STREET","linkedPanel":0},
 {"posX":1766,"posY":298,"name":"ILFORD","linkedPanel":2}
 ]
 },
