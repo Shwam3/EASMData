@@ -599,7 +599,7 @@
 {"posX":1742,"posY":368,"signalId":"SI0332","dataId":"SI22:4","direction":"down"},
 {"posX":1670,"posY":368,"signalId":"SI0334","dataId":"SI22:5","direction":"down"},
 {"posX":1326,"posY":500,"signalId":"SI0909","dataId":"SI","direction":"up"},
-{"posX":1244,"posY":500,"signalId":"SI0911","dataId":"SI","direction":"up"},
+{"posX":1254,"posY":500,"signalId":"SI0911","dataId":"SI","direction":"up"},
 {"posX":424,"posY":182,"signalId":"SI5070","dataId":"SI17:7","direction":"right","isShunt":true},
 {"posX":862,"posY":150,"signalId":"SIS697","dataId":"SI","direction":"left"},
 {"posX":862,"posY":206,"signalId":"SIS901","dataId":"SI","direction":"left"},
