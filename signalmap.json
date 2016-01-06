@@ -782,7 +782,6 @@
 {"posX":792,"posY":538,"signalId":"SIS716 to SIS717 (Reception Line)","dataId":"SI1F:5","direction":"text","text0":"  ","text1":"RL"},
 {"posX":792,"posY":538,"signalId":"SIS716 to SIS706 (Temple Mills Loop)","dataId":"SI1F:6","direction":"text","text0":"  ","text1":"TL"},
 {"posX":792,"posY":538,"signalId":"SIS716 to SIS712 (Up Main)","dataId":"SI1F:7","direction":"text","text0":"  ","text1":"UM"},
-{"posX":792,"posY":538,"signalId":"SIS716 to SIS712 (Up Main)","dataId":"SI1F:7","direction":"text","text0":"  ","text1":"UM"},
 {"posX":768,"posY":578,"signalId":"SIS717 to SI1003 (Down Main)","dataId":"SI1F:8","direction":"text","text0":"  ","text1":"DM"},
 {"posX":360,"posY":542,"signalId":"SIS700","dataId":"SI","direction":"right"},
 {"posX":412,"posY":486,"signalId":"SIS701","dataId":"SI","direction":"left"},
