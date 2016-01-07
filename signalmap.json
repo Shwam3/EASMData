@@ -903,7 +903,7 @@
 {"posX":778,"posY":522,"description":"SITM9 Nrm","dataIds":["SI1F:7"],"direction":"text","type0":"NONE","type1":"NHzRtDn"},
 {"posX":778,"posY":522,"description":"SITM9 Rev","dataIds":["SI1F:4","SI1F:5","SI1F:6","SI1F:8"],"direction":"text","type0":"NONE","type1":"RHzRtDn"},
 {"posX":794,"posY":490,"description":"SITM10A Nrm","dataIds":["SI1F:3","SI1F:5","SI1F:6","SI1F:7"],"direction":"text","type0":"NONE","type1":"NHzRtDn"},
-{"posX":794,"posY":490,"description":"SITM10A Rev","dataIds":["SI1F:4","SI1E:8"],"direction":"text","type0":"NONE","type1":"RHzRtDn"},
+{"posX":794,"posY":490,"description":"SITM10A Rev","dataIds":["SI1F:4","SI1F:8"],"direction":"text","type0":"NONE","type1":"RHzRtDn"},
 {"posX":794,"posY":522,"description":"SITM10B Nrm","dataIds":["SI1F:3","SI1F:5","SI1F:6","SI1F:7"],"direction":"text","type0":"NONE","type1":"NHzLfUp"},
 {"posX":794,"posY":522,"description":"SITM10B Rev","dataIds":["SI1F:4","SI1F:8"],"direction":"text","type0":"NONE","type1":"RHzLfUp"}
 ],
