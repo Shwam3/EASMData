@@ -1,185 +1,185 @@
 Address,Description,Comment 1,Comment 2,Occurrences
-SX01:1,SX2003,,,223
-SX01:2,SX2004,,,240
+SX01:1,SX2003,,,3483
+SX01:2,SX2004,,,3633
 SX01:3,SX2006,fixed red,0,0
-SX01:4,SX2011,,,214
-SX01:5,SX2012,,,224
-SX01:6,,,1,0
-SX01:7,SX2028,,,224
-SX01:8,SX2029,,,210
-SX02:1,SX2032,,,0
-SX02:2,SX2033,,,214
-SX02:3,SX2035,,,0
-SX02:4,SX2042,,,224
-SX02:5,,,1,0
+SX01:4,SX2011,,,3389
+SX01:5,SX2012,,,3612
+SX01:6,,,1,6
+SX01:7,SX2028,,,3566
+SX01:8,SX2029,,,3396
+SX02:1,SX2032,,,4
+SX02:2,SX2033,,,3543
+SX02:3,SX2035,,,2
+SX02:4,SX2042,,,3599
+SX02:5,,,1,5
 SX02:6,,,0,0
 SX02:7,,,0,0
 SX02:8,,,0,0
-SX03:1,SX2045,,,217
-SX03:2,SX2046,,,228
-SX03:3,,,,0
-SX03:4,SX2052,,,226
-SX03:5,,,1,0
-SX03:6,,,1,0
-SX03:7,SX2055,,,217
-SX03:8,SX2056,,,227
-SX04:1,SX2057,,,216
-SX04:2,SX2058,,,2
-SX04:3,SX2060,,,226
-SX04:4,,,1,0
-SX04:5,SX2066,,,226
+SX03:1,SX2045,,,3414
+SX03:2,SX2046,,,3740
+SX03:3,,,,8
+SX03:4,SX2052,,,3590
+SX03:5,,,1,6
+SX03:6,,,1,6
+SX03:7,SX2055,,,3424
+SX03:8,SX2056,,,3574
+SX04:1,SX2057,,,3421
+SX04:2,SX2058,,,4
+SX04:3,SX2060,,,3587
+SX04:4,,,1,5
+SX04:5,SX2066,,,3586
 SX04:6,,,0,0
 SX04:7,,,0,0
 SX04:8,,,0,0
-SX05:1,SX901 Rev,,,214
-SX05:2,SX901 Norm,,,215
-SX05:3,SX905 Norm,,,216
-SX05:4,SX905 Rev,,,213
+SX05:1,SX901 Rev,,,3308
+SX05:2,SX901 Norm,,,3334
+SX05:3,SX905 Norm,,,3329
+SX05:4,SX905 Rev,,,3351
 SX05:5,,,0,0
 SX05:6,,,0,0
 SX05:7,,,0,0
 SX05:8,,,0,0
-SX06:1,SX907 Norm,,,191
-SX06:2,SX908 Norm,,,191
-SX06:3,SX909 Norm,,,180
-SX06:4,SX907 Rev,,,191
-SX06:5,SX908 Rev,,,191
-SX06:6,SX909 Rev,,,180
+SX06:1,SX907 Norm,,,2955
+SX06:2,SX908 Norm,,,2960
+SX06:3,SX909 Norm,,,2789
+SX06:4,SX907 Rev,,,2957
+SX06:5,SX908 Rev,,,2958
+SX06:6,SX909 Rev,,,2810
 SX06:7,,,0,0
 SX06:8,,,0,0
-SX07:1,SX2003 RTE,Auto but,,12
-SX07:2,SX2004 RTE,Auto but,,16
-SX07:3,SX2011 RTE,,,216
-SX07:4,SX2012 RTE,,,224
-SX07:5,,,0,0
-SX07:6,SX2028 RTE,,,224
-SX07:7,SX2029 RTE,,,216
-SX07:8,SX2032 RTE,,,0
-SX08:1,,,0,0
-SX08:2,SX2033 RTE,Auto but,,21
-SX08:3,SX2035 RTE,,,0
-SX08:4,SX2042 RTE,,,225
+SX07:1,SX2003 RTE,Auto but,,274
+SX07:2,SX2004 RTE,Auto but,,274
+SX07:3,SX2011 RTE,,,3427
+SX07:4,SX2012 RTE,,,3583
+SX07:5,,,0,18
+SX07:6,SX2028 RTE,,,3575
+SX07:7,SX2029 RTE,,,3440
+SX07:8,SX2032 RTE,,,11
+SX08:1,,,0,4
+SX08:2,SX2033 RTE,Auto but,,645
+SX08:3,SX2035 RTE,,,2
+SX08:4,SX2042 RTE,,,3586
 SX08:5,,,0,0
 SX08:6,,,0,0
 SX08:7,,,0,0
 SX08:8,,,0,0
-SX09:1,SX2045 RTE,,,217
-SX09:2,SX2046 RTE,Auto but,,13
-SX09:3,SX2047 RTE,,,0
-SX09:4,SX2052 RTE,,,224
-SX09:5,SX2055 RTE,,,217
-SX09:6,SX2056 RTE,,,227
-SX09:7,SX2057 RTE,,,216
-SX09:8,SX2058 RTE,,,0
-SX0A:1,SX2060 RTE,,,226
+SX09:1,SX2045 RTE,,,3404
+SX09:2,SX2046 RTE,Auto but,,541
+SX09:3,SX2047 RTE,,,5
+SX09:4,SX2052 RTE,,,3591
+SX09:5,SX2055 RTE,,,3421
+SX09:6,SX2056 RTE,,,3574
+SX09:7,SX2057 RTE,,,3412
+SX09:8,SX2058 RTE,,,4
+SX0A:1,SX2060 RTE,,,3585
 SX0A:2,,,0,0
-SX0A:3,SX2066 RTE,,,226
+SX0A:3,SX2066 RTE,,,3571
 SX0A:4,,,0,0
 SX0A:5,,,0,0
 SX0A:6,,,0,0
 SX0A:7,,,0,0
 SX0A:8,,,0,0
-SX0B:1,Track Circuit 7141-7242,Colchester,,216
-SX0B:2,Track Circuit 7243,Colchester,,214
-SX0B:3,Track Circuit 7244,Colchester,,214
-SX0B:4,Track Circuit 7245,Colchester,,214
-SX0B:5,Track Circuit 7256,Colchester,,224
-SX0B:6,Track Circuit 7257,Colchester,,226
+SX0B:1,Track Circuit 7141-7242,Colchester,,3431
+SX0B:2,Track Circuit 7243,Colchester,,3421
+SX0B:3,Track Circuit 7244,Colchester,,3415
+SX0B:4,Track Circuit 7245,Colchester,,3407
+SX0B:5,Track Circuit 7256,Colchester,,3554
+SX0B:6,Track Circuit 7257,Colchester,,3554
 SX0B:7,,,0,0
 SX0B:8,,,0,0
 SX0C:1,,,0,0
-SX0C:2,Track Circuit MSS-X,Axle counter,,434
-SX0C:3,Track Circuit SMA,,,210
-SX0C:4,Track Circuit SMM,,,222
-SX0C:5,Track Circuit SMP,,,222
-SX0C:6,Track Circuit SMR,,,222
-SX0C:7,Track Circuit SMS,,,222
-SX0C:8,Track Circuit SMT,,,222
-SX0D:1,Track Circuit SMV,,,210
-SX0D:2,Track Circuit SMW,,,210
-SX0D:3,Track Circuit SMX,,,432
-SX0D:4,Track Circuit SMY,,,432
-SX0D:5,Track Circuit SMZ,,,432
-SX0D:6,Track Circuit WBE,,,438
-SX0D:7,Track Circuit WBF,,,440
-SX0D:8,Track Circuit WBG,,,440
-SX0E:1,Track Circuit WBH,,,226
-SX0E:2,Track Circuit WBJ,,,226
-SX0E:3,Track Circuit WBK,,,226
-SX0E:4,Track Circuit WBL,,,226
-SX0E:5,Track Circuit WBM,,,226
-SX0E:6,Track Circuit WBS,,,214
-SX0E:7,Track Circuit WBT,,,214
-SX0E:8,Track Circuit WBV,,,214
-SX0F:1,Track Circuit WBW,,,214
-SX0F:2,Track Circuit WBX,,,214
-SX0F:3,Track Circuit WMS-X,Axle counter,,435
-SX0F:4,Track Circuit WWD-X,Axle counter,,214
-SX0F:5,Track Circuit WWU-X,Axle counter,,226
+SX0C:2,Track Circuit MSS-X,Axle counter,,6941
+SX0C:3,Track Circuit SMA,,,3421
+SX0C:4,Track Circuit SMM,,,3557
+SX0C:5,Track Circuit SMP,,,3561
+SX0C:6,Track Circuit SMR,,,3620
+SX0C:7,Track Circuit SMS,,,3576
+SX0C:8,Track Circuit SMT,,,3577
+SX0D:1,Track Circuit SMV,,,3397
+SX0D:2,Track Circuit SMW,,,3397
+SX0D:3,Track Circuit SMX,,,6964
+SX0D:4,Track Circuit SMY,,,6963
+SX0D:5,Track Circuit SMZ,,,6955
+SX0D:6,Track Circuit WBE,,,6979
+SX0D:7,Track Circuit WBF,,,6980
+SX0D:8,Track Circuit WBG,,,6968
+SX0E:1,Track Circuit WBH,,,3554
+SX0E:2,Track Circuit WBJ,,,3559
+SX0E:3,Track Circuit WBK,,,3556
+SX0E:4,Track Circuit WBL,,,3554
+SX0E:5,Track Circuit WBM,,,3551
+SX0E:6,Track Circuit WBS,,,3426
+SX0E:7,Track Circuit WBT,,,3428
+SX0E:8,Track Circuit WBV,,,3427
+SX0F:1,Track Circuit WBW,,,3408
+SX0F:2,Track Circuit WBX,,,3393
+SX0F:3,Track Circuit WMS-X,Axle counter,,6939
+SX0F:4,Track Circuit WWD-X,Axle counter,,3391
+SX0F:5,Track Circuit WWU-X,Axle counter,,3535
 SX0F:6,,,0,0
 SX0F:7,,,0,0
 SX0F:8,,,0,0
-SX10:1,Track Circuit BOS-X,Axle counter,,440
-SX10:2,Track Circuit BSA,,,440
-SX10:3,Track Circuit BSB,,,440
-SX10:4,Track Circuit BSC,,,442
-SX10:5,Track Circuit BSD,,,220
-SX10:6,Track Circuit BSE,,,220
-SX10:7,Track Circuit BSF,,,218
-SX10:8,Track Circuit BSG,,,442
-SX11:1,Track Circuit BSH,,,442
-SX11:2,Track Circuit BSJ,,,226
-SX11:3,Track Circuit BSK,,,228
-SX11:4,Track Circuit BSR,,,482
-SX11:5,Track Circuit OBJ/OBD,,,436
-SX11:6,Track Circuit OBE/OBC,,,458
-SX11:7,Track Circuit OBG,,,437
-SX11:8,Track Circuit OBH,,,436
-SX12:1,Track Circuit HBS-X,Axle counter,,438
-SX12:2,Track Circuit HSU-X,Axle counter,,224
-SX12:3,Track Circuit HWB,,,436
-SX12:4,Track Circuit HWC,,,434
-SX12:5,Track Circuit HWD,,,220
-SX12:6,Track Circuit HWE,,,222
-SX12:7,Track Circuit HWG,,,215
-SX12:8,Track Circuit HWF,,,222
-SX13:1,Track Circuit HWH,,,214
-SX13:2,Track Circuit OBM,,,436
-SX13:3,Track Circuit OBV,,,438
-SX13:4,Track Circuit OBW,,,436
-SX13:5,Track Circuit OBX,,,436
-SX13:6,Track Circuit OBY,,,438
-SX13:7,Track Circuit OBZ,,,438
-SX13:8,Track Circuit OBR,,,436
-SX14:1,Track Circuit OBS,,,434
-SX14:2,Track Circuit SHD-X,Axle counter,,210
-SX14:3,Track Circuit OBT,,,434
+SX10:1,Track Circuit BOS-X,Axle counter,,6900
+SX10:2,Track Circuit BSA,,,6966
+SX10:3,Track Circuit BSB,,,6950
+SX10:4,Track Circuit BSC,,,6933
+SX10:5,Track Circuit BSD,,,3386
+SX10:6,Track Circuit BSE,,,3386
+SX10:7,Track Circuit BSF,,,3376
+SX10:8,Track Circuit BSG,,,6951
+SX11:1,Track Circuit BSH,,,6956
+SX11:2,Track Circuit BSJ,,,3585
+SX11:3,Track Circuit BSK,,,3558
+SX11:4,Track Circuit BSR,,,6966
+SX11:5,Track Circuit OBJ/OBD,,,6900
+SX11:6,Track Circuit OBE/OBC,,,6912
+SX11:7,Track Circuit OBG,,,6908
+SX11:8,Track Circuit OBH,,,6922
+SX12:1,Track Circuit HBS-X,Axle counter,,6929
+SX12:2,Track Circuit HSU-X,Axle counter,,3558
+SX12:3,Track Circuit HWB,,,6939
+SX12:4,Track Circuit HWC,,,6938
+SX12:5,Track Circuit HWD,,,3561
+SX12:6,Track Circuit HWE,,,3561
+SX12:7,Track Circuit HWG,,,3383
+SX12:8,Track Circuit HWF,,,3560
+SX13:1,Track Circuit HWH,,,3375
+SX13:2,Track Circuit OBM,,,6898
+SX13:3,Track Circuit OBV,,,6915
+SX13:4,Track Circuit OBW,,,6917
+SX13:5,Track Circuit OBX,,,6914
+SX13:6,Track Circuit OBY,,,6920
+SX13:7,Track Circuit OBZ,,,6924
+SX13:8,Track Circuit OBR,,,6900
+SX14:1,Track Circuit OBS,,,6897
+SX14:2,Track Circuit SHD-X,Axle counter,,3390
+SX14:3,Track Circuit OBT,,,6909
 SX14:4,,,0,0
 SX14:5,,,0,0
 SX14:6,,,0,0
 SX14:7,,,0,0
 SX14:8,,,0,0
-SX15:1,,2011 -> 2029,,216
-SX15:2,,2012 -> 2004,,217
-SX15:3,2015 DOF (dn),,,215
-SX15:4,2015 DOF (up),,,215
+SX15:1,,2011 -> 2029,,3411
+SX15:2,,2012 -> 2004,,3481
+SX15:3,2015 DOF (dn),,,3323
+SX15:4,2015 DOF (up),,,3325
 SX15:5,,,0,0
 SX15:6,,,0,0
 SX15:7,,,0,0
 SX15:8,,,0,0
-SX16:1,2037 DOF (up),,,11
-SX16:2,2049 DOF (up),,,207
-SX16:3,2063 DOF (up),,,228
+SX16:1,2037 DOF (up),,,492
+SX16:2,2049 DOF (up),,,3349
+SX16:3,2063 DOF (up),,,3558
 SX16:4,,,0,0
-SX16:5,,,0,0
-SX16:6,,,0,1
-SX16:7,,,0,1
+SX16:5,,,0,2
+SX16:6,,,0,3277
+SX16:7,,,0,3224
 SX16:8,,,0,0
-SX17:1,2037 DOF (dn),,,0
-SX17:2,2049 DOF (dn),,,191
-SX17:3,2063 DOF (dn),,,180
+SX17:1,2037 DOF (dn),,,2
+SX17:2,2049 DOF (dn),,,2932
+SX17:3,2063 DOF (dn),,,2755
 SX17:4,,,0,0
-SX17:5,,,1,1
-SX17:6,,,0,1
-SX17:7,,,0,1
+SX17:5,,,1,7
+SX17:6,,,0,2930
+SX17:7,,,0,2753
 SX17:8,,,0,0
