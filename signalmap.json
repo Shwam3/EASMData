@@ -3607,7 +3607,7 @@
 ]
 },
 {
-"panelID":10,"panelName":"Tilbury Loop","imageName":"Tilbury","panelDescription":"Barking - Pitsea via Grays (Under Construction)",
+"panelID":10,"panelName":"Tilbury Loop","imageName":"Tilbury","panelDescription":"Barking - Pitsea via Grays",
 "berths":[
 {"posX":266,"posY":218,"dataIDs":["U20617"]},
 {"posX":266,"posY":314,"dataIDs":["U20612"]},
