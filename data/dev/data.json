@@ -1,4 +1,7 @@
 [
+{"panelUID":"welwyn","panelName":"Welwyn GC","panelDescription":"Stevenage - Potters Bar &amp; Gordon Hill"},
+{"panelUID":"alpal","panelName":"Alexandra Palace","panelDescription":"Potters Bar - Alexandra Palace"},
+{"panelUID":"kingsx","panelName":"King's Cross & Finsbury Park","panelDescription":"Alexandra Palace - London Kings Cross"},
 {"panelUID":"livst","panelName":"Liverpool St","panelDescription":"London Liverpool Street - Bow Junction"},
 {"panelUID":"nll","panelName":"North London Line","panelDescription":"Willesden Jn - Stratford"},
 {"panelUID":"stratford","panelName":"Stratford","panelDescription":"Bow Junction - Manor Park, Coppermill Jnc &amp; Orient Way"},

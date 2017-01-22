@@ -573,25 +573,27 @@
 {"posX":10,"posY":290,"text":"L`POOL\\nSTREET","url":"livst","type":"MNAV"},
 {"posX":252,"posY":442,"text":"FENCH. ST","url":"lts1","type":"MNAV"},
 {"posX":574,"posY":90,"text":"CHANNELSEA","url":"nll","type":"MNAV"},
-{"posX":390,"posY":394,"text":"HIGH MEADS","url":"nll","type":"MNAV"},
 {"posX":1766,"posY":298,"text":"ILFORD","url":"ilford","type":"MNAV"},
-{"posX":962,"posY":506,"text":"BRIMSDOWN","url":"hackney","type":"MNAV"},
 {"posX":1750,"posY":506,"text":"BARKING","url":"lts1","type":"MNAV"},
 
+{"posX":962,"posY":506,"text":"BRIMSDOWN","url":"hackney","type":"MNAV"},
+{"posX":390,"posY":394,"text":"HIGH MEADS","url":"nll","type":"MNAV"},
 {"posX":812,"posY":466,"text":"LEA BRIDGE","url":"LEB","type":"LOC"},
 
-{"posX":1424,"posY":554,"text":"WOODGRANGE\\nPARK","url":"WGR","type":"LOC"},
 {"posX":1200,"posY":554,"text":"WANSTED\\nPARK","url":"WNP","type":"LOC"},
+{"posX":1424,"posY":554,"text":"WOODGRANGE\\nPARK","url":"WGR","type":"LOC"},
 
-{"posX":164,"posY":802,"text":"GOSPEL OAK","url":"GPO","type":"LOC"},
-{"posX":570,"posY":770,"text":"UPPER\\nHOLLOWAY","url":"UHL","type":"LOC"},
-{"posX":689,"posY":770,"text":"CROUCH HILL","url":"CRH","type":"LOC"},
-{"posX":833,"posY":770,"text":"HARRINGAY\\nGREEN LANES","url":"HRY","type":"LOC"},
-{"posX":1071,"posY":770,"text":"SOUTH\\nTOTTENHAM","url":"STO","type":"LOC"},
 {"posX":1323,"posY":682,"text":"BLACKHORSE RD","url":"BHO","type":"LOC"},
-{"posX":1393,"posY":770,"text":"WALTHAMSTOW\\nQUEENS RD","url":"WMW","type":"LOC"},
+{"posX":689,"posY":770,"text":"CROUCH HILL","url":"CRH","type":"LOC"},
+{"posX":778,"posY":642,"text":"HORNSEY >","url":"kingsx","type":"NAV"},
+{"posX":164,"posY":802,"text":"GOSPEL OAK","url":"GPO","type":"LOC"},
+{"posX":833,"posY":770,"text":"HARRINGAY\\nGREEN LANES","url":"HRY","type":"LOC"},
 {"posX":1524,"posY":770,"text":"LEYTON\\nMIDLAND RD","url":"LEM","type":"LOC"},
 {"posX":1633,"posY":770,"text":"LEYTONSTONE\\nHIGH RD","url":"LER","type":"LOC"},
-{"posX":78,"posY":722,"text":"NLL","url":"nll","type":"MNAV"}
+{"posX":78,"posY":722,"text":"NLL","url":"nll","type":"MNAV"},
+{"posX":912,"posY":638,"text":"< SEVEN SISTERS","url":"hackney","type":"NAV"},
+{"posX":1071,"posY":770,"text":"SOUTH\\nTOTTENHAM","url":"STO","type":"LOC"},
+{"posX":570,"posY":770,"text":"UPPER\\nHOLLOWAY","url":"UHL","type":"LOC"},
+{"posX":1393,"posY":770,"text":"WALTHAMSTOW\\nQUEENS RD","url":"WMW","type":"LOC"}
 ]
 }
