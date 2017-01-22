@@ -1,0 +1,22 @@
+[
+{"panelUID":"welwyn","panelName":"Welwyn GC","imageName":"Welwyn","panelDescription":"Stevenage - Potters Bar &amp; Gordon Hill"},
+{"panelUID":"alpal","panelName":"Alexandra Palace","imageName":"AllyPally","panelDescription":"Potters Bar - Alexandra Palace"},
+{"panelUID":"kingsx","panelName":"King's Cross & Finsbury Park","imageName":"KingsCross","panelDescription":"Alexandra Palace - London Kings Cross"},
+{"panelUID":"livst","panelName":"Liverpool St","imageName":"LiverpoolSt","panelDescription":"London Liverpool Street - Bow Junction"},
+{"panelUID":"nll","panelName":"North London Line","imageName":"NorthLondonLine","panelDescription":"Willesden Jn - Stratford"},
+{"panelUID":"stratford","panelName":"Stratford","imageName":"Stratford","panelDescription":"Bow Junction - Manor Park, Coppermill Jnc &amp; Orient Way"},
+{"panelUID":"ilford","panelName":"Ilford","imageName":"Ilford","panelDescription":"Forest Gate - Harold Wood"},
+{"panelUID":"shenfield","panelName":"Shenfield","imageName":"Shenfield","panelDescription":"Harold Wood - Ingatestone, Southminster &amp; Southend Victoria"},
+{"panelUID":"witham","panelName":"Witham","imageName":"Witham","panelDescription":"Ingatestone - Marks Tey"},
+{"panelUID":"hackney","panelName":"Hackney/Brimsdown","imageName":"Hackney+Brimsdown","panelDescription":"Hackney Downs - Chingford, Enfield Town &amp; Cheshunt"},
+{"panelUID":"harlow","panelName":"Harlow","imageName":"Harlow","panelDescription":"Cheshunt - Elsenham, Hertford East &amp; Stansted Airport"},
+{"panelUID":"lts1","panelName":"Barking","imageName":"Barking","panelDescription":"London Fenchurch Street - Upminster"},
+{"panelUID":"lts2","panelName":"Southend","imageName":"Southend","panelDescription":"Upminster - Shoeburyness"},
+{"panelUID":"lts3","panelName":"Tilbury Loop","imageName":"Tilbury","panelDescription":"Barking - Pitsea via Grays"},
+{"panelUID":"colch","panelName":"Colchester","imageName":"Colchester+Parkeston","panelDescription":"Colchester - Ipswich"},
+{"panelUID":"clacton","panelName":"Clacton/Thorpe/East Gates","imageName":"EastGates+Thorpe+Clacton","panelDescription":"Colchester - Colchester Town, Clacton-on-Sea &amp; Walton-on-the-Naze"},
+{"panelUID":"ipswich","panelName":"Ipswich/Saxmundham","imageName":"Ipswich+Saxmundham","panelDescription":"Ipswich - Stowmarket/Oulton Broad"},
+{"panelUID":"cambs1","panelName":"Cambridge (CA)","imageName":"CambridgeCA","panelDescription":"Elsenham - Ely"},
+{"panelUID":"cambs2","panelName":"Cambridge (EN)","imageName":"CambridgeEN","panelDescription":"Ely - Manea, Kings Lynn &amp; Wymondham. Bury St. Edmunds - Ely &amp; Cambridge"},
+{"panelUID":"norwich","panelName":"Norwich/Trowse Bridge","imageName":"Norwich+Trowse","panelDescription":"Stowmarket, Sheringham &amp; Whitlingham Jnc - Norwich"}
+]
