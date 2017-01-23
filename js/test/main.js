@@ -414,7 +414,7 @@ function openSocket(ip)
 }
 function downloadPage(uid)
 {
-    $.get('/webclient/data/' + (dev ? 'dev/' : '') + uid + '.json', {r:getRnd()}, function(json)
+    $.get('/webclient/data/' + uid + '.json', {r:getRnd()}, function(json)
     {
         mapJSON[page]['data'] = json;
         load();
@@ -422,7 +422,7 @@ function downloadPage(uid)
     }, 'json').fail(function(e)
         {
             console.log(e || 'fail');
-            $.get('https://raw.githubusercontent.com/Shwam3/EASMData/master/data/' + (dev ? 'dev/' : '') + uid + '.json', {r:getRnd()}, function(json)
+            $.get('https://raw.githubusercontent.com/Shwam3/EASMData/master/data/' + uid + '.json', {r:getRnd()}, function(json)
             {
                 mapJSON[page]['data'] = json;
                 load();
