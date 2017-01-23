@@ -414,9 +414,10 @@ function openSocket(ip)
 }
 function downloadPage(uid)
 {
+    var pageNo = navIndex[uid] || 0;
     $.get('/webclient/data/' + (dev ? 'dev/' : '') + uid + '.json', {r:getRnd()}, function(json)
     {
-        mapJSON[page]['data'] = json;
+        mapJSON[pageNo]['data'] = json;
         load();
         console.log('Using main file (' + uid + '.json)');
     }, 'json').fail(function(e)
@@ -424,7 +425,7 @@ function downloadPage(uid)
             console.log(e || 'fail');
             $.get('https://raw.githubusercontent.com/Shwam3/EASMData/master/data/' + (dev ? 'dev/' : '') + uid + '.json', {r:getRnd()}, function(json)
             {
-                mapJSON[page]['data'] = json;
+                mapJSON[pageNo]['data'] = json;
                 load();
                 console.log('Using fallback file (' + uid + '.json)');
             }, 'json');

@@ -111,9 +111,15 @@ function devPage()
     var usedIDs = ['XXMOTD'];
     if (hideUsed)
     {
-        for (var p in mapJSON.signalMap)
+        for (var p in mapJSON)
         {
-            var pag = mapJSON.signalMap[p];
+            if (!('data' in mapJSON[p]) || mapJSON[p].data == {})
+            {
+                downloadPage(mapJSON[p].panelUID);
+                return;
+            }
+            
+            var pag = mapJSON[p].data || {};
             for (var sg in pag.signals)
             {
                 var sig = pag.signals[sg];
