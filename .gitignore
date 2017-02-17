@@ -1,3 +1,5 @@
 Mappings template.csv
 *.csv#
 *.bak
+data/motd.json
+data/demo.json
