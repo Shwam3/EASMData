@@ -1,8 +1,4 @@
 [
-{"panelUID":"hitchin","panelName":"Hitchin","panelDescription":"Biggleswade - Stevenage"},
-{"panelUID":"welwyn","panelName":"Welwyn GC","panelDescription":"Stevenage - Potters Bar &amp; Gordon Hill"},
-{"panelUID":"alpal","panelName":"Alexandra Palace","panelDescription":"Potters Bar - Alexandra Palace"},
-{"panelUID":"kingsx","panelName":"King's Cross & Finsbury Park","panelDescription":"Alexandra Palace - London Kings Cross"},
 {"panelUID":"livst","panelName":"Liverpool St","panelDescription":"London Liverpool Street - Bow Junction"},
 {"panelUID":"nll","panelName":"North London Line","panelDescription":"Willesden Jn - Stratford"},
 {"panelUID":"stratford","panelName":"Stratford","panelDescription":"Bow Junction - Manor Park, Coppermill Jnc &amp; Orient Way"},
@@ -19,5 +15,10 @@
 {"panelUID":"ipswich","panelName":"Ipswich/Saxmundham","panelDescription":"Ipswich - Stowmarket/Oulton Broad"},
 {"panelUID":"cambs1","panelName":"Cambridge (CA)","panelDescription":"Elsenham - Ely"},
 {"panelUID":"cambs2","panelName":"Cambridge (EN)","panelDescription":"Ely - Manea, Kings Lynn &amp; Wymondham. Bury St. Edmunds - Ely &amp; Cambridge"},
-{"panelUID":"norwich","panelName":"Norwich/Trowse Bridge","panelDescription":"Stowmarket, Sheringham &amp; Whitlingham Jnc - Norwich"}
+{"panelUID":"norwich","panelName":"Norwich/Trowse Bridge","panelDescription":"Stowmarket, Sheringham &amp; Whitlingham Jnc - Norwich"},
+{"panelUID":"hitchin","panelName":"Hitchin","panelDescription":"Biggleswade - Stevenage"},
+{"panelUID":"welwyn","panelName":"Welwyn GC","panelDescription":"Stevenage - Potters Bar &amp; Gordon Hill"},
+{"panelUID":"alpal","panelName":"Alexandra Palace","panelDescription":"Potters Bar - Alexandra Palace"},
+{"panelUID":"kingsx","panelName":"King's Cross & Finsbury Park","panelDescription":"Alexandra Palace - London Kings Cross"},
+{"panelUID":"huntingdon","panelName":"Sandy, St Neots & Huntingdon","panelDescription":"Biggleswade - Holme Jn"}
 ]

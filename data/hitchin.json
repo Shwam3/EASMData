@@ -263,8 +263,8 @@
 {"posX":220,"posY":390,"text":"BIGGLESWADE","url":"BIW","type":"LOC"},
 {"posX":1176,"posY":402,"text":"HITCHIN","url":"HIT","type":"MLOC"},
 {"posX":1146,"posY":162,"text":"HITCHIN\\nUP YARD","url":"HITCHUY","type":"LOC"},
+{"posX":70,"posY":314,"text":"SANDY","url":"huntingdon","type":"MNAV"},
 {"posX":1607,"posY":390,"text":"STEVENAGE","url":"SVG","type":"LOC"},
-{"posX":40,"posY":314,"text":"TO SANDY\\n& PETERBOROUGH","type":"TEXT"},
 {"posX":1698,"posY":306,"text":"WELWYN\\nG.C.","url":"welwyn","type":"MNAV"},
 
 {"posX":879,"posY":457,"text":"ASHWELL &\\nMORDEN","url":"AWM","type":"LOC"},
