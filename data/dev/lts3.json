@@ -374,7 +374,7 @@
 {"posX":522,"posY":218,"description":"UR2227 Nrm","dataIDs":["U207:7","U209:4"],"type0":"NONE","type1":"NHzRtUp"},
 {"posX":522,"posY":218,"description":"UR2227 Rev","dataIDs":["U207:6","U209:5"],"type0":"NONE","type1":"RHzRtUp"},
 {"posX":538,"posY":218,"description":"UR2228 Nrm","dataIDs":["U200:4","U207:3","U209:6"],"type0":"NONE","type1":"NVtLfUp"},
-{"posX":538,"posY":218,"description":"UR2228 Rev","dataIDs":["U207:6","U207:7","U209:4","U209:5"],"type0":"NONE","type1":"RVtLfUp"},
+{"posX":538,"posY":218,"description":"UR2228 Rev","dataIDs":["U207:6","U207:7","U209:4","U209:5"],"type0":"NONE","type1":"RVtLfDn"},
 {"posX":538,"posY":250,"description":"UR2229 Nrm","dataIDs":["U200:4","U207:3","U207:6","U207:7","U209:4","U209:5","U209:6"],"type0":"NONE","type1":"RHzRtUp"},
 {"posX":538,"posY":250,"description":"UR2229 Rev","dataIDs":["U207:8","U209:3"],"type0":"NONE","type1":"NHzRtUp"},
 {"posX":666,"posY":218,"description":"UR2230 Nrm","dataIDs":["U200:3","U201:3","U201:4","U201:5","U201:6","U201:7","U201:8","U202:1","U202:2","U202:3","U202:5","U202:8","U203:1","U203:2","U203:3","U203:4","U203:5","U203:6","U204:3","U204:7","U205:3","U208:2"],"type0":"NONE","type1":"NHzRtDn"},

@@ -434,11 +434,12 @@
 {"posX":1674,"posY":250,"text":"NORWICH","url":"norwich","type":"MNAV"},
 
 {"posX":772,"posY":554,"text":"DOWNHAM MKT","url":"DOW","type":"LOC"},
+{"posX":78,"posY":442,"text":"ELY","url":"cambs1","type":"MNAV"},
 {"posX":1560,"posY":578,"text":"KINGS LYNN","url":"KLN","type":"LOC"},
 {"posX":580,"posY":522,"text":"LITTLEPORT","url":"LTP","type":"LOC"},
 {"posX":1041,"posY":466,"text":"WATLINGTON","url":"WTG","type":"LOC"},
 {"posX":875,"posY":340,"text":"MANEA","url":"MNE","type":"LOC"},
-{"posX":78,"posY":442,"text":"ELY","url":"cambs1","type":"MNAV"},
+{"posX":962,"posY":377,"text":"TO MARCH &\\nPETERBOROUGH","url":"peterborough","type":"NAV"},
 
 {"posX":229,"posY":658,"text":"BURY ST EDMUNDS","url":"BSE","type":"LOC"},
 {"posX":916,"posY":658,"text":"DULLINGHAM","url":"DUL","type":"LOC"},
