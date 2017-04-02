@@ -1,5 +1,5 @@
 {
-"panelUID":"norwich","panelName":"Norwich/Trowse Bridge","panelDescription":"Stowmarket, Sheringham &amp; Whitlingham Jnc - Norwich",
+"panelUID":"norwich","panelName":"Norwich/Trowse Bridge","panelDescription":"Stowmarket, Sheringham &amp; Whitlingham Jnc - Norwich","areas":["CC"],
 "berths":[
 {"posX":138,"posY":346,"dataIDs":["CC0395"]},
 {"posX":218,"posY":378,"dataIDs":["CC0396"]},

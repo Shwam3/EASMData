@@ -1,5 +1,5 @@
 {
-"panelUID":"lts1","panelName":"Barking","panelDescription":"London Fenchurch Street - Upminster",
+"panelUID":"lts1","panelName":"Barking","panelDescription":"London Fenchurch Street - Upminster","areas":["UR","U2"],
 "berths":[
 {"posX":490,"posY":122,"dataIDs":["UR0105"]},
 {"posX":490,"posY":154,"dataIDs":["UR0106"]},
@@ -103,6 +103,7 @@
 {"posX":1162,"posY":586,"dataIDs":["UR0612"]},
 {"posX":1162,"posY":522,"dataIDs":["UR0615"]},
 {"posX":1226,"posY":586,"dataIDs":["UR0616"]},
+{"posX":1314,"posY":522,"dataIDs":["U20617"],"hasBorder":true},
 {"posX":1162,"posY":554,"dataIDs":["UR0804"]},
 {"posX":410,"posY":458,"dataIDs":["UR0900"]},
 {"posX":810,"posY":362,"dataIDs":["UR0902"]},
@@ -131,7 +132,6 @@
 {"posX":506,"posY":330,"dataIDs":["URL920"]},
 {"posX":570,"posY":330,"dataIDs":["URL924"]},
 {"posX":1102,"posY":362,"dataIDs":["URR906"],"hasBorder":true},
-{"posX":1314,"posY":522,"dataIDs":["URRPDN"],"hasBorder":true},
 
 {"posX":138,"posY":698,"dataIDs":["UR0182"]},
 {"posX":138,"posY":666,"dataIDs":["UR0187"]},
@@ -314,8 +314,6 @@
 {"posX":898,"posY":734,"description":"UR851 TRTS","dataIDs":["UR23:5"],"type":"TEXT","text1":"TRTS"},
 {"posX":1418,"posY":778,"description":"UR858 TRTS","dataIDs":["UR23:6"],"type":"TEXT","text1":"TRTS"},
 {"posX":1610,"posY":802,"description":"UR1401 RELEASE","dataIDs":["UR3E:8"],"type":"LATCH"},
-{"posX":1600,"posY":812,"description":"UR1401","dataIDs":["UR3E:8"],"type":"TEXT","text1":"<-"},
-{"posX":1616,"posY":812,"description":"UR1401","dataIDs":["UR3E:8"],"type":"TEXT","text0":"->"},
 {"posX":1130,"posY":794,"description":"UR1501 RELEASE","dataIDs":["UR3F:2"],"type":"LATCH"},
 {"posX":136,"posY":718,"description":"UR182","type":"RIGHT","isAuto":true},
 {"posX":188,"posY":662,"description":"UR187","type":"LEFT","isAuto":true},
@@ -492,7 +490,7 @@
 {"posX":682,"posY":298,"description":"UR2202 Nrm","dataIDs":["UR0E:8","UR0F:1","UR0F:2","UR0F:5","UR10:5","UR11:4"],"type0":"NONE","type1":"NHzRtDn"},
 {"posX":682,"posY":298,"description":"UR2202 Rev","dataIDs":["UR10:4","UR11:7","UR11:8"],"type0":"NONE","type1":"RHzRtDn"},
 {"posX":762,"posY":298,"description":"UR2203 Nrm","dataIDs":["UR0F:1","UR11:8"],"type0":"NONE","type1":"RHzLfDn"},
-{"posX":762,"posY":298,"description":"UR2203 Rev","dataIDs":["UR0E:8","UR11:7"],"type0":"NONE","type1":"NHzLfDn"},
+{"posX":762,"posY":298,"description":"UR2203 Rev","dataIDs":["UR0E:8","UR10:4","UR10:5","UR11:7"],"type0":"NONE","type1":"NHzLfDn"},
 {"posX":938,"posY":522,"description":"UR2205 Nrm","dataIDs":["UR0F:1","UR0F:3"],"type0":"NONE","type1":"NHzRtUp"},
 {"posX":938,"posY":522,"description":"UR2205 Rev","dataIDs":["UR08:3","UR10:6"],"type0":"NONE","type1":"RHzRtUp"},
 {"posX":938,"posY":554,"description":"UR2206 Nrm","dataIDs":["UR0F:5","UR11:4","UR12:1","UR12:2"],"type0":"NONE","type1":"NHzRtDn"},

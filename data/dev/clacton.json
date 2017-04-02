@@ -1,5 +1,5 @@
 {
-"panelUID":"clacton","panelName":"Clacton/Thorpe/East Gates","panelDescription":"Colchester - Colchester Town, Clacton-on-Sea &amp; Walton-on-the-Naze",
+"panelUID":"clacton","panelName":"Clacton/Thorpe/East Gates","panelDescription":"Colchester - Colchester Town, Clacton-on-Sea &amp; Walton-on-the-Naze","areas":["CC"],
 "berths":[
 {"posX":202,"posY":330,"dataIDs":["CC1088"]},
 {"posX":202,"posY":266,"dataIDs":["CC1091"]},

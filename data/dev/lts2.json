@@ -1,5 +1,5 @@
 {
-"panelUID":"lts2","panelName":"Southend","panelDescription":"Upminster - Shoeburyness",
+"panelUID":"lts2","panelName":"Southend","panelDescription":"Upminster - Shoeburyness","areas":["UR","U2"],
 "berths":[
 {"posX":266,"posY":154,"dataIDs":["UR0229"]},
 {"posX":330,"posY":154,"dataIDs":["UR0231"]},

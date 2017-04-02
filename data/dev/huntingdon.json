@@ -1,5 +1,5 @@
 {
-"panelUID":"huntingdon","panelName":"Sandy, St Neots & Huntingdon","panelDescription":"Biggleswade - Holme Jn",
+"panelUID":"huntingdon","panelName":"Sandy, St Neots & Huntingdon","panelDescription":"Biggleswade - Holme Jn","areas":["KX","PB"],
 "berths":[
 {"posX":266,"posY":250,"dataIDs":["PB0261"]},
 {"posX":266,"posY":282,"dataIDs":["PB0263"]},

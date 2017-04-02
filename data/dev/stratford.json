@@ -1,5 +1,5 @@
 {
-"panelUID":"stratford","panelName":"Stratford","panelDescription":"Bow Junction - Manor Park, Coppermill Jnc &amp; Orient Way",
+"panelUID":"stratford","panelName":"Stratford","panelDescription":"Bow Junction - Manor Park, Coppermill Jnc &amp; Orient Way","areas":["Q1","WG","U3","SO"],
 "berths":[
 {"posX":106,"posY":282,"dataIDs":["Q10220"]},
 {"posX":106,"posY":250,"dataIDs":["Q10221"]},

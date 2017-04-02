@@ -1,5 +1,5 @@
 {
-"panelUID":"cambs2","panelName":"Cambridge (EN)","panelDescription":"Ely - Manea, Kings Lynn &amp; Wymondham. Bury St. Edmunds - Ely &amp; Cambridge",
+"panelUID":"cambs2","panelName":"Cambridge (EN)","panelDescription":"Ely - Manea, Kings Lynn &amp; Wymondham. Bury St. Edmunds - Ely &amp; Cambridge","areas":["CA","CC","EN"],
 "berths":[
 {"posX":106,"posY":106,"dataIDs":["EN8019"]},
 {"posX":226,"posY":138,"dataIDs":["EN8024"]},
@@ -439,7 +439,8 @@
 {"posX":580,"posY":522,"text":"LITTLEPORT","url":"LTP","type":"LOC"},
 {"posX":1041,"posY":466,"text":"WATLINGTON","url":"WTG","type":"LOC"},
 {"posX":875,"posY":340,"text":"MANEA","url":"MNE","type":"LOC"},
-{"posX":962,"posY":377,"text":"TO MARCH &\\nPETERBOROUGH","url":"peterborough","type":"NAV"},
+{"posX":962,"posY":368,"text":"PETERBOROUGH","url":"peterborough","type":"MNAV"},
+{"posX":965,"posY":386,"text":"NO TRAIN DESCRIBER DATA\\nMANEA - PETERBOROUGH","type":"TEXT"},
 
 {"posX":229,"posY":658,"text":"BURY ST EDMUNDS","url":"BSE","type":"LOC"},
 {"posX":916,"posY":658,"text":"DULLINGHAM","url":"DUL","type":"LOC"},

@@ -1,5 +1,5 @@
 {
-"panelUID":"livst","panelName":"Liverpool St","panelDescription":"London Liverpool Street - Bow Junction",
+"panelUID":"livst","panelName":"Liverpool St","panelDescription":"London Liverpool Street - Bow Junction","areas":["LS"],
 "berths":[
 {"posX":394,"posY":362,"dataIDs":["LS0027"]},
 {"posX":394,"posY":394,"dataIDs":["LS0031"]},

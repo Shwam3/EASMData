@@ -1,5 +1,5 @@
 {
-"panelUID":"ilford","panelName":"Ilford","panelDescription":"Forest Gate - Harold Wood",
+"panelUID":"ilford","panelName":"Ilford","panelDescription":"Forest Gate - Harold Wood","areas":["Q1"],
 "berths":[
 {"posX":170,"posY":122,"dataIDs":["Q10383"]},
 {"posX":234,"posY":122,"dataIDs":["Q10385"]},

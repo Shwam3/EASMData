@@ -1,5 +1,5 @@
 {
-"panelUID":"peterborough","panelName":"Peterborough","panelDescription":"Holme Jn - Stoke Tunnel",
+"panelUID":"peterborough","panelName":"Peterborough","panelDescription":"Holme Jn - Stoke Tunnel","areas":["PB"],
 "berths":[
 {"posX":202,"posY":282,"dataIDs":["PB0401"]},
 {"posX":202,"posY":314,"dataIDs":["PB0402"]},
@@ -359,7 +359,8 @@
 {"posX":1746,"posY":169,"text":"TO OAKHAM &\\nMELTON MOWBRAY","type":"TEXT"},
 {"posX":1546,"posY":430,"text":"TO SPALDING","type":"TEXT"},
 
-{"posX":186,"posY":393,"text":"TO MARCH\\n& ELY","url":"cambs2","type":"NAV"},
+{"posX":198,"posY":394,"text":"ELY","url":"cambs2","type":"MNAV"},
+{"posX":52,"posY":393,"text":"NO TRAIN DESCRIBER DATA\\nMANEA - PETERBOROUGH","type":"TEXT"},
 
 {"posX":1746,"posY":618,"text":"TO GRANTHAM\\n& DONCASTER","type":"TEXT"}
 ]
