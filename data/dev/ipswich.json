@@ -1,5 +1,5 @@
 {
-"panelUID":"ipswich","panelName":"Ipswich/Saxmundham","panelDescription":"Ipswich - Stowmarket/Oulton Broad","areas":["CC","SX"],
+"panelUID":"ipswich2","panelName":"Ipswich/Saxmundham","panelDescription":"Ipswich - Stowmarket/Oulton Broad","areas":["CC","SX"],
 "berths":[
 {"posX":114,"posY":330,"dataIDs":["CC0290"]},
 {"posX":114,"posY":250,"dataIDs":["CC0295","CC0292"]},
