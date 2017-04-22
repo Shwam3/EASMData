@@ -207,8 +207,7 @@
 {"posX":490,"posY":698,"dataIDs":["Q2BURN"]},
 {"posX":490,"posY":666,"dataIDs":["Q2SMGF"]},
 {"posX":554,"posY":698,"dataIDs":["Q20708"]},
-{"posX":618,"posY":698,"dataIDs":["Q2R708"],"hasBorder":true},
-{"posX":554,"posY":722,"dataIDs":["Q2X708"]}
+{"posX":618,"posY":698,"dataIDs":["Q2R708"],"hasBorder":true}
 ],
 "signals":[
 {"posX":1314,"posY":234,"description":"L499TRS","dataIDs":["Q23C:5"],"type":"TEXT","text1":"TRTS"},

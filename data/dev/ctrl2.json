@@ -1,0 +1,11 @@
+{
+"panelUID":"ctrl2","panelName":"High Speed 1 ish","panelDescription":"Dagenham - Somwhere","areas":["CT","U2"],
+"berths":[
+{"posX":762,"posY":378,"dataIDs":["CTTM08"]}
+],
+"signals":[],
+"points":[],
+"text":[
+{"posX":1732,"posY":570,"text":"DAGENHAM","url":"ctrl2","type":"MNAV"}
+]
+}

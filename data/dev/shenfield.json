@@ -16,7 +16,7 @@
 {"posX":618,"posY":218,"dataIDs":["Q20469"]},
 {"posX":682,"posY":154,"dataIDs":["Q20471"]},
 {"posX":682,"posY":218,"dataIDs":["Q20473"]},
-{"posX":746,"posY":154,"dataIDs":["Q20475","Q20598"]},
+{"posX":746,"posY":154,"dataIDs":["Q20598","Q20475"]},
 {"posX":746,"posY":218,"dataIDs":["Q20477"]},
 {"posX":298,"posY":186,"dataIDs":["Q20478"]},
 {"posX":810,"posY":154,"dataIDs":["Q20479"]},
@@ -207,8 +207,7 @@
 {"posX":490,"posY":698,"dataIDs":["Q2BURN"]},
 {"posX":490,"posY":666,"dataIDs":["Q2SMGF"]},
 {"posX":554,"posY":698,"dataIDs":["Q20708"]},
-{"posX":618,"posY":698,"dataIDs":["Q2R708"],"hasBorder":true},
-{"posX":554,"posY":722,"dataIDs":["Q2X708"]}
+{"posX":618,"posY":698,"dataIDs":["Q2R708"],"hasBorder":true}
 ],
 "signals":[
 {"posX":1314,"posY":234,"description":"L499TRS","dataIDs":["Q23C:5"],"type":"TEXT","text1":"TRTS"},
@@ -229,9 +228,9 @@
 {"posX":604,"posY":214,"description":"L465","type":"LEFT","isAuto":true},
 {"posX":668,"posY":150,"description":"L467","type":"LEFT","isAuto":true},
 {"posX":668,"posY":214,"description":"L469","type":"LEFT","isAuto":true},
-{"posX":732,"posY":150,"description":"L471","dataID":"Q222:8","type":"LEFT"},
+{"posX":732,"posY":150,"description":"L471","dataID":"Q222:8","type":"LEFT","routes":["Q21C:2"]},
 {"posX":732,"posY":214,"description":"L473","type":"LEFT","isAuto":true},
-{"posX":798,"posY":150,"description":"L475","dataID":"Q23F:1","type":"LEFT"},
+{"posX":798,"posY":150,"description":"L475","dataID":"Q23F:1","type":"LEFT","routes":["Q21D:6"]},
 {"posX":798,"posY":214,"description":"L477","dataID":"Q23F:2","type":"LEFT"},
 {"posX":294,"posY":206,"description":"L478","dataID":"Q127:2","type":"RIGHT"},
 {"posX":860,"posY":150,"description":"L479","type":"LEFT","isAuto":true},
@@ -257,7 +256,7 @@
 {"posX":1342,"posY":214,"description":"L499","dataID":"Q227:6","type":"LEFT","routes":["Q209:4","Q209:5","Q209:6"]},
 {"posX":680,"posY":270,"description":"L500","type":"RIGHT","isAuto":true},
 {"posX":1340,"posY":270,"description":"L501","dataID":"Q227:7","type":"LEFT","routes":["Q209:7","Q209:8","Q20A:1","Q20A:2"]},
-{"posX":808,"posY":206,"description":"L502","type":"RIGHT","isAuto":true},
+{"posX":808,"posY":206,"description":"L502","dataID":"Q22A:5","type":"RIGHT","routes":["Q21E:1"]},
 {"posX":1340,"posY":278,"description":"L503","dataID":"Q227:8","type":"LEFT","routes":["Q20A:3","Q20A:4","Q20A:5","Q20A:6"]},
 {"posX":808,"posY":270,"description":"L504","type":"RIGHT","isAuto":true},
 {"posX":1532,"posY":182,"description":"L505","type":"LEFT","isAuto":true},
@@ -297,8 +296,8 @@
 {"posX":1416,"posY":174,"description":"L5142","type":"RIGHT","isShunt":true,"isAuto":true},
 {"posX":1420,"posY":334,"description":"L5151","dataID":"Q2PRED","type":"LEFT","isShunt":true},
 
-{"posX":1282,"posY":402,"description":"L557 TRTS","dataIDs":["Q23A:6"],"type":"TEXT","text1":"TRTS"},
-{"posX":1282,"posY":522,"description":"L555 TRTS","dataIDs":["Q23B:3"],"type":"TEXT","text1":"TRTS"},
+{"posX":1282,"posY":402,"description":"L557TRS","dataIDs":["Q23A:6"],"type":"TEXT","text1":"TRTS"},
+{"posX":1282,"posY":522,"description":"L555TRS","dataIDs":["Q23B:3"],"type":"TEXT","text1":"TRTS"},
 {"posX":660,"posY":434,"description":"L533 to SE0537","dataIDs":["Q210:6"],"type":"TEXT","text0":"  ","text1":"DS"},
 {"posX":660,"posY":434,"description":"L533 to SE0551","dataIDs":["Q210:7"],"type":"TEXT","text0":"  ","text1":"US"},
 {"posX":660,"posY":490,"description":"L535 to SE0537","dataIDs":["Q210:8"],"type":"TEXT","text0":"  ","text1":"DS"},
@@ -364,6 +363,7 @@
 {"posX":1672,"posY":494,"description":"L614","type":"RIGHT","isAuto":true},
 {"posX":1736,"posY":494,"description":"L616","type":"RIGHT","isAuto":true},
 {"posX":1212,"posY":406,"description":"L5157","dataID":"Q23A:2","type":"LEFT","isShunt":true},
+
 {"posX":1540,"posY":506,"description":"L666 TRTS","dataIDs":["Q23D:6"],"type":"TEXT","text1":"TRTS"},
 {"posX":1794,"posY":542,"description":"L668 TRTS","dataIDs":["Q23D:7"],"type":"TEXT","text1":"TRTS"},
 {"posX":1794,"posY":574,"description":"L670 TRTS","dataIDs":["Q23D:8"],"type":"TEXT","text1":"TRTS"},
@@ -458,6 +458,8 @@
 {"posX":1484,"posY":510,"description":"L5165","dataID":"Q226:7","type":"LEFT","isShunt":true,"routes":["Q206:2","Q206:3","Q206:4","Q206:5","Q206:6"]},
 {"posX":1500,"posY":678,"description":"L5167","dataID":"Q226:8","type":"LEFT","isShunt":true,"routes":["Q206:7","Q206:8"]},
 {"posX":1528,"posY":678,"description":"L5170","dataID":"Q227:1","type":"RIGHT","isShunt":true,"routes":["Q207:1","Q207:2"]},
+
+{"posX":1540,"posY":506,"description":"L708TRS","dataIDs":["Q23B:4"],"type":"TEXT","text1":"TRTS"},
 {"posX":244,"posY":694,"description":"L639","dataID":"Q239:7","type":"LEFT"},
 {"posX":316,"posY":694,"description":"L649","dataID":"Q239:8","type":"LEFT"},
 {"posX":382,"posY":694,"description":"L651","dataID":"Q23A:1","type":"LEFT"},
@@ -466,7 +468,12 @@
 {"posX":392,"posY":718,"description":"L696","dataID":"Q239:5","type":"RIGHT"},
 {"posX":552,"posY":718,"description":"L708","dataID":"Q239:6","type":"RIGHT"}
 ],
-"points":[],
+"points":[
+{"posX":730,"posY":186,"description":"L2240A Nrm","dataIDs":["Q21C:2","Q21E:1"],"type0":"NONE","type1":"NHzLfUp"},
+{"posX":730,"posY":186,"description":"L2240A Rev","dataIDs":["Q21F:3"],"type0":"NONE","type1":"RHzLfUp"},
+{"posX":730,"posY":154,"description":"L2240B Nrm","dataIDs":["Q21C:2","Q21E:1"],"type0":"NONE","type1":"NHzRtDn"},
+{"posX":730,"posY":154,"description":"L2240B Rev","dataIDs":["Q21F:3"],"type0":"NONE","type1":"RHzRtDn"}
+],
 "text":[
 {"posX":745,"posY":130,"text":"BRENTWOOD","url":"BRE","type":"LOC"},
 {"posX":289,"posY":130,"text":"HAROLD WOOD","url":"HRO","type":"LOC"},

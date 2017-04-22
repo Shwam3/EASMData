@@ -323,7 +323,7 @@
 {"posX":186,"posY":302,"text":"HORNSEY EMUD","url":"XHE","type":"LOC"},
 {"posX":405,"posY":430,"text":"HORNSEY","url":"HRN","type":"LOC"},
 {"posX":1660,"posY":602,"text":"KINGS CROSS","url":"KGX","type":"MLOC"},
-{"posX":1490,"posY":569,"text":"ST PANCRAS\\n(HS1)","type":"TEXT"},
+{"posX":1490,"posY":569,"text":"ST PANCRAS INTL\\n(HS1)","type":"TEXT"},
 {"posX":1538,"posY":521,"text":"ST PANCRAS\\n(THAMESLINK)","type":"TEXT"}
 ]
 }

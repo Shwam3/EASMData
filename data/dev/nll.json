@@ -1,5 +1,5 @@
 {
-"panelUID":"nll","panelName":"North London Line","panelDescription":"Willesden Jn - Stratford","areas":["U3"],
+"panelUID":"nll","panelName":"North London Line","panelDescription":"Willesden Jn - Stratford","areas":["U3","CT","KX"],
 "berths":[
 {"posX":170,"posY":218,"dataIDs":["U31251"]},
 {"posX":234,"posY":218,"dataIDs":["U31257"]},
@@ -114,12 +114,12 @@
 {"posX":378,"posY":330,"dataIDs":["U31303","U31304"]},
 {"posX":378,"posY":362,"dataIDs":["U31306"]},
 {"posX":1218,"posY":426,"dataIDs":["U31311"]},
-{"posX":994,"posY":586,"dataIDs":["U3041C"],"hasBorder":true},
-{"posX":994,"posY":618,"dataIDs":["U3026C"],"hasBorder":true},
+{"posX":994,"posY":586,"dataIDs":["CT041C"],"hasBorder":true},
+{"posX":994,"posY":618,"dataIDs":["CT026C"],"hasBorder":true},
 {"posX":298,"posY":394,"dataIDs":["U3A301"]},
 {"posX":242,"posY":394,"dataIDs":["U3B301"]},
-{"posX":994,"posY":554,"dataIDs":["U3K263"],"hasBorder":true},
-{"posX":1314,"posY":362,"dataIDs":["U3K375"],"hasBorder":true},
+{"posX":994,"posY":554,"dataIDs":["KXK263"],"hasBorder":true},
+{"posX":1314,"posY":362,"dataIDs":["KX0375"],"hasBorder":true},
 {"posX":362,"posY":394,"dataIDs":["U3R301"],"hasBorder":true},
 {"posX":490,"posY":522,"dataIDs":["U3W801"]},
 
@@ -507,8 +507,8 @@
 {"posX":466,"posY":344,"text":"UPPER HOLLOWAY","url":"stratford","type":"MNAV"},
 {"posX":396,"posY":504,"text":"CAMDEN JN\\n(WCML)","type":"TEXT"},
 {"posX":1050,"posY":558,"text":"FINSBURY PARK (ECML)","url":"kingsx","type":"NAV"},
-{"posX":1050,"posY":590,"text":"FRANCE (HS1)","type":"TEXT"},
-{"posX":1050,"posY":622,"text":"ST PANCRAS (HS1)","type":"TEXT"},
+{"posX":1050,"posY":590,"text":"STRATFORD INTL (HS1)","url":"ctrl1","type":"NAV"},
+{"posX":1050,"posY":622,"text":"ST PANCRAS INTL (HS1)","url":"ctrl1","type":"NAV"},
 {"posX":1228,"posY":360,"text":"FINSBURY PARK\\n(ECML)","url":"kingsx","type":"NAV"},
 
 {"posX":431,"posY":754,"text":"WILLESDEN\\nJUNCTION","url":"WIJ","type":"LOC"},
