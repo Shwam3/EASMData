@@ -1,5 +1,5 @@
 {
-"panelUID":"ctrl2","panelName":"Ebbsfleet International","panelDescription":"Dagenham - Nashenden","areas":["CT","U2"],
+"panelUID":"ctrl2","panelName":"Ebbsfleet International","panelDescription":"Dagenham - Nashenden",
 "berths":[
 {"posX":618,"posY":202,"dataIDs":["CT092C"]},
 {"posX":554,"posY":170,"dataIDs":["CT094C"]},
@@ -260,7 +260,6 @@
 {"posX":1298,"posY":138,"text":"THAMES TUNNEL ->","type":"TEXT"},
 {"posX":828,"posY":136,"text":"WENNINGTON\\nCROSSOVERS","url":"XXU","type":"LOC"},
 
-{"posX":1746,"posY":554,"text":"ASHFORD","url":"ctrl3","type":"MNAV"},
 {"posX":725,"posY":658,"text":"EAST JN","url":"XXJ","type":"LOC"},
 {"posX":580,"posY":666,"text":"EBBSFLEET\\nINTERNATIONAL","url":"EBD","type":"MLOC"},
 {"posX":866,"posY":393,"text":"TO GRAVESEND\\n& NORTH KENT","type":"TEXT"},

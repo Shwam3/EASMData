@@ -22,5 +22,6 @@
 {"panelUID":"kingsx","panelName":"King's Cross & Finsbury Park","panelDescription":"Alexandra Palace - London Kings Cross"},
 {"panelUID":"huntingdon","panelName":"Sandy, St Neots & Huntingdon","panelDescription":"Biggleswade - Holme Jn"},
 {"panelUID":"peterborough","panelName":"Peterborough","panelDescription":"Holme Jn - Stoke Tunnel"},
-{"panelUID":"ctrl1","panelName":"St. Pancras International","panelDescription":"St. Pancras International - Dagenham"}
+{"panelUID":"ctrl1","panelName":"St. Pancras International","panelDescription":"St. Pancras International - Dagenham"},
+{"panelUID":"ctrl2","panelName":"Ebbsfleet International","panelDescription":"Dagenham - Nashenden"}
 ]

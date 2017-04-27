@@ -207,7 +207,7 @@
 {"posX":284,"posY":550,"description":"AF55","type":"LEFT","isTVM430":true},
 {"posX":284,"posY":606,"description":"AF57","type":"LEFT","isTVM430":true,"isRHS":true},
 {"posX":296,"posY":550,"description":"AF56","type":"RIGHT","isTVM430":true,"isRHS":true},
-{"posX":424,"posY":686,"description":"AF58","type":"RIGHT","isTVM430":true},
+{"posX":422,"posY":686,"description":"AF58","type":"RIGHT","isTVM430":true},
 {"posX":424,"posY":598,"description":"AF60","type":"RIGHT","isTVM430":true,"isRHS":true},
 {"posX":438,"posY":588,"description":"AF62","type":"RIGHT","isTVM430":true},
 {"posX":424,"posY":558,"description":"AF64","type":"RIGHT","isTVM430":true},
@@ -222,10 +222,12 @@
 {"posX":542,"posY":686,"description":"AF81","type":"LEFT","isTVM430":true,"isRHS":true},
 {"posX":680,"posY":606,"description":"AF82","type":"RIGHT","isTVM430":true},
 {"posX":680,"posY":550,"description":"AF84","type":"RIGHT","isTVM430":true,"isRHS":true},
+{"posX":348,"posY":550,"description":"AF507","type":"LEFT","isTVM430":true,"isShunt":true},
+{"posX":348,"posY":606,"description":"AF509","type":"LEFT","isTVM430":true,"isRHS":true,"isShunt":true},
 {"posX":220,"posY":550,"description":"AF711","type":"LEFT","isTVM430":true},
 {"posX":120,"posY":606,"description":"AF714","type":"RIGHT","isTVM430":true},
 {"posX":552,"posY":598,"description":"AF716","type":"RIGHT","isTVM430":true,"isRHS":true},
-{"posX":558,"posY":568,"description":"AF717","type":"LEFT","isTVM430":true},
+{"posX":558,"posY":588,"description":"AF717","type":"LEFT","isTVM430":true,"isRHS":true},
 {"posX":856,"posY":606,"description":"AF720","type":"RIGHT","isTVM430":true},
 {"posX":780,"posY":550,"description":"AF721","type":"LEFT","isTVM430":true},
 {"posX":968,"posY":606,"description":"AF722","type":"RIGHT","isTVM430":true},
@@ -274,14 +276,19 @@
 {"posX":1732,"posY":570,"text":"DAGENHAM","url":"ctrl2","type":"MNAV"},
 {"posX":882,"posY":174,"text":"KINGS CROSS","url":"kingsx","type":"NAV"},
 {"posX":572,"posY":94,"text":"CAMDEN RD","url":"nll","type":"NAV"},
-{"posX":640,"posY":634,"text":"EAST JN","url":"XXQ","type":"LOC"},
+{"posX":1034,"posY":218,"text":"LONDON TUNNEL 1 ->","type":"TEXT"},
 {"posX":100,"posY":122,"text":"ST. PANCRAS\\nINTERNATIONAL","url":"STP","type":"MLOC"},
-{"posX":404,"posY":698,"text":"STRATFORD\\nINTERNATIONAL","url":"SFA","type":"MLOC"},
-{"posX":834,"posY":430,"text":"TEMPLE MILLS DEPOT","url":"TMREUKL","type":"LOC"},
-{"posX":330,"posY":634,"text":"WEST JN","url":"XXR","type":"LOC"},
 {"posX":906,"posY":316,"text":"YORK WAY\\nSOUTH JN","url":"XXY","type":"LOC"},
 {"posX":578,"posY":64,"text":"(TO MML)","type":"TEXT"},
 {"posX":626,"posY":142,"text":"*1","type":"TEXT"},
-{"posX":554,"posY":54,"text":"*1: MAINTENANCE SDG","url":"STPAMCS","type":"LOC"}
+{"posX":554,"posY":54,"text":"*1: MAINTENANCE SDG","url":"STPAMCS","type":"LOC"},
+
+{"posX":640,"posY":630,"text":"EAST JN","url":"XXQ","type":"LOC"},
+{"posX":254,"posY":522,"text":"<- LONDON TUNNEL 1","type":"TEXT"},
+{"posX":666,"posY":522,"text":"LONDON TUNNEL 2 ->","type":"TEXT"},
+{"posX":404,"posY":698,"text":"STRATFORD\\nINTERNATIONAL","url":"SFA","type":"MLOC"},
+{"posX":330,"posY":630,"text":"WEST JN","url":"XXR","type":"LOC"},
+
+{"posX":834,"posY":430,"text":"TEMPLE MILLS DEPOT","url":"TMREUKL","type":"LOC"}
 ]
 }

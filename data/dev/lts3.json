@@ -1,5 +1,5 @@
 {
-"panelUID":"lts3","panelName":"Tilbury Loop","panelDescription":"Barking - Pitsea via Grays","areas":["UR","U2"],
+"panelUID":"lts3","panelName":"Tilbury Loop","panelDescription":"Barking - Pitsea via Grays","areas":["UR","U2","CT"],
 "berths":[
 {"posX":266,"posY":218,"dataIDs":["U20617"]},
 {"posX":266,"posY":314,"dataIDs":["U20612"]},
@@ -45,8 +45,8 @@
 {"posX":826,"posY":346,"dataIDs":["U20827"]},
 {"posX":954,"posY":378,"dataIDs":["U20830"]},
 {"posX":1066,"posY":378,"dataIDs":["U20831"]},
-{"posX":954,"posY":346,"dataIDs":["U20832","U2101C"]},
-{"posX":954,"posY":314,"dataIDs":["U20834","U2095C"]},
+{"posX":954,"posY":346,"dataIDs":["U20832","CT101C"]},
+{"posX":954,"posY":314,"dataIDs":["U20834","CT095C"]},
 {"posX":1146,"posY":410,"dataIDs":["U20840"]},
 {"posX":1146,"posY":378,"dataIDs":["U20842"]},
 {"posX":346,"posY":282,"dataIDs":["U21113"]},
@@ -516,15 +516,18 @@
 {"posX":540,"posY":686,"description":"UR2303B Rev","dataIDs":["U225:6","U228:3","U228:4","U228:5","U228:6","U228:7"],"type0":"NONE","type1":"RHzRtUp"}
 ],
 "text":[
+{"posX":142,"posY":266,"text":"BARKING","url":"lts1","type":"MNAV"},
+{"posX":1042,"posY":334,"text":"HIGH SPEED 1","url":"ctrl2","type":"NAV"},
 {"posX":1018,"posY":216,"text":"DAGENHAM\\nDOCK","url":"DDK","type":"LOC"},
 {"posX":1373,"posY":226,"text":"RAINHAM","url":"RNM","type":"LOC"},
-{"posX":506,"posY":466,"text":"PURFLEET","url":"PFL","type":"LOC"},
+
 {"posX":1284,"posY":434,"text":"GRAYS","url":"GRY","type":"MLOC"},
-{"posX":350,"posY":610,"text":"TILBURY TOWN","url":"TIL","type":"LOC"},
-{"posX":958,"posY":610,"text":"EAST TILBURY","url":"ETL","type":"LOC"},
-{"posX":1338,"posY":600,"text":"STANFORD\\n-LE-HOPE","url":"SFO","type":"LOC"},
-{"posX":142,"posY":266,"text":"BARKING","url":"lts1","type":"MNAV"},
 {"posX":818,"posY":458,"text":"OCKENDON","url":"lts1","type":"MNAV"},
-{"posX":1682,"posY":650,"text":"PITSEA","url":"lts2","type":"MNAV"}
+{"posX":506,"posY":466,"text":"PURFLEET","url":"PFL","type":"LOC"},
+
+{"posX":958,"posY":610,"text":"EAST TILBURY","url":"ETL","type":"LOC"},
+{"posX":1682,"posY":650,"text":"PITSEA","url":"lts2","type":"MNAV"},
+{"posX":1338,"posY":600,"text":"STANFORD\\n-LE-HOPE","url":"SFO","type":"LOC"},
+{"posX":350,"posY":610,"text":"TILBURY TOWN","url":"TIL","type":"LOC"}
 ]
 }
