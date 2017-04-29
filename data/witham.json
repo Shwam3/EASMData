@@ -248,7 +248,7 @@
 {"posX":494,"posY":390,"description":"Q20683","dataID":"Q240:4","type":"LEFT"},
 {"posX":620,"posY":390,"description":"Q20685","dataID":"Q230:3","type":"LEFT"},
 {"posX":620,"posY":446,"description":"Q20687","dataID":"Q230:4","type":"LEFT"},
-{"posX":700,"posY":390,"description":"Q20691","type":"LEFT","isAuto":true},
+{"posX":700,"posY":390,"description":"Q20691","dataID":"Q230:5","type":"LEFT"},
 {"posX":764,"posY":390,"description":"Q20693","type":"LEFT","isAuto":true},
 {"posX":828,"posY":390,"description":"Q20695","type":"LEFT","isAuto":true},
 {"posX":892,"posY":390,"description":"Q20697","dataID":"Q230:6","type":"LEFT"},
