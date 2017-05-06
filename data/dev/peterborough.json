@@ -46,7 +46,7 @@
 {"posX":1018,"posY":378,"dataIDs":["PB0479"]},
 {"posX":1018,"posY":442,"dataIDs":["PB0481"]},
 {"posX":986,"posY":346,"dataIDs":["PB0483"]},
-{"posX":1178,"posY":346,"dataIDs":["PB0484","PB0495"]},
+{"posX":1178,"posY":346,"dataIDs":["PB0484","PB0489"]},
 {"posX":1178,"posY":218,"dataIDs":["PB0485"]},
 {"posX":1178,"posY":314,"dataIDs":["PB0486"]},
 {"posX":1178,"posY":282,"dataIDs":["PB0487"]},
@@ -175,7 +175,8 @@
 {"posX":1594,"posY":634,"dataIDs":["PB0614"]},
 {"posX":1466,"posY":602,"dataIDs":["PB0615"]},
 {"posX":1530,"posY":602,"dataIDs":["PB0617"]},
-{"posX":1658,"posY":634,"dataIDs":["PB0618"]}
+{"posX":1658,"posY":634,"dataIDs":["PB0618"]},
+{"posX":1658,"posY":666,"dataIDs":["PB0620"]}
 ],
 "signals":[
 {"posX":620,"posY":334,"description":"P53","type":"LEFT","isShunt":true,"isAuto":true},
@@ -231,9 +232,11 @@
 {"posX":1176,"posY":270,"description":"P488","type":"RIGHT","isAuto":true},
 {"posX":1292,"posY":214,"description":"P491","type":"LEFT","isAuto":true},
 {"posX":1228,"posY":278,"description":"P487","type":"LEFT","isAuto":true},
+{"posX":1228,"posY":342,"description":"P489","type":"LEFT","isAuto":true},
 {"posX":1240,"posY":366,"description":"P492","type":"RIGHT","isAuto":true},
 {"posX":1292,"posY":278,"description":"P493","type":"LEFT","isAuto":true},
 {"posX":1240,"posY":334,"description":"P494","type":"RIGHT","isAuto":true},
+{"posX":1292,"posY":342,"description":"P495","type":"LEFT","isAuto":true},
 {"posX":1240,"posY":270,"description":"P496","type":"RIGHT","isAuto":true},
 {"posX":1368,"posY":366,"description":"P500","type":"RIGHT","isAuto":true},
 {"posX":1356,"posY":214,"description":"P501","type":"LEFT","isAuto":true},
@@ -310,6 +313,7 @@
 {"posX":1528,"posY":654,"description":"P612","type":"RIGHT","isAuto":true},
 {"posX":1592,"posY":654,"description":"P614","type":"RIGHT","isAuto":true},
 {"posX":1656,"posY":654,"description":"P618","type":"RIGHT","isAuto":true},
+{"posX":1656,"posY":686,"description":"P620","type":"RIGHT","isAuto":true},
 {"posX":252,"posY":566,"description":"P535","type":"LEFT","isAuto":true},
 {"posX":252,"posY":598,"description":"P537","type":"LEFT","isAuto":true},
 {"posX":316,"posY":566,"description":"P541","type":"LEFT","isAuto":true},
@@ -362,6 +366,6 @@
 {"posX":198,"posY":394,"text":"ELY","url":"cambs2","type":"MNAV"},
 {"posX":52,"posY":393,"text":"NO TRAIN DESCRIBER DATA\\nMANEA - PETERBOROUGH","type":"TEXT"},
 
-{"posX":1746,"posY":618,"text":"TO GRANTHAM\\n& DONCASTER","type":"TEXT"}
+{"posX":1746,"posY":633,"text":"TO GRANTHAM\\n& DONCASTER","type":"TEXT"}
 ]
 }
