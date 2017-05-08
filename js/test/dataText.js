@@ -9,7 +9,7 @@ function DataText(jsonObj)
     this.text[1] = typeof jsonObj['text1'] !== 'undefined' ? escapeHTML(jsonObj['text1']).replaceAll('\\n','<br/>') : undefined;
     this.description = jsonObj['description'];
     this.dataValue = 0;
-    
+
     var txt = document.createElement('p');
     map.appendChild(txt);
     txt.title = this.description;
@@ -32,13 +32,14 @@ DataText.prototype.update = function()
             this.dataValue = 1;
             break;
         }
-            
+
     var useHide = false;
     if (this.text[0] == undefined || this.text[1] == undefined)
       useHide = true;
 
     this.domElement.innerHTML = this.text[this.dataValue] || this.text[1 - this.dataValue];
     this.domElement.className = (this.text[this.dataValue]||'').trim() ? 'textOn' : (useHide ? 'textHide' : 'textOff');
+    this.domElement.title = displayOpts.IDs ? this.description + '\n' + this.dataIDs.join(', ') : this.description;
 };
 
 DataText.prototype.display = function(disp)

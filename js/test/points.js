@@ -11,7 +11,7 @@ function Points(jsonObj)
     this.description = jsonObj['description'];
     this.dataValue = 0;
     this.displayImage = false;
-    
+
     var pts = document.createElement('img');
     document.getElementById('map').appendChild(pts);
     pts.title = this.description;
@@ -21,7 +21,8 @@ function Points(jsonObj)
     pts.style.left = this.posX + 'px';
     pts.style.top = this.posY + 'px';
     this.domElement = pts;
-    
+
+    this.update();
     addObj(this.htmlID, this);
 }
 
@@ -34,10 +35,11 @@ Points.prototype.update = function()
             this.dataValue = 1;
             break;
         }
-            
+
     this.domElement.src = '/webclient/images/points/' + this.images[this.dataValue] + '.png';
     this.domElement.style.webkitFilter = this.displayImage ? "invert(40%)" : null;
     this.domElement.style.filter = this.displayImage ? "invert(40%)" : null;
+    this.domElement.title = this.displayImage ? this.description + '\n' + this.dataIDs.join(', ') : this.description;
 };
 
 Points.prototype.display = function(disp)

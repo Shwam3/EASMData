@@ -7,9 +7,9 @@ function Text(jsonObj)
     this.type = jsonObj['type'];
     this.url = jsonObj['url'];
     this.description = jsonObj['description'] || jsonObj['text'].replaceAll('\\n','<br/>').replaceAll('<br/>',' ');
-    
+
     //types: 'TEXT', 'LINK', (LOCATION) 'LOC', (MAJOR LOCATION) 'MLOC', (NAVIGATION) 'NAV', (MAJOR NAVIGATION) 'MNAV'
-    
+
     var txt = document.createElement(this.type == 'TEXT' ? 'p' : 'a');
     map.appendChild(txt);
     txt.title = this.description;
@@ -20,7 +20,7 @@ function Text(jsonObj)
     txt.innerHTML = this.text;
     if (this.type != 'TEXT')
         txt.target = '_blank';
-    
+
     if (this.type == 'LINK')
     {
         txt.href = this.url;
@@ -46,7 +46,7 @@ function Text(jsonObj)
             txt.className = 'textLarge';
     }
     this.domElement = txt;
-    
+
     addObj(this.htmlID, this);
 }
 

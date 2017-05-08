@@ -6,7 +6,7 @@ function Latch(jsonObj)
     this.posY = jsonObj['posY'];
     this.description = jsonObj['description'];
     this.dataValue = 0;
-    
+
     var lat = document.createElement('img');
     map.appendChild(lat);
     lat.title = this.description;
@@ -16,7 +16,7 @@ function Latch(jsonObj)
     lat.style.left = this.posX + 'px';
     lat.style.top  = this.posY + 'px';
     this.domElement = lat;
-    
+
     addObj(this.htmlID, this);
 }
 
@@ -29,8 +29,9 @@ Latch.prototype.update = function()
             this.dataValue = 1;
             break;
         }
-            
+
     this.domElement.src = '/webclient/images/signals/LATCH_' + (this.dataValue == 1 ? 'ON' : 'OFF') + '.png';
+    this.domElement.title = displayOpts.IDs ? this.description + '\n' + this.dataIDs.join(', ') : this.description;
 };
 
 Latch.prototype.display = function(disp)

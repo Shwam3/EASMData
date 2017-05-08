@@ -35,13 +35,13 @@ function loadReplay()
         alert('File dates differ');
         return;
     }
-    
+
     document.getElementById('replayGo').setAttribute('disabled',true);
     document.getElementById('controllerPlayRev').removeAttribute('disabled');
     document.getElementById('controllerPause').removeAttribute('disabled');
     document.getElementById('controllerPlayFor').removeAttribute('disabled');
     document.getElementById('controllerSpeed').removeAttribute('disabled');
-    
+
     var initReader = new FileReader();
     initReader.onload = function(e) { initContents = e.target.result; loadReplay2(); }
     initReader.readAsText(initFile);
@@ -54,7 +54,7 @@ function loadReplay2()
 {
     if (initContents == undefined || logContents == undefined)
         return;
-    
+
     try
     {
         var fileDateBits = initFile.name.substring(0,8).split('-');
@@ -62,32 +62,32 @@ function loadReplay2()
         replayTime = 0;
         replayDataIndex = 0;
         replayState = 0;
-        
+
         var initData = JSON.parse(initContents).TDData;
         closeSocket(true);
         data = initData;
         data['XXMOTD'] = data['XXMOTD'] || 'Replaying ' + initFile.name.substring(0,8);
         fillBerths();
-        
+
         replayData = [];
         var logSplit = logContents.split('\n');
         for (line in logSplit)
         {
             if (!logSplit[line] || logSplit[line].length < 43)
                 continue;
-            
+
             var replayEvent = {};
             var lineTimeBits = logSplit[line].substring(10,18).split(':')
             replayEvent['time'] = getTime(lineTimeBits[0],lineTimeBits[1],lineTimeBits[2]);
             replayEvent['event'] = logSplit[line].substring(20);
             replayData.push(replayEvent);
         }
-        
+
         replayData.sort(function(o1, o2)
         {
             return o1.time - o2.time;
         });
-        
+
         isReplaying = true;
     }
     catch(err)
@@ -95,7 +95,7 @@ function loadReplay2()
         alert('File read failed');
         console.error(err);
     }
-    
+
     console.log('Reading complete');
 }
 function replayUpdate()
@@ -108,19 +108,19 @@ function replayUpdate()
     }
     var delta = (time - lastReplayTime) * replaySpeed;
     lastReplayTime = time;
-    
+
     replayTime += delta * replayState;
     replayTime = Math.min(Math.max(replayTime, 0), 86400000);
     if (replayTime <= 0 || replayTime >= 86400000)
         controllerPause();
-    
+
     if (replayState > 0)
     {
         while (replayData[replayDataIndex].time < replayTime)
         {
             applyEvent(replayData[replayDataIndex].event, false);
             replayDataIndex++;
-            
+
             if (replayDataIndex >= replayData.length)
             {
                 fillBerths();
@@ -137,7 +137,7 @@ function controllerPlayRev()
     if (replayState == 0)
         updaterID = setInterval(replayUpdate, 100/6);
     replayState = -1;
-    
+
     document.getElementById('controllerPlayRev').style.color = 'black';
     document.getElementById('controllerPause').style.color = 'darkgray';
     document.getElementById('controllerPlayFor').style.color = 'darkgray';
@@ -148,7 +148,7 @@ function controllerPause()
     updaterID = undefined;
     replayState = 0;
     lastReplayTime = -1;
-    
+
     document.getElementById('controllerPlayRev').style.color = 'darkgray';
     document.getElementById('controllerPause').style.color = 'black';
     document.getElementById('controllerPlayFor').style.color = 'darkgray';
@@ -158,7 +158,7 @@ function controllerPlayFor()
     if (replayState == 0)
         updaterID = setInterval(replayUpdate, 100/6);
     replayState = 1;
-    
+
     document.getElementById('controllerPlayRev').style.color = 'darkgray';
     document.getElementById('controllerPause').style.color = 'darkgray';
     document.getElementById('controllerPlayFor').style.color = 'black';

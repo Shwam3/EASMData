@@ -3,13 +3,12 @@ hideUsed = true;
 var wait = 2000;
 function reload()
 {
-    dev = true;
-    $.get('/webclient/data/newmap.json', {r:Date.now()}, function(js)
+    $.get('/webclient/data/dev/data.json', {r:Date.now()}, function(json)
     {
-        mapJSON = js;
-        updatePageList(js);
+        mapJSON = json;
+        updatePageList(json);
         load();
-    }, 'json');
+    }, 'json').fail(function(e) { console.error(e); });
 }
 function searchSubmitted()
 {
@@ -26,13 +25,13 @@ function cycle(ids, setto)
 {
     if(!ids || ids.length == 0)
     {
-        document.title = "East Anglia Signal Maps";
+        document.title = "Signal Maps";
         console.log('Done');
         return;
     }
     var id = ids.shift();
     var val = getData(id);
-    document.title = "East Anglia Signal Maps - " + id;
+    document.title = "Signal Maps - " + id;
     setData(id, setto || 1);
     fillBerths();
     setTimeout(function(){ setData(id, val); fillBerths(); cycle(ids); }, wait);
@@ -62,47 +61,94 @@ function list(f,l)
 }
 function largestID(area)
 {
-    var largest = -1;
+    var exists = false;
     for (var k in data)
-        if (k.indexOf(':') == 4 && k.indexOf(area) == 0)
+        if (data[k].indexOf(area))
         {
-            var id = parseInt(k.substring(2,4),16);
-            if (id > largest)
-                largest = id;
+            exists = true;
+            break;
         }
-    return (area + largest.toString(16) + ':8').toUpperCase();
+
+    var largest = 0;
+    if (exists)
+        for (var k in data)
+            if (k.indexOf(':') == 4 && k.indexOf(area) == 0)
+            {
+                var id = parseInt(k.substring(2,4),16);
+                if (id > largest)
+                    largest = id;
+            }
+    return (area + (largest < 16 ? '0':'') + largest.toString(16) + (exists ? ':8' : ':1')).toUpperCase();
 }
 function getRnd()
 {
     return Date.now();
 }
+function checkboxEvt(e)
+{
+    switch(e.id)
+    {
+        case 'l': displayOpts.railcam = e.checked; localStorage.setItem('l',displayOpts.railcam); break;
+        case 'b': displayOpts.berths = e.checked; break;
+        case 'c': displayOpts.trackC = e.checked; break;
+        case 'd': displayOpts.IDs = e.checked; break;
+        case 'p': displayOpts.points = e.checked; break;
+        case 'r': displayOpts.dataText = e.checked; break;
+        case 's': displayOpts.signals = e.checked; break;
+        case 't': displayOpts.text = e.checked; break;
+    }
+    fillBerths();
+}
+
+var fb0 = fillBerths0;
+fillBerths0 = function()
+{
+    fb0();
+
+    document.getElementById('l').checked = displayOpts.railcam;
+    document.getElementById('b').checked = displayOpts.berths;
+    document.getElementById('c').checked = displayOpts.trackC;
+    document.getElementById('d').checked = displayOpts.IDs;
+    document.getElementById('p').checked = displayOpts.points;
+    document.getElementById('r').checked = displayOpts.dataText;
+    document.getElementById('s').checked = displayOpts.signals;
+    document.getElementById('t').checked = displayOpts.text;
+}
 
 function devPage()
 {
     var map = document.getElementById('map');
-    
-    document.getElementById('desc').innerHTML = maxPageId + '. Dev page';
+
+    document.getElementById('desc').innerHTML = 1+maxPageId + '. Dev Page';
+    document.title = 'Signal Maps - Dev Page';
     map.innerHTML = defaultInner;
     document.getElementById('mapImage').src = '/webclient/images/blank.png';
+    document.getElementById('mapImage').style.minWidth = 'initial';
     document.getElementById('map').style.overflowY = 'auto';
-    
+
     doClock();
-    
+
     berths = [];
     signals = [];
     points = [];
     dataText = [];
     text = [];
     trackc = [];
-    
-  //var areas = ['AW','CA','CC','EN','K2','KX','LS','PB','SE','SI','SO','SX','UR','U2','U3','WG','XX'];
-    var areas = ['AW','CA','CC','EN','K2',     'LS',     'SE','SI',     'SX','UR','U2','U3'          ];
+
+  //var areas = ['A2','AW','CA','CC','CT','EN','K2','KX','LS','PB','Q1','Q2',/*'SE','SI',*/'SO','SX','UR','U2','U3','WC','WG','WH','WJ','WY','WS','XX'];
+    var areas = ['A2','AW','CA','CC','CT','EN','K2',     'LS',     'Q1','Q2',/*'SE','SI',*/     'SX','UR','U2','U3',          'WH','WJ',              ];
     var usedIDs = ['XXMOTD'];
     if (hideUsed)
     {
-        for (var p in mapJSON.signalMap)
+        for (var p in mapJSON)
         {
-            var pag = mapJSON.signalMap[p];
+            if (!('data' in mapJSON[p]) || mapJSON[p].data == {})
+            {
+                downloadPage(mapJSON[p].panelUID);
+                return;
+            }
+
+            var pag = mapJSON[p].data || {};
             for (var sg in pag.signals)
             {
                 var sig = pag.signals[sg];
@@ -110,27 +156,32 @@ function devPage()
                 if (sig.dataIDs) usedIDs.push.apply(usedIDs, sig.dataIDs);
                 if (sig.routes)  usedIDs.push.apply(usedIDs, sig.routes);
             }
-            
+
             for (var pt in pag.points)
             {
                 usedIDs.push.apply(usedIDs, pag.points[pt].dataIDs);
             }
-            
+
             for (var bt in pag.berths)
             {
                 usedIDs.push.apply(usedIDs, pag.berths[bt].dataIDs);
             }
+
+            for (i = 0; i < usedIDs.length; i++)
+            {
+                usedIDs[i] = usedIDs[i].replace('!', ':');
+            }
         }
     }
-    
+
     var lastArea = '';
     var x = 26;
-    var y = 100;
+    var y = 26;
     var leftGap = true;
     var ids = [];
     for (var i in areas)
         ids.push.apply(ids, list(areas[i] + '00:1', largestID(areas[i])));
-    
+
     text.push(new Text({type:'TEXT',posX:x,posY:y-12,text:areas[0]}));
     for (var id in ids)
     {
@@ -149,7 +200,7 @@ function devPage()
             continue;
         }
         leftGap = false;
-        
+
         if (lastArea && lastArea != ids[id].substring(0,2))
         {
             x = 26;
@@ -157,9 +208,9 @@ function devPage()
             y += 24;
         }
         lastArea = ids[id].substring(0,2);
-        
+
         signals.push(new Signal({type:'TEST',posX:x+4,posY:y+4,dataID:ids[id],description:ids[id]}));
-        
+
         x += 12;
         if (x+12 > 1828)
         {
@@ -167,24 +218,24 @@ function devPage()
             y += 12;
         }
     }
-    
+
     x = 26;
     y += 48;
-    
-    areas = ['AW','CA','CC','EN','K2','KX','LS','PB','SE','SI','SO','SX','UR','U2','U3','WG','XX'];
+
+    areas = ['A2','AW','CA','CC','CT','EN','K2','KX','LS','PB','Q1','Q2',/*'SE','SI',*/'SO','SX','UR','U2','U3','WC','WG','WH','WJ','WY','WS','XX'];
     ids = [];
     lastArea = undefined;
     var keys = Object.keys(data).sort();
     for (var k in keys)
         if (areas.indexOf(keys[k].substring(0,2)) >= 0 && keys[k].indexOf(':') < 0 && keys[k].length == 6)
             ids.push(keys[k]);
-    
+
     text.push(new Text({type:'TEXT',posX:x,posY:y-14,text:areas[0]}));
     for (var id in ids)
     {
-        if (ids[id].indexOf(':') >= 0 || usedIDs.indexOf(ids[id]) >= 0)
+        if (ids[id].indexOf(':') >= 0 || (usedIDs.indexOf(ids[id]) >= 0 && hideUsed))
             continue;
-        
+
         if (lastArea && lastArea != ids[id].substring(0,2))
         {
             x = 26;
@@ -192,9 +243,9 @@ function devPage()
             y += 32;
         }
         lastArea = ids[id].substring(0,2);
-        
-        berths.push(new Berth({hasBorder:true,posX:x,posY:y,dataIDs:[ids[id]]}));
-        
+
+        berths.push(new Berth({hasBorder:true,posX:x,posY:y,dataIDs:[ids[id]],allowLU:ids[id].startsWith('WS')}));
+
         x += 56;
         if (x+48 > 1828)
         {
@@ -202,16 +253,65 @@ function devPage()
             y += 24;
         }
     }
-    
+
+    var spacer = document.createElement('span');
+    spacer.className = 'devSpacer';
+    spacer.style.top = y+'px';
+    spacer.innerHTML = '&nbsp;';
+    document.getElementById('map').appendChild(spacer);
+
     document.body.scrollTop = document.documentElement.scrollTop = 0;
     map.style.cursor = 'crosshair';
     fillBerths();
     loaded = true;
     obscureCheck(true);
 }
-var oldLoad = window.onload;
+
 window.onload = function()
 {
-    oldLoad();
+    document.getElementById('map').style.cursor = 'wait';
+    obscureCheck(false);
+
     reload();
+
+    openSocket('shwam3.signalmaps.co.uk');
+
+    messageRate = new Counter(100);
+
+    setInterval(doClock, 100);
+    setInterval(fillBerths0, 100);
+    setInterval(function()
+    {
+        if (lastMessage > 0 && Date.now() - lastMessage > 60000)
+            connection.close();
+    }, 100);
 };
+function Counter(samples)
+{
+    this.MAX_SAMPLES = samples;
+    this.tickIndex = 0;
+    this.tickSum = 0;
+    this.tickList = [];
+
+    for (var i = 0; i < this.MAX_SAMPLES; i++)
+    {
+        this.tickList[i] = 0;
+    }
+
+    this.addTick = function addTick(tick)
+    {
+        this.tickSum -= this.tickList[this.tickIndex];
+        this.tickSum += tick;
+        this.tickList[this.tickIndex] = tick;
+
+        if (++this.tickIndex == this.MAX_SAMPLES)
+            this.tickIndex = 0;
+
+        return this.tickSum / this.MAX_SAMPLES;
+    };
+
+    this.getAverageTick = function getAverageTick()
+    {
+        return this.tickSum / this.MAX_SAMPLES;
+    }
+}

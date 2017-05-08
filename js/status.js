@@ -11,7 +11,7 @@ function Status(jsonObj)
     this.text[3] = "Disconnected"; //R
     this.description = jsonObj['description'];
     this.dataValue = 0;
-    
+
     var txt = document.createElement('p');
     map.appendChild(txt);
     txt.title = this.description;
@@ -21,7 +21,7 @@ function Status(jsonObj)
     txt.style.top = this.posY + 'px';
     txt.innerHTML = this.text[0];
     this.domElement = txt;
-    
+
     addObj(this.htmlID, this);
 }
 

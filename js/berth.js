@@ -7,11 +7,13 @@ function Berth(jsonObj)
     this.description = jsonObj['description'];
     this.hasBorder = jsonObj['hasBorder'] || false;
     this.displayMainID = false;
-    this.dataValue = null;
-    
+    this.dataValue = '';
+    this.useRC = displayOpts.railcam;
+    this.allowLU = jsonObj['allowLU'] || false;
+
     for (var k in this.dataIDs)
         setData(this.dataIDs[k], getData(this.dataIDs[k]) || '');
-    
+
     var bthA = document.createElement('a');
     var bthP = document.createElement('p');
     bthA.appendChild(bthP);
@@ -21,7 +23,7 @@ function Berth(jsonObj)
     bthA.style.left = this.posX + 'px';
     bthA.style.top  = this.posY + 'px';
     bthA.title = (this.description ? this.description + '\n' : '');
-    for (var i in this.dataIDs)    
+    for (var i in this.dataIDs)
       bthA.title += this.dataIDs[i] + ': ' + getData(this.dataIDs[i]) + (i<this.dataIDs.length-1?'\n':'');
     bthA.id = this.htmlID;
 
@@ -29,7 +31,7 @@ function Berth(jsonObj)
 
     $(bthP).mouseenter(function(e){$(e.target).css('background-color','#404040');});
     $(bthP).mouseleave(function(e){$(e.target).css('background-color','transparent');});
-    
+
     setData(this.dataIDs[0], getData(this.dataIDs[0]) || '');
     this.update();
     addObj(this.htmlID, this);
@@ -37,7 +39,6 @@ function Berth(jsonObj)
 
 Berth.prototype.update = function()
 {
-    var oldData = this.dataValue;
     this.dataValue = '';
     for (var i = 0; i < this.dataIDs.length; i++)
         if (getData(this.dataIDs[i]))
@@ -45,22 +46,22 @@ Berth.prototype.update = function()
             this.dataValue = getData(this.dataIDs[i]);
             break;
         }
-    
+
     if (this.displayMainID)
         this.dataValue = this.dataIDs[0].substring(2);
 
-    if (oldData != null && oldData == this.dataValue)
-        return;
-    
     var bthA = this.domElement;
     var bthP = this.domElement.children[0];
     bthA.title = (this.description ? this.description + '\n' : '');
-    for (var i in this.dataIDs)    
+    for (var i in this.dataIDs)
         bthA.title += this.dataIDs[i] + ': ' + getData(this.dataIDs[i]) + (i<this.dataIDs.length-1?'\n':'');
     bthP.innerHTML = this.dataValue;
-    if (this.dataValue.match(/([0-9][A-Z][0-9]{2}|[0-9]{3}[A-Z])/))    
+    if (!this.displayMainID && this.dataValue.match(/([0-9][A-Z][0-9]{2}|[0-9]{3}[A-Z])/))
     {
-        bthA.href = 'http://www.realtimetrains.co.uk/search/advancedhandler?type=advanced&map=true&search=' + bthP.innerHTML;
+        if (displayOpts.railcam)
+            bthA.href = 'http://railcam.co.uk/hc/RCTrainInfo.php?r=S&hc=' + this.dataValue + '&td=' + this.dataIDs[0].substring(0,2);
+        else
+            bthA.href = 'http://www.realtimetrains.co.uk/search/advancedhandler?type=advanced&map=true&search=' + this.dataValue;
         bthA.target = '_blank';
     }
     else
@@ -68,6 +69,7 @@ Berth.prototype.update = function()
         bthA.removeAttribute('href');
         bthA.removeAttribute('target');
     }
+    this.useRC = displayOpts.railcam;
 
     if (this.dataValue)
     {
@@ -77,6 +79,8 @@ Berth.prototype.update = function()
             bthP.style.color = '#0FF';
         else if (this.dataValue.match(/([0-9][A-Z][0-9]{2}|[0-9]{3}[A-Z])/))
             bthP.style.color = '#090';
+        else if (this.allowLU && this.dataValue.match(/([A-Z][0-9]{3})/))
+            bthP.style.color = '#FFA0FF';
         else
             bthP.style.color = '#FFF';
 
