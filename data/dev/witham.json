@@ -1,5 +1,5 @@
 {
-"panelUID":"witham2","panelName":"Witham","panelDescription":"Ingatestone - Marks Tey","areas":["Q2"],
+"panelUID":"witham","panelName":"Witham","panelDescription":"Ingatestone - Marks Tey","areas":["Q2"],
 "berths":[
 {"posX":74,"posY":202,"dataIDs":["Q20747"]},
 {"posX":250,"posY":202,"dataIDs":["Q20751"]},
