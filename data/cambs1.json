@@ -713,7 +713,6 @@
 ],
 "text":[
 {"posX":355,"posY":218,"text":"CAMBRIDGE NORTH","url":"CMB","type":"LOC"},
-{"posX":346,"posY":228,"text":"(OPENS 21/05/2017)","url":"CMB","type":"TEXT"},
 {"posX":264,"posY":238,"text":"DULLINGHAM","url":"cambs2","type":"NAV"},
 {"posX":1478,"posY":122,"text":"ELY","url":"ELY","type":"MLOC"},
 {"posX":1736,"posY":162,"text":"ELY\\nNORTH JN","url":"cambs2","type":"MNAV"},

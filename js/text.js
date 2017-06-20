@@ -20,6 +20,8 @@ function Text(jsonObj)
     txt.innerHTML = this.text;
     if (this.type != 'TEXT')
         txt.target = '_blank';
+    else
+        txt.className += ' backText';
 
     if (this.type == 'LINK')
     {
@@ -52,5 +54,6 @@ function Text(jsonObj)
 
 Text.prototype.display = function(disp)
 {
-    this.domElement.style.display = disp ? '' : 'none';
+    if (disp != this.domElement.style.display == '')
+        this.domElement.style.display = disp ? '' : 'none';
 };

@@ -204,7 +204,7 @@
 {"posX":264,"posY":302,"description":"UR804","dataID":"UR14:7","type":"RIGHT","routes":["UR10:3"]},
 {"posX":416,"posY":302,"description":"UR806","dataID":"U2PRED","type":"NONE"},
 {"posX":424,"posY":302,"description":"UR806","dataID":"U20B:3","type":"RIGHT","routes":["U201:2"],"isSubs":true},
-{"posX":668,"posY":214,"description":"UR807","dataID":"U20B:4","type":"LEFT","routes":["U201:3","U201:4","U201:5","U201:6","U201:7","U201:8","U202:1","U202:3"]},
+{"posX":668,"posY":214,"description":"UR807","dataID":"U20B:4","type":"LEFT","routes":["U201:3","U201:4","U201:5","U201:6","U201:7","U201:8","U202:1","U202:2","U202:3"]},
 {"posX":728,"posY":302,"description":"UR808","dataID":"U20B:5","type":"RIGHT","routes":["U202:4","U202:5"]},
 {"posX":604,"posY":246,"description":"UR809","dataID":"U20B:6","type":"LEFT","routes":["U202:6","U202:7","U202:8","U203:1","U203:2","U203:3","U203:4","U203:5","U203:6"]},
 {"posX":792,"posY":302,"description":"UR810","dataID":"U20B:7","type":"RIGHT","routes":["U203:7"]},

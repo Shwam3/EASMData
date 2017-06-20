@@ -10,6 +10,9 @@ function Berth(jsonObj)
     this.dataValue = '';
     this.useRC = displayOpts.railcam;
     this.allowLU = jsonObj['allowLU'] || false;
+    this.lastData = [];
+    this.data = [];
+    this.forceUpdate = true;
 
     for (var k in this.dataIDs)
         setData(this.dataIDs[k], getData(this.dataIDs[k]) || '');
@@ -37,59 +40,69 @@ function Berth(jsonObj)
     addObj(this.htmlID, this);
 }
 
-Berth.prototype.update = function()
+Berth.prototype.update = function(force)
 {
+    this.forceUpdate = this.forceUpdate || (force == true);
+    this.data = [];
     this.dataValue = '';
     for (var i = 0; i < this.dataIDs.length; i++)
-        if (getData(this.dataIDs[i]))
-        {
-            this.dataValue = getData(this.dataIDs[i]);
-            break;
-        }
+    {
+        var d = getData(this.dataIDs[i]);
+        this.data[i] = d;
+        if (this.dataValue == '')
+            this.dataValue = d;
+    }
 
     if (this.displayMainID)
         this.dataValue = this.dataIDs[0].substring(2);
-
-    var bthA = this.domElement;
-    var bthP = this.domElement.children[0];
-    bthA.title = (this.description ? this.description + '\n' : '');
-    for (var i in this.dataIDs)
-        bthA.title += this.dataIDs[i] + ': ' + getData(this.dataIDs[i]) + (i<this.dataIDs.length-1?'\n':'');
-    bthP.innerHTML = this.dataValue;
-    if (!this.displayMainID && this.dataValue.match(/([0-9][A-Z][0-9]{2}|[0-9]{3}[A-Z])/))
+    
+    if (!arraysEqual(this.lastData, this.data) || this.dataValue != this.data[0] || this.forceUpdate)
     {
-        if (displayOpts.railcam)
-            bthA.href = 'http://railcam.co.uk/hc/RCTrainInfo.php?r=S&hc=' + this.dataValue + '&td=' + this.dataIDs[0].substring(0,2);
+        var bthA = this.domElement;
+        var bthP = this.domElement.children[0];
+        bthA.title = (this.description ? this.description + '\n' : '');
+        for (var i in this.dataIDs)
+            bthA.title += this.dataIDs[i] + ': ' + getData(this.dataIDs[i]) + (i<this.dataIDs.length-1?'\n':'');
+        
+        bthP.innerHTML = getHeadcode(this.dataValue, this);
+        
+        if (!this.displayMainID && this.dataValue.match(/([0-9][A-Z][0-9]{2}|[0-9]{3}[A-Z])/))
+        {
+            if (displayOpts.railcam)
+                bthA.href = 'http://railcam.co.uk/hc/RCTrainInfo.php?r=S&hc=' + this.dataValue + '&td=' + this.dataIDs[0].substring(0,2);
+            else
+                bthA.href = 'http://www.realtimetrains.co.uk/search/advancedhandler?type=advanced&map=true&search=' + this.dataValue;
+            bthA.target = '_blank';
+        }
         else
-            bthA.href = 'http://www.realtimetrains.co.uk/search/advancedhandler?type=advanced&map=true&search=' + this.dataValue;
-        bthA.target = '_blank';
-    }
-    else
-    {
-        bthA.removeAttribute('href');
-        bthA.removeAttribute('target');
-    }
-    this.useRC = displayOpts.railcam;
+        {
+            bthA.removeAttribute('href');
+            bthA.removeAttribute('target');
+        }
+        this.useRC = displayOpts.railcam;
 
-    if (this.dataValue)
-    {
-        if (this.displayMainID)// && this.dataValue == this.dataIDs[0].substring(2))
-            bthP.style.color = '#000';
-        else if (this.dataValue == '1Z99')
-            bthP.style.color = '#0FF';
-        else if (this.dataValue.match(/([0-9][A-Z][0-9]{2}|[0-9]{3}[A-Z])/))
-            bthP.style.color = '#090';
-        else if (this.allowLU && this.dataValue.match(/([A-Z][0-9]{3})/))
-            bthP.style.color = '#FFA0FF';
+        if (this.dataValue)
+        {
+            if (this.displayMainID)// && this.dataValue == this.dataIDs[0].substring(2))
+                bthP.style.color = '#000';
+            else if (this.dataValue == '1Z99')
+                bthP.style.color = '#0FF';
+            else if (this.dataValue.match(/([0-9][A-Z][0-9]{2}|[0-9]{3}[A-Z])/))
+                bthP.style.color = '#090';
+            else if (this.allowLU && this.dataValue.match(/([A-Z][0-9]{3})/))
+                bthP.style.color = '#FFA0FF';
+            else
+                bthP.style.color = '#FFF';
+
+            bthA.style.color = bthP.style.color;
+            bthA.style.backgroundColor = '#404040';
+        }
         else
-            bthP.style.color = '#FFF';
-
-        bthA.style.color = bthP.style.color;
-        bthA.style.backgroundColor = '#404040';
-    }
-    else
-    {
-        bthA.style.backgroundColor = 'transparent';
+        {
+            bthA.style.backgroundColor = 'transparent';
+        }
+        this.lastData = this.data;
+        this.forceUpdate = false;
     }
 };
 Berth.prototype.display = function(disp)

@@ -9,7 +9,7 @@ var lastTimestamp = -1;
 var needsFilling = true;
 var data = {};
 var navIndex = {};
-var displayOpts = {'IDs': false, 'berths': true, 'points': true, 'signals': true, 'text': true, 'dataText': true, 'trackC': true, 'railcam': !!localStorage.getItem('l')};
+var displayOpts = {'IDs': false, 'berths': true, 'points': true, 'signals': true, 'text': true, 'dataText': true, 'trackC': true, 'railcam': !!localStorage.getItem('l'), 'headcodes': false};
 var berths = [];
 var signals = [];
 var points = [];
@@ -25,6 +25,7 @@ var connectError = false;
 var defaultInner = document.getElementById('map').innerHTML;
 var htmlIDToObj = {};
 var hashRead = false;
+var hcMap = JSON.parse(localStorage.getItem('hcMap')) || {};
 
 var snowflakesActive = false;
 
@@ -105,7 +106,8 @@ function load()
         devPage();
         return;
     }
-    document.getElementById('map').style.overflowY = null;
+    var map = document.getElementById('map');
+    map.style.overflowY = null;
     localStorage.setItem('page', pageData.panelUID);
 
     if (!('data' in pageData) || pageData.data == {})
@@ -118,7 +120,6 @@ function load()
     var mapSignals = pageData.data.signals;
     var mapPoints = pageData.data.points;
     var mapText = pageData.data.text;
-    var map = document.getElementById('map');
 
     doClock();
     document.getElementById('desc').innerHTML = (parseInt(page)+1) + '. ' + pageData.panelDescription;
@@ -277,18 +278,22 @@ $(document).keydown(function(e)
         {
             case 37: loadPage(--page); break; // left arrow
             case 39: loadPage(++page); break; // right arrow
-            case 66: displayOpts.berths   = !displayOpts.berths; break; // b
-            case 67: displayOpts.trackC   = !displayOpts.trackC; break; // c
-            case 68: displayOpts.IDs      = !displayOpts.IDs; break; // d
-            case 76: displayOpts.railcam  = !displayOpts.railcam; localStorage.setItem('l', displayOpts.railcam); break; // l
-            case 80: displayOpts.points   = !displayOpts.points; break; // p
-            case 82: displayOpts.dataText = !displayOpts.dataText; break; // r
-            case 83: displayOpts.signals  = !displayOpts.signals; break; // s
-            case 84: displayOpts.text     = !displayOpts.text; break; // t
+            case 66: displayOpts.berths    = !displayOpts.berths; break; // b
+            case 67: displayOpts.trackC    = !displayOpts.trackC; break; // c
+            case 68: displayOpts.IDs       = !displayOpts.IDs; break; // d
+            case 72: displayOpts.headcodes = !displayOpts.headcodes; break; // h
+            case 76: displayOpts.railcam   = !displayOpts.railcam; localStorage.setItem('l', displayOpts.railcam); break; // l
+            case 80: displayOpts.points    = !displayOpts.points; break; // p
+            case 82: displayOpts.dataText  = !displayOpts.dataText; break; // r
+            case 83: displayOpts.signals   = !displayOpts.signals; break; // s
+            case 84: displayOpts.text      = !displayOpts.text; break; // t
         }
 
-        if ([67,66,68,76,80,82,83,84].indexOf(e.which) >= 0)
+        if ([67,66,68,72,76,80,82,83,84].indexOf(e.which) >= 0)
+        {
+            displayOpts.changed = true;
             fillBerths();
+        }
     }
 });
 
@@ -463,17 +468,17 @@ function fillBerths0()
         trackc[c].display(displayOpts.trackC);
 
     for (var b in berths)
-        berths[b].update();
+        berths[b].update(displayOpts.changed);
     for (var s in signals)
-        signals[s].update();
+        signals[s].update(displayOpts.changed);
     for (var p in points)
-        points[p].update();
+        points[p].update(displayOpts.changed);
     for (var l in latches)
-        latches[l].update();
+        latches[l].update(displayOpts.changed);
     for (var d in dataText)
-        dataText[d].update();
+        dataText[d].update(displayOpts.changed);
     for (var c in trackc)
-        trackc[c].update();
+        trackc[c].update(displayOpts.changed);
 
     if (lastMessage < 0 || !connected)
     {
@@ -496,6 +501,10 @@ function fillBerths0()
 
         document.getElementById('time').innerHTML = newTime;
     }
+    var map = document.getElementById('map');
+    map.style.left = null;
+    var pos = map.getBoundingClientRect().left;
+    map.style.left = -1*(pos % 1.0) + 'px';
 }
 
 function pageSelected()
@@ -516,14 +525,16 @@ function getRnd()
 
 function getData(id)
 {
-    if (id == undefined || id.length != 6)
+    if (id == undefined || id.length != 6 || id.match(/.{2}PRED/))
         return 0;
+    else if (id.match(/.{2}PGRN/))
+        return 1;
     else if (typeof(data[id]) != 'undefined')
         return data[id];
     else if (id.charAt(4) == '!')
         return 1 - parseInt(data[id.split('!')[0]+':'+id.split('!')[1]]);
     else
-        return data[id];
+        return id.indexOf(':') > -1 || id.indexOf('!') > -1 ? 0 : '';
 }
 function setData(id, value)
 {
@@ -536,6 +547,38 @@ function setData(id, value)
     fillBerths();
 }
 
+function getHeadcode(hc, berth)
+{
+    if (hc.match(/[0-9]{3}[A-Z]/) && displayOpts.headcodes)
+    {
+        var mapping = hcMap[hc];
+        if (mapping === undefined)
+        {
+            mapping = {hc:hc, expire:Date.now()+60000, init:false};
+            hcMap[hc] = mapping;
+        }
+        
+        if (mapping.expire <= Date.now() || !mapping.init)
+        {
+            mapping.init = true;
+            mapping.expire = Date.now()+60000;
+            $.get('/webclient/get_hc.php', {hc: hc, td: berth.dataIDs[0].substring(0,2)}, function(json)
+            {
+                mapping.hc = json.hc;
+                mapping.expire = Date.now() + (json.err == null ? 600000 : 3600000) + (Math.round(Math.random()*900000));
+                
+                berth.forceUpdate = true;
+                berth.update();
+            });
+        }
+        
+        localStorage.setItem('hcMap', JSON.stringify(hcMap));
+        return mapping.hc;
+    }
+    else
+        return hc;
+}
+
 function addObj(htmlID, obj)
 {
     if (htmlIDToObj[htmlID])
@@ -544,6 +587,16 @@ function addObj(htmlID, obj)
         htmlIDToObj[htmlID] = obj;
 }
 
+function arraysEqual(a, b) {
+  if (a === b) return true;
+  if (a == null || b == null) return false;
+  if (a.length != b.length) return false;
+
+  for (var i = 0; i < a.length; ++i) {
+    if (a[i] !== b[i]) return false;
+  }
+  return true;
+}
 function escapeHTML(string)
 {
     return string.match(/&(amp|lt|gt|quot);/) ? string : string.replace('&','&amp;').replace('<','&lt;').replace('>','&gt;').replace('"','&quot;');

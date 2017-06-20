@@ -92,6 +92,7 @@ function checkboxEvt(e)
         case 'b': displayOpts.berths = e.checked; break;
         case 'c': displayOpts.trackC = e.checked; break;
         case 'd': displayOpts.IDs = e.checked; break;
+        case 'h': displayOpts.headcodes = e.checked; break;
         case 'p': displayOpts.points = e.checked; break;
         case 'r': displayOpts.dataText = e.checked; break;
         case 's': displayOpts.signals = e.checked; break;
@@ -109,6 +110,7 @@ fillBerths0 = function()
     document.getElementById('b').checked = displayOpts.berths;
     document.getElementById('c').checked = displayOpts.trackC;
     document.getElementById('d').checked = displayOpts.IDs;
+    document.getElementById('h').checked = displayOpts.headcodes;
     document.getElementById('p').checked = displayOpts.points;
     document.getElementById('r').checked = displayOpts.dataText;
     document.getElementById('s').checked = displayOpts.signals;
