@@ -144,8 +144,9 @@
 {"posX":890,"posY":706,"dataIDs":["SOST11"]},
 {"posX":1018,"posY":738,"dataIDs":["SOST12"]},
 {"posX":954,"posY":706,"dataIDs":["SOST13"]},
-{"posX":954,"posY":658,"dataIDs":["SOST16"]},
-{"posX":1146,"posY":802,"dataIDs":["SOST17"]},
+{"posX":954,"posY":658,"dataIDs":["SOST16","WG1397"]},
+{"posX":1162,"posY":770,"dataIDs":["WG1004"]},
+{"posX":1162,"posY":802,"dataIDs":["SOST17"]},
 {"posX":1226,"posY":738,"dataIDs":["SOST18"]},
 {"posX":1226,"posY":706,"dataIDs":["SOST19","SOST45"]},
 {"posX":1290,"posY":738,"dataIDs":["SOST20"]},
@@ -310,7 +311,7 @@
 {"posX":1016,"posY":758,"description":"S12","type":"RIGHT","isAuto":true},
 {"posX":1004,"posY":702,"description":"S13","type":"LEFT","isAuto":true},
 {"posX":1004,"posY":654,"description":"S16","type":"LEFT","isAuto":true},
-{"posX":1144,"posY":822,"description":"S17","type":"RIGHT","isAuto":true},
+{"posX":1160,"posY":822,"description":"S17","type":"RIGHT","isAuto":true},
 {"posX":1224,"posY":758,"description":"S18","type":"RIGHT","isAuto":true},
 {"posX":1276,"posY":702,"description":"S19","type":"LEFT","isAuto":true},
 {"posX":1288,"posY":758,"description":"S20","type":"RIGHT","isAuto":true},
@@ -327,7 +328,8 @@
 {"posX":1068,"posY":726,"description":"S43","type":"LEFT","isShunt":true,"isAuto":true},
 {"posX":1132,"posY":758,"description":"S44","type":"LEFT","isShunt":true,"isAuto":true},
 {"posX":1224,"posY":726,"description":"S45","type":"RIGHT","isShunt":true,"isAuto":true},
-{"posX":1212,"posY":758,"description":"S46","type":"LEFT","isShunt":true,"isAuto":true}
+{"posX":1212,"posY":758,"description":"S46","type":"LEFT","isShunt":true,"isAuto":true},
+{"posX":1212,"posY":766,"description":"L1004","type":"LEFT","isAuto":true}
 ],
 "points":[
 {"posX":154,"posY":346,"description":"L2117B Nrm","dataIDs":["Q100:2"],"type0":"NONE","type1":"NHzRtDn"},
@@ -539,6 +541,7 @@
 
 {"posX":390,"posY":394,"text":"HIGH MEADS","url":"nll","type":"MNAV"},
 {"posX":812,"posY":466,"text":"LEA BRIDGE","url":"LEB","type":"LOC"},
+{"posX":786,"posY":614,"text":"ORIENT WAY CS","url":"XTX","type":"LOC"},
 {"posX":962,"posY":498,"text":"TOTTENHAM\\nHALE","url":"hackney","type":"MNAV"},
 
 {"posX":1690,"posY":506,"text":"BARKING","url":"lts1","type":"MNAV"},
@@ -550,6 +553,7 @@
 {"posX":778,"posY":642,"text":"HORNSEY >","url":"kingsx","type":"NAV"},
 {"posX":164,"posY":802,"text":"GOSPEL OAK","url":"GPO","type":"LOC"},
 {"posX":833,"posY":770,"text":"HARRINGAY\\nGREEN LANES","url":"HRY","type":"LOC"},
+{"posX":1250,"posY":786,"text":"LEA BRIDGE\\n& CLAPTON","url":"hackney","type":"NAV"},
 {"posX":1524,"posY":770,"text":"LEYTON\\nMIDLAND RD","url":"LEM","type":"LOC"},
 {"posX":1633,"posY":770,"text":"LEYTONSTONE\\nHIGH RD","url":"LER","type":"LOC"},
 {"posX":78,"posY":722,"text":"NLL","url":"nll","type":"MNAV"},

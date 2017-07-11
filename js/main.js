@@ -25,7 +25,7 @@ var connectError = false;
 var defaultInner = document.getElementById('map').innerHTML;
 var htmlIDToObj = {};
 var hashRead = false;
-var hcMap = JSON.parse(localStorage.getItem('hcMap')) || {};
+var hcMap = {}; //JSON.parse(localStorage.getItem('hcMap')) || {};
 
 var snowflakesActive = false;
 
@@ -402,7 +402,7 @@ function downloadPage(uid)
     {
         mapJSON[pageNo]['data'] = json;
         load();
-        console.log('Downloading main file (' + uid + '.json)');
+        console.log('Downloaded main file (' + uid + '.json)');
     }, 'json').fail(function(e)
         {
             console.error(JSON.stringify(e) || 'fail');
@@ -410,7 +410,7 @@ function downloadPage(uid)
             {
                 mapJSON[pageNo]['data'] = json;
                 load();
-                console.log('Downloading secondary file (' + uid + '.json)');
+                console.log('Downloaded secondary file (' + uid + '.json)');
             }, 'json');
         });
 }
@@ -572,7 +572,7 @@ function getHeadcode(hc, berth)
             });
         }
         
-        localStorage.setItem('hcMap', JSON.stringify(hcMap));
+        //localStorage.setItem('hcMap', JSON.stringify(hcMap));
         return mapping.hc;
     }
     else

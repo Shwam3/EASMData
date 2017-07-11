@@ -1,5 +1,5 @@
 {
-"panelUID":"colch2","panelName":"Colchester","panelDescription":"Colchester - Ipswich","areas":["CC"],
+"panelUID":"colch","panelName":"Colchester","panelDescription":"Colchester - Ipswich","areas":["CC"],
 "berths":[
 {"posX":214,"posY":234,"dataIDs":["CC0190"]},
 {"posX":214,"posY":202,"dataIDs":["CC0191"]},

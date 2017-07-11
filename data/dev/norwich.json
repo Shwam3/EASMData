@@ -1,5 +1,5 @@
 {
-"panelUID":"norwich","panelName":"Norwich/Trowse Bridge","panelDescription":"Stowmarket, Sheringham &amp; Whitlingham Jnc - Norwich","areas":["CC"],
+"panelUID":"norwich","panelName":"Norwich/Trowse Bridge","panelDescription":"Stowmarket, Sheringham &amp; Whitlingham Jn - Norwich","areas":["CC"],
 "berths":[
 {"posX":138,"posY":346,"dataIDs":["CC0395"]},
 {"posX":218,"posY":378,"dataIDs":["CC0396"]},
@@ -396,6 +396,7 @@
 "text":[
 {"posX":614,"posY":322,"text":"DISS","url":"DIS","type":"LOC"},
 {"posX":346,"posY":226,"text":"ELMSWELL","url":"ESW","type":"LOC"},
+{"posX":169,"posY":410,"text":"HAUGHLEY JN","url":"HAGHLYJ","type":"LOC"},
 {"posX":474,"posY":226,"text":"THURSTON","url":"TRS","type":"LOC"},
 {"posX":570,"posY":258,"text":"BURY ST\\nEDMUNDS","url":"cambs2","type":"MNAV"},
 {"posX":14,"posY":362,"text":"IPSWICH","url":"ipswich","type":"MNAV"},

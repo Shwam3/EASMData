@@ -311,6 +311,9 @@
 {"posX":1400,"posY":302,"description":"L5140","dataID":"Q22B:2","type":"RIGHT","routes":["Q20F:8","Q210:1"],"isShunt":true},
 {"posX":1416,"posY":174,"description":"L5142","dataID":"Q22A:3","type":"RIGHT","routes":["Q20F:4","Q20F:5"],"isShunt":true},
 {"posX":1420,"posY":334,"description":"L5151","dataID":"Q2PRED","type":"LEFT","isShunt":true},
+{"posX":1418,"posY":97,"description":"TJW","dataIDs":["Q263!4"],"type":"TRACKC","width":"102","height":"2"},
+{"posX":1418,"posY":129,"description":"TJY","dataIDs":["Q263!5"],"type":"TRACKC","width":"102","height":"2"},
+{"posX":1418,"posY":161,"description":"TJZ","dataIDs":["Q263!6"],"type":"TRACKC","width":"102","height":"2"},
 
 {"posX":1192,"posY":402,"description":"LS557TRS","dataIDs":["Q23A:6"],"type":"TEXT","text1":"TRTS"},
 {"posX":1202,"posY":466,"description":"LS553TRS","dataIDs":["Q23B:2"],"type":"TEXT","text1":"TRTS"},

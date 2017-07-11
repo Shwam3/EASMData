@@ -1,6 +1,7 @@
 dev = true;
 hideUsed = true;
 var wait = 2000;
+var area_filter = {};
 function reload()
 {
     $.get('/webclient/data/dev/data.json', {r:Date.now()}, function(json)
@@ -126,18 +127,32 @@ function devPage()
     map.innerHTML = defaultInner;
     document.getElementById('mapImage').src = '/webclient/images/blank.png';
     document.getElementById('mapImage').style.minWidth = 'initial';
+    document.getElementById('mapImage').style.display = 'none';
     document.getElementById('map').style.overflowY = 'auto';
 
     doClock();
-
+    
     berths = [];
     signals = [];
     points = [];
     dataText = [];
     text = [];
     trackc = [];
+    
+    var areas = ['A2','AW','CA','CC','CT','EN','K2','KX','LS','PB','Q1','Q2',/*'SE','SI',*/'SO','SX','UR','U2','U3','WC','WG','WH','WJ','WY','WS','XX','hideUsed'];
+    var div = document.createElement('div');
+    div.style.margin = '5px 26px';
+    for (a in areas)
+    {
+        var area = areas[a];
+        var lab = document.createElement('label');
+        area_filter[area] = area_filter[area] == undefined ? true : area_filter[area];
+        lab.innerHTML = '<input type="checkbox" id="area_'+area+'" name="'+area+'" onchange="filterArea(this)"'+(area_filter[area] ? ' checked' : '')+'>'+area;
+        div.appendChild(lab);
+    }
+    document.getElementById('map').appendChild(div);
+    hideUsed = area_filter['hideUsed'];
 
-  //var areas = ['A2','AW','CA','CC','CT','EN','K2','KX','LS','PB','Q1','Q2',/*'SE','SI',*/'SO','SX','UR','U2','U3','WC','WG','WH','WJ','WY','WS','XX'];
     var areas = ['A2','AW','CA','CC','CT','EN','K2',     'LS',     'Q1','Q2',/*'SE','SI',*/     'SX','UR','U2','U3',          'WH','WJ',              ];
     var usedIDs = ['XXMOTD'];
     if (hideUsed)
@@ -178,47 +193,51 @@ function devPage()
 
     var lastArea = '';
     var x = 26;
-    var y = 26;
+    var y = 41;
     var leftGap = true;
     var ids = [];
     for (var i in areas)
         ids.push.apply(ids, list(areas[i] + '00:1', largestID(areas[i])));
 
-    text.push(new Text({type:'TEXT',posX:x,posY:y-12,text:areas[0]}));
+    if (area_filter[areas[0]])
+        text.push(new Text({type:'TEXT',posX:x,posY:y-12,text:areas[0]}));
     for (var id in ids)
     {
-        if (ids[id].indexOf(':') < 0 || usedIDs.indexOf(ids[id]) >= 0)
+        if (area_filter[ids[id].substring(0, 2)])
         {
-            if (!leftGap)
+            if (ids[id].indexOf(':') < 0 || usedIDs.indexOf(ids[id]) >= 0)
             {
-                x += 12;
-                if (x+12 > 1828)
+                if (!leftGap)
                 {
-                    x = 26;
-                    y += 12;
+                    x += 12;
+                    if (x+12 > 1828)
+                    {
+                        x = 26;
+                        y += 12;
+                    }
                 }
+                leftGap = true;
+                continue;
             }
-            leftGap = true;
-            continue;
-        }
-        leftGap = false;
+            leftGap = false;
 
-        if (lastArea && lastArea != ids[id].substring(0,2))
-        {
-            x = 26;
-            text.push(new Text({type:'TEXT',posX:x,posY:y+12,text:ids[id].substring(0,2)}));
-            y += 24;
+            if (lastArea && lastArea != ids[id].substring(0,2))
+            {
+                x = 26;
+                text.push(new Text({type:'TEXT',posX:x,posY:y+12,text:ids[id].substring(0,2)}));
+                y += 24;
+            }
+
+            signals.push(new Signal({type:'TEST',posX:x+4,posY:y+4,dataID:ids[id],description:ids[id]}));
+
+            x += 12;
+            if (x+12 > 1828)
+            {
+                x = 26;
+                y += 12;
+            }
         }
         lastArea = ids[id].substring(0,2);
-
-        signals.push(new Signal({type:'TEST',posX:x+4,posY:y+4,dataID:ids[id],description:ids[id]}));
-
-        x += 12;
-        if (x+12 > 1828)
-        {
-            x = 26;
-            y += 12;
-        }
     }
 
     x = 26;
@@ -229,31 +248,39 @@ function devPage()
     lastArea = undefined;
     var keys = Object.keys(data).sort();
     for (var k in keys)
-        if (areas.indexOf(keys[k].substring(0,2)) >= 0 && keys[k].indexOf(':') < 0 && keys[k].length == 6)
+        if (areas.indexOf(keys[k].substring(0,2)) >= 0 && keys[k].indexOf(':') < 0 && keys[k].length == 6 )
             ids.push(keys[k]);
 
-    text.push(new Text({type:'TEXT',posX:x,posY:y-14,text:areas[0]}));
+    if (area_filter[areas[0]])
+        text.push(new Text({type:'TEXT',posX:x,posY:y-14,text:areas[0]}));
     for (var id in ids)
     {
-        if (ids[id].indexOf(':') >= 0 || (usedIDs.indexOf(ids[id]) >= 0 && hideUsed))
+        if (ids[id].indexOf(':') >= 0
+                || ids[id].indexOf('!') >= 0
+                || ids[id].substring(2, 6) == 'PRED'
+                || ids[id].substring(2, 6) == 'PGRN'
+                || (usedIDs.indexOf(ids[id]) >= 0 && hideUsed))
             continue;
 
-        if (lastArea && lastArea != ids[id].substring(0,2))
+        if (area_filter[ids[id].substring(0,2)])
         {
-            x = 26;
-            text.push(new Text({type:'TEXT',posX:x,posY:y+20,text:ids[id].substring(0,2)}));
-            y += 32;
+            if (lastArea && lastArea != ids[id].substring(0,2))
+            {
+                x = 26;
+                text.push(new Text({type:'TEXT',posX:x,posY:y+20,text:ids[id].substring(0,2)}));
+                y += 32;
+            }
+
+            berths.push(new Berth({hasBorder:true,posX:x,posY:y,dataIDs:[ids[id]],allowLU:ids[id].startsWith('WS')}));
+
+            x += 56;
+            if (x+48 > 1828)
+            {
+                x = 26;
+                y += 24;
+            }
         }
         lastArea = ids[id].substring(0,2);
-
-        berths.push(new Berth({hasBorder:true,posX:x,posY:y,dataIDs:[ids[id]],allowLU:ids[id].startsWith('WS')}));
-
-        x += 56;
-        if (x+48 > 1828)
-        {
-            x = 26;
-            y += 24;
-        }
     }
 
     var spacer = document.createElement('span');
@@ -266,7 +293,14 @@ function devPage()
     map.style.cursor = 'crosshair';
     fillBerths();
     loaded = true;
+    console.log('Dev page loaded')
     obscureCheck(true);
+}
+function filterArea(evt)
+{
+    console.log(evt.name, evt.checked ? 'shown' : 'hidden')
+    area_filter[evt.name] = evt.checked;
+    devPage();
 }
 
 window.onload = function()
