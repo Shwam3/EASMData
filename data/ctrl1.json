@@ -1,5 +1,5 @@
 {
-"panelUID":"ctrl1","panelName":"St. Pancras International","panelDescription":"St. Pancras International - Dagenham",
+"panelUID":"ctrl1","panelName":"St. Pancras International","panelDescription":"St. Pancras International - Dagenham","areas":["CT","KX","U3"],
 "berths":[
 {"posX":186,"posY":170,"dataIDs":["CT005C"]},
 {"posX":186,"posY":202,"dataIDs":["CT006C"]},
@@ -278,8 +278,8 @@
 {"posX":882,"posY":174,"text":"KINGS CROSS","url":"kingsx","type":"NAV"},
 {"posX":1034,"posY":218,"text":"LONDON TUNNEL 1 ->","type":"TEXT"},
 {"posX":100,"posY":122,"text":"ST. PANCRAS\\nINTERNATIONAL","url":"STP","type":"MLOC"},
-{"posX":578,"posY":64,"text":"(TO MML)","type":"TEXT"},
 {"posX":906,"posY":316,"text":"YORK WAY\\nSOUTH JN","url":"XXY","type":"LOC"},
+{"posX":578,"posY":64,"text":"(TO MML)","type":"TEXT"},
 {"posX":626,"posY":142,"text":"*1","type":"TEXT"},
 {"posX":554,"posY":54,"text":"*1: MAINTENANCE SDG","url":"STPAMCS","type":"LOC"},
 

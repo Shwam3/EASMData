@@ -1,4 +1,5 @@
 var port = 6323;
+var host = 'shwam3.signalmaps.co.uk';
 var page = 0;
 var dev = false;
 var connection;
@@ -26,6 +27,7 @@ var defaultInner = document.getElementById('map').innerHTML;
 var htmlIDToObj = {};
 var hashRead = false;
 var hcMap = {}; //JSON.parse(localStorage.getItem('hcMap')) || {};
+var active_areas = [];
 
 var snowflakesActive = false;
 
@@ -127,7 +129,9 @@ function load()
 
     htmlIDToObj = {};
     map.innerHTML = defaultInner;
-    document.getElementById('mapImage').src = '/webclient/images/maps/'+pageData.data.panelUID.replace('+','%2B')+'.png?r=' + getRnd();
+    // use pageData.data.panelUID to allow 'dev' images
+    document.getElementById('mapImage').src = '/webclient/images/maps/'+pageData.data.panelUID+'.png?r=' + getRnd();
+    document.getElementById('mapImage').onerror = function(evt) { evt.srcElement.src = 'https://github.com/Shwam3/EASMData/raw/master/images/maps/'+pageData.data.panelUID+'.png'; };
     document.getElementById('mapImage').draggable = false;
     berths = [];
     signals = [];
@@ -136,6 +140,7 @@ function load()
     dataText = [];
     text = [];
     trackc = [];
+    setAreas(pageData.areas);
 
     for (var k in mapBerths)
     {
@@ -260,7 +265,7 @@ window.onload = function()
             }, 'json');
         });
 
-    openSocket('shwam3.signalmaps.co.uk');
+    openSocket(host);
     setInterval(doClock, 100);
     setInterval(fillBerths0, 100);
     setInterval(function()
@@ -313,7 +318,7 @@ function reconnect()
     if (connection && (connection.readyState == connection.OPEN || connection.readyState == connection.CONNECTING))
         connection.close();
 
-    openSocket('shwam3.signalmaps.co.uk');
+    openSocket(host);
 }
 function openSocket(ip)
 {
@@ -330,6 +335,7 @@ function openSocket(ip)
     {
         console.log('WebSocket Open @ wss://' + ip + ':' + port);
         attempt = -1;
+        setAreas(null);
     };
     connection.onclose = connection.onclose || function oncls(e)
     {
@@ -341,7 +347,7 @@ function openSocket(ip)
             obscureCheck(true);
             console.warn('WebSocket Closed reopening...');
 
-            setTimeout(function() { openSocket('shwam3.signalmaps.co.uk'); }, 3000 + Math.min(attempt * 2000, 27000));
+            setTimeout(function() { openSocket(host); }, 3000 + Math.min(attempt * 2000, 27000));
         }
         else
             console.log('WebSocket Closed');
@@ -551,6 +557,7 @@ function getHeadcode(hc, berth)
 {
     if (hc.match(/[0-9]{3}[A-Z]/) && displayOpts.headcodes)
     {
+        var td = typeof berth == "object" ? berth.dataIDs[0].substring(0, 2) : berth.substring(0, 2)
         var mapping = hcMap[hc];
         if (mapping === undefined)
         {
@@ -562,13 +569,16 @@ function getHeadcode(hc, berth)
         {
             mapping.init = true;
             mapping.expire = Date.now()+60000;
-            $.get('/webclient/get_hc.php', {hc: hc, td: berth.dataIDs[0].substring(0,2)}, function(json)
+            $.get('/webclient/get_hc.php', {hc: hc, td: td}, function(json)
             {
                 mapping.hc = json.hc;
                 mapping.expire = Date.now() + (json.err == null ? 600000 : 3600000) + (Math.round(Math.random()*900000));
                 
-                berth.forceUpdate = true;
-                berth.update();
+                if (typeof berth == "object")
+                {
+                    berth.forceUpdate = true;
+                    berth.update();
+                }
             });
         }
         
@@ -577,6 +587,20 @@ function getHeadcode(hc, berth)
     }
     else
         return hc;
+}
+
+function setAreas(areas)
+{
+    if (areas == null)
+    {
+        if (active_areas.length > 0)
+            connection.send(JSON.stringify({Message:{type:'SET_AREAS',areas:active_areas,timestamp:Date.now()}}));
+    }
+    else if (areas.toString() != active_areas.toString())
+    {
+        connection.send(JSON.stringify({Message:{type:'SET_AREAS',areas:areas,timestamp:Date.now()}}));
+        active_areas = areas;
+    }
 }
 
 function addObj(htmlID, obj)

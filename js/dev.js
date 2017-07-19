@@ -1,3 +1,7 @@
+var as = {
+    'A2':true,'AW':true,'CA':true,'CC':true,'CT':true,'EN':true,'K2':true,'KX':false,'LS':true,'NJ':true,'NX':true,'PB':false,'Q1':true,'Q2':true,
+    'SO':false,'SX':true,'UR':true,'U2':true,'U3':true,'WC':false,'WG':false,'WH':true,'WJ':true,'WY':false,'WS':false,'X0':true,'XX':false
+}
 dev = true;
 hideUsed = true;
 var wait = 2000;
@@ -138,8 +142,9 @@ function devPage()
     dataText = [];
     text = [];
     trackc = [];
+    setAreas([]);
     
-    var areas = ['A2','AW','CA','CC','CT','EN','K2','KX','LS','PB','Q1','Q2',/*'SE','SI',*/'SO','SX','UR','U2','U3','WC','WG','WH','WJ','WY','WS','XX','hideUsed'];
+    var areas = ['A2','AW','CA','CC','CT','EN','K2','KX','LS','NJ','NX','PB','Q1','Q2','SO','SX','UR','U2','U3','WC','WG','WH','WJ','WY','WS','X0','XX','hideUsed'];
     var div = document.createElement('div');
     div.style.margin = '5px 26px';
     for (a in areas)
@@ -153,7 +158,7 @@ function devPage()
     document.getElementById('map').appendChild(div);
     hideUsed = area_filter['hideUsed'];
 
-    var areas = ['A2','AW','CA','CC','CT','EN','K2',     'LS',     'Q1','Q2',/*'SE','SI',*/     'SX','UR','U2','U3',          'WH','WJ',              ];
+    var areas = ['A2','AW','CA','CC','CT','EN','K2',     'LS','NJ','NX',     'Q1','Q2',     'SX','UR','U2','U3',          'WH','WJ',         ,'X0'     ];
     var usedIDs = ['XXMOTD'];
     if (hideUsed)
     {
@@ -243,7 +248,7 @@ function devPage()
     x = 26;
     y += 48;
 
-    areas = ['A2','AW','CA','CC','CT','EN','K2','KX','LS','PB','Q1','Q2',/*'SE','SI',*/'SO','SX','UR','U2','U3','WC','WG','WH','WJ','WY','WS','XX'];
+    areas = ['A2','AW','CA','CC','CT','EN','K2','KX','LS','NJ','NX','PB','Q1','Q2','SO','SX','UR','U2','U3','WC','WG','WH','WJ','WY','WS','X0','XX'];
     ids = [];
     lastArea = undefined;
     var keys = Object.keys(data).sort();
@@ -322,6 +327,14 @@ window.onload = function()
             connection.close();
     }, 100);
 };
+function getAllHCs()
+{
+    for (var b in data)
+    {
+        if (data[b].match(/[0-9]{3}[A-Z]/))
+            getHeadcode(data[b], b.substring(0, 2));
+    }
+}
 function Counter(samples)
 {
     this.MAX_SAMPLES = samples;

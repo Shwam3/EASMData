@@ -1,5 +1,5 @@
 {
-"panelUID":"kingsx","panelName":"King's Cross & Finsbury Park","panelDescription":"Alexandra Palace - London Kings Cross",
+"panelUID":"kingsx","panelName":"King's Cross & Finsbury Park","panelDescription":"Alexandra Palace - London Kings Cross","areas":["KX","U3","SO"],
 "berths":[
 {"posX":490,"posY":346,"dataIDs":["KX0085"]},
 {"posX":1402,"posY":506,"dataIDs":["KX0251"]},
@@ -322,8 +322,8 @@
 {"posX":90,"posY":521,"text":"HARRINGEY\\nREVERSE SDGS","url":"XHU","type":"LOC"},
 {"posX":186,"posY":302,"text":"HORNSEY EMUD","url":"XHE","type":"LOC"},
 {"posX":405,"posY":430,"text":"HORNSEY","url":"HRN","type":"LOC"},
-{"posX":1660,"posY":602,"text":"KINGS CROSS","url":"KGX","type":"MLOC"},
-{"posX":1490,"posY":569,"text":"ST PANCRAS INTL\\n(HS1)","type":"TEXT"},
+{"posX":1654,"posY":602,"text":"KING`S CROSS","url":"KGX","type":"MLOC"},
+{"posX":1490,"posY":569,"text":"ST PANCRAS INTL\\n(HS1)","url":"ctrl1","type":"NAV"},
 {"posX":1538,"posY":521,"text":"ST PANCRAS\\n(THAMESLINK)","type":"TEXT"}
 ]
 }

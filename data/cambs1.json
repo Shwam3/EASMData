@@ -1,5 +1,5 @@
 {
-"panelUID":"cambs1","panelName":"Cambridge (CA)","panelDescription":"Elsenham - Ely",
+"panelUID":"cambs1","panelName":"Cambridge (CA)","panelDescription":"Elsenham - Ely","areas":["CA"],
 "berths":[
 {"posX":184,"posY":234,"dataIDs":["CAX200"]},
 {"posX":184,"posY":186,"dataIDs":["CA0210"]},

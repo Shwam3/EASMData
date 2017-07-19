@@ -349,7 +349,7 @@
 {"posX":380,"posY":718,"description":"UR533","dataID":"UR1B:6","type":"LEFT","routes":["UR18:7","UR18:8"]},
 {"posX":408,"posY":662,"description":"UR534","dataID":"UR1B:7","type":"RIGHT","routes":["UR19:1","UR19:2"]},
 {"posX":844,"posY":718,"description":"UR535","dataID":"UR21:6","type":"LEFT","routes":["UR1D:7"]},
-{"posX":972,"posY":718,"description":"UR537","dataID":"UR21:7","type":"LEFT","routes":["UR1D:8","1E:1"]},
+{"posX":972,"posY":718,"description":"UR537","dataID":"UR21:7","type":"LEFT","routes":["UR1D:8","UR1E:1"]},
 {"posX":982,"posY":662,"description":"UR538","dataID":"UR21:8","type":"RIGHT","routes":["UR1E:2","UR1E:3"]},
 {"posX":1102,"posY":718,"description":"UR539","dataID":"UR22:1","type":"LEFT","routes":["UR1E:4","UR1E:5"]},
 {"posX":1112,"posY":662,"description":"UR540","dataID":"UR22:2","type":"RIGHT","routes":["UR1E:6"]},

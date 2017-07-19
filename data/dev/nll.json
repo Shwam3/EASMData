@@ -1,5 +1,5 @@
 {
-"panelUID":"nll","panelName":"North London Line","panelDescription":"Willesden Jn - Stratford","areas":["U3","CT","KX"],
+"panelUID":"nll","panelName":"North London Line","panelDescription":"Willesden Jn - Stratford","areas":["U3","CT","KX","Q1"],
 "berths":[
 {"posX":170,"posY":218,"dataIDs":["U31251"]},
 {"posX":234,"posY":218,"dataIDs":["U31257"]},

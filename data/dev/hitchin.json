@@ -1,5 +1,5 @@
 {
-"panelUID":"hitchin","panelName":"Hitchin","panelDescription":"Biggleswade - Stevenage","areas":["KX"],
+"panelUID":"hitchin","panelName":"Hitchin","panelDescription":"Biggleswade - Stevenage","areas":["KX","CA"],
 "berths":[
 {"posX":1162,"posY":202,"dataIDs":["KX0226"],"hasBorder":true},
 {"posX":1610,"posY":298,"dataIDs":["KX0662"]},
@@ -255,7 +255,7 @@
 {"posX":422,"posY":486,"description":"K983","type":"RIGHT","isAuto":true},
 {"posX":412,"posY":486,"description":"K984","type":"LEFT","isAuto":true},
 {"posX":332,"posY":486,"description":"K986","type":"LEFT","isAuto":true},
-{"posX":280,"posY":542,"description":"CA103","type":"RIGHT","isAuto":true}
+{"posX":280,"posY":542,"description":"CA103","dataID":"CA3D:1","type":"RIGHT"}
 ],
 "points":[],
 "text":[

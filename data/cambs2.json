@@ -1,5 +1,5 @@
 {
-"panelUID":"cambs2","panelName":"Cambridge (EN)","panelDescription":"Ely - Manea, Kings Lynn &amp; Wymondham. Bury St. Edmunds - Ely &amp; Cambridge",
+"panelUID":"cambs2","panelName":"Cambridge (EN)","panelDescription":"Ely - Manea, Kings Lynn &amp; Wymondham. Bury St. Edmunds - Ely &amp; Cambridge","areas":["CA","CC","EN"],
 "berths":[
 {"posX":106,"posY":106,"dataIDs":["EN8019"]},
 {"posX":226,"posY":138,"dataIDs":["EN8024"]},

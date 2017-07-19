@@ -1,5 +1,5 @@
 {
-"panelUID":"shenfield","panelName":"Shenfield","panelDescription":"Harold Wood - Ingatestone, Southminster &amp; Southend Victoria",
+"panelUID":"shenfield","panelName":"Shenfield","panelDescription":"Harold Wood - Ingatestone, Southminster &amp; Southend Victoria","areas":["Q1","Q2"],
 "berths":[
 {"posX":186,"posY":154,"dataIDs":["Q20445"]},
 {"posX":250,"posY":154,"dataIDs":["Q20447"]},

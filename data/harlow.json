@@ -1,5 +1,5 @@
 {
-"panelUID":"harlow","panelName":"Harlow","panelDescription":"Cheshunt - Elsenham, Hertford East &amp; Stansted Airport",
+"panelUID":"harlow","panelName":"Harlow","panelDescription":"Cheshunt - Elsenham, Hertford East &amp; Stansted Airport","areas":["WG"],
 "berths":[
 {"posX":122,"posY":186,"dataIDs":["WG1061"]},
 {"posX":122,"posY":218,"dataIDs":["WG1062"]},

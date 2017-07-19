@@ -1,5 +1,5 @@
 {
-"panelUID":"alpal","panelName":"Alexandra Palace","panelDescription":"Potters Bar - Alexandra Palace",
+"panelUID":"alpal","panelName":"Alexandra Palace","panelDescription":"Potters Bar - Alexandra Palace","areas":["KX","K2"],
 "berths":[
 {"posX":1242,"posY":186,"dataIDs":["KX0476"]},
 {"posX":1242,"posY":218,"dataIDs":["KX0831"]},

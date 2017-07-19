@@ -1,5 +1,5 @@
 {
-"panelUID":"welwyn","panelName":"Welwyn GC","panelDescription":"Stevenage - Potters Bar &amp; Gordon Hill",
+"panelUID":"welwyn","panelName":"Welwyn GC","panelDescription":"Stevenage - Potters Bar &amp; Gordon Hill","areas":["KX","K2"],
 "berths":[
 {"posX":938,"posY":362,"dataIDs":["KX0180"]},
 {"posX":282,"posY":202,"dataIDs":["KX0210"]},

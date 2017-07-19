@@ -1,5 +1,5 @@
 {
-"panelUID":"hackney","panelName":"Hackney/Brimsdown","panelDescription":"Hackney Downs - Chingford, Enfield Town &amp; Cheshunt",
+"panelUID":"hackney","panelName":"Hackney/Brimsdown","panelDescription":"Hackney Downs - Chingford, Enfield Town &amp; Cheshunt","areas":["LS","WG","SO","Q1"],
 "berths":[
 {"posX":314,"posY":186,"dataIDs":["LS0120"]},
 {"posX":314,"posY":154,"dataIDs":["LS0121"]},

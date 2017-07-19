@@ -1,5 +1,5 @@
 {
-"panelUID":"stratford","panelName":"Stratford","panelDescription":"Bow Junction - Manor Park, Coppermill Jnc &amp; Orient Way","areas":["Q1","WG","U3","SO"],
+"panelUID":"stratford","panelName":"Stratford","panelDescription":"Bow Junction - Manor Park, Coppermill Jnc &amp; Orient Way","areas":["Q1","WG","CA","U3","SO"],
 "berths":[
 {"posX":106,"posY":282,"dataIDs":["Q10220"]},
 {"posX":106,"posY":250,"dataIDs":["Q10221"]},
@@ -430,9 +430,9 @@
 {"posX":954,"posY":282,"description":"L2159A Rev","dataIDs":["Q110:6","Q112:1","Q112:2","Q11B:5"],"type0":"NONE","type1":"RHzLfUp"},
 {"posX":954,"posY":250,"description":"L2159B Nrm","dataIDs":["Q110:7","Q112:3","Q113:2","Q113:3","Q113:4","Q11B:3","Q11B:4","Q11B:6"],"type0":"NONE","type1":"NHzRtDn"},
 {"posX":954,"posY":250,"description":"L2159B Rev","dataIDs":["Q110:6","Q112:1","Q112:2","Q11B:5"],"type0":"NONE","type1":"RHzRtDn"},
-{"posX":1194,"posY":250,"description":"L2160A Nrm","dataIDs":["Q110:7","Q111:2","Q111:5","Q112:5","Q112:6","Q112:7","Q112:8","Q114:1","Q114:3","Q114:6","Q115:2","Q21B:4","Q21B:6"],"type0":"NONE","type1":"NHzLfDn"},
+{"posX":1194,"posY":250,"description":"L2160A Nrm","dataIDs":["Q110:7","Q111:2","Q111:5","Q112:5","Q112:6","Q112:7","Q112:8","Q114:1","Q114:3","Q114:6","Q115:2","Q11B:4","Q11B:6"],"type0":"NONE","type1":"NHzLfDn"},
 {"posX":1194,"posY":250,"description":"L2160A Rev","dataIDs":["Q111:6","Q111:7","Q111:8","Q114:4","Q114:7","Q115:3"],"type0":"NONE","type1":"RHzLfDn"},
-{"posX":1194,"posY":282,"description":"L2160B Nrm","dataIDs":["Q110:7","Q111:2","Q111:5","Q112:5","Q112:6","Q112:7","Q112:8","Q114:1","Q114:3","Q114:6","Q115:2","Q21B:4","Q21B:6"],"type0":"NONE","type1":"NHzRtUp"},
+{"posX":1194,"posY":282,"description":"L2160B Nrm","dataIDs":["Q110:7","Q111:2","Q111:5","Q112:5","Q112:6","Q112:7","Q112:8","Q114:1","Q114:3","Q114:6","Q115:2","Q11B:4","Q11B:6"],"type0":"NONE","type1":"NHzRtUp"},
 {"posX":1194,"posY":282,"description":"L2160B Rev","dataIDs":["Q111:6","Q111:7","Q111:8","Q114:4","Q114:7","Q115:3"],"type0":"NONE","type1":"RHzRtUp"},
 {"posX":1210,"posY":282,"description":"L2161A Nrm","dataIDs":["Q111:6","Q112:5","Q112:6","Q113:5","Q113:6","Q114:1","Q114:3","Q114:4","Q114:5","Q115:1"],"type0":"NONE","type1":"NHzLfDn"},
 {"posX":1210,"posY":282,"description":"L2161A Rev","dataIDs":["Q111:7","Q111:8","Q112:7","Q112:8","Q114:6","Q114:7","Q115:2","Q115:3"],"type0":"NONE","type1":"RHzLfDn"},

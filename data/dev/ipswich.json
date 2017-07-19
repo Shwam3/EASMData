@@ -267,7 +267,7 @@
 {"posX":234,"posY":750,"description":"T7243","dataIDs":["SX0B!2"],"type":"TRACKC","width":"47","height":"8"},
 {"posX":282,"posY":750,"description":"T7244","dataIDs":["SX0B!3"],"type":"TRACKC","width":"79","height":"8"},
 {"posX":362,"posY":750,"description":"T7245","dataIDs":["SX0B!4"],"type":"TRACKC","width":"6","height":"8"},
-{"posX":299,"posY":774,"description":"T7256","dataIDs":["SX0B!5"],"type":"TRACKC","width":"15","height":"8"},
+{"posX":299,"posY":774,"description":"T7256","dataIDs":["SX0B!5"],"type":"TRACKC","width":"14","height":"8"},
 {"posX":314,"posY":774,"description":"T7257","dataIDs":["SX0B!6"],"type":"TRACKC","width":"54","height":"8"},
 {"posX":623,"posY":750,"description":"TMSS","dataIDs":["SX0C!2"],"type":"TRACKC","width":"42","height":"8"},
 {"posX":714,"posY":750,"description":"TSMA","dataIDs":["SX0C!3"],"type":"TRACKC","width":"95","height":"8"},

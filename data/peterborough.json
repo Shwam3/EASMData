@@ -1,5 +1,5 @@
 {
-"panelUID":"peterborough","panelName":"Peterborough","panelDescription":"Holme Jn - Stoke Tunnel",
+"panelUID":"peterborough","panelName":"Peterborough","panelDescription":"Holme Jn - Stoke Tunnel","areas":["PB"],
 "berths":[
 {"posX":202,"posY":282,"dataIDs":["PB0401"]},
 {"posX":202,"posY":314,"dataIDs":["PB0402"]},

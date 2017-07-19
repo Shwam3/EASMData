@@ -1,5 +1,5 @@
 {
-"panelUID":"norwich","panelName":"Norwich/Trowse Bridge","panelDescription":"Stowmarket, Sheringham &amp; Whitlingham Jnc - Norwich",
+"panelUID":"norwich","panelName":"Norwich/Trowse Bridge","panelDescription":"Stowmarket, Sheringham &amp; Whitlingham Jn - Norwich","areas":["CC"],
 "berths":[
 {"posX":138,"posY":346,"dataIDs":["CC0395"]},
 {"posX":218,"posY":378,"dataIDs":["CC0396"]},
@@ -125,11 +125,11 @@
 {"posX":418,"posY":538,"dataIDs":["CCTB32"]},
 {"posX":514,"posY":538,"dataIDs":["CCTB33"]},
 {"posX":418,"posY":570,"dataIDs":["CCTB34"]},
+{"posX":1186,"posY":418,"dataIDs":["CCTB51"]},
 {"posX":1186,"posY":498,"dataIDs":["CCTB52"]},
-{"posX":1186,"posY":418,"dataIDs":["CCTB54","CCTB51","CCTB53"]},
-{"posX":1090,"posY":418,"dataIDs":["CCTB55"]},
+{"posX":1090,"posY":418,"dataIDs":["CCTB57"]},
 {"posX":786,"posY":562,"dataIDs":["CCTB59"]},
-{"posX":1090,"posY":498,"dataIDs":["CCTB61"]},
+{"posX":1090,"posY":498,"dataIDs":["CCTB60"]},
 {"posX":322,"posY":624,"dataIDs":["CCX032"],"hasBorder":true},
 {"posX":322,"posY":644,"dataIDs":["CCX034"],"hasBorder":true},
 {"posX":1650,"posY":154,"dataIDs":["CCYARD"],"hasBorder":true}
@@ -396,6 +396,7 @@
 "text":[
 {"posX":614,"posY":322,"text":"DISS","url":"DIS","type":"LOC"},
 {"posX":346,"posY":226,"text":"ELMSWELL","url":"ESW","type":"LOC"},
+{"posX":169,"posY":410,"text":"HAUGHLEY JN","url":"HAGHLYJ","type":"LOC"},
 {"posX":474,"posY":226,"text":"THURSTON","url":"TRS","type":"LOC"},
 {"posX":570,"posY":258,"text":"BURY ST\\nEDMUNDS","url":"cambs2","type":"MNAV"},
 {"posX":14,"posY":362,"text":"IPSWICH","url":"ipswich","type":"MNAV"},

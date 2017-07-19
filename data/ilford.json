@@ -1,5 +1,5 @@
 {
-"panelUID":"ilford","panelName":"Ilford","panelDescription":"Forest Gate - Harold Wood",
+"panelUID":"ilford","panelName":"Ilford","panelDescription":"Forest Gate - Harold Wood","areas":["Q1"],
 "berths":[
 {"posX":170,"posY":122,"dataIDs":["Q10383"]},
 {"posX":234,"posY":122,"dataIDs":["Q10385"]},
@@ -225,6 +225,11 @@
 {"posX":1576,"posY":174,"description":"L474","dataID":"Q126:8","type":"RIGHT","routes":["Q10A:7","Q10A:8"]},
 {"posX":1576,"posY":238,"description":"L476","dataID":"Q127:1","type":"RIGHT","routes":["Q10B:1","Q10B:2"]},
 {"posX":408,"posY":146,"description":"L936","dataID":"Q136:7","type":"NONE"},
+{"posX":792,"posY":270,"description":"L5098","type":"RIGHT","isShunt":true,"isAuto":true},
+{"posX":872,"posY":182,"description":"L5100","type":"RIGHT","isShunt":true,"isAuto":true},
+{"posX":780,"posY":246,"description":"L5105","type":"LEFT","isShunt":true,"isAuto":true},
+{"posX":844,"posY":238,"description":"L5107","type":"LEFT","isShunt":true,"isAuto":true},
+{"posX":860,"posY":174,"description":"L5109","type":"LEFT","isShunt":true,"isAuto":true},
 
 {"posX":1210,"posY":322,"description":"L361 TRTS","dataIDs":["Q133:1"],"type":"TEXT","text1":"TRTS"},
 {"posX":826,"posY":418,"description":"L362 TRTS","dataIDs":["Q135:4"],"type":"TEXT","text1":"TRTS"},
@@ -491,6 +496,7 @@
 {"posX":626,"posY":554,"description":"L2207 Rev","dataIDs":["Q10B:6"],"type0":"NONE","type1":"RHzLfDn"}
 ],
 "text":[
+{"posX":436,"posY":90,"text":"CHADWELL HEATH\\nTURNBACK","url":"CHDWHTT","type":"LOC"},
 {"posX":1268,"posY":102,"text":"GIDEA PARK","url":"GDP","type":"LOC"},
 {"posX":1367,"posY":40,"text":"GIDEA PARK C.H.S.","url":"GIDEPKS","type":"LOC"},
 {"posX":1375,"posY":242,"text":"GIDEA PARK\\nMIDDLE SIDING","url":"GIDEPKM","type":"LOC"},

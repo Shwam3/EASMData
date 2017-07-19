@@ -1,5 +1,5 @@
 {
-"panelUID":"lts3","panelName":"Tilbury Loop","panelDescription":"Barking - Pitsea via Grays",
+"panelUID":"lts3","panelName":"Tilbury Loop","panelDescription":"Barking - Pitsea via Grays","areas":["UR","U2","CT"],
 "berths":[
 {"posX":266,"posY":218,"dataIDs":["U20617"]},
 {"posX":266,"posY":314,"dataIDs":["U20612"]},

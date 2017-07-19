@@ -1,5 +1,5 @@
 {
-"panelUID":"hitchin","panelName":"Hitchin","panelDescription":"Biggleswade - Stevenage",
+"panelUID":"hitchin","panelName":"Hitchin","panelDescription":"Biggleswade - Stevenage","areas":["KX","CA"],
 "berths":[
 {"posX":1162,"posY":202,"dataIDs":["KX0226"],"hasBorder":true},
 {"posX":1610,"posY":298,"dataIDs":["KX0662"]},

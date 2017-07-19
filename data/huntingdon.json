@@ -1,5 +1,5 @@
 {
-"panelUID":"huntingdon","panelName":"Sandy, St Neots & Huntingdon","panelDescription":"Biggleswade - Holme Jn",
+"panelUID":"huntingdon","panelName":"Sandy, St Neots & Huntingdon","panelDescription":"Biggleswade - Holme Jn","areas":["KX","PB"],
 "berths":[
 {"posX":266,"posY":250,"dataIDs":["PB0261"]},
 {"posX":266,"posY":282,"dataIDs":["PB0263"]},
@@ -288,6 +288,6 @@
 {"posX":1095,"posY":230,"text":"ST. NEOTS","url":"SNO","type":"LOC"},
 
 {"posX":358,"posY":634,"text":"HUNTINGDON","url":"HUN","type":"MLOC"},
-{"posX":1618,"posY":526,"text":"TO PETERBOROUGH","url":"peterborough","type":"TEXT"}
+{"posX":1618,"posY":522,"text":"PETERBOROUGH","url":"peterborough","type":"MNAV"}
 ]
 }
