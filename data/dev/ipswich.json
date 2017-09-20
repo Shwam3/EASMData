@@ -639,7 +639,7 @@
 {"posX":1139,"posY":698,"text":"BRAMPTON","url":"BRP","type":"LOC"},
 {"posX":933,"posY":610,"text":"DARSHAM","url":"DSM","type":"LOC"},
 {"posX":1004,"posY":610,"text":"HALESWORTH","url":"HAS","type":"LOC"},
-{"posX":1754,"posY":690,"text":"TO LOWESTOFT","type":"TEXT"},
+{"posX":1730,"posY":690,"text":"LOWESTOFT","url":"wherry","type":"MNAV"},
 {"posX":536,"posY":610,"text":"MELTON","url":"MES","type":"LOC"},
 {"posX":1476,"posY":698,"text":"OULTON BROAD SOUTH","url":"OUS","type":"LOC"},
 {"posX":732,"posY":610,"text":"SAXMUNDHAM","url":"SAX","type":"LOC"},

@@ -411,7 +411,7 @@
 {"posX":388,"posY":610,"text":"SHERINGHAM","url":"SHM","type":"LOC"},
 {"posX":458,"posY":666,"text":"W RUNTON","url":"WRN","type":"LOC"},
 {"posX":850,"posY":514,"text":"WORSTEAD","url":"WRT","type":"LOC"},
-{"posX":916,"posY":456,"text":"TO LOWESTOFT\\n& GT YARMOUTH","type":"TEXT"},
+{"posX":898,"posY":456,"text":"BRUNDALL","url":"wherry","type":"MNAV"},
 {"posX":644,"posY":186,"text":"THETFORD","url":"cambs2","type":"MNAV"}
 ]
 }

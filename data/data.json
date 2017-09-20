@@ -16,6 +16,7 @@
 {"panelUID":"cambs1","panelName":"Cambridge","panelDescription":"Elsenham - Ely","areas":["CA"]},
 {"panelUID":"cambs2","panelName":"Ely","panelDescription":"Ely - Manea, Kings Lynn &amp; Wymondham. Bury St. Edmunds - Ely &amp; Cambridge","areas":["CA","CC","EN"]},
 {"panelUID":"norwich","panelName":"Norwich/Trowse Bridge","panelDescription":"Stowmarket, Sheringham &amp; Whitlingham Jnc - Norwich","areas":["CC"]},
+{"panelUID":"wherry","panelName":"Wherry Lines","panelDescription":"Whitlingham Jn - Gt. Yarmouth &amp; Lowestoft","areas":["CC","NL","SX"]},
 {"panelUID":"hitchin","panelName":"Hitchin","panelDescription":"Biggleswade - Stevenage","areas":["KX","CA"]},
 {"panelUID":"welwyn","panelName":"Welwyn GC","panelDescription":"Stevenage - Potters Bar &amp; Gordon Hill","areas":["KX","K2"]},
 {"panelUID":"alpal","panelName":"Alexandra Palace","panelDescription":"Potters Bar - Alexandra Palace","areas":["KX","K2"]},
