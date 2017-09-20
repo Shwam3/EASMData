@@ -273,13 +273,13 @@
 ],
 "points":[],
 "text":[
-{"posX":572,"posY":94,"text":"CAMDEN RD","url":"nll","type":"NAV"},
+{"posX":572,"posY":90,"text":"CAMDEN RD\\n(NLL)","url":"nll","type":"NAV"},
 {"posX":1732,"posY":570,"text":"DAGENHAM","url":"ctrl2","type":"MNAV"},
-{"posX":882,"posY":174,"text":"KINGS CROSS","url":"kingsx","type":"NAV"},
+{"posX":882,"posY":170,"text":"KINGS CROSS\\n(ECML)","url":"kingsx","type":"NAV"},
 {"posX":1034,"posY":218,"text":"LONDON TUNNEL 1 ->","type":"TEXT"},
 {"posX":100,"posY":122,"text":"ST. PANCRAS\\nINTERNATIONAL","url":"STP","type":"MLOC"},
 {"posX":906,"posY":316,"text":"YORK WAY\\nSOUTH JN","url":"XXY","type":"LOC"},
-{"posX":578,"posY":64,"text":"(TO MML)","type":"TEXT"},
+{"posX":578,"posY":64,"text":"TO KENTISH TOWN","url":"mml1","type":"NAV"},
 {"posX":626,"posY":142,"text":"*1","type":"TEXT"},
 {"posX":554,"posY":54,"text":"*1: MAINTENANCE SDG","url":"STPAMCS","type":"LOC"},
 
