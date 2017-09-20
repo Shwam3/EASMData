@@ -3,3 +3,5 @@ Mappings template.csv
 *.bak
 data/motd.json
 data/demo.json
+images/points/index.php
+images/signals/index.php

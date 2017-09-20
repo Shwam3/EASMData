@@ -55,16 +55,6 @@ function Signal(jsonObj)
             this.mainAspects[1] = 'S_WHITE';
         }
     }
-    else if (isRepeat1)
-    {
-        this.mainAspects[0] = 'M_YELLOW';
-        this.mainAspects[1] = 'M_GREEN';
-    }
-    else if (isRepeat2)
-    {
-        this.mainAspects[0] = 'M_DYELLOW';
-        this.mainAspects[1] = 'M_GREEN';
-    }
     else if (isBanner)
     {
         if (isAuto)
@@ -82,6 +72,16 @@ function Signal(jsonObj)
     {
         this.mainAspects[0] = 'M_AUTO';
         this.mainAspects[1] = 'M_AUTO';
+    }
+    else if (isRepeat1)
+    {
+        this.mainAspects[0] = 'M_YELLOW';
+        this.mainAspects[1] = 'M_GREEN';
+    }
+    else if (isRepeat2)
+    {
+        this.mainAspects[0] = 'M_DYELLOW';
+        this.mainAspects[1] = 'M_GREEN';
     }
     else
     {

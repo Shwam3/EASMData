@@ -1,5 +1,5 @@
-var port = 6323;
-var host = 'shwam3.signalmaps.co.uk';
+var port = 6423;
+var host = 'sigmaps1.signalmaps.co.uk';
 var page = 0;
 var dev = false;
 var connection;
@@ -28,6 +28,9 @@ var htmlIDToObj = {};
 var hashRead = false;
 var hcMap = {}; //JSON.parse(localStorage.getItem('hcMap')) || {};
 var active_areas = [];
+var localeTime = false;
+try { new Date().toLocaleString('i'); }
+catch (e) { localeTime = e instanceof RangeError; }
 
 var snowflakesActive = false;
 
@@ -130,7 +133,7 @@ function load()
     htmlIDToObj = {};
     map.innerHTML = defaultInner;
     // use pageData.data.panelUID to allow 'dev' images
-    document.getElementById('mapImage').src = '/webclient/images/maps/'+pageData.data.panelUID+'.png?r=' + getRnd();
+    document.getElementById('mapImage').src = '/webclient/images/maps/'+pageData.data.panelUID+'.png' + (dev ? '?r='+Date.now() : '');
     document.getElementById('mapImage').onerror = function(evt) { evt.srcElement.src = 'https://github.com/Shwam3/EASMData/raw/master/images/maps/'+pageData.data.panelUID+'.png'; };
     document.getElementById('mapImage').draggable = false;
     berths = [];
@@ -241,7 +244,7 @@ window.onload = function()
     document.getElementById('map').style.cursor = 'wait';
     obscureCheck(false);
 
-    $.get('/webclient/data/data.json', {r:getRnd()}, function(json)
+    $.get('/webclient/data/data.json', function(json)
     {
         var sl = '-=' + ((document.documentElement.clientWidth - 1854)/2);
         $('#map').animate({ scrollLeft: sl });
@@ -253,7 +256,7 @@ window.onload = function()
     }, 'json').fail(function(e)
         {
             console.log(e || 'fail');
-            $.get('https://raw.githubusercontent.com/Shwam3/EASMData/master/data/data.json', {r:getRnd()}, function(json)
+            $.get('https://raw.githubusercontent.com/Shwam3/EASMData/master/data/data.json', function(json)
             {
                 var sl = '-=' + ((document.documentElement.clientWidth - 1854)/2);
                 $('#map').animate({ scrollLeft: sl });
@@ -404,7 +407,7 @@ function openSocket(ip)
 function downloadPage(uid)
 {
     var pageNo = navIndex[uid] || 0;
-    $.get('/webclient/data/' + (dev ? 'dev/' : '') + uid + '.json', {r:getRnd()}, function(json)
+    $.get('/webclient/data/' + (dev ? 'dev/' : '') + uid + '.json', function(json)
     {
         mapJSON[pageNo]['data'] = json;
         load();
@@ -412,7 +415,7 @@ function downloadPage(uid)
     }, 'json').fail(function(e)
         {
             console.error(JSON.stringify(e) || 'fail');
-            $.get('https://raw.githubusercontent.com/Shwam3/EASMData/master/data/' + (dev ? 'dev/' : '') + uid + '.json', {r:getRnd()}, function(json)
+            $.get('https://raw.githubusercontent.com/Shwam3/EASMData/master/data/' + (dev ? 'dev/' : '') + uid + '.json', function(json)
             {
                 mapJSON[pageNo]['data'] = json;
                 load();
@@ -424,9 +427,16 @@ function downloadPage(uid)
 function doClock()
 {
     var date = new Date();
-    document.getElementById('clock').innerHTML = (date.getHours() < 10 ? '0' + date.getHours() : date.getHours()) +
-        ':' + (date.getMinutes() < 10 ? '0' + date.getMinutes() : date.getMinutes()) +
-        ':' + (date.getSeconds() < 10 ? '0' + date.getSeconds() : date.getSeconds());
+    //if (localeTime)
+    //{
+    //    document.getElementById('clock').innerHTML = date.toLocaleString('en-GB', {hour: '2-digit', hour12: false, timeZone: 'Europe/London', minute: '2-digit', second: '2-digit' });
+    //}
+    //else
+    //{
+        document.getElementById('clock').innerHTML = (date.getHours() < 10 ? '0' + date.getHours() : date.getHours()) +
+            ':' + (date.getMinutes() < 10 ? '0' + date.getMinutes() : date.getMinutes()) +
+            ':' + (date.getSeconds() < 10 ? '0' + date.getSeconds() : date.getSeconds());
+    //}
 }
 function obscureCheck(changed)
 {
@@ -485,6 +495,9 @@ function fillBerths0()
         dataText[d].update(displayOpts.changed);
     for (var c in trackc)
         trackc[c].update(displayOpts.changed);
+    
+    if (displayOpts.changed)
+        displayOpts.changed = false;
 
     if (lastMessage < 0 || !connected)
     {
@@ -522,11 +535,6 @@ function pageSelected()
 function getNextID()
 {
     return (++htmlID).toString();
-}
-
-function getRnd()
-{
-    return Date.now() - (Date.now() % 3.6e6);
 }
 
 function getData(id)
@@ -591,16 +599,20 @@ function getHeadcode(hc, berth)
 
 function setAreas(areas)
 {
-    if (areas == null)
+    try
     {
-        if (active_areas.length > 0)
-            connection.send(JSON.stringify({Message:{type:'SET_AREAS',areas:active_areas,timestamp:Date.now()}}));
+        if (areas == null)
+        {
+            if (active_areas.length > 0)
+                connection.send(JSON.stringify({Message:{type:'SET_AREAS',areas:active_areas,timestamp:Date.now()}}));
+        }
+        else if (areas.toString() != active_areas.toString())
+        {
+            connection.send(JSON.stringify({Message:{type:'SET_AREAS',areas:areas,timestamp:Date.now()}}));
+            active_areas = areas;
+        }
     }
-    else if (areas.toString() != active_areas.toString())
-    {
-        connection.send(JSON.stringify({Message:{type:'SET_AREAS',areas:areas,timestamp:Date.now()}}));
-        active_areas = areas;
-    }
+    catch(e) {}
 }
 
 function addObj(htmlID, obj)

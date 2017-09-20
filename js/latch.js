@@ -1,9 +1,10 @@
 function Latch(jsonObj)
 {
     this.htmlID = getNextID();
-    this.dataIDs = jsonObj['dataIDs'];
+    this.dataIDs = jsonObj['dataIDs'] || [jsonObj['dataID']];
     this.posX = jsonObj['posX'];
     this.posY = jsonObj['posY'];
+    this.colour = jsonObj['colour'] || 'G';
     this.description = jsonObj['description'];
     this.dataValue = 0;
 
@@ -12,7 +13,7 @@ function Latch(jsonObj)
     lat.title = this.description;
     lat.id = this.htmlID;
     lat.className = 'signal noPost';
-    lat.src = '/webclient/images/signals/LATCH_OFF.png';
+    lat.src = '/webclient/images/signals/LATCH_'+this.colour+'_OFF.png';
     lat.style.left = this.posX + 'px';
     lat.style.top  = this.posY + 'px';
     this.domElement = lat;
@@ -30,7 +31,7 @@ Latch.prototype.update = function()
             break;
         }
 
-    this.domElement.src = '/webclient/images/signals/LATCH_' + (this.dataValue == 1 ? 'ON' : 'OFF') + '.png';
+    this.domElement.src = '/webclient/images/signals/LATCH_' + this.colour + '_' + (this.dataValue == 1 ? 'ON' : 'OFF') + '.png';
     this.domElement.title = displayOpts.IDs ? this.description + '\n' + this.dataIDs.join(', ') : this.description;
 };
 

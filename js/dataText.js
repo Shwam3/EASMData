@@ -8,7 +8,7 @@ function DataText(jsonObj)
     this.text[0] = typeof jsonObj['text0'] !== 'undefined' ? escapeHTML(jsonObj['text0']).replaceAll('\\n','<br/>') : undefined;
     this.text[1] = typeof jsonObj['text1'] !== 'undefined' ? escapeHTML(jsonObj['text1']).replaceAll('\\n','<br/>') : undefined;
     this.description = jsonObj['description'];
-    this.dataValue = 0;
+    this.dataValue = null;
 
     var txt = document.createElement('p');
     map.appendChild(txt);
@@ -25,20 +25,25 @@ function DataText(jsonObj)
 
 DataText.prototype.update = function()
 {
-    this.dataValue = 0;
+    var dv = 0;
     for (var i = 0; i < this.dataIDs.length; i++)
         if (getData(this.dataIDs[i]) == '1')
         {
-            this.dataValue = 1;
+            dv = 1;
             break;
         }
+        
+    if (dv != this.dataValue)
+    {
+        this.dataValue = dv;
+        
+        var useHide = false;
+        if (this.text[0] == undefined || this.text[1] == undefined)
+          useHide = true;
 
-    var useHide = false;
-    if (this.text[0] == undefined || this.text[1] == undefined)
-      useHide = true;
-
-    this.domElement.innerHTML = this.text[this.dataValue] || this.text[1 - this.dataValue];
-    this.domElement.className = (this.text[this.dataValue]||'').trim() ? 'textOn' : (useHide ? 'textHide' : 'textOff');
+        this.domElement.innerHTML = this.text[this.dataValue] || this.text[1 - this.dataValue];
+        this.domElement.className = (this.text[this.dataValue]||'').trim() ? 'textOn' : (useHide ? 'textHide' : 'textOff');
+    }
     this.domElement.title = displayOpts.IDs ? this.description + '\n' + this.dataIDs.join(', ') : this.description;
 };
 

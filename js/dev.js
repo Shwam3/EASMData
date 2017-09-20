@@ -15,10 +15,6 @@ function reload()
         load();
     }, 'json').fail(function(e) { console.error(e); });
 }
-function searchSubmitted()
-{
-    alert(document.getElementById('search').value);
-}
 function flash(id)
 {
     var val = getData(id);
@@ -39,7 +35,7 @@ function cycle(ids, setto)
     document.title = "Signal Maps - " + id;
     setData(id, setto || 1);
     fillBerths();
-    setTimeout(function(){ setData(id, val); fillBerths(); cycle(ids); }, wait);
+    setTimeout(function(){ setData(id, val); fillBerths(); cycle(ids, setto || 1); }, wait);
 }
 function next(id)
 {
@@ -85,10 +81,6 @@ function largestID(area)
             }
     return (area + (largest < 16 ? '0':'') + largest.toString(16) + (exists ? ':8' : ':1')).toUpperCase();
 }
-function getRnd()
-{
-    return Date.now();
-}
 function checkboxEvt(e)
 {
     switch(e.id)
@@ -103,6 +95,7 @@ function checkboxEvt(e)
         case 's': displayOpts.signals = e.checked; break;
         case 't': displayOpts.text = e.checked; break;
     }
+    displayOpts.changed = true;
     fillBerths();
 }
 
@@ -142,7 +135,7 @@ function devPage()
     dataText = [];
     text = [];
     trackc = [];
-    setAreas([]);
+    setAreas(['A2','AW','CA','CC','CT','EN','K2','KX','LS','NJ','NX','PB','Q1','Q2','SO','SX','UR','U2','U3','WC','WG','WH','WJ','WY','WS','X0']);
     
     var areas = ['A2','AW','CA','CC','CT','EN','K2','KX','LS','NJ','NX','PB','Q1','Q2','SO','SX','UR','U2','U3','WC','WG','WH','WJ','WY','WS','X0','XX','hideUsed'];
     var div = document.createElement('div');
@@ -307,6 +300,25 @@ function filterArea(evt)
     area_filter[evt.name] = evt.checked;
     devPage();
 }
+function downloadPage(uid)
+{
+    var pageNo = navIndex[uid] || 0;
+    $.get('/webclient/data/' + (dev ? 'dev/' : '') + uid + '.json', {r:Date.now()}, function(json)
+    {
+        mapJSON[pageNo]['data'] = json;
+        load();
+        console.log('Downloaded main file (' + uid + '.json)');
+    }, 'json').fail(function(e)
+        {
+            console.error(JSON.stringify(e) || 'fail');
+            $.get('https://raw.githubusercontent.com/Shwam3/EASMData/master/data/' + (dev ? 'dev/' : '') + uid + '.json', function(json)
+            {
+                mapJSON[pageNo]['data'] = json;
+                load();
+                console.log('Downloaded secondary file (' + uid + '.json)');
+            }, 'json');
+        });
+}
 
 window.onload = function()
 {
@@ -315,7 +327,7 @@ window.onload = function()
 
     reload();
 
-    openSocket('shwam3.signalmaps.co.uk');
+    openSocket(host);
 
     messageRate = new Counter(100);
 
