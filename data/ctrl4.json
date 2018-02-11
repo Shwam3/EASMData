@@ -267,14 +267,18 @@
 {"posX":810,"posY":378,"description":"AF1345 Rev","dataIDs":["A22B:7","A255:8"],"type0":"NONE","type1":"RHzRtDn"},
 {"posX":698,"posY":346,"description":"AF1346 Nrm","dataIDs":["A224:3","A225:5","A227:8","A228:1","A228:2","A228:3","A22A:4","A22B:1","A22C:5","A22E:6","A22E:7"],"type0":"NONE","type1":"NHzLfUp"},
 {"posX":698,"posY":346,"description":"AF1346 Rev","dataIDs":["A224:2","A224:5","A228:4","A228:5","A228:6","A228:7","A22A:3","A22A:8","A22C:4","A22E:5","A22E:8"],"type0":"NONE","type1":"RHzLfUp"},
-{"posX":666,"posY":298,"description":"AF1347 Nrm","dataIDs":["A224:1","A225:3","A228:8","A229:1","A229:2","A229:3","A22A:2","A22A:7","A22C:3","A22E:4","A22F:1"],"type0":"NONE","type1":"RVtRtDn"},
-{"posX":666,"posY":298,"description":"AF1347 Rev","dataIDs":["A223:8","A225:2","A229:4","A229:5","A229:6","A229:7","A229:8","A22A:1","A22A:5","A22A:6","A22C:1","A22C:2","A22E:2","A22E:3","A22F:2"],"type0":"NONE","type1":"NVtRtDn"},
-{"posX":730,"posY":266,"description":"AF1348 Nrm","dataIDs":["A223:8","A225:2","A22A:1","A22A:6","A22C:2","A22E:3","A23A:1","A23B:2","A256:3"],"type0":"NONE","type1":"NHzLfUp"},
-{"posX":730,"posY":266,"description":"AF1348 Rev","dataIDs":[],"type0":"NONE","type1":"RHzLfUp"},
+{"posX":666,"posY":282,"description":"AF1347 Nrm","dataIDs":["A224:1","A225:3","A228:8","A229:1","A229:2","A229:3","A22A:2","A22A:7","A22C:3","A22E:4","A22F:1"],"type0":"NONE","type1":"RVtRtDn"},
+{"posX":666,"posY":282,"description":"AF1347 Rev","dataIDs":["A223:8","A225:2","A229:4","A229:5","A229:6","A229:7","A229:8","A22A:1","A22A:5","A22A:6","A22C:1","A22C:2","A22E:2","A22E:3","A22F:2"],"type0":"NONE","type1":"NVtRtDn"},
+{"posX":730,"posY":250,"description":"AF1348 Nrm","dataIDs":["A223:8","A225:2","A22A:1","A22A:6","A22C:2","A22E:3","A23A:1","A23B:2","A256:3"],"type0":"NONE","type1":"NHzLfUp"},
+{"posX":730,"posY":250,"description":"AF1348 Rev","dataIDs":["A229:8","A22C:1","A22E:2"],"type0":"NONE","type1":"RHzLfUp"},
 {"posX":698,"posY":442,"description":"AF1349 Nrm","dataIDs":["A224:5","A225:8","A227:2","A227:3","A227:7","A22B:4","A22C:7","A22D:4"],"type0":"NONE","type1":"NHzLfLR"},
 {"posX":698,"posY":442,"description":"AF1349 Rev","dataIDs":["A227:4","A22B:5"],"type0":"NONE","type1":"RHzLfLR"},
 {"posX":634,"posY":314,"description":"AF1350 Nrm","dataIDs":["A22E:2","A22E:3","A22E:4","A22E:5","A22E:6","A22E:7","A22E:8","A22F:1","A22F:2"],"type0":"NONE","type1":"NHzRtDn"},
-{"posX":634,"posY":314,"description":"AF1350 Rev","dataIDs":["A223:8","A224:1","A224:2","A224:3","A225:2","A225:3","A225:4","A225:5","A228:1","A228:2","A228:3","A228:5","A228:6","A228:7","A229:1","A229:2","A229:3","A229:5","A229:6","A229:7","A229:8","A22A:1","A22A:2","A22A:3","A22A:4","A22C:1","A22C:2","A22C:3","A22C:4","A22C:5"],"type0":"NONE","type1":"RHzRtDn"}
+{"posX":634,"posY":314,"description":"AF1350 Rev","dataIDs":["A223:8","A224:1","A224:2","A224:3","A225:2","A225:3","A225:4","A225:5","A228:1","A228:2","A228:3","A228:5","A228:6","A228:7","A229:1","A229:2","A229:3","A229:5","A229:6","A229:7","A229:8","A22A:1","A22A:2","A22A:3","A22A:4","A22C:1","A22C:2","A22C:3","A22C:4","A22C:5"],"type0":"NONE","type1":"RHzRtDn"},
+{"posX":922,"posY":218,"description":"AF1351 Nrm","dataIDs":["A233:7","A256:6"],"type0":"NONE","type1":"RVtLfDn"},
+{"posX":922,"posY":218,"description":"AF1351 Rev","dataIDs":["A233:8","A24C:1"],"type0":"NONE","type1":"NVtLfDn"},
+{"posX":922,"posY":250,"description":"AF1352 Nrm","dataIDs":["A22E:3","A233:6","A256:8"],"type0":"NONE","type1":"NHzRtUp"},
+{"posX":922,"posY":250,"description":"AF1352 Rev","dataIDs":["A233:7","A233:8","A24C:1","A256:8"],"type0":"NONE","type1":"RHzRtUp"}
 ],
 "text":[
 {"posX":810,"posY":132,"text":"/   /    /","type":"TEXT"},
