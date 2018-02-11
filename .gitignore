@@ -3,6 +3,8 @@ Mappings template.csv
 *.bak
 data/motd.json
 data/demo.json
+signalmap.json
 images/points/index.php
+images/points/Old
 images/signals/index.php
 images/maps/nlltest.png
