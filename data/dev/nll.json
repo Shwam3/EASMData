@@ -511,7 +511,7 @@
 {"posX":1050,"posY":622,"text":"ST PANCRAS INTL (HS1)","url":"ctrl1","type":"NAV"},
 {"posX":1228,"posY":360,"text":"FINSBURY PARK\\n(ECML)","url":"kingsx","type":"NAV"},
 
-{"posX":160,"posY":718,"text":"ACTON (NLL)","url":"nll2","type":"NAV"},
+{"posX":166,"posY":714,"text":"ACTON","url":"nll2","type":"MNAV"},
 {"posX":1057,"posY":762,"text":"BRONDESBURY","url":"BSY","type":"LOC"},
 {"posX":929,"posY":762,"text":"BRONDESBURY\\nPARK","url":"BSP","type":"LOC"},
 {"posX":230,"posY":776,"text":"CLAPHAM JN\\n(WLL)","type":"TEXT"},

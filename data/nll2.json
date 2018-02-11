@@ -225,9 +225,9 @@
 {"posX":1482,"posY":218,"text":"TO WILLESDEN\\nSOUTH WEST SIDINGS","type":"TEXT"},
 
 {"posX":465,"posY":546,"text":"ACTON\\nCANAL WHARF","url":"ACTCWHF","type":"LOC"},
-{"posX":1154,"posY":590,"text":"CRICKLEWOOD","url":"mml1","type":"NAV"},
+{"posX":1154,"posY":590,"text":"TO CRICKLEWOOD","type":"TEXT"},
 {"posX":933,"posY":630,"text":"DUDDING HILL JN","url":"DUDNGHJ","type":"LOC"},
-{"posX":1154,"posY":526,"text":"HENDON","url":"mml1","type":"NAV"},
+{"posX":1154,"posY":526,"text":"TO HENDON","type":"TEXT"},
 {"posX":962,"posY":474,"text":"TO NEASDEN\\nSOUTH JN","type":"TEXT"},
 {"posX":780,"posY":630,"text":"NEASDEN JN","url":"NEASJN","type":"LOC"},
 {"posX":658,"posY":634,"text":"TO WILLESDEN\\nNO. 7","type":"TEXT"}

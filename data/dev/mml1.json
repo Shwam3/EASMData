@@ -323,7 +323,7 @@
 {"posX":1486,"posY":250,"text":"WEST HAMPSTEAD\\nTHAMESLINK","url":"WHP","type":"MLOC"},
 
 {"posX":342,"posY":698,"text":"CRICKLEWOOD","url":"CRI","type":"MLOC"},
-{"posX":572,"posY":382,"text":"TO DUDDING\\nHILL JN","url":"CRI","type":"NAV"},
+{"posX":572,"posY":382,"text":"TO DUDDING\\nHILL JN","url":"nll2","type":"NAV"},
 {"posX":1584,"posY":666,"text":"ELSTREE &\\nBOREHAMWOOD","url":"ELS","type":"MLOC"},
 {"posX":894,"posY":666,"text":"HENDON","url":"HEN","type":"MLOC"},
 {"posX":1316,"posY":666,"text":"MILL HILL\\nBROADWAY","url":"MIL","type":"MLOC"}

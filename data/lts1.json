@@ -310,6 +310,12 @@
 {"posX":924,"posY":550,"description":"UR1103","dataID":"UR15:8","type":"LEFT","isShunt":true,"routes":["UR12:1","UR12:2"]},
 {"posX":1160,"posY":542,"description":"UR1104","dataID":"UR16:1","type":"RIGHT","isShunt":true,"routes":["UR12:3","UR12:4"]},
 {"posX":396,"posY":454,"description":"EH3","dataID":"UR0C:7","type":"LEFT","isShunt":true,"routes":["UR0C:7"]},
+{"posX":478,"posY":294,"description":"L913","type":"LEFT","isAuto":true},
+{"posX":478,"posY":350,"description":"L915","type":"LEFT","isAuto":true},
+{"posX":504,"posY":294,"description":"L918","type":"RIGHT","isAuto":true},
+{"posX":504,"posY":350,"description":"L920","type":"RIGHT","isAuto":true},
+{"posX":620,"posY":294,"description":"L921","type":"LEFT","isAuto":true},
+{"posX":568,"posY":350,"description":"L924","type":"RIGHT","isAuto":true},
 
 {"posX":898,"posY":734,"description":"UR851 TRTS","dataIDs":["UR23:5"],"type":"TEXT","text1":"TRTS"},
 {"posX":1418,"posY":778,"description":"UR858 TRTS","dataIDs":["UR23:6"],"type":"TEXT","text1":"TRTS"},

@@ -9,7 +9,7 @@
 {"posX":458,"posY":330,"dataIDs":["CCTB05"]},
 {"posX":458,"posY":266,"dataIDs":["CCTB06"]},
 {"posX":458,"posY":234,"dataIDs":["CCTB09"]},
-{"posX":378,"posY":330,"dataIDs":["CCTB60"]},
+{"posX":378,"posY":330,"dataIDs":["CCTB52"]},
 {"posX":634,"posY":362,"dataIDs":["NL8324","NL8329"]},
 {"posX":570,"posY":330,"dataIDs":["NL8327"]},
 {"posX":714,"posY":362,"dataIDs":["NL8328"]},
@@ -75,7 +75,7 @@
 {"posX":456,"posY":286,"description":"TB6","type":"RIGHT","isAuto":true},
 {"posX":508,"posY":230,"description":"TB9","type":"LEFT","isAuto":true},
 {"posX":364,"posY":382,"description":"TB51","type":"LEFT","isShunt":true,"isAuto":true},
-{"posX":376,"posY":326,"description":"TB60","type":"RIGHT","isShunt":true,"isAuto":true},
+{"posX":376,"posY":326,"description":"TB52","type":"RIGHT","isShunt":true,"isAuto":true},
 {"posX":632,"posY":382,"description":"YL8324","type":"RIGHT","isAuto":true},
 {"posX":558,"posY":326,"description":"YL8325","type":"LEFT","isRepeat":true,"isAuto":true},
 {"posX":620,"posY":326,"description":"YL8327","type":"LEFT","isAuto":true},
@@ -149,7 +149,7 @@
 "text":[
 {"posX":1046,"posY":194,"text":"ACLE","url":"ACL","type":"LOC"},
 {"posX":1126,"posY":248,"text":"BERNEY\\nARMS","url":"BYA","type":"LOC"},
-{"posX":602,"posY":394,"text":"BRUNDALL","url":"BDL","type":"LOC"},
+{"posX":602,"posY":394,"text":"BRUNDALL","url":"BDA","type":"LOC"},
 {"posX":517,"posY":394,"text":"BRUNDALL\\nGARDENS","url":"BGA","type":"LOC"},
 {"posX":839,"posY":394,"text":"BUCKENHAM","url":"BUC","type":"LOC"},
 {"posX":909,"posY":394,"text":"CANTLEY","url":"CNY","type":"LOC"},
@@ -167,6 +167,8 @@
 {"posX":756,"posY":650,"text":"OULTON BROAD SOUTH","url":"OUS","type":"LOC"},
 {"posX":894,"posY":646,"text":"OULTON BROAD\\nSWING BRIDGE","type":"TEXT"},
 {"posX":793,"posY":498,"text":"SOMERLEYTON","url":"SYT","type":"LOC"},
-{"posX":748,"posY":582,"text":"SOMERLEYTON\\nSWING BRIDGE","type":"TEXT"}
+{"posX":748,"posY":582,"text":"SOMERLEYTON\\nSWING BRIDGE","type":"TEXT"},
+
+{"posX":1000,"posY":130,"text":"HIGHER DETAIL IMAGE","url":"/sig/NYL.sim.png","type":"MLINK"}
 ]
 }

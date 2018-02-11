@@ -489,14 +489,14 @@
 ],
 "text":[
 {"posX":231,"posY":282,"text":"DALSTON\\nKINGSLAND","url":"DLK","type":"LOC"},
-{"posX":469,"posY":282,"text":"HACKNEY CENTRAL","url":"HKC","type":"LOC"},
-{"posX":618,"posY":282,"text":"HOMERTON","url":"HMN","type":"LOC"},
-{"posX":953,"posY":282,"text":"HACKNEY WICK","url":"HKW","type":"LOC"},
-{"posX":1459,"posY":138,"text":"STRATFORD","url":"SRA","type":"LOC"},
-{"posX":586,"posY":302,"text":"LONDON FIELDS","url":"hackney","type":"NAV"},
-{"posX":1458,"posY":74,"text":"TEMPLE MILLS","url":"stratford","type":"MNAV"},
-{"posX":1714,"posY":250,"text":"STRATFORD","url":"stratford","type":"MNAV"},
 {"posX":1750,"posY":266,"text":"(GEML)","type":"TEXT"},
+{"posX":469,"posY":282,"text":"HACKNEY CENTRAL","url":"HKC","type":"LOC"},
+{"posX":953,"posY":282,"text":"HACKNEY WICK","url":"HKW","type":"LOC"},
+{"posX":618,"posY":282,"text":"HOMERTON","url":"HMN","type":"LOC"},
+{"posX":586,"posY":302,"text":"LONDON FIELDS","url":"hackney","type":"NAV"},
+{"posX":1459,"posY":138,"text":"STRATFORD","url":"SRA","type":"LOC"},
+{"posX":1714,"posY":250,"text":"STRATFORD","url":"stratford","type":"MNAV"},
+{"posX":1458,"posY":74,"text":"TEMPLE MILLS","url":"stratford","type":"MNAV"},
 
 {"posX":268,"posY":490,"text":"GOSPEL OAK","url":"GPO","type":"LOC"},
 {"posX":487,"posY":392,"text":"KENTISH\\nTOWN WEST","url":"KTW","type":"LOC"},
@@ -511,16 +511,16 @@
 {"posX":1050,"posY":622,"text":"ST PANCRAS INTL (HS1)","url":"ctrl1","type":"NAV"},
 {"posX":1228,"posY":360,"text":"FINSBURY PARK\\n(ECML)","url":"kingsx","type":"NAV"},
 
-{"posX":431,"posY":754,"text":"WILLESDEN\\nJUNCTION","url":"WIJ","type":"LOC"},
-{"posX":801,"posY":762,"text":"KENSAL RISE","url":"KNR","type":"LOC"},
-{"posX":929,"posY":762,"text":"BRONDESBURY\\nPARK","url":"BSP","type":"LOC"},
+{"posX":166,"posY":714,"text":"ACTON","url":"nll2","type":"MNAV"},
 {"posX":1057,"posY":762,"text":"BRONDESBURY","url":"BSY","type":"LOC"},
-{"posX":1191,"posY":762,"text":"WEST\\nHAMPSTEAD","url":"WHD","type":"LOC"},
+{"posX":929,"posY":762,"text":"BRONDESBURY\\nPARK","url":"BSP","type":"LOC"},
+{"posX":230,"posY":776,"text":"CLAPHAM JN\\n(WLL)","type":"TEXT"},
 {"posX":1313,"posY":762,"text":"FINCHLEY RD\\n& FROGNAL","url":"FNY","type":"LOC"},
 {"posX":1447,"posY":762,"text":"HAMPSTEAD\\nHEATH","url":"HDH","type":"LOC"},
-{"posX":160,"posY":718,"text":"ACTON (NLL)","type":"TEXT"},
-{"posX":230,"posY":776,"text":"CLAPHAM JN\\n(WLL)","type":"TEXT"},
-{"posX":446,"posY":808,"text":"WILLESDEN L.L.\\n(WCML)","type":"TEXT"},
-{"posX":476,"posY":632,"text":"HARLESDEN\\n(WCML)","type":"TEXT"}
+{"posX":476,"posY":632,"text":"HARLESDEN\\n(WCML)","type":"TEXT"},
+{"posX":801,"posY":762,"text":"KENSAL RISE","url":"KNR","type":"LOC"},
+{"posX":1191,"posY":762,"text":"WEST\\nHAMPSTEAD","url":"WHD","type":"LOC"},
+{"posX":431,"posY":754,"text":"WILLESDEN\\nJUNCTION","url":"WIJ","type":"LOC"},
+{"posX":446,"posY":808,"text":"WILLESDEN L.L.\\n(WCML)","type":"TEXT"}
 ]
 }

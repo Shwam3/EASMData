@@ -215,7 +215,7 @@
 {"posX":1096,"posY":590,"description":"AF206","type":"RIGHT","isTVM430":true},
 {"posX":1084,"posY":534,"description":"AF207","type":"LEFT","isTVM430":true},
 {"posX":940,"posY":590,"description":"AF209","type":"LEFT","isTVM430":true,"isRHS":true},
-{"posX":1224,"posY":622,"description":"AF210","type":"RIGHT","isTVM430":true,"isRHS":true},
+{"posX":1224,"posY":622,"description":"AF210","type":"RIGHT","isTVM430":true},
 {"posX":1288,"posY":590,"description":"AF212","type":"RIGHT","isTVM430":true},
 {"posX":1212,"posY":534,"description":"AF213","type":"LEFT","isTVM430":true},
 {"posX":1224,"posY":534,"description":"AF214","type":"RIGHT","isTVM430":true,"isRHS":true},
@@ -245,7 +245,7 @@
 {"posX":460,"posY":470,"description":"AF759","type":"LEFT","isTVM430":true},
 {"posX":828,"posY":534,"description":"AF761","type":"LEFT","isTVM430":true},
 {"posX":952,"posY":590,"description":"AF762","type":"RIGHT","isTVM430":true},
-{"posX":952,"posY":534,"description":"AF862","type":"RIGHT","isTVM430":true},
+{"posX":952,"posY":534,"description":"AF862","type":"RIGHT","isTVM430":true,"isRHS":true},
 {"posX":828,"posY":590,"description":"AF863","type":"LEFT","isTVM430":true,"isRHS":true},
 {"posX":540,"posY":654,"description":"AF857","type":"LEFT","isTVM430":true,"isRHS":true},
 {"posX":828,"posY":374,"description":"NK477","type":"LEFT","isAuto":true}

@@ -246,7 +246,7 @@
 {"posX":1698,"posY":206,"description":"CA295","dataID":"CA94:2","type":"LEFT","routes":["CA98:2"]},
 {"posX":1198,"posY":118,"description":"CA760","dataID":"CA7E:6","type":"RIGHT","isShunt":true,"routes":["CA88:6"]},
 {"posX":1250,"posY":206,"description":"CA761","dataID":"CA7E:7","type":"LEFT","isShunt":true,"routes":["CA88:7","CA88:8","CA89:1"]},
-{"posX":1278,"posY":146,"description":"CA762","dataID":"CA7E:8","type":"RIGHT","isShunt":true,"routes":["CA89:2"]},
+{"posX":1278,"posY":142,"description":"CA762","dataID":"CA7E:8","type":"RIGHT","isShunt":true,"routes":["CA89:2"]},
 {"posX":1278,"posY":110,"description":"CA764","dataID":"CA7F:1","type":"RIGHT","isShunt":true,"routes":["CA89:3"]},
 {"posX":1394,"posY":86,"description":"CA765","dataID":"CA7F:2","type":"LEFT","isShunt":true,"routes":["CA89:4","CA89:5"]},
 {"posX":1422,"posY":118,"description":"CA766","dataID":"CA7F:3","type":"RIGHT","isShunt":true,"routes":["CA89:6","CA89:7"]},

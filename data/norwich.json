@@ -168,7 +168,7 @@
 {"posX":732,"posY":430,"description":"CO1409","dataID":"CC5E:4","type":"LEFT","isShunt":true,"routes":["CC57:1"]},
 {"posX":732,"posY":462,"description":"CO1411","dataID":"CC5E:6","type":"LEFT","isShunt":true,"routes":["CC57:2"]},
 {"posX":748,"posY":398,"description":"CO1413","dataID":"CC5E:8","type":"LEFT","isShunt":true,"routes":["CC57:3"]},
-{"posX":760,"posY":406,"description":"CO1414","dataID":"CC5F:2","type":"RIGHT","isShunt":true,"routes":["CC7:4"]},
+{"posX":760,"posY":406,"description":"CO1414","dataID":"CC5F:2","type":"RIGHT","isShunt":true,"routes":["CC57:4"]},
 {"posX":776,"posY":342,"description":"CO1416","dataID":"CC5F:4","type":"RIGHT","isShunt":true,"routes":["CC57:5"]},
 
 {"posX":844,"posY":246,"description":"CO447","type":"LEFT","isAuto":true},
@@ -411,7 +411,7 @@
 {"posX":388,"posY":610,"text":"SHERINGHAM","url":"SHM","type":"LOC"},
 {"posX":458,"posY":666,"text":"W RUNTON","url":"WRN","type":"LOC"},
 {"posX":850,"posY":514,"text":"WORSTEAD","url":"WRT","type":"LOC"},
-{"posX":916,"posY":456,"text":"TO LOWESTOFT\\n& GT YARMOUTH","type":"TEXT"},
+{"posX":898,"posY":456,"text":"BRUNDALL","url":"wherry","type":"MNAV"},
 {"posX":644,"posY":186,"text":"THETFORD","url":"cambs2","type":"MNAV"}
 ]
 }
