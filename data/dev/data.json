@@ -29,5 +29,6 @@
 {"panelUID":"ctrl3","panelName":"Ashford International","panelDescription":"Nashenden - Westenhanger","areas":["CT","A2"]},
 {"panelUID":"ctrl4","panelName":"Dollands Moor/Eurotunnel","panelDescription":"Westenhanger - France","areas":["CT","A2"]},
 {"panelUID":"mml1","panelName":"St. Pancras","panelDescription":"St. Pancras - Elstree","areas":["X0","WH"]},
-{"panelUID":"inverdeen","panelName":"Inverness Highlands","panelDescription":"Elgin - Nairn","areas":["IH"]}
+{"panelUID":"inverdeen","panelName":"Inverness Highlands","panelDescription":"Elgin - Nairn","areas":["IH"]},
+{"panelUID":"gwml1","panelName":"TVSC Paddington","panelDescription":"Acton - Paddington","areas":["D3"]}
 ]

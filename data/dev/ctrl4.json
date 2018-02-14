@@ -278,7 +278,7 @@
 {"posX":922,"posY":218,"description":"AF1351 Nrm","dataIDs":["A233:7","A256:6"],"type0":"NONE","type1":"RVtLfDn"},
 {"posX":922,"posY":218,"description":"AF1351 Rev","dataIDs":["A233:8","A24C:1"],"type0":"NONE","type1":"NVtLfDn"},
 {"posX":922,"posY":250,"description":"AF1352 Nrm","dataIDs":["A22E:3","A233:6","A256:8"],"type0":"NONE","type1":"NHzRtUp"},
-{"posX":922,"posY":250,"description":"AF1352 Rev","dataIDs":["A233:7","A233:8","A24C:1","A256:8"],"type0":"NONE","type1":"RHzRtUp"}
+{"posX":922,"posY":250,"description":"AF1352 Rev","dataIDs":["A233:7","A233:8","A24C:1"],"type0":"NONE","type1":"RHzRtUp"}
 ],
 "text":[
 {"posX":810,"posY":132,"text":"/   /    /","type":"TEXT"},
