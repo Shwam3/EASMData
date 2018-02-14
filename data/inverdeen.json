@@ -23,8 +23,6 @@
 {"posX":1298,"posY":394,"dataIDs":["IH7910"]}
 ],
 "signals":[
-{"posX":730,"posY":378,"description":"L7741TRS","dataIDs":["IH0F:1"],"type":"TEXT","text1":"TRTS"},
-{"posX":730,"posY":386,"description":"L7743TRS","dataIDs":["IH0F:2"],"type":"TEXT","text1":"TRTS"},
 {"posX":564,"posY":390,"description":"HE7731","dataID":"IH00:2","type":"LEFT","isRepeat":true},
 {"posX":576,"posY":414,"description":"HE7732","dataID":"IH00:1","type":"RIGHT","routes":["IH04:1"]},
 {"posX":628,"posY":390,"description":"HE7733","dataID":"IH00:2","type":"LEFT","routes":["IH04:2","IH04:3","IH04:4","IH04:5"]},
@@ -50,9 +48,9 @@
 {"posX":1214,"posY":414,"description":"HN7904","dataID":"IH02:2","type":"RIGHT","routes":["IH07:6"]},
 {"posX":1214,"posY":358,"description":"HN7906","dataID":"IH02:3","type":"RIGHT","routes":["IH07:7"]},
 {"posX":1270,"posY":414,"description":"HN7909","dataID":"IH02:4","type":"LEFT","routes":["IH07:8"]},
-{"posX":1296,"posY":414,"description":"HN7910","dataID":"IH02:5","type":"RIGHT","routes":["IH08:1","IH08:2"]},
+{"posX":1296,"posY":414,"description":"HN7910","dataID":"IH02:5","type":"RIGHT","routes":["IH08:1"]},
 {"posX":1354,"posY":414,"description":"HN7912","dataID":"IH02:5","type":"RIGHT","isRepeat":true},
-{"posX":1409,"posY":438,"description":"HN7914","dataID":"IH02:6","type":"LATCH"}
+{"posX":1409,"posY":438,"description":"HN7914","dataID":"IH08:2","type":"LATCH"}
 ],
 "points":[
 {"posX":626,"posY":394,"description":"P661 Nrm","dataIDs":["IH04:4","IH04:5","IH04:8","IH05:1"],"type0":"NONE","type1":"NHzLfUp"},
@@ -69,8 +67,8 @@
 {"posX":1074,"posY":394,"description":"P680 Rev","dataIDs":["IH07:2","IH07:3"],"type0":"NONE","type1":"RHzRtDn"},
 {"posX":1202,"posY":394,"description":"P701 Nrm","dataIDs":["IH07:5","IH07:6"],"type0":"NONE","type1":"NHzLfUp"},
 {"posX":1202,"posY":394,"description":"P701 Rev","dataIDs":["IH07:7"],"type0":"NONE","type1":"RHzLfUp"},
-{"posX":1282,"posY":394,"description":"P703 Nrm","dataIDs":["IH07:8","IH08:1"],"type0":"NONE","type1":"NHzRtUp"},
-{"posX":1282,"posY":394,"description":"P703 Rev","dataIDs":["IH08:2"],"type0":"NONE","type1":"RHzRtUp"}
+{"posX":1282,"posY":394,"description":"P703 Nrm","dataIDs":["IH09:1"],"type0":"NONE","type1":"NHzRtUp"},
+{"posX":1282,"posY":394,"description":"P703 Rev","dataIDs":["IH09:2"],"type0":"NONE","type1":"RHzRtUp"}
 ],
 "text":[
 {"posX":434,"posY":398,"text":"TO KEITH","type":"TEXT"},
