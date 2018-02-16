@@ -35,6 +35,8 @@ function loadReplay()
         alert('File dates differ');
         return;
     }
+    initContents = undefined;
+    logContents = undefined;
 
     document.getElementById('replayGo').setAttribute('disabled',true);
     document.getElementById('controllerPlayRev').removeAttribute('disabled');

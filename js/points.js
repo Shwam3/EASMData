@@ -11,35 +11,39 @@ function Points(jsonObj)
     this.description = jsonObj['description'];
     this.dataValue = 0;
     this.displayImage = false;
-
+    
     var pts = document.createElement('img');
     document.getElementById('map').appendChild(pts);
     pts.title = this.description;
     pts.id = this.htmlID;
-    pts.src = '/webclient/images/points/' + this.images[this.dataValue] + '.png';
-    pts.className = 'points';
+    pts.src = dev ? '/webclient/images/blank.png' : ('/webclient/images/points/' + this.images[this.dataValue] + '.png');
+    pts.className = 'points' + (dev ? 'spritePoints NONE' : '');
     pts.style.left = this.posX + 'px';
     pts.style.top = this.posY + 'px';
     this.domElement = pts;
-
+    
     this.update();
     addObj(this.htmlID, this);
 }
 
 Points.prototype.update = function()
 {
-    this.dataValue = 0;
+    var dVal = 0
     for (var i = 0; i < this.dataIDs.length; i++)
         if (getData(this.dataIDs[i]) == '1')
         {
-            this.dataValue = 1;
+            dVal = 1;
             break;
         }
 
-    this.domElement.src = '/webclient/images/points/' + this.images[this.dataValue] + '.png';
+    if (this.dataValue != dVal)
+    {
+        dev ? (this.domElement.className = 'points spritePoints ' + this.images[dVal]) : (this.domElement.src = '/webclient/images/points/' + this.images[dVal] + '.png');
+    }
     this.domElement.style.webkitFilter = this.displayImage ? "invert(40%)" : null;
     this.domElement.style.filter = this.displayImage ? "invert(40%)" : null;
     this.domElement.title = this.displayImage ? this.description + '\n' + this.dataIDs.join(', ') : this.description;
+    this.dataValue = dVal;
 };
 
 Points.prototype.display = function(disp)
@@ -49,5 +53,4 @@ Points.prototype.display = function(disp)
 Points.prototype.displayID = function(disp)
 {
     this.displayImage = disp;
-    this.update();
 };

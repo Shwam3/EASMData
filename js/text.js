@@ -23,9 +23,11 @@ function Text(jsonObj)
     else
         txt.className += ' backText';
 
-    if (this.type == 'LINK')
+    if (this.type == 'LINK' || this.type == 'MLINK')
     {
         txt.href = this.url;
+        if (this.type == 'MLINK')
+            txt.className = 'textLarge';
     }
     else if (this.type == 'LOC' || this.type == 'MLOC')
     {
@@ -36,10 +38,10 @@ function Text(jsonObj)
     else if (this.type == 'NAV' || this.type == 'MNAV')
     {
         txt.title = this.description = 'GOTO: ' + this.description;
-        txt.href = '#' + navIndex[this.url];
+        txt.href = '#' + this.url;
         txt.onclick = function(e)
         {
-            loadPage(parseInt(e.currentTarget.hash.substring(1)));
+            loadPage(navIndex[e.currentTarget.hash.substring(1)]);
             e.preventDefault();
             return false;
         };

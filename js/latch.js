@@ -12,8 +12,8 @@ function Latch(jsonObj)
     map.appendChild(lat);
     lat.title = this.description;
     lat.id = this.htmlID;
-    lat.className = 'signal noPost';
-    lat.src = '/webclient/images/signals/LATCH_'+this.colour+'_OFF.png';
+    lat.src = '/webclient/images/blank.png';
+    lat.className = 'signal noPost LATCH_'+this.colour+'_OFF';
     lat.style.left = this.posX + 'px';
     lat.style.top  = this.posY + 'px';
     this.domElement = lat;
@@ -30,8 +30,10 @@ Latch.prototype.update = function()
             this.dataValue = 1;
             break;
         }
-
-    this.domElement.src = '/webclient/images/signals/LATCH_' + this.colour + '_' + (this.dataValue == 1 ? 'ON' : 'OFF') + '.png';
+        
+    var clas = 'signal noPost LATCH_' + this.colour + '_' + (this.dataValue == 1 ? 'ON' : 'OFF');
+    if (this.domElement.className != clas)
+        this.domElement.className = clas;
     this.domElement.title = displayOpts.IDs ? this.description + '\n' + this.dataIDs.join(', ') : this.description;
 };
 

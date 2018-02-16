@@ -12,6 +12,7 @@ function Signal(jsonObj)
         this.type = 'NONE';
 
     var isAuto    = jsonObj['isAuto']    || false;
+    var autoPlate = jsonObj['autoPlate'] || false;
     var isShunt   = jsonObj['isShunt']   || false;
     var isSubs    = jsonObj['isSubs']    || false;
     var isRepeat1 = jsonObj['isRepeat1'] || jsonObj['isRepeat'] || false;
@@ -87,20 +88,26 @@ function Signal(jsonObj)
     {
         this.mainAspects[0] = 'M_RED';
         this.mainAspects[1] = 'M_GREEN';
-        this.routeIDs.push(this.dataID);
+        this.routeIDs = this.routeIDs.concat(this.dataID);
     }
 
     this.routeSet = false;
     this.mainAspect = this.mainAspects[0];
 
+    var display = this.type + '_' + this.mainAspect + '_' + (this.routeSet ? 'SET' : 'UNSET');
     var sig = document.createElement('img');
     document.getElementById('map').appendChild(sig);
     sig.title = this.description;
     sig.id = this.htmlID;
-    sig.src = '/webclient/images/signals/' + this.type + '_' + this.mainAspect + '_' + (this.routeSet ? 'SET' : 'UNSET') + '.png';
+    sig.src = '/webclient/images/blank.png';
     sig.className = 'signal';
     if (this.type.match(/(UP|DOWN)/)) sig.className += ' verticalPost';
     if (this.type == 'NONE') sig.className += ' noPost';
+    if (isShunt || isSubs) sig.className += ' spriteShunt';
+    else if (isBanner) sig.className += ' spriteBanner';
+    else if (isTVM430) sig.className += ' spriteTVM430';
+    else sig.className += ' spriteMain';
+    this.css = sig.className;
     sig.style.left = this.posX + (this.type == 'LEFT' ? -10 : -4) + 'px';
     sig.style.top  = this.posY + (this.type == 'UP'   ? -10 : -4) + 'px';
     this.domElement = sig;
@@ -122,8 +129,8 @@ Signal.prototype.update = function()
             break;
         }
     }
-
-    this.domElement.src = '/webclient/images/signals/' + this.type + '_' + this.mainAspect + '_' + (this.routeSet ? 'SET' : 'UNSET') + '.png';
+    
+    this.domElement.className = this.css + ' ' + this.type + '_' + this.mainAspect + '_' + (this.routeSet ? 'SET' : 'UNSET');
     this.domElement.title = displayOpts.IDs ? this.description + '\naspect: ' + this.dataID + '\nroute: ' + this.routeIDs.join(', ') : this.description;
 };
 

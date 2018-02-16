@@ -1,5 +1,5 @@
-var port = 6423;
-var host = 'sigmaps1.signalmaps.co.uk';
+var port = 8443;
+var host = 'sigmaps1s.signalmaps.co.uk';
 var page = 0;
 var dev = false;
 var connection;
@@ -70,7 +70,7 @@ function load()
 
     if (!hashRead)
     {
-        if (location.hash != '' && location.hash != '#' || location.hash.substring(1) in navIndex)
+        if (location.hash != '' && location.hash != '#' || navIndex.hasOwnProperty(location.hash.substring(1)))
         {
             var hashPage = location.hash.substring(1);
             page = isNaN(hashPage) && navIndex.hasOwnProperty(hashPage) ? navIndex[hashPage] : (+hashPage || 0);
@@ -81,7 +81,7 @@ function load()
             var lStorePage = localStorage.getItem('page');
             if (isNaN(lStorePage))
             {
-                if (lStorePage in navIndex)
+                if (navIndex.hasOwnProperty(lStorePage))
                     page = navIndex[lStorePage];
                 else
                     page = 0;
@@ -115,7 +115,7 @@ function load()
     map.style.overflowY = null;
     localStorage.setItem('page', pageData.panelUID);
 
-    if (!('data' in pageData) || pageData.data == {})
+    if (!pageData.hasOwnProperty('data') || pageData.data == {})
     {
         downloadPage(pageData.panelUID);
         return;
@@ -127,14 +127,15 @@ function load()
     var mapText = pageData.data.text;
 
     doClock();
-    document.getElementById('desc').innerHTML = (parseInt(page)+1) + '. ' + pageData.panelDescription;
+    document.getElementById('desc').innerHTML = pageData.panelDescription;
     document.title = 'Signal Maps - ' + pageData.panelName;
+    document.location.hash = pageData.panelUID;
 
     htmlIDToObj = {};
     map.innerHTML = defaultInner;
     // use pageData.data.panelUID to allow 'dev' images
     document.getElementById('mapImage').src = '/webclient/images/maps/'+pageData.data.panelUID+'.png' + (dev ? '?r='+Date.now() : '');
-    document.getElementById('mapImage').onerror = function(evt) { evt.srcElement.src = 'https://github.com/Shwam3/EASMData/raw/master/images/maps/'+pageData.data.panelUID+'.png'; };
+    document.getElementById('mapImage').onerror = function(evt) { if (!evt.srcElement.src.contains('github')) evt.srcElement.src = 'https://github.com/Shwam3/EASMData/raw/master/images/maps/'+pageData.data.panelUID+'.png'; };
     document.getElementById('mapImage').draggable = false;
     berths = [];
     signals = [];
@@ -154,16 +155,17 @@ function load()
 
     for (var k in mapSignals)
     {
-        if (!dev && mapSignals[k]['isDev'])
+        var sig = mapSignals[k];
+        if (!dev && sig['isDev'])
             continue;
-        else if (mapSignals[k].type.match(/(UP|DOWN|LEFT|RIGHT|NONE)/) || (dev && mapSignals[k].type == 'TEST'))
-            signals.push(new Signal(mapSignals[k]));
-        else if (mapSignals[k].type == 'TEXT')
-            dataText.push(new DataText(mapSignals[k]));
-        else if (mapSignals[k].type == 'LATCH')
-            latches.push(new Latch(mapSignals[k]));
-        else if (mapSignals[k].type == 'TRACKC')
-            trackc.push(new TrackCircuit(mapSignals[k]));
+        else if (sig.type.match(/(UP|DOWN|LEFT|RIGHT|NONE)/) || (dev && sig.type == 'TEST'))
+            signals.push(new Signal(sig));
+        else if (sig.type == 'TEXT')
+            dataText.push(new DataText(sig));
+        else if (sig.type == 'LATCH')
+            latches.push(new Latch(sig));
+        else if (sig.type == 'TRACKC')
+            trackc.push(new TrackCircuit(sig));
     }
 
     for (var k in mapPoints)
@@ -194,25 +196,23 @@ function updatePageList(json)
         navIndex = {};
         var list = document.getElementById('pageSelector');
         list.innerHTML = '';
+        var pnls = [];
         for (var p in json)
         {
             var pageData = json[p];
             navIndex[pageData.panelUID] = parseInt(p);
-            createPanel(list, p, pageData);
-            p++;
+            pnls.push(createPanel(list, p, pageData));
         }
         maxPageId = list.children.length-1;
 
         if (dev)
         {
             navIndex['dev'] = maxPageId+1;
-            createPanel(list, ++maxPageId, {panelName:'Dev page',panelDescription:'',panelUID:'blank'});
+            pnls.push(createPanel(list, ++maxPageId, {panelName:'Dev page',panelDescription:'',panelUID:'blank'}));
         }
-
-        var pnls = document.getElementsByClassName('panel');
-        for (i = 0; i < pnls.length; i++)
+        for (pnl in pnls)
         {
-            pnls[i].addEventListener('click', function()
+            pnls[pnl].addEventListener('click', function()
             {
                 loadPage(this.getAttribute('data-id'));
                 $('#lineSelector').modal('hide');
@@ -227,7 +227,7 @@ function createPanel(addTo, index, pageData)
     div.style.cursor = 'pointer';
     div.className = 'col-md-6';
     div.innerHTML = '<div class="overview panel panel-default" data-id="' + index + '"><div class="panel-heading">'
-        + (+index+1) + '. ' + pageData.panelName + '</div><div class="panel-body panel-img"><img src="/webclient/images/maps/previews/' + pageData.panelUID + '.png"><br></div>'
+        + pageData.panelName + '</div><div class="panel-body panel-img"><img src="/webclient/images/maps/previews/' + pageData.panelUID + '.png"><br></div>'
         + '<div class="panel-footer"><div id="desc">' + pageData.panelDescription + '</div></div></div>';
     addTo.appendChild(div);
 
@@ -237,6 +237,8 @@ function createPanel(addTo, index, pageData)
         cfix.className = 'clearfix hidden-xs';
         addTo.appendChild(cfix);
     }
+    
+    return div.children[0];
 }
 
 window.onload = function()
@@ -267,14 +269,17 @@ window.onload = function()
                 console.log('Using secondary file (data.json)');
             }, 'json');
         });
-
+    
     openSocket(host);
     setInterval(doClock, 100);
     setInterval(fillBerths0, 100);
     setInterval(function()
     {
-        if (lastMessage > 0 && Date.now() - lastMessage > 60000)
+        if (connected && lastMessage > 0 && Date.now() - lastMessage > 75000)
+        {
+            console.log('Closing connection (timeout)');
             connection.close();
+        }
     }, 100);
 };
 
@@ -307,6 +312,7 @@ $(document).keydown(function(e)
 
 function closeSocket(clear)
 {
+    console.log('Closing connection (manual)');
     disconn = true;
     connected = false;
     lastMessage = -1;
@@ -319,7 +325,10 @@ function reconnect()
 {
     attempt = -1;
     if (connection && (connection.readyState == connection.OPEN || connection.readyState == connection.CONNECTING))
+    {
+        console.log('Closing connection (reconnect)');
         connection.close();
+    }
 
     openSocket(host);
 }
@@ -367,7 +376,7 @@ function openSocket(ip)
         var jsonMsg = JSON.parse(e.data).Message;
         var jsonMsgData = jsonMsg.message;
 
-        var timestamp = performance.now() + performance.timing.navigationStart;
+        var timestamp = Date.now(); //performance.now() + performance.timing.navigationStart; // odd bug when mobile unfocused
 
         if (window['messageRate'])
             messageRate.addTick(timestamp - lastMessage);
@@ -378,14 +387,14 @@ function openSocket(ip)
             lastTimestamp = parseInt(jsonMsg.timestamp);
         }
 
-        /*var tsDate = new Date(lastTimestamp);
+        var tsDate = new Date(lastTimestamp);
         if (tsDate.getDate() == 25 && tsDate.getMonth() == 11)
         {
             if (!snowflakesActive)
                 generateSnowflakes();
         }
         else if (snowflakesActive)
-            removeSnowflakes();*/
+            removeSnowflakes();
 
         if (jsonMsg.type == 'SEND_ALL')
         {
@@ -399,7 +408,10 @@ function openSocket(ip)
         fillBerths();
 
         document.getElementById('map').style.cursor = 'crosshair';
+        var c = connected;
         connected = true;
+        if (c == false)
+            setAreas(null);
         connectError = false;
         obscureCheck(true);
     };
@@ -426,17 +438,7 @@ function downloadPage(uid)
 
 function doClock()
 {
-    var date = new Date();
-    //if (localeTime)
-    //{
-    //    document.getElementById('clock').innerHTML = date.toLocaleString('en-GB', {hour: '2-digit', hour12: false, timeZone: 'Europe/London', minute: '2-digit', second: '2-digit' });
-    //}
-    //else
-    //{
-        document.getElementById('clock').innerHTML = (date.getHours() < 10 ? '0' + date.getHours() : date.getHours()) +
-            ':' + (date.getMinutes() < 10 ? '0' + date.getMinutes() : date.getMinutes()) +
-            ':' + (date.getSeconds() < 10 ? '0' + date.getSeconds() : date.getSeconds());
-    //}
+    document.getElementById('clock').innerHTML = clockStr(new Date());
 }
 function obscureCheck(changed)
 {
@@ -495,31 +497,14 @@ function fillBerths0()
         dataText[d].update(displayOpts.changed);
     for (var c in trackc)
         trackc[c].update(displayOpts.changed);
-    
+
     if (displayOpts.changed)
         displayOpts.changed = false;
 
     if (lastMessage < 0 || !connected)
-    {
-        document.getElementById('time').innerHTML = 'Last Update: Not Connected (' + attempt + ')'
-    }
+        document.getElementById('time').innerHTML = 'Last Update: Not Connected (' + attempt + ')';
     else
-    {
-        var date = new Date(lastMessage);
-        var newTime = 'Last Update: ';
-        try
-        {
-            newTime += date.toLocaleString('en-GB', {hour: '2-digit', hour12: false, timeZone: 'Europe/London', minute: '2-digit', second: '2-digit' });
-        }
-        catch(e)
-        {
-            newTime += (date.getHours() < 10 ? '0' + date.getHours() : date.getHours()) + ':' +
-                (date.getMinutes() < 10 ? '0' + date.getMinutes() : date.getMinutes()) + ':' +
-                (date.getSeconds() < 10 ? '0' + date.getSeconds() : date.getSeconds());
-        }
-
-        document.getElementById('time').innerHTML = newTime;
-    }
+        document.getElementById('time').innerHTML = 'Last Update: ' + clockStr(new Date(lastTimestamp));
     var map = document.getElementById('map');
     map.style.left = null;
     var pos = map.getBoundingClientRect().left;
@@ -539,23 +524,23 @@ function getNextID()
 
 function getData(id)
 {
-    if (id == undefined || id.length != 6 || id.match(/.{2}PRED/))
+    if (id == undefined || id.length != 6 || id.substring(2) == 'PRED')
         return 0;
-    else if (id.match(/.{2}PGRN/))
+    else if (id.substring(2) == 'PGRN')
         return 1;
     else if (typeof(data[id]) != 'undefined')
         return data[id];
     else if (id.charAt(4) == '!')
         return 1 - parseInt(data[id.split('!')[0]+':'+id.split('!')[1]]);
     else
-        return id.indexOf(':') > -1 || id.indexOf('!') > -1 ? 0 : '';
+        return id[4] == ':' || id[4] == '!' ? 0 : '';
 }
 function setData(id, value)
 {
     if (id == undefined || id.length != 6)
         return;
-    else if (id.charAt(4) == '!')
-        data[id.split('!')[0]+':'+id.split('!')[1]] = value;
+    else if (id[4] == '!')
+        data[id.split('!')[0]+':'+id.split('!')[1]] = 1-value;
     else
         data[id] = value;
     fillBerths();
@@ -572,7 +557,7 @@ function getHeadcode(hc, berth)
             mapping = {hc:hc, expire:Date.now()+60000, init:false};
             hcMap[hc] = mapping;
         }
-        
+
         if (mapping.expire <= Date.now() || !mapping.init)
         {
             mapping.init = true;
@@ -580,17 +565,15 @@ function getHeadcode(hc, berth)
             $.get('/webclient/get_hc.php', {hc: hc, td: td}, function(json)
             {
                 mapping.hc = json.hc;
-                mapping.expire = Date.now() + (json.err == null ? 600000 : 3600000) + (Math.round(Math.random()*900000));
+                mapping.expire = Date.now() + (json.err == null ? 3600000 + Math.round(Math.random()*900000) : 300000);
+
+                console.log(hc, '=>', json.hc, clockStr(new Date(mapping.expire)), berth);
                 
                 if (typeof berth == "object")
-                {
-                    berth.forceUpdate = true;
-                    berth.update();
-                }
+                    berth.update(true);
             });
         }
-        
-        //localStorage.setItem('hcMap', JSON.stringify(hcMap));
+
         return mapping.hc;
     }
     else
@@ -603,12 +586,13 @@ function setAreas(areas)
     {
         if (areas == null)
         {
-            if (active_areas.length > 0)
+            if (active_areas.length > 0 && connected)
                 connection.send(JSON.stringify({Message:{type:'SET_AREAS',areas:active_areas,timestamp:Date.now()}}));
         }
         else if (areas.toString() != active_areas.toString())
         {
-            connection.send(JSON.stringify({Message:{type:'SET_AREAS',areas:areas,timestamp:Date.now()}}));
+            if (connected)
+                connection.send(JSON.stringify({Message:{type:'SET_AREAS',areas:areas,timestamp:Date.now()}}));
             active_areas = areas;
         }
     }
@@ -623,15 +607,28 @@ function addObj(htmlID, obj)
         htmlIDToObj[htmlID] = obj;
 }
 
-function arraysEqual(a, b) {
-  if (a === b) return true;
-  if (a == null || b == null) return false;
-  if (a.length != b.length) return false;
+function clockStr(date)
+{
+    try
+    {
+        return date.toLocaleString('en-GB', {hour: '2-digit', hour12: false, timeZone: 'Europe/London', minute: '2-digit', second: '2-digit' });
+    }
+    catch(e)
+    {
+        return (date.getHours() < 10 ? '0' + date.getHours() : date.getHours()) + ':' +
+            (date.getMinutes() < 10 ? '0' + date.getMinutes() : date.getMinutes()) + ':' +
+            (date.getSeconds() < 10 ? '0' + date.getSeconds() : date.getSeconds());
+    }
+}
 
-  for (var i = 0; i < a.length; ++i) {
-    if (a[i] !== b[i]) return false;
-  }
-  return true;
+function arraysEqual(a, b) {
+    if (a === b) return true;
+    if (a == null || b == null) return false;
+    if (a.length != b.length) return false;
+
+    for (var i = 0; i < a.length; ++i)
+        if (a[i] !== b[i]) return false;
+    return true;
 }
 function escapeHTML(string)
 {

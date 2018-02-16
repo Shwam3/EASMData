@@ -1,11 +1,7 @@
-var as = {
-    'A2':true,'AW':true,'CA':true,'CC':true,'CT':true,'EN':true,'K2':true,'KX':false,'LS':true,'NJ':true,'NX':true,'PB':false,'Q1':true,'Q2':true,
-    'SO':false,'SX':true,'UR':true,'U2':true,'U3':true,'WC':false,'WG':false,'WH':true,'WJ':true,'WY':false,'WS':false,'X0':true,'XX':false
-}
 dev = true;
 hideUsed = true;
 var wait = 2000;
-var area_filter = {};
+var area_filter = {'hideUsed':true};
 function reload()
 {
     $.get('/webclient/data/dev/data.json', {r:Date.now()}, function(json)
@@ -24,6 +20,7 @@ function flash(id)
 }
 function cycle(ids, setto)
 {
+    setto = setto == undefined ? 1 : setto;
     if(!ids || ids.length == 0)
     {
         document.title = "Signal Maps";
@@ -33,9 +30,9 @@ function cycle(ids, setto)
     var id = ids.shift();
     var val = getData(id);
     document.title = "Signal Maps - " + id;
-    setData(id, setto || 1);
+    setData(id, setto);
     fillBerths();
-    setTimeout(function(){ setData(id, val); fillBerths(); cycle(ids, setto || 1); }, wait);
+    setTimeout(function(){ setData(id, val); fillBerths(); cycle(ids, setto); }, wait);
 }
 function next(id)
 {
@@ -114,13 +111,15 @@ fillBerths0 = function()
     document.getElementById('s').checked = displayOpts.signals;
     document.getElementById('t').checked = displayOpts.text;
 }
-
+var areasA = ['A2','AW','CA','CC','CT','D3','EN','IH','K2','KX','LS','NJ','NX','PB','Q1','Q2','SO','SX','UR','U2','U3','WC','WG','WH','WJ','WY','WS','X0','XX'];
+var areasS = ['A2','AW','CA','CC','CT','D3','EN','IH','K2',     'LS','NJ','NX',     'Q1','Q2',     'SX','UR','U2','U3',          'WH','WJ',          'X0'     ];
 function devPage()
 {
     var map = document.getElementById('map');
 
-    document.getElementById('desc').innerHTML = 1+maxPageId + '. Dev Page';
+    document.getElementById('desc').innerHTML = 'Dev Page';
     document.title = 'Signal Maps - Dev Page';
+    document.location.hash = 'dev';
     map.innerHTML = defaultInner;
     document.getElementById('mapImage').src = '/webclient/images/blank.png';
     document.getElementById('mapImage').style.minWidth = 'initial';
@@ -135,35 +134,38 @@ function devPage()
     dataText = [];
     text = [];
     trackc = [];
-    setAreas(['A2','AW','CA','CC','CT','EN','K2','KX','LS','NJ','NX','PB','Q1','Q2','SO','SX','UR','U2','U3','WC','WG','WH','WJ','WY','WS','X0']);
+    setAreas(areasA);
     
-    var areas = ['A2','AW','CA','CC','CT','EN','K2','KX','LS','NJ','NX','PB','Q1','Q2','SO','SX','UR','U2','U3','WC','WG','WH','WJ','WY','WS','X0','XX','hideUsed'];
     var div = document.createElement('div');
     div.style.margin = '5px 26px';
-    for (a in areas)
+    for (ar of areasA)
     {
-        var area = areas[a];
         var lab = document.createElement('label');
-        area_filter[area] = area_filter[area] == undefined ? true : area_filter[area];
-        lab.innerHTML = '<input type="checkbox" id="area_'+area+'" name="'+area+'" onchange="filterArea(this)"'+(area_filter[area] ? ' checked' : '')+'>'+area;
+        area_filter[ar] = area_filter[ar] == undefined ? true : area_filter[ar];
+        lab.innerHTML = '<input type="checkbox" id="area_'+ar+'" name="'+ar+'" onchange="filterArea(this)"'+(area_filter[ar] ? ' checked' : '')+'>'+ar;
         div.appendChild(lab);
     }
+    var lab = document.createElement('label');
+    lab.innerHTML = '<input type="checkbox" id="area_hideUsed" name="hideUsed" onchange="filterArea(this)"'+(area_filter.hideUsed ? ' checked' : '')+'>hideUsed';
+    div.appendChild(lab);
     document.getElementById('map').appendChild(div);
-    hideUsed = area_filter['hideUsed'];
+    hideUsed = area_filter.hideUsed;
 
-    var areas = ['A2','AW','CA','CC','CT','EN','K2',     'LS','NJ','NX',     'Q1','Q2',     'SX','UR','U2','U3',          'WH','WJ',         ,'X0'     ];
     var usedIDs = ['XXMOTD'];
     if (hideUsed)
     {
-        for (var p in mapJSON)
+        for (pag of mapJSON)
         {
-            if (!('data' in mapJSON[p]) || mapJSON[p].data == {})
+            if (!('data' in pag) || pag.data == {})
             {
-                downloadPage(mapJSON[p].panelUID);
+                downloadPage(pag.panelUID);
                 return;
             }
-
-            var pag = mapJSON[p].data || {};
+        }
+        
+        for (pag of mapJSON)
+        {
+            var pag = pag.data || {};
             for (var sg in pag.signals)
             {
                 var sig = pag.signals[sg];
@@ -194,16 +196,16 @@ function devPage()
     var y = 41;
     var leftGap = true;
     var ids = [];
-    for (var i in areas)
-        ids.push.apply(ids, list(areas[i] + '00:1', largestID(areas[i])));
+    for (ar of areasS)
+        ids.push.apply(ids, list(ar + '00:1', largestID(ar)));
 
-    if (area_filter[areas[0]])
-        text.push(new Text({type:'TEXT',posX:x,posY:y-12,text:areas[0]}));
-    for (var id in ids)
+    if (area_filter[areasS[0]])
+        text.push(new Text({type:'TEXT',posX:x,posY:y-12,text:areasS[0]}));
+    for (id of ids)
     {
-        if (area_filter[ids[id].substring(0, 2)])
+        if (area_filter[id.substring(0, 2)])
         {
-            if (ids[id].indexOf(':') < 0 || usedIDs.indexOf(ids[id]) >= 0)
+            if (id.indexOf(':') < 0 || usedIDs.indexOf(id) >= 0)
             {
                 if (!leftGap)
                 {
@@ -219,14 +221,14 @@ function devPage()
             }
             leftGap = false;
 
-            if (lastArea && lastArea != ids[id].substring(0,2))
+            if (lastArea && lastArea != id.substring(0,2))
             {
                 x = 26;
-                text.push(new Text({type:'TEXT',posX:x,posY:y+12,text:ids[id].substring(0,2)}));
+                text.push(new Text({type:'TEXT',posX:x,posY:y+12,text:id.substring(0,2)}));
                 y += 24;
             }
 
-            signals.push(new Signal({type:'TEST',posX:x+4,posY:y+4,dataID:ids[id],description:ids[id]}));
+            signals.push(new Signal({type:'TEST',posX:x+4,posY:y+4,dataID:id,description:id}));
 
             x += 12;
             if (x+12 > 1828)
@@ -235,41 +237,40 @@ function devPage()
                 y += 12;
             }
         }
-        lastArea = ids[id].substring(0,2);
+        lastArea = id.substring(0,2);
     }
 
     x = 26;
     y += 48;
 
-    areas = ['A2','AW','CA','CC','CT','EN','K2','KX','LS','NJ','NX','PB','Q1','Q2','SO','SX','UR','U2','U3','WC','WG','WH','WJ','WY','WS','X0','XX'];
     ids = [];
     lastArea = undefined;
     var keys = Object.keys(data).sort();
-    for (var k in keys)
-        if (areas.indexOf(keys[k].substring(0,2)) >= 0 && keys[k].indexOf(':') < 0 && keys[k].length == 6 )
-            ids.push(keys[k]);
+    for (key of keys)
+        if (areasA.indexOf(key.substring(0,2)) >= 0 && key.indexOf(':') < 0 && key.length == 6 )
+            ids.push(key);
 
-    if (area_filter[areas[0]])
-        text.push(new Text({type:'TEXT',posX:x,posY:y-14,text:areas[0]}));
-    for (var id in ids)
+    if (area_filter[areasA[0]])
+        text.push(new Text({type:'TEXT',posX:x,posY:y-14,text:areasA[0]}));
+    for (id of ids)
     {
-        if (ids[id].indexOf(':') >= 0
-                || ids[id].indexOf('!') >= 0
-                || ids[id].substring(2, 6) == 'PRED'
-                || ids[id].substring(2, 6) == 'PGRN'
-                || (usedIDs.indexOf(ids[id]) >= 0 && hideUsed))
+        if (id.indexOf(':') >= 0
+                || id.indexOf('!') >= 0
+                || id.substring(2, 6) == 'PRED'
+                || id.substring(2, 6) == 'PGRN'
+                || (usedIDs.indexOf(id) >= 0 && hideUsed))
             continue;
 
-        if (area_filter[ids[id].substring(0,2)])
+        if (area_filter[id.substring(0,2)])
         {
-            if (lastArea && lastArea != ids[id].substring(0,2))
+            if (lastArea && lastArea != id.substring(0,2))
             {
                 x = 26;
-                text.push(new Text({type:'TEXT',posX:x,posY:y+20,text:ids[id].substring(0,2)}));
+                text.push(new Text({type:'TEXT',posX:x,posY:y+20,text:id.substring(0,2)}));
                 y += 32;
             }
 
-            berths.push(new Berth({hasBorder:true,posX:x,posY:y,dataIDs:[ids[id]],allowLU:ids[id].startsWith('WS')}));
+            berths.push(new Berth({hasBorder:true,posX:x,posY:y,dataIDs:[id],allowLU:id.startsWith('WS')}));
 
             x += 56;
             if (x+48 > 1828)
@@ -278,7 +279,7 @@ function devPage()
                 y += 24;
             }
         }
-        lastArea = ids[id].substring(0,2);
+        lastArea = id.substring(0,2);
     }
 
     var spacer = document.createElement('span');
@@ -322,6 +323,7 @@ function downloadPage(uid)
 
 window.onload = function()
 {
+    document.getElementById('fbh').addEventListener('click', hcSearch);
     document.getElementById('map').style.cursor = 'wait';
     obscureCheck(false);
 
@@ -335,8 +337,11 @@ window.onload = function()
     setInterval(fillBerths0, 100);
     setInterval(function()
     {
-        if (lastMessage > 0 && Date.now() - lastMessage > 60000)
+        if (connected && lastMessage > 0 && Date.now() - lastMessage > 75000)
+        {
+            console.log('Closing connection (timeout)');
             connection.close();
+        }
     }, 100);
 };
 function getAllHCs()
@@ -347,9 +352,18 @@ function getAllHCs()
             getHeadcode(data[b], b.substring(0, 2));
     }
 }
+function hcSearch(evt)
+{
+   var e = prompt('pla:');
+   console.log(e);
+   
+   evt.preventDefault();
+   return false;
+}
 function Counter(samples)
 {
     this.MAX_SAMPLES = samples;
+    this.samples = 1;
     this.tickIndex = 0;
     this.tickSum = 0;
     this.tickList = [];
@@ -368,11 +382,12 @@ function Counter(samples)
         if (++this.tickIndex == this.MAX_SAMPLES)
             this.tickIndex = 0;
 
-        return this.tickSum / this.MAX_SAMPLES;
+        this.samples = Math.min(this.MAX_SAMPLES, this.samples + 1);
+        return this.tickSum / this.samples;
     };
 
     this.getAverageTick = function getAverageTick()
     {
-        return this.tickSum / this.MAX_SAMPLES;
+        return this.tickSum / this.samples;
     }
 }

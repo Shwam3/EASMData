@@ -26,8 +26,8 @@ function DataText(jsonObj)
 DataText.prototype.update = function()
 {
     var dv = 0;
-    for (var i = 0; i < this.dataIDs.length; i++)
-        if (getData(this.dataIDs[i]) == '1')
+    for (var k in this.dataIDs)
+        if (getData(this.dataIDs[k]) == '1')
         {
             dv = 1;
             break;

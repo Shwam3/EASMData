@@ -8,7 +8,7 @@ function TrackCircuit(jsonObj)
     this.height = jsonObj['height'];
     this.description = jsonObj['description'];
     this.dataValue = 0;
-
+    
     var tc = document.createElement('p');
     map.appendChild(tc);
     tc.title = this.description;
@@ -20,7 +20,7 @@ function TrackCircuit(jsonObj)
     tc.style.height = this.height + 'px';
     tc.style.backgroundColor = this.dataValue == 1 ? '#404040' : '#900';
     this.domElement = tc;
-
+    
     addObj(this.htmlID, this);
 }
 

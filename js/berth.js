@@ -8,7 +8,6 @@ function Berth(jsonObj)
     this.hasBorder = jsonObj['hasBorder'] || false;
     this.displayMainID = false;
     this.dataValue = '';
-    this.useRC = displayOpts.railcam;
     this.allowLU = jsonObj['allowLU'] || false;
     this.lastData = [];
     this.data = [];
@@ -79,7 +78,6 @@ Berth.prototype.update = function(force)
             bthA.removeAttribute('href');
             bthA.removeAttribute('target');
         }
-        this.useRC = displayOpts.railcam;
 
         if (this.dataValue)
         {
@@ -105,15 +103,11 @@ Berth.prototype.update = function(force)
         this.forceUpdate = false;
     }
 };
-Berth.prototype.display = function(disp)
+Berth.prototype.display = function(disp, id)
 {
     this.domElement.style.display = disp ? '' : 'none';
 };
 Berth.prototype.displayID = function(disp)
 {
-    if (this.displayMainID != disp)
-    {
-        this.displayMainID = disp;
-        this.update();
-    }
+    this.displayMainID = disp;
 };

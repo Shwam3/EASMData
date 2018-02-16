@@ -10,8 +10,7 @@ var browserHeight;
 var resetPosition = false;
 
 var snowflakesActive = false;
-
-setInterval(function(){ browserWidth = document.documentElement.clientWidth; browserHeight = document.documentElement.clientHeight; }, 1000);
+var updateID = undefined;
 
 function Snowflake(element, xPos, yPos)
 {
@@ -48,20 +47,24 @@ Snowflake.prototype.reset = function reset()
 
 function generateSnowflakes()
 {
+    if (snowflakesActive)
+        return;
+
     snowflakesActive = true;
-
+    
     var originalSnowflake = document.querySelector('.snowflake');
-
     var snowflakeContainer = originalSnowflake.parentNode;
 
     browserWidth = document.documentElement.clientWidth;
     browserHeight = document.documentElement.clientHeight;
+    updateID = setInterval(function(){ browserWidth = document.documentElement.clientWidth; browserHeight = document.documentElement.clientHeight; }, 1000);
 
     var numberOfSnowflakes = Math.ceil(browserWidth * browserHeight / 185000);
 
     for (var i = 0; i < numberOfSnowflakes; i++)
     {
         var snowflakeClone = originalSnowflake.cloneNode(true);
+        snowflakeClone.style.display = null;
         snowflakeContainer.appendChild(snowflakeClone);
 
         snowflakes.push(new Snowflake(snowflakeClone));
@@ -75,9 +78,12 @@ function generateSnowflakes()
 function removeSnowflakes()
 {
     snowflakesActive = false;
+    
+    if (updateID)
+        clearInterval(updateID);
 
     var container = document.getElementById('snowflakeContainer');
-    container.innerHTML = '<p class="snowflake">*</p>';
+    container.innerHTML = '<p class="snowflake" style="display:none;">*</p>';
 }
 
 function moveSnowflakes()
