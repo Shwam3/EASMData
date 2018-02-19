@@ -16,8 +16,8 @@ function Points(jsonObj)
     document.getElementById('map').appendChild(pts);
     pts.title = this.description;
     pts.id = this.htmlID;
-    pts.src = dev ? '/webclient/images/blank.png' : ('/webclient/images/points/' + this.images[this.dataValue] + '.png');
-    pts.className = 'points' + (dev ? 'spritePoints NONE' : '');
+    pts.src = '/webclient/images/blank.png';
+    pts.className = 'points spritePoints NONE';
     pts.style.left = this.posX + 'px';
     pts.style.top = this.posY + 'px';
     this.domElement = pts;
@@ -37,9 +37,7 @@ Points.prototype.update = function()
         }
 
     if (this.dataValue != dVal)
-    {
-        dev ? (this.domElement.className = 'points spritePoints ' + this.images[dVal]) : (this.domElement.src = '/webclient/images/points/' + this.images[dVal] + '.png');
-    }
+        this.domElement.className = 'points spritePoints ' + this.images[dVal];
     this.domElement.style.webkitFilter = this.displayImage ? "invert(40%)" : null;
     this.domElement.style.filter = this.displayImage ? "invert(40%)" : null;
     this.domElement.title = this.displayImage ? this.description + '\n' + this.dataIDs.join(', ') : this.description;

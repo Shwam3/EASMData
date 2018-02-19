@@ -93,8 +93,7 @@ function Signal(jsonObj)
 
     this.routeSet = false;
     this.mainAspect = this.mainAspects[0];
-
-    var display = this.type + '_' + this.mainAspect + '_' + (this.routeSet ? 'SET' : 'UNSET');
+    
     var sig = document.createElement('img');
     document.getElementById('map').appendChild(sig);
     sig.title = this.description;
@@ -108,6 +107,7 @@ function Signal(jsonObj)
     else if (isTVM430) sig.className += ' spriteTVM430';
     else sig.className += ' spriteMain';
     this.css = sig.className;
+    sig.className += ' ' + this.type + '_' + this.mainAspect + '_UNSET';
     sig.style.left = this.posX + (this.type == 'LEFT' ? -10 : -4) + 'px';
     sig.style.top  = this.posY + (this.type == 'UP'   ? -10 : -4) + 'px';
     this.domElement = sig;

@@ -13,7 +13,7 @@ function Latch(jsonObj)
     lat.title = this.description;
     lat.id = this.htmlID;
     lat.src = '/webclient/images/blank.png';
-    lat.className = 'signal noPost LATCH_'+this.colour+'_OFF';
+    lat.className = 'signal noPost spriteMain LATCH_'+this.colour+'_OFF';
     lat.style.left = this.posX + 'px';
     lat.style.top  = this.posY + 'px';
     this.domElement = lat;
@@ -31,7 +31,7 @@ Latch.prototype.update = function()
             break;
         }
         
-    var clas = 'signal noPost LATCH_' + this.colour + '_' + (this.dataValue == 1 ? 'ON' : 'OFF');
+    var clas = 'signal noPost spriteMain LATCH_' + this.colour + '_' + (this.dataValue == 1 ? 'ON' : 'OFF');
     if (this.domElement.className != clas)
         this.domElement.className = clas;
     this.domElement.title = displayOpts.IDs ? this.description + '\n' + this.dataIDs.join(', ') : this.description;
