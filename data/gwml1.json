@@ -550,7 +550,7 @@
 ],
 "text":[
 {"posX":1439,"posY":150,"text":"(PLATFORM BANNER REPEATERS NOT SHOWN)","type":"TEXT"},
-{"posX":134,"posY":314,"text":"ACTON","url":"gwml2","type":"MNAV"},
+{"posX":134,"posY":314,"text":"ACTON","url":"gwml1","type":"MNAV"},
 {"posX":1010,"posY":266,"text":"TO CROSSRAIL TUNNELS\\n(ELIZABETH LINE)","type":"TEXT"},
 {"posX":570,"posY":482,"text":"LADBROKE\\nGROVE","url":"LDBRKJ","type":"LOC"},
 {"posX":1448,"posY":586,"text":"LONDON PADDINGTON","url":"PAD","type":"MLOC"},

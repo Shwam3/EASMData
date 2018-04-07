@@ -22,11 +22,12 @@
 {"panelUID":"welwyn","panelName":"Welwyn GC","panelDescription":"Stevenage - Potters Bar &amp; Gordon Hill","areas":["KX","K2"]},
 {"panelUID":"alpal","panelName":"Alexandra Palace","panelDescription":"Potters Bar - Alexandra Palace","areas":["KX","K2"]},
 {"panelUID":"kingsx","panelName":"King's Cross &amp; Finsbury Park","panelDescription":"Alexandra Palace - London Kings Cross","areas":["KX","U3","SO"]},
-{"panelUID":"huntingdon","panelName":"Sandy, St Neots &amp; Huntingdon","panelDescription":"Biggleswade - Holme Jn","areas":["KX","PB"]},
+{"panelUID":"huntingdon","panelName":"Sandy, St Neots, &amp; Huntingdon","panelDescription":"Biggleswade - Holme Jn","areas":["KX","PB"]},
 {"panelUID":"peterborough","panelName":"Peterborough","panelDescription":"Holme Jn - Stoke Tunnel","areas":["PB"]},
 {"panelUID":"ctrl1","panelName":"St. Pancras International","panelDescription":"St. Pancras International - Dagenham","areas":["CT","KX","U3"]},
 {"panelUID":"ctrl2","panelName":"Ebbsfleet International","panelDescription":"Dagenham - Nashenden","areas":["CT","U2"]},
 {"panelUID":"ctrl3","panelName":"Ashford International","panelDescription":"Nashenden - Westenhanger","areas":["CT","A2"]},
 {"panelUID":"ctrl4","panelName":"Dollands Moor/Eurotunnel","panelDescription":"Westenhanger - France","areas":["CT","A2"]},
-{"panelUID":"inverdeen","panelName":"Inverness Highlands","panelDescription":"Elgin - Nairn","areas":["IH"]}
+{"panelUID":"inverdeen","panelName":"Inverness Highlands","panelDescription":"Elgin - Nairn","areas":["IH"]},
+{"panelUID":"gwml1","panelName":"TVSC Paddington","panelDescription":"Acton - Paddington","areas":["D3"]}
 ]
