@@ -8,11 +8,10 @@ function Latch(jsonObj)
     this.description = jsonObj['description'];
     this.dataValue = 0;
 
-    var lat = document.createElement('img');
+    var lat = document.createElement('span');
     map.appendChild(lat);
     lat.title = this.description;
     lat.id = this.htmlID;
-    lat.src = '/webclient/images/blank.png';
     lat.className = 'signal noPost spriteMain LATCH_'+this.colour+'_OFF';
     lat.style.left = this.posX + 'px';
     lat.style.top  = this.posY + 'px';

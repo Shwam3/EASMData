@@ -119,7 +119,7 @@ function devPage()
 
     document.getElementById('desc').innerHTML = 'Dev Page';
     document.title = 'Signal Maps - Dev Page';
-    document.location.hash = 'dev';
+    window.location.replace(window.location.href.split('#')[0] + '#dev');
     map.innerHTML = defaultInner;
     document.getElementById('mapImage').src = '/webclient/images/blank.png';
     document.getElementById('mapImage').style.minWidth = 'initial';
@@ -127,7 +127,7 @@ function devPage()
     document.getElementById('map').style.overflowY = 'auto';
 
     doClock();
-    
+
     berths = [];
     signals = [];
     points = [];
@@ -135,7 +135,7 @@ function devPage()
     text = [];
     trackc = [];
     setAreas(areasA);
-    
+
     var div = document.createElement('div');
     div.style.margin = '5px 26px';
     for (ar of areasA)
@@ -156,13 +156,13 @@ function devPage()
     {
         for (pag of mapJSON)
         {
-            if (!('data' in pag) || pag.data == {})
+            if ((!('data' in pag) || pag.data == {}) && pag.areas.some(id => areasA.indexOf(id) >= 0 || areasS.indexOf(id) >= 0))
             {
                 downloadPage(pag.panelUID);
                 return;
             }
         }
-        
+
         for (pag of mapJSON)
         {
             var pag = pag.data || {};
@@ -327,7 +327,20 @@ window.onload = function()
     document.getElementById('map').style.cursor = 'wait';
     obscureCheck(false);
 
+    var canv = document.createElement('canvas');
+    canv.width = 1;
+    canv.height = 1;
+    canUseWebP = !!(canv.getContext && canv.getContext('2d')) && canv.toDataURL('image/webp').indexOf('data:image/webp') == 0;
+    console.log('Using ' + getImgExt());
+
     reload();
+
+    var css = document.createElement('link');
+    css.rel = 'stylesheet';
+    css.href = '/webclient/sprites.' + (canUseWebP ? 'webp.css' : 'css');
+    css.type = 'text/css';
+    var csss = document.getElementsByTagName('link');
+    document.head.insertBefore(css, document.head.lastElementChild);
 
     openSocket(host);
 
@@ -356,7 +369,7 @@ function hcSearch(evt)
 {
    var e = prompt('pla:');
    console.log(e);
-   
+
    evt.preventDefault();
    return false;
 }

@@ -71,12 +71,14 @@ Berth.prototype.update = function(force)
                 bthA.href = 'http://railcam.co.uk/hc/RCTrainInfo.php?r=S&hc=' + this.dataValue + '&td=' + this.dataIDs[0].substring(0,2);
             else
                 bthA.href = 'http://www.realtimetrains.co.uk/search/advancedhandler?type=advanced&map=true&search=' + this.dataValue;
+            bthA.rel = 'nofollow noreferrer noopener';
             bthA.target = '_blank';
         }
         else
         {
             bthA.removeAttribute('href');
             bthA.removeAttribute('target');
+            bthA.removeAttribute('rel');
         }
 
         if (this.dataValue)

@@ -7,16 +7,14 @@ function Points(jsonObj)
     this.images = [];
     this.images[0] = jsonObj['type0'] || 'NONE';
     this.images[1] = jsonObj['type1'] || 'NONE';
-    this.images[2] = 'NONE';
     this.description = jsonObj['description'];
-    this.dataValue = 0;
+    this.dataValue = -1;
     this.displayImage = false;
     
-    var pts = document.createElement('img');
+    var pts = document.createElement('span');
     document.getElementById('map').appendChild(pts);
     pts.title = this.description;
     pts.id = this.htmlID;
-    pts.src = '/webclient/images/blank.png';
     pts.className = 'points spritePoints NONE';
     pts.style.left = this.posX + 'px';
     pts.style.top = this.posY + 'px';

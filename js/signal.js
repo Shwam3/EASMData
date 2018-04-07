@@ -94,17 +94,16 @@ function Signal(jsonObj)
     this.routeSet = false;
     this.mainAspect = this.mainAspects[0];
     
-    var sig = document.createElement('img');
+    var sig = document.createElement('span');
     document.getElementById('map').appendChild(sig);
     sig.title = this.description;
     sig.id = this.htmlID;
-    sig.src = '/webclient/images/blank.png';
     sig.className = 'signal';
     if (this.type.match(/(UP|DOWN)/)) sig.className += ' verticalPost';
     if (this.type == 'NONE') sig.className += ' noPost';
-    if (isShunt || isSubs) sig.className += ' spriteShunt';
+    if (isTVM430) sig.className += ' spriteTVM430';
+    else if (isShunt || isSubs) sig.className += ' spriteShunt';
     else if (isBanner) sig.className += ' spriteBanner';
-    else if (isTVM430) sig.className += ' spriteTVM430';
     else sig.className += ' spriteMain';
     this.css = sig.className;
     sig.className += ' ' + this.type + '_' + this.mainAspect + '_UNSET';

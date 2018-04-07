@@ -19,7 +19,10 @@ function Text(jsonObj)
     txt.style.top  = this.posY + 'px';
     txt.innerHTML = this.text;
     if (this.type != 'TEXT')
+    {
         txt.target = '_blank';
+        txt.rel = 'nofollow noreferrer noopener';
+    }
     else
         txt.className += ' backText';
 

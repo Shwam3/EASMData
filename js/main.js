@@ -28,6 +28,7 @@ var htmlIDToObj = {};
 var hashRead = false;
 var hcMap = {}; //JSON.parse(localStorage.getItem('hcMap')) || {};
 var active_areas = [];
+var canUseWebP = false;
 var localeTime = false;
 try { new Date().toLocaleString('i'); }
 catch (e) { localeTime = e instanceof RangeError; }
@@ -129,13 +130,13 @@ function load()
     doClock();
     document.getElementById('desc').innerHTML = pageData.panelDescription;
     document.title = 'Signal Maps - ' + pageData.panelName;
-    document.location.hash = pageData.panelUID;
+    window.location.replace(window.location.href.split('#')[0] + '#' + pageData.panelUID);
 
     htmlIDToObj = {};
     map.innerHTML = defaultInner;
     // use pageData.data.panelUID to allow 'dev' images
-    document.getElementById('mapImage').src = '/webclient/images/maps/'+pageData.data.panelUID+'.png' + (dev ? '?r='+Date.now() : '');
-    document.getElementById('mapImage').onerror = function(evt) { if (!evt.srcElement.src.contains('github')) evt.srcElement.src = 'https://github.com/Shwam3/EASMData/raw/master/images/maps/'+pageData.data.panelUID+'.png'; };
+    document.getElementById('mapImage').src = '/webclient/images/maps/'+pageData.data.panelUID + getImgExt() + (dev ? '?r='+Date.now() : '');
+    document.getElementById('mapImage').onerror = function(evt) { if (!evt.srcElement.src.contains('github')) evt.srcElement.src = 'https://github.com/Shwam3/EASMData/raw/master/images/maps/'+pageData.data.panelUID+getImgExt(); };
     document.getElementById('mapImage').draggable = false;
     berths = [];
     signals = [];
@@ -208,7 +209,7 @@ function updatePageList(json)
         if (dev)
         {
             navIndex['dev'] = maxPageId+1;
-            pnls.push(createPanel(list, ++maxPageId, {panelName:'Dev page',panelDescription:'',panelUID:'blank'}));
+            pnls.push(createPanel(list, ++maxPageId, {panelName:'Dev page',panelDescription:'',panelUID:'dev'}));
         }
         for (pnl in pnls)
         {
@@ -227,7 +228,7 @@ function createPanel(addTo, index, pageData)
     div.style.cursor = 'pointer';
     div.className = 'col-md-6';
     div.innerHTML = '<div class="overview panel panel-default" data-id="' + index + '"><div class="panel-heading">'
-        + pageData.panelName + '</div><div class="panel-body panel-img"><img src="/webclient/images/maps/previews/' + pageData.panelUID + '.png"><br></div>'
+        + pageData.panelName + '</div><div class="panel-body panel-img"><img src="/webclient/images/maps/previews/' + pageData.panelUID + getImgExt() + '"><br></div>'
         + '<div class="panel-footer"><div id="desc">' + pageData.panelDescription + '</div></div></div>';
     addTo.appendChild(div);
 
@@ -237,7 +238,7 @@ function createPanel(addTo, index, pageData)
         cfix.className = 'clearfix hidden-xs';
         addTo.appendChild(cfix);
     }
-    
+
     return div.children[0];
 }
 
@@ -245,6 +246,12 @@ window.onload = function()
 {
     document.getElementById('map').style.cursor = 'wait';
     obscureCheck(false);
+
+    var canv = document.createElement('canvas');
+    canv.width = 1;
+    canv.height = 1;
+    canUseWebP = !!(canv.getContext && canv.getContext('2d')) && canv.toDataURL('image/webp').indexOf('data:image/webp') == 0;
+    console.log('Using ' + getImgExt());
 
     $.get('/webclient/data/data.json', function(json)
     {
@@ -269,7 +276,13 @@ window.onload = function()
                 console.log('Using secondary file (data.json)');
             }, 'json');
         });
-    
+
+    var css = document.createElement('link');
+    css.rel = 'stylesheet';
+    css.href = '/webclient/sprites.' + (canUseWebP ? 'webp.css' : 'css');
+    css.type = 'text/css';
+    document.head.insertBefore(css, document.head.lastElementChild);
+
     openSocket(host);
     setInterval(doClock, 100);
     setInterval(fillBerths0, 100);
@@ -281,7 +294,7 @@ window.onload = function()
             connection.close();
         }
     }, 100);
-    
+
     (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
     (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
     m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
@@ -578,7 +591,7 @@ function getHeadcode(hc, berth)
                 mapping.expire = Date.now() + (json.err == null ? 3600000 + Math.round(Math.random()*900000) : 300000);
 
                 console.log(hc, '=>', json.hc, clockStr(new Date(mapping.expire)), berth);
-                
+
                 if (typeof berth == "object")
                     berth.update(true);
             });
@@ -631,6 +644,10 @@ function clockStr(date)
     }
 }
 
+function getImgExt()
+{
+    return canUseWebP ? '.webp' : '.png';
+}
 function arraysEqual(a, b) {
     if (a === b) return true;
     if (a == null || b == null) return false;
