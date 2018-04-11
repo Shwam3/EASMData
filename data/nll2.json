@@ -211,7 +211,7 @@
 ],
 "text":[
 {"posX":1133,"posY":266,"text":"ACTON\\nCENTRAL","url":"ACC","type":"LOC"},
-{"posX":1100,"posY":218,"text":"TO ACTON\\nMAIN LINE","type":"TEXT"},
+{"posX":1100,"posY":218,"text":"ACTON\\nMAIN LINE","url":"gwml2","type":"NAV"},
 {"posX":1248,"posY":358,"text":"ACTON WELLS JN","url":"ACWLJN","type":"LOC"},
 {"posX":793,"posY":282,"text":"GUNNERSBURY","url":"GUN","type":"LOC"},
 {"posX":873,"posY":262,"text":"KEW EAST JN","url":"KEWEJ","type":"LOC"},
