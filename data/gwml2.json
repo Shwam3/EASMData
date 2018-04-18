@@ -603,7 +603,7 @@
 {"posX":472,"posY":558,"text":"HANWELL BRIDGE SIDINGS","url":"HANWBSG","type":"LOC"},
 {"posX":489,"posY":622,"text":"HANWELL GOODS LOOPS","url":"HANWBLP","type":"LOC"},
 {"posX":1098,"posY":546,"text":"HP","type":"TEXT"},
-{"posX":194,"posY":714,"text":"SOUTHALL","url":"gwml2","type":"MNAV"},
+{"posX":194,"posY":714,"text":"SOUTHALL","url":"gwml3","type":"MNAV"},
 {"posX":386,"posY":794,"text":"SOUTHALL EAST JN","url":"STHALEJ","type":"LOC"},
 {"posX":1217,"posY":618,"text":"WEST EALING","url":"WEA","type":"LOC"},
 {"posX":990,"posY":510,"text":"*1","url":"WEALINP","type":"LOC"},
