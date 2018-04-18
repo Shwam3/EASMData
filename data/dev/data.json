@@ -30,6 +30,7 @@
 {"panelUID":"ctrl4","panelName":"Dollands Moor/Eurotunnel","panelDescription":"Westenhanger - France","areas":["CT","A2"]},
 {"panelUID":"mml1","panelName":"St. Pancras","panelDescription":"St. Pancras - Elstree","areas":["X0","WH"]},
 {"panelUID":"inverdeen","panelName":"Inverness Highlands","panelDescription":"Elgin - Nairn","areas":["IH"]},
+{"panelUID":"gwml4","panelName":"TVSC Slough","panelDescription":"Maidenhead - Iver","areas":["D6"]},
 {"panelUID":"gwml3","panelName":"TVSC Hayes","panelDescription":"Heathrow - Hanwell","areas":["D4","D6"]},
 {"panelUID":"gwml2","panelName":"TVSC Acton","panelDescription":"Southall - Acton","areas":["D3","D4","AW"]},
 {"panelUID":"gwml1","panelName":"TVSC Paddington","panelDescription":"Acton - Paddington","areas":["D3"]}
