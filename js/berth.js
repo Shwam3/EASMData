@@ -7,9 +7,10 @@ function Berth(jsonObj)
     this.description = jsonObj['description'];
     this.hasBorder = jsonObj['hasBorder'] || false;
     this.displayMainID = false;
+    this.lastDataValue = null;
     this.dataValue = '';
     this.allowLU = jsonObj['allowLU'] || false;
-    this.lastData = [];
+    this.lastData = null;
     this.data = [];
     this.forceUpdate = true;
 
@@ -31,8 +32,8 @@ function Berth(jsonObj)
 
     this.domElement = bthA;
 
-    $(bthP).mouseenter(function(e){$(e.target).css('background-color','#404040');});
-    $(bthP).mouseleave(function(e){$(e.target).css('background-color','transparent');});
+    bthP.addEventListener('mouseover', function(e){e.target.style.backgroundColor ='#404040';});
+    bthP.addEventListener('mouseleave', function(e){e.target.style.backgroundColor = 'transparent';});
 
     setData(this.dataIDs[0], getData(this.dataIDs[0]) || '');
     this.update();
@@ -55,7 +56,7 @@ Berth.prototype.update = function(force)
     if (this.displayMainID)
         this.dataValue = this.dataIDs[0].substring(2);
     
-    if (!arraysEqual(this.lastData, this.data) || this.dataValue != this.data[0] || this.forceUpdate)
+    if (!arraysEqual(this.lastData, this.data) || this.dataValue != this.lastDataValue || this.forceUpdate)
     {
         var bthA = this.domElement;
         var bthP = this.domElement.children[0];
@@ -102,6 +103,7 @@ Berth.prototype.update = function(force)
             bthA.style.backgroundColor = 'transparent';
         }
         this.lastData = this.data;
+        this.lastDataValue = this.dataValue;
         this.forceUpdate = false;
     }
 };

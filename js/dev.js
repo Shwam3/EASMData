@@ -4,12 +4,12 @@ var wait = 2000;
 var area_filter = {'hideUsed':true};
 function reload()
 {
-    $.get('/webclient/data/dev/data.json', {r:Date.now()}, function(json)
+    get('/webclient/data/dev/data.json?r='+Date.now(), function(json)
     {
         mapJSON = json;
         updatePageList(json);
         load();
-    }, 'json').fail(function(e) { console.error(e); });
+    }, function(e) { console.error(e); });
 }
 function flash(id)
 {
@@ -304,20 +304,20 @@ function filterArea(evt)
 function downloadPage(uid)
 {
     var pageNo = navIndex[uid] || 0;
-    $.get('/webclient/data/' + (dev ? 'dev/' : '') + uid + '.json', {r:Date.now()}, function(json)
+    get('/webclient/data/' + (dev ? 'dev/' : '') + uid + '.json?r='+Date.now(), function(json)
     {
         mapJSON[pageNo]['data'] = json;
         load();
         console.log('Downloaded main file (' + uid + '.json)');
-    }, 'json').fail(function(e)
+    }, function(e)
         {
-            console.error(JSON.stringify(e) || 'fail');
-            $.get('https://raw.githubusercontent.com/Shwam3/EASMData/master/data/' + (dev ? 'dev/' : '') + uid + '.json', function(json)
+            console.error(e || 'fail');
+            get('https://raw.githubusercontent.com/Shwam3/EASMData/master/data/' + (dev ? 'dev/' : '') + uid + '.json', function(json)
             {
                 mapJSON[pageNo]['data'] = json;
                 load();
                 console.log('Downloaded secondary file (' + uid + '.json)');
-            }, 'json');
+            });
         });
 }
 
@@ -333,6 +333,13 @@ window.onload = function()
     canUseWebP = !!(canv.getContext && canv.getContext('2d')) && canv.toDataURL('image/webp').indexOf('data:image/webp') == 0;
     console.log('Using ' + getImgExt());
 
+    var modal = document.getElementById('modal');
+    var modalClose = document.getElementById('modal-close');
+    modal.onclick = modalClose.onclick = function(e)
+    {
+        modal.style.display = 'none';
+    }
+    
     reload();
 
     var css = document.createElement('link');
@@ -367,11 +374,15 @@ function getAllHCs()
 }
 function hcSearch(evt)
 {
-   var e = prompt('pla:');
-   console.log(e);
+    var h = prompt('pla:');
 
-   evt.preventDefault();
-   return false;
+    if (h != null && h.match(/([0-9][A-Z][0-9]{2}|[0-9]{3}[A-Z])/))
+    {
+        console.log(h);
+    }
+
+    evt.preventDefault();
+    return false;
 }
 function Counter(samples)
 {

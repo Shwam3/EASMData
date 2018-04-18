@@ -29,6 +29,8 @@ var hashRead = false;
 var hcMap = {}; //JSON.parse(localStorage.getItem('hcMap')) || {};
 var active_areas = [];
 var canUseWebP = false;
+var searchData = [];
+
 var localeTime = false;
 try { new Date().toLocaleString('i'); }
 catch (e) { localeTime = e instanceof RangeError; }
@@ -216,7 +218,12 @@ function updatePageList(json)
             pnls[pnl].addEventListener('click', function()
             {
                 loadPage(this.getAttribute('data-id'));
-                $('#lineSelector').modal('hide');
+                document.getElementById('lineSelector').style.display = 'none'
+                var bd = document.getElementsByClassName('modal-backdrop')[0];
+                if (bd['remove'])
+                    bd.remove();
+                else
+                    bd.removeNode();
             });
         }
     }
@@ -253,28 +260,28 @@ window.onload = function()
     canUseWebP = !!(canv.getContext && canv.getContext('2d')) && canv.toDataURL('image/webp').indexOf('data:image/webp') == 0;
     console.log('Using ' + getImgExt());
 
-    $.get('/webclient/data/data.json', function(json)
+    get('/webclient/data/data.json', function(json)
     {
         var sl = '-=' + ((document.documentElement.clientWidth - 1854)/2);
-        $('#map').animate({ scrollLeft: sl });
+        //$('#map').animate({ scrollLeft: sl });
 
         updatePageList(json);
         mapJSON = json;
         load();
         console.log('Using main file (data.json)');
-    }, 'json').fail(function(e)
+    }, function(e)
         {
             console.log(e || 'fail');
-            $.get('https://raw.githubusercontent.com/Shwam3/EASMData/master/data/data.json', function(json)
+            get('https://raw.githubusercontent.com/Shwam3/EASMData/master/data/data.json', function(json)
             {
                 var sl = '-=' + ((document.documentElement.clientWidth - 1854)/2);
-                $('#map').animate({ scrollLeft: sl });
+                //$('#map').animate({ scrollLeft: sl });
 
                 updatePageList(json);
                 mapJSON = json;
                 load();
                 console.log('Using secondary file (data.json)');
-            }, 'json');
+            });
         });
 
     var css = document.createElement('link');
@@ -288,7 +295,7 @@ window.onload = function()
     setInterval(fillBerths0, 100);
     setInterval(function()
     {
-        if (connected && lastMessage > 0 && Date.now() - lastMessage > 75000)
+        if (connected && lastMessage > 0 && Date.now() - lastMessage > 60000)
         {
             console.log('Closing connection (timeout)');
             connection.close();
@@ -303,10 +310,10 @@ window.onload = function()
     ga('create', 'UA-72821900-1', 'auto');
     ga('send', 'pageview');
 
-    $('html,body').animate({ scrollTop: 0 }, 500);
+    //$('html,body').animate({ scrollTop: 0 }, 500);
 };
 
-$(document).keydown(function(e)
+document.addEventListener('keydown', function(e)
 {
     if (!(e.ctrlKey||e.metaKey||e.altKey||e.shiftKey))
     {
@@ -374,7 +381,7 @@ function openSocket(ip)
     };
     connection.onclose = connection.onclose || function oncls(e)
     {
-        if ((connection.readyState == WebSocket.CLOSED || !connection) && !disconn)
+        if (!disconn)
         {
             connected = false;
             connectError = false;
@@ -442,20 +449,20 @@ function openSocket(ip)
 function downloadPage(uid)
 {
     var pageNo = navIndex[uid] || 0;
-    $.get('/webclient/data/' + (dev ? 'dev/' : '') + uid + '.json', function(json)
+    get('/webclient/data/' + (dev ? 'dev/' : '') + uid + '.json', function(json)
     {
         mapJSON[pageNo]['data'] = json;
         load();
         console.log('Downloaded main file (' + uid + '.json)');
-    }, 'json').fail(function(e)
+    }, function(e)
         {
-            console.error(JSON.stringify(e) || 'fail');
-            $.get('https://raw.githubusercontent.com/Shwam3/EASMData/master/data/' + (dev ? 'dev/' : '') + uid + '.json', function(json)
+            console.error(e || 'fail');
+            get('https://raw.githubusercontent.com/Shwam3/EASMData/master/data/' + (dev ? 'dev/' : '') + uid + '.json', function(json)
             {
                 mapJSON[pageNo]['data'] = json;
                 load();
                 console.log('Downloaded secondary file (' + uid + '.json)');
-            }, 'json');
+            });
         });
 }
 
@@ -465,15 +472,15 @@ function doClock()
 }
 function obscureCheck(changed)
 {
-    var obscurer = $('#obscure');
-    var obsHidden = obscurer[0].style.display == 'none';
+    var obscurer = document.getElementById('obscure');
+    var obsHidden = obscurer.style.display == 'none';
     if (loaded && (connected || disconn))
     {
-        if (!obsHidden) { changed ? obscurer.fadeOut() : obscurer.hide(); }
+        if (!obsHidden) { changed ? fade(obscurer, true) : obscurer.style.display = 'none'; }
     }
     else
     {
-        if (obsHidden) { changed ? obscurer.fadeIn() : obscurer.show(); }
+        if (obsHidden) { changed ? fade(obscurer, false) : obscurer.style.display = ''; }
     }
 }
 
@@ -585,8 +592,9 @@ function getHeadcode(hc, berth)
         {
             mapping.init = true;
             mapping.expire = Date.now()+60000;
-            $.get('/webclient/get_hc.php', {hc: hc, td: td}, function(json)
+            get('/webclient/get_hc.php?hc='+hc+'&td='+td, function(json)
             {
+                json = JSON.parse(json);
                 mapping.hc = json.hc;
                 mapping.expire = Date.now() + (json.err == null ? 3600000 + Math.round(Math.random()*900000) : 300000);
 
@@ -644,6 +652,35 @@ function clockStr(date)
     }
 }
 
+function get(url, succ, fail)
+{
+    var request = new XMLHttpRequest();
+    request.open('GET', url, true);
+    var json = url.split('?')[0].endsWith('.json')
+    //if (url.split('?')[0].endsWith('.json'))
+    //    request.responseType = 'json';
+
+    request.onload = function()
+    {
+        try
+        {
+            if (request.status >= 200 && request.status < 400)
+                succ(json ? JSON.parse(request.responseText) : request.responseText);
+            else if (fail)
+                fail();
+        }
+        catch(e)
+        {
+            if (fail)
+                fail(e);
+        }
+    };
+
+    if (fail)
+        request.onerror = fail;
+
+    request.send();
+}
 function getImgExt()
 {
     return canUseWebP ? '.webp' : '.png';
@@ -657,7 +694,31 @@ function arraysEqual(a, b) {
         if (a[i] !== b[i]) return false;
     return true;
 }
+function fade(el, out)
+{
+    el.style.opacity = out ? 1 : 0;
+
+    var last = +new Date();
+    var tick = function() {
+        el.style.opacity = (out ? -1 : 1) * +el.style.opacity + (new Date() - last) / 400;
+        last = +new Date();
+
+        if (out ? +el.style.opacity > 0 : +el.style.opacity < 1)
+            (window.requestAnimationFrame && requestAnimationFrame(tick)) || setTimeout(tick, 16);
+    };
+
+    tick();
+}
 function escapeHTML(string)
 {
     return string.match(/&(amp|lt|gt|quot);/) ? string : string.replace('&','&amp;').replace('<','&lt;').replace('>','&gt;').replace('"','&quot;');
+}
+if (!String.prototype.endsWith)
+{
+	String.prototype.endsWith = function(search, this_len) {
+		if (this_len === undefined || this_len > this.length) {
+			this_len = this.length;
+		}
+		return this.substring(this_len - search.length, this_len) === search;
+	};
 }
