@@ -348,7 +348,7 @@
 {"posX":1388,"posY":598,"description":"T6256","dataID":"D436:8","type":"LEFT","routes":["D426:8"],"isShunt":true},
 {"posX":1336,"posY":654,"description":"T6257","dataID":"D449:7","type":"RIGHT","routes":["D448:6","D448:7","D448:8"],"isShunt":true},
 {"posX":1292,"posY":694,"description":"T6258","dataID":"D449:8","type":"LEFT","routes":["D449:1","D449:2","D449:3"],"isShunt":true},
-{"posX":1240,"posY":654,"description":"T6259","dataID":"D4PRED","type":"RIGHT","isShunt":true}
+{"posX":1240,"posY":654,"description":"T6259 LOS","dataID":"D4PRED","type":"RIGHT","isShunt":true}
 ],
 "points":[
 {"posX":1642,"posY":218,"description":"SN8170A Nrm","dataIDs":["D400:8","D401:4","D401:8","D402:3","D403:6","D40F:6","D40F:7","D410:4","D410:5","D410:8","D412:1"],"type0":"NONE","type1":"NHzLfUp"},
