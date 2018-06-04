@@ -350,7 +350,8 @@
 {"posX":1236,"posY":441,"description":"TDTD","dataIDs":["D624!5"],"type":"TRACKC","width":"54","height":"2"},
 {"posX":1236,"posY":417,"description":"TDTE","dataIDs":["D624!6"],"type":"TRACKC","width":"54","height":"2"},
 {"posX":1236,"posY":393,"description":"TDTF","dataIDs":["D624!7"],"type":"TRACKC","width":"54","height":"2"},
-{"posX":1316,"posY":609,"description":"TDTP","dataIDs":["D623!5"],"type":"TRACKC","width":"54","height":"2"}
+{"posX":1316,"posY":609,"description":"TDTP","dataIDs":["D623!5"],"type":"TRACKC","width":"54","height":"2"},
+{"posX":426,"posY":577,"description":"TEZM","dataIDs":["D155!6"],"type":"TRACKC","width":"102","height":"2"}
 ],
 "points":[
 {"posX":1562,"posY":218,"description":"8285 Nrm","dataIDs":["D60C:4"],"type1":"NHzLfUp"},

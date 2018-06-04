@@ -567,7 +567,7 @@
 {"posX":96,"posY":186,"text":"WEST\\nDRAYTON ARC","url":"WDRYARC","type":"LOC"},
 
 {"posX":948,"posY":478,"text":"<- HEATHROW TUNNELS","type":"TEXT"},
-{"posX":602,"posY":474,"text":"HEATHROW TERMINALS 1 &amp; 3","url":"HXX","type":"LOC"},
+{"posX":602,"posY":474,"text":"HEATHROW TERMINALS 2 &amp; 3","url":"HXX","type":"LOC"},
 {"posX":301,"posY":674,"text":"HEATHROW TERMINAL 4","url":"HAF","type":"LOC"},
 {"posX":93,"posY":442,"text":"HEATHROW TERMINAL 5","url":"HWV","type":"LOC"},
 {"posX":1055,"posY":602,"text":"HEATHROW\\nTUNNEL JN","url":"HTRWTJN","type":"LOC"},
