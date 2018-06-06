@@ -686,12 +686,12 @@
 {"posX":394,"posY":38,"text":"*1: READING WEST JN","url":"REDGWJN","type":"LOC"},
 {"posX":221,"posY":106,"text":"SCOURS\\nLANE JN","url":"RDNGSLJ","type":"LOC"},
 {"posX":142,"posY":650,"text":"SOUTHCOTE JN","url":"SCOTEJN","type":"LOC"},
-{"posX":42,"posY":472,"text":"< TO THEALE","url":"bh1","type":"NAV"},
+{"posX":42,"posY":472,"text":"< TO THEALE","url":"gwml5","type":"NAV"},
 {"posX":1746,"posY":250,"text":"TWYFORD","url":"gwml4","type":"MNAV"},
 {"posX":1682,"posY":574,"text":"TO WOKINGHAM","type":"TEXT"},
 
 {"posX":653,"posY":810,"text":"CHOLSEY","url":"CHO","type":"LOC"},
-{"posX":410,"posY":730,"text":"DIDCOT","url":"gwml6","type":"MNAV"},
+{"posX":410,"posY":730,"text":"DIDCOT","url":"gwml5","type":"MNAV"},
 {"posX":831,"posY":810,"text":"GORING &amp;\\nSTREATLEY","url":"GOR","type":"LOC"},
 {"posX":1020,"posY":658,"text":"PANGBOURBE","url":"PAN","type":"LOC"},
 {"posX":1183,"posY":810,"text":"TILEHURST","url":"TLH","type":"LOC"}

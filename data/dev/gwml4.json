@@ -1,5 +1,5 @@
 {
-"panelUID":"gwml4","panelName":"TVSC Slough","panelDescription":"Maidenhead - Iver","areas":["D6","D1"],
+"panelUID":"gwml4","panelName":"TVSC Slough","panelDescription":"Twyford - Iver","areas":["D6","D1"],
 "berths":[
 {"posX":1594,"posY":282,"dataIDs":["D60476"]},
 {"posX":1594,"posY":218,"dataIDs":["D60478"]},
