@@ -35,6 +35,7 @@ var localeTime = false;
 try { new Date().toLocaleString('i'); }
 catch (e) { localeTime = e instanceof RangeError; }
 
+var snowflakes = new Date().getMonth() == 11;
 var snowflakesActive = false;
 
 if (typeof String.prototype.replaceAll !== 'function')
@@ -61,14 +62,17 @@ function load()
 
     window.onhashchange = window.onhashchange || function()
     {
-      var newPage = parseInt(document.location.hash.substring(1));
-      if (!navIndex || navIndex == {})
-        return
-      if (!isNaN(navIndex[document.location.hash.substring(1)]))
-        newPage = navIndex[document.location.hash.substring(1)];
+        var newPage = parseInt(document.location.hash.substring(1));
+        if (!navIndex || navIndex == {})
+            return
+        if (!isNaN(navIndex[document.location.hash.substring(1)]))
+            newPage = navIndex[document.location.hash.substring(1)];
 
-        hashRead = false;
-        loadPage(newPage);
+        if (newPage != page)
+        {
+            hashRead = false;
+            loadPage(newPage);
+        }
     }
 
     if (!hashRead)
@@ -417,23 +421,24 @@ function openSocket(ip)
             lastTimestamp = parseInt(jsonMsg.timestamp);
         }
 
-        var tsDate = new Date(lastTimestamp);
-        if (tsDate.getDate() == 25 && tsDate.getMonth() == 11)
+        if (snowflakes)
         {
-            if (!snowflakesActive)
-                generateSnowflakes();
+            var tsDate = new Date(lastTimestamp);
+            if (tsDate.getDate() == 25 && tsDate.getMonth() == 11)
+            {
+                if (!snowflakesActive)
+                    generateSnowflakes();
+            }
+            else if (snowflakesActive)
+                removeSnowflakes();
         }
-        else if (snowflakesActive)
-            removeSnowflakes();
 
         if (jsonMsg.type == 'SEND_ALL')
-        {
             for (var id in data)
-                setData(id, '');
-        }
+                data[id] = '';
 
-        for (var key in jsonMsgData)
-            setData(key, jsonMsgData[key].trim());
+        for (var id in jsonMsgData)
+            data[id] = jsonMsgData[id].trim();
 
         fillBerths();
 
@@ -665,19 +670,19 @@ function get(url, succ, fail)
         try
         {
             if (request.status >= 200 && request.status < 400)
-                succ(json ? JSON.parse(request.responseText) : request.responseText);
+                setTimeout(() => succ(json ? JSON.parse(request.responseText) : request.responseText));
             else if (fail)
-                fail();
+                setTimeout(() => fail());
         }
         catch(e)
         {
             if (fail)
-                fail(e);
+                setTimeout(() => fail(e));
         }
     };
 
     if (fail)
-        request.onerror = fail;
+        request.onerror = () => setTimeout(() => fail);
 
     request.send();
 }

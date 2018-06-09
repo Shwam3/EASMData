@@ -129,8 +129,11 @@ Signal.prototype.update = function()
         }
     }
     
-    this.domElement.className = this.css + ' ' + this.type + '_' + this.mainAspect + '_' + (this.routeSet ? 'SET' : 'UNSET');
-    this.domElement.title = displayOpts.IDs ? this.description + '\naspect: ' + this.dataID + '\nroute: ' + this.routeIDs.join(', ') : this.description;
+    var newC = this.css + ' ' + this.type + '_' + this.mainAspect + '_' + (this.routeSet ? 'SET' : 'UNSET');
+    var newT = displayOpts.IDs ? this.description + '\naspect: ' + this.dataID + '\nroute: ' + this.routeIDs.join(', ') : this.description;
+
+    if (this.domElement.className != newC) this.domElement.className = newC;
+    if (this.domElement.title != newT) this.domElement.title = newT;
 };
 
 Signal.prototype.display = function(disp)

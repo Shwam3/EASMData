@@ -59,6 +59,6 @@ function Text(jsonObj)
 
 Text.prototype.display = function(disp)
 {
-    if (disp != this.domElement.style.display == '')
+    if (disp != (this.domElement.style.display == ''))
         this.domElement.style.display = disp ? '' : 'none';
 };

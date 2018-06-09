@@ -171,10 +171,7 @@ function controllerSpeed()
 }
 doClock = function()
 {
-    var date = new Date(isReplaying ? (replayDate+replayTime) : Date.now());
-    document.getElementById('clock').innerHTML = (date.getHours() < 10 ? '0' + date.getHours() : date.getHours()) +
-        ':' + (date.getMinutes() < 10 ? '0' + date.getMinutes() : date.getMinutes()) +
-        ':' + (date.getSeconds() < 10 ? '0' + date.getSeconds() : date.getSeconds());
+    document.getElementById('clock').innerHTML = clockStr(new Date(isReplaying ? (replayDate+replayTime) : Date.now()));
 }
 var oldRecon = reconnect;
 reconnect = function()

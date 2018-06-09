@@ -38,7 +38,7 @@ function next(id)
 {
     var area = id.substring(0,2);
     var addr = id.substring(2,4);
-    var ind = parseInt(id.charAt(5)) + 1;
+    var ind = parseInt(id[5]) + 1;
     if (ind == 9)
     {
         ind = 1;
@@ -60,22 +60,15 @@ function list(f,l)
 function largestID(area)
 {
     var exists = false;
+    var largest = 0;
     for (var k in data)
-        if (data[k].indexOf(area))
+        if (k[4] == ':' && k.indexOf(area) == 0)
         {
             exists = true;
-            break;
+            var id = parseInt(k.substring(2,4),16);
+            if (id > largest)
+                largest = id;
         }
-
-    var largest = 0;
-    if (exists)
-        for (var k in data)
-            if (k.indexOf(':') == 4 && k.indexOf(area) == 0)
-            {
-                var id = parseInt(k.substring(2,4),16);
-                if (id > largest)
-                    largest = id;
-            }
     return (area + (largest < 16 ? '0':'') + largest.toString(16) + (exists ? ':8' : ':1')).toUpperCase();
 }
 function checkboxEvt(e)
@@ -113,6 +106,9 @@ fillBerths0 = function()
 }
 var areasA = ['A2','AW','CA','CC','CT','D3','EN','IH','K2','KX','LS','NJ','NX','PB','Q1','Q2','SO','SX','UR','U2','U3','WC','WG','WH','WJ','WY','WS','X0','XX'];
 var areasS = ['A2','AW','CA','CC','CT','D3','EN','IH','K2',     'LS','NJ','NX',     'Q1','Q2',     'SX','UR','U2','U3',          'WH','WJ',          'X0'     ];
+if (localStorage.getItem('areasA') != null) areasA = localStorage.getItem('areasA').split(',');
+if (localStorage.getItem('areasS') != null) areasS = localStorage.getItem('areasS').split(',');
+
 function devPage()
 {
     var map = document.getElementById('map');
@@ -205,7 +201,7 @@ function devPage()
     {
         if (area_filter[id.substring(0, 2)])
         {
-            if (id.indexOf(':') < 0 || usedIDs.indexOf(id) >= 0)
+            if (id[4] != ':' || usedIDs.indexOf(id) >= 0)
             {
                 if (!leftGap)
                 {
@@ -247,15 +243,14 @@ function devPage()
     lastArea = undefined;
     var keys = Object.keys(data).sort();
     for (key of keys)
-        if (areasA.indexOf(key.substring(0,2)) >= 0 && key.indexOf(':') < 0 && key.length == 6 )
+        if (key.length == 6 && key[4] != ':' && areasA.indexOf(key.substring(0,2)) >= 0)
             ids.push(key);
 
     if (area_filter[areasA[0]])
         text.push(new Text({type:'TEXT',posX:x,posY:y-14,text:areasA[0]}));
     for (id of ids)
     {
-        if (id.indexOf(':') >= 0
-                || id.indexOf('!') >= 0
+        if (id[4] == ':' || id[4] == '!'
                 || id.substring(2, 6) == 'PRED'
                 || id.substring(2, 6) == 'PGRN'
                 || (usedIDs.indexOf(id) >= 0 && hideUsed))
@@ -346,7 +341,6 @@ window.onload = function()
     css.rel = 'stylesheet';
     css.href = '/webclient/sprites.' + (canUseWebP ? 'webp.css' : 'css');
     css.type = 'text/css';
-    var csss = document.getElementsByTagName('link');
     document.head.insertBefore(css, document.head.lastElementChild);
 
     openSocket(host);
