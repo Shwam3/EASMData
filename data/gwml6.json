@@ -471,7 +471,7 @@
 
 {"posX":325,"posY":646,"text":"BOURTON","url":"SDONBOU","type":"LOC"},
 {"posX":1117,"posY":678,"text":"CHALLOW","url":"CHALLOW","type":"LOC"},
-{"posX":94,"posY":602,"text":"SWINDON","url":"gwml7","type":"MNAV"},
+{"posX":94,"posY":602,"text":"SWINDON","url":"gwml6","type":"MNAV"},
 {"posX":783,"posY":646,"text":"UFFINGTON","url":"UFNGTN","type":"LOC"},
 {"posX":1510,"posY":678,"text":"WANTAGE ROAD","url":"WANTRD","type":"LOC"}
 ]

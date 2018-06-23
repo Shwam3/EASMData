@@ -691,7 +691,7 @@
 {"posX":1682,"posY":574,"text":"TO WOKINGHAM","type":"TEXT"},
 
 {"posX":653,"posY":810,"text":"CHOLSEY","url":"CHO","type":"LOC"},
-{"posX":410,"posY":730,"text":"DIDCOT","url":"gwml5","type":"MNAV"},
+{"posX":410,"posY":730,"text":"DIDCOT","url":"gwml6","type":"MNAV"},
 {"posX":831,"posY":810,"text":"GORING &amp;\\nSTREATLEY","url":"GOR","type":"LOC"},
 {"posX":1020,"posY":658,"text":"PANGBOURBE","url":"PAN","type":"LOC"},
 {"posX":1183,"posY":810,"text":"TILEHURST","url":"TLH","type":"LOC"}
