@@ -18,10 +18,15 @@ function Text(jsonObj)
     txt.style.left = this.posX + 'px';
     txt.style.top  = this.posY + 'px';
     txt.innerHTML = this.text;
-    if (this.type != 'TEXT')
+    if (this.type != 'TEXT' && this.type != 'MTEXT')
     {
         txt.target = '_blank';
         txt.rel = 'nofollow noreferrer noopener';
+    }
+    else if (this.type == 'MTEXT')
+    {
+        txt.className = 'textLarge';
+        txt.className += ' backText';
     }
     else
         txt.className += ' backText';

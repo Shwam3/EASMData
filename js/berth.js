@@ -45,12 +45,16 @@ Berth.prototype.update = function(force)
     this.forceUpdate = this.forceUpdate || (force == true);
     this.data = [];
     this.dataValue = '';
+    var currId = this.dataIDs[0];
     for (var i = 0; i < this.dataIDs.length; i++)
     {
         var d = getData(this.dataIDs[i]);
         this.data[i] = d;
         if (this.dataValue == '')
+        {
             this.dataValue = d;
+            currId = this.dataIDs[i];
+        }
     }
 
     if (this.displayMainID)
@@ -69,7 +73,7 @@ Berth.prototype.update = function(force)
         if (!this.displayMainID && this.dataValue.match(/([0-9][A-Z][0-9]{2}|[0-9]{3}[A-Z])/))
         {
             if (displayOpts.railcam)
-                bthA.href = 'http://railcam.co.uk/hc/RCTrainInfo.php?r=S&hc=' + this.dataValue + '&td=' + this.dataIDs[0].substring(0,2);
+                bthA.href = 'http://railcam.co.uk/hc/RCTrainInfo.php?r=S&hc=' + this.dataValue + '&td=' + currId.substring(0,2);
             else
                 bthA.href = 'http://www.realtimetrains.co.uk/search/advancedhandler?type=advanced&map=true&search=' + this.dataValue;
             bthA.rel = 'nofollow noreferrer noopener';

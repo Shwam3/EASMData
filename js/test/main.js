@@ -9,7 +9,13 @@ var lastTimestamp = -1;
 var needsFilling = true;
 var data = {};
 var navIndex = {};
-var displayOpts = {'IDs': false, 'berths': true, 'points': true, 'signals': true, 'text': true, 'dataText': true, 'trackC': true, 'railcam': !!localStorage.getItem('l')};
+var displayIDs = false;
+var displayBerths = true;
+var displayPoints = true;
+var displaySignals = true;
+var displayText = true;
+var displayDataText = true;
+var displayTrackC = true;
 var berths = [];
 var signals = [];
 var points = [];
@@ -17,6 +23,7 @@ var latches = [];
 var dataText = [];
 var text = [];
 var trackc = [];
+var statusElem = undefined;
 var mapJSON;
 var maxPageId = 1;
 var loaded = false;
@@ -25,6 +32,9 @@ var connectError = false;
 var defaultInner = document.getElementById('map').innerHTML;
 var htmlIDToObj = {};
 var hashRead = false;
+var hideImages = false;
+var overrideImages = false;
+var useRailcam = !!localStorage.getItem('l');
 
 var snowflakesActive = false;
 
@@ -37,10 +47,13 @@ if (typeof String.prototype.replaceAll !== 'function')
 }
 
 function loadPage(newPage)
-{
+{    
     obscureCheck(false);
 
-    page = parseInt(newPage);
+    if (navIndex.hasOwnProperty(newPage))
+        page = navIndex[newPage];
+    else
+        page = parseInt(newPage);
     load();
 }
 
@@ -49,7 +62,7 @@ function load()
     document.getElementById('map').style.cursor = 'wait';
 
     obscureCheck(false);
-
+    
     window.onhashchange = window.onhashchange || function()
     {
       var newPage = parseInt(document.location.hash.substring(1));
@@ -61,43 +74,41 @@ function load()
         hashRead = false;
         loadPage(newPage);
     }
-
-    if (!hashRead)
+    
+    if (!hashRead && location.hash != '' && location.hash != '#' || navIndex.hasOwnProperty(location.hash.substring(1)))
     {
-        if (location.hash != '' && location.hash != '#' || location.hash.substring(1) in navIndex)
+        var hashPage = location.hash.substring(1);
+        page = isNaN(hashPage) && navIndex.hasOwnProperty(hashPage) ? navIndex[hashPage] : (+hashPage || 0);
+        hashRead = true;
+    }
+    else if (!hashRead)
+    {
+        var lStorePage = localStorage.getItem('page');
+        if (isNaN(lStorePage))
         {
-            var hashPage = location.hash.substring(1);
-            page = isNaN(hashPage) && navIndex.hasOwnProperty(hashPage) ? navIndex[hashPage] : (+hashPage || 0);
-            hashRead = true;
+            if (navIndex.hasOwnProperty(lStorePage))
+                page = navIndex[lStorePage];
+            else
+                page = 0;
         }
         else
-        {
-            var lStorePage = localStorage.getItem('page');
-            if (isNaN(lStorePage))
-            {
-                if (lStorePage in navIndex)
-                    page = navIndex[lStorePage];
-                else
-                    page = 0;
-            }
-            else
-                page = +lStorePage;
-
-            hashRead = true;
-        }
+            page = +lStorePage;
+        
+        hashRead = true;
     }
     if (page > maxPageId)
         page = 0;
     else if (page < 0)
         page = maxPageId;
-
+    
     if (page == undefined || page == null || page == NaN)
         page = 0;
-
+    
     var pageData = mapJSON[page];
-
+    document.location.hash = pageData.panelUID;
+    
     document.getElementById('pageSelector').value = page;
-
+    
     htmlID = 0;
     if (dev && page == maxPageId)
     {
@@ -107,13 +118,13 @@ function load()
     }
     document.getElementById('map').style.overflowY = null;
     localStorage.setItem('page', pageData.panelUID);
-
-    if (!('data' in pageData) || pageData.data == {})
+    
+    if (!pageData.hasOwnProperty('data') || pageData.data == {})
     {
         downloadPage(pageData.panelUID);
         return;
     }
-
+    
     var mapBerths = pageData.data.berths;
     var mapSignals = pageData.data.signals;
     var mapPoints = pageData.data.points;
@@ -126,7 +137,7 @@ function load()
 
     htmlIDToObj = {};
     map.innerHTML = defaultInner;
-    document.getElementById('mapImage').src = '/webclient/images/maps/'+pageData.data.panelUID.replace('+','%2B')+'.png?r=' + getRnd();
+    document.getElementById('mapImage').src = '/webclient/images/maps/'+pageData.panelUID.replace('+','%2B')+'.png?r=' + getRnd();
     document.getElementById('mapImage').draggable = false;
     berths = [];
     signals = [];
@@ -135,11 +146,11 @@ function load()
     dataText = [];
     text = [];
     trackc = [];
-
+    statusElem = undefined;
+    
     for (var k in mapBerths)
     {
-        if (!dev && mapBerths[k]['isDev'])
-            continue;
+        if (!dev && mapBerths[k]['isDev']) continue;
         berths.push(new Berth(mapBerths[k]));
     }
 
@@ -155,23 +166,23 @@ function load()
             latches.push(new Latch(mapSignals[k]));
         else if (mapSignals[k].type == 'TRACKC')
             trackc.push(new TrackCircuit(mapSignals[k]));
+        else if (mapSignals[k].type == 'SYSMSG')
+            statusElem = new Status(mapSignals[k]);
     }
 
     for (var k in mapPoints)
     {
-        if (!dev && mapPoints[k]['isDev'])
-            continue;
+        if (!dev && mapPoints[k]['isDev']) continue;
         points.push(new Points(mapPoints[k]))
     }
-
+    
     for (var k in mapText)
     {
-        if (!dev && mapText[k]['isDev'])
-            continue;
+        if (!dev && mapText[k]['isDev']) continue;
         text.push(new Text(mapText[k]));
     }
     fillBerths();
-
+    
     document.body.scrollTop = document.documentElement.scrollTop = 0;
     map.style.cursor = 'crosshair';
     loaded = true;
@@ -188,18 +199,18 @@ function updatePageList(json)
         for (var p in json)
         {
             var pageData = json[p];
-            navIndex[pageData.panelUID] = parseInt(p);
+            navIndex[pageData.panelUID] = p;
             createPanel(list, p, pageData);
             p++;
         }
         maxPageId = list.children.length-1;
-
+        
         if (dev)
         {
             navIndex['dev'] = maxPageId+1;
             createPanel(list, ++maxPageId, {panelName:'Dev page',panelDescription:'',panelUID:'blank'});
         }
-
+        
         var pnls = document.getElementsByClassName('panel');
         for (i = 0; i < pnls.length; i++)
         {
@@ -221,7 +232,7 @@ function createPanel(addTo, index, pageData)
         + (+index+1) + '. ' + pageData.panelName + '</div><div class="panel-body panel-img"><img src="/webclient/images/maps/previews/' + pageData.panelUID + '.png"><br></div>'
         + '<div class="panel-footer"><div id="desc">' + pageData.panelDescription + '</div></div></div>';
     addTo.appendChild(div);
-
+    
     if (index+1 % 2 == 0)
     {
         var cfix = document.createElement('div');
@@ -243,7 +254,7 @@ window.onload = function()
         updatePageList(json);
         mapJSON = json;
         load();
-        console.log('Using main file (data.json)');
+        console.log('Using main file');
     }, 'json').fail(function(e)
         {
             console.log(e || 'fail');
@@ -255,9 +266,10 @@ window.onload = function()
                 updatePageList(json);
                 mapJSON = json;
                 load();
-                console.log('Using secondary file (data.json)');
+                console.log('Using fallback map file');
             }, 'json');
         });
+        
 
     openSocket('shwam3.signalmaps.co.uk');
     setInterval(doClock, 100);
@@ -275,20 +287,40 @@ $(document).keydown(function(e)
     {
         switch(e.which)
         {
-            case 37: loadPage(--page); break; // left arrow
-            case 39: loadPage(++page); break; // right arrow
-            case 66: displayOpts.berths   = !displayOpts.berths; break; // b
-            case 67: displayOpts.trackC   = !displayOpts.trackC; break; // c
-            case 68: displayOpts.IDs      = !displayOpts.IDs; break; // d
-            case 76: displayOpts.railcam  = !displayOpts.railcam; localStorage.setItem('l', displayOpts.railcam); break; // l
-            case 80: displayOpts.points   = !displayOpts.points; break; // p
-            case 82: displayOpts.dataText = !displayOpts.dataText; break; // r
-            case 83: displayOpts.signals  = !displayOpts.signals; break; // s
-            case 84: displayOpts.text     = !displayOpts.text; break; // t
+            case 37: loadPage(--page); break;
+            case 39: loadPage(++page); break;
+            case 66: displayBerths = !displayBerths; break;
+            case 67: displayTrackC = !displayTrackC; break;
+            case 68: displayIDs = !displayIDs; break;
+            case 80: displayPoints = !displayPoints; break;
+            case 82: displayDataText = !displayDataText; break;
+            case 83: displaySignals = !displaySignals; break;
+            case 84: displayText = !displayText; break;
         }
 
-        if ([67,66,68,76,80,82,83,84].indexOf(e.which) >= 0)
-            fillBerths();
+        if ([67,66,68,80,82,83,84].indexOf(e.which) >= 0)
+        {
+            for (var b in berths)
+            {
+                berths[b].display(displayBerths);
+                berths[b].displayID(displayIDs);
+            }
+            for (var s in signals)
+                signals[s].display(displaySignals);
+            for (var p in points)
+            {
+                points[p].display(displayPoints);
+                points[p].displayID(displayIDs);
+            }
+            for (var l in latches)
+                latches[l].display(displaySignals);
+            for (var t in text)
+                text[t].display(displayText);
+            for (var d in dataText)
+                dataText[d].display(displayDataText);
+            for (var c in trackc)
+                trackc[c].display(displayTrackC);
+        }
     }
 });
 
@@ -300,6 +332,7 @@ function closeSocket(clear)
     connection.close();
     if (clear == true)
         data = {};
+    data['XXMOTD'] = 'Disconnected';
     fillBerths();
 }
 function reconnect()
@@ -307,13 +340,14 @@ function reconnect()
     attempt = -1;
     if (connection && (connection.readyState == connection.OPEN || connection.readyState == connection.CONNECTING))
         connection.close();
-
+        
     openSocket('shwam3.signalmaps.co.uk');
 }
 function openSocket(ip)
 {
+    $('p.motd')[0].style.animation = '';
     connected = false;
-    lastMessage = -1;
+    lastMessage = 0;
     obscureCheck(true);
     attempt++;
     fillBerths();
@@ -332,7 +366,6 @@ function openSocket(ip)
         {
             connected = false;
             connectError = false;
-            lastMessage = -1;
             obscureCheck(true);
             console.warn('WebSocket Closed reopening...');
 
@@ -352,18 +385,15 @@ function openSocket(ip)
     {
         var jsonMsg = JSON.parse(e.data).Message;
         var jsonMsgData = jsonMsg.message;
-
+        
         var timestamp = performance.now() + performance.timing.navigationStart;
-
+        
         if (window['messageRate'])
             messageRate.addTick(timestamp - lastMessage);
-
-        if (timestamp > lastMessage)
-        {
-            lastMessage = timestamp;
-            lastTimestamp = parseInt(jsonMsg.timestamp);
-        }
-
+        
+        lastMessage = timestamp;
+        lastTimestamp = parseInt(jsonMsg.timestamp);
+        
         /*var tsDate = new Date(lastTimestamp);
         if (tsDate.getDate() == 25 && tsDate.getMonth() == 11)
         {
@@ -380,7 +410,7 @@ function openSocket(ip)
         }
 
         for (var key in jsonMsgData)
-            setData(key, jsonMsgData[key].trim());
+            setData(key, jsonMsgData[key]);
 
         fillBerths();
 
@@ -397,7 +427,7 @@ function downloadPage(uid)
     {
         mapJSON[pageNo]['data'] = json;
         load();
-        console.log('Downloading main file (' + uid + '.json)');
+        console.log('Using main file (' + uid + '.json)');
     }, 'json').fail(function(e)
         {
             console.error(JSON.stringify(e) || 'fail');
@@ -405,7 +435,7 @@ function downloadPage(uid)
             {
                 mapJSON[pageNo]['data'] = json;
                 load();
-                console.log('Downloading secondary file (' + uid + '.json)');
+                console.log('Using fallback file (' + uid + '.json)');
             }, 'json');
         });
 }
@@ -439,29 +469,29 @@ function fillBerths0()
 {
     if (needsFilling == false)
         return;
+    
     needsFilling = false;
-
     for (var b in berths)
     {
-        berths[b].display(displayOpts.berths);
-        berths[b].displayID(displayOpts.IDs);
+        berths[b].display(displayBerths);
+        berths[b].displayID(displayIDs);
     }
     for (var s in signals)
-        signals[s].display(displayOpts.signals);
+        signals[s].display(displaySignals);
     for (var p in points)
     {
-        points[p].display(displayOpts.points);
-        points[p].displayID(displayOpts.IDs);
+        points[p].display(displayPoints);
+        points[p].displayID(displayIDs);
     }
     for (var l in latches)
-        latches[l].display(displayOpts.signals);
+        latches[l].display(displaySignals);
     for (var t in text)
-        text[t].display(displayOpts.text);
+        text[t].display(displayText);
     for (var d in dataText)
-        dataText[d].display(displayOpts.dataText);
+        dataText[d].display(displayDataText);
     for (var c in trackc)
-        trackc[c].display(displayOpts.trackC);
-
+        trackc[c].display(displayTrackC);
+    
     for (var b in berths)
         berths[b].update();
     for (var s in signals)
@@ -474,26 +504,20 @@ function fillBerths0()
         dataText[d].update();
     for (var c in trackc)
         trackc[c].update();
-
-    if (lastMessage < 0 || !connected)
+    if (statusElem)
+        statusElem.update();
+    
+    document.getElementById('motd').innerHTML = data['XXMOTD'];
+    
+    if (lastMessage <= 0 || !connected)
     {
         document.getElementById('time').innerHTML = 'Last Update: Not Connected (' + attempt + ')'
     }
     else
     {
         var date = new Date(lastMessage);
-        var newTime = 'Last Update: ';
-        try
-        {
-            newTime += date.toLocaleString('en-GB', {hour: '2-digit', hour12: false, timeZone: 'Europe/London', minute: '2-digit', second: '2-digit' });
-        }
-        catch(e)
-        {
-            newTime += (date.getHours() < 10 ? '0' + date.getHours() : date.getHours()) + ':' +
-                (date.getMinutes() < 10 ? '0' + date.getMinutes() : date.getMinutes()) + ':' +
-                (date.getSeconds() < 10 ? '0' + date.getSeconds() : date.getSeconds());
-        }
-
+        var newTime = 'Last Update: ' + date.toLocaleString('en-GB', {hour: '2-digit', hour12: false, timeZone: 'Europe/London', minute: '2-digit', second: '2-digit' });
+            
         document.getElementById('time').innerHTML = newTime;
     }
 }
@@ -506,7 +530,7 @@ function pageSelected()
 
 function getNextID()
 {
-    return (++htmlID).toString();
+    return ++htmlID + '';
 }
 
 function getRnd()

@@ -68,20 +68,19 @@ function loadReplay2()
         var initData = JSON.parse(initContents).TDData;
         closeSocket(true);
         data = initData;
-        data['XXMOTD'] = data['XXMOTD'] || 'Replaying ' + initFile.name.substring(0,8);
         fillBerths();
 
         replayData = [];
         var logSplit = logContents.split('\n');
         for (line in logSplit)
         {
-            if (!logSplit[line] || logSplit[line].length < 43)
+            if (!logSplit[line] || logSplit[line].length < 30)
                 continue;
 
             var replayEvent = {};
             var lineTimeBits = logSplit[line].substring(10,18).split(':')
             replayEvent['time'] = getTime(lineTimeBits[0],lineTimeBits[1],lineTimeBits[2]);
-            replayEvent['event'] = logSplit[line].substring(20);
+            replayEvent['event'] = logSplit[line].substring(20).replace('\r', '').split(' ');
             replayData.push(replayEvent);
         }
 
@@ -183,22 +182,35 @@ reconnect = function()
 }
 function applyEvent(event, invert)
 {
-    if (event.startsWith('Change '))
+    if (event[0] == 'Change')
     {
-        setData(event.substring(7, 13), invert ? event.substring(19,20) : event.substring(24,25));
+        setData(event[1], invert ? event[3] : event[5]);
     }
-    else if (event.startsWith('Interpose '))
+    else if (event[0] == 'Interpose')
     {
-        setData(event.substring(18, 24), invert ? '' : event.substring(10,14));
+        setData(event[3], invert ? '' : event[1]);
     }
-    else if (event.startsWith('Cancel '))
+    else if (event[0] == 'Cancel')
     {
-        setData(event.substring(17, 23), invert ? event.substring(7,11) : '');
+        setData(event[3], invert ? event[1] : '');
     }
-    else if (event.startsWith('Step '))
+    else if (event[0] == 'Step')
     {
-        setData(event.substring(15, 21),  invert ? event.substring(5,9) : '');
-        setData(event.substring(25, 31), !invert ? event.substring(5,9) : '');
+        setData(event[3], invert ? event[1] : '');
+        setData(event[5], invert ? '' : event[1]);
+    }
+    else if (event[0] == 'CA')
+    {
+        setData(event[2], invert ? event[1] : '');
+        setData(event[3], invert ? '' : event[1]);
+    }
+    else if (event[0] == 'CB')
+    {
+        setData(event[2], invert ? event[1] : '');
+    }
+    else if (event[0] == 'CC')
+    {
+        setData(event[2], invert ? event[1] : (event.length == 4 ? event[3] : ''));
     }
 }
 function getTime(hr,mn,sc)

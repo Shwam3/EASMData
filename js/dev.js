@@ -104,8 +104,8 @@ fillBerths0 = function()
     document.getElementById('s').checked = displayOpts.signals;
     document.getElementById('t').checked = displayOpts.text;
 }
-var areasA = ['A2','AW','CA','CC','CT','D3','EN','IH','K2','KX','LS','NJ','NX','PB','Q1','Q2','SO','SX','UR','U2','U3','WC','WG','WH','WJ','WY','WS','X0','XX'];
-var areasS = ['A2','AW','CA','CC','CT','D3','EN','IH','K2',     'LS','NJ','NX',     'Q1','Q2',     'SX','UR','U2','U3',          'WH','WJ',          'X0'     ];
+var areasA = ['A2','AW','CA','CC','CT','D0','D1','D3','D4','D5','D6','D7','D9','EN','IH','K2','KX','LS','NJ','NX','PB','Q1','Q2','SO','SX','UR','U2','U3','WC','WG','WH','WJ','WY','WS','X0','XX'];
+var areasS = ['A2','AW','CA','CC','CT','D0','D1','D3','D4','D5','D6','D7','D9','EN','IH','K2',     'LS','NJ','NX',     'Q1','Q2',     'SX','UR','U2','U3',          'WH','WJ',          'X0'     ];
 if (localStorage.getItem('areasA') != null) areasA = localStorage.getItem('areasA').split(',');
 if (localStorage.getItem('areasS') != null) areasS = localStorage.getItem('areasS').split(',');
 
@@ -243,7 +243,7 @@ function devPage()
     lastArea = undefined;
     var keys = Object.keys(data).sort();
     for (key of keys)
-        if (key.length == 6 && key[4] != ':' && areasA.indexOf(key.substring(0,2)) >= 0)
+        if (key.length == 6 && key.indexOf(':') < 0 && areasA.indexOf(key.substring(0,2)) >= 0)
             ids.push(key);
 
     if (area_filter[areasA[0]])
@@ -290,6 +290,47 @@ function devPage()
     console.log('Dev page loaded')
     obscureCheck(true);
 }
+function unused(a)
+{
+    var usedIDs = [];
+    for (pag of mapJSON)
+    {
+        if ((!('data' in pag) || pag.data == {}) && pag.areas.some(id => a == id))
+        {
+            downloadPage(pag.panelUID);
+            return [];
+        }
+    }
+
+    for (pag of mapJSON)
+    {
+        var pag = pag.data || {};
+        for (var sg in pag.signals)
+        {
+            var sig = pag.signals[sg];
+            if (sig.dataID)  usedIDs.push(sig.dataID);
+            if (sig.dataIDs) usedIDs.push.apply(usedIDs, sig.dataIDs);
+            if (sig.routes)  usedIDs.push.apply(usedIDs, sig.routes);
+        }
+
+        for (var pt in pag.points)
+        {
+            usedIDs.push.apply(usedIDs, pag.points[pt].dataIDs);
+        }
+
+        for (var bt in pag.berths)
+        {
+            usedIDs.push.apply(usedIDs, pag.berths[bt].dataIDs);
+        }
+
+        for (i = 0; i < usedIDs.length; i++)
+        {
+            usedIDs[i] = usedIDs[i].replace('!', ':');
+        }
+    }
+
+	return list(a + '00:1', largestID(a)).filter(x => usedIDs.indexOf(x) < 0);
+}
 function filterArea(evt)
 {
     console.log(evt.name, evt.checked ? 'shown' : 'hidden')
@@ -315,11 +356,49 @@ function downloadPage(uid)
             });
         });
 }
+function updatePageList(json)
+{
+    if (json)
+    {
+        navIndex = {};
+        var list = document.getElementById('pageSelectorList');
+        if (list == null)
+        {
+            var spd = document.getElementById('controllerSpeed');
+            list = document.createElement('select');
+            list.id = 'pageSelectorList';
+            list.addEventListener('change', evt => { loadPage(parseInt(evt.target.options[evt.target.selectedIndex].value.split(' ')) - 1); });
+            spd.parentElement.insertBefore(list, null);
+        }
+        list.innerHTML = '';
+        var pnls = [];
+        for (var p in json)
+        {
+            var pageData = json[p];
+            p = parseInt(p);
+            navIndex[pageData.panelUID] = p;
+            var opt = document.createElement('option');
+            opt.innerHTML = (1 + p) + '. ' + pageData.panelUID;
+            if (page == p) opt.selected = true;
+            list.insertBefore(opt, null);
+        }
+        maxPageId = list.children.length-1;
+
+        if (dev)
+        {
+            navIndex['dev'] = ++maxPageId;
+            var opt = document.createElement('option');
+            opt.innerHTML = (maxPageId+1) + '. dev';
+            if (page == p) opt.selected = true;
+            list.insertBefore(opt, null);
+        }
+    }
+}
 
 window.onload = function()
 {
-    document.getElementById('fbh').addEventListener('click', hcSearch);
     document.getElementById('map').style.cursor = 'wait';
+    document.getElementById('fbh').addEventListener('click', hcSearch);
     obscureCheck(false);
 
     var canv = document.createElement('canvas');
@@ -365,18 +444,6 @@ function getAllHCs()
         if (data[b].match(/[0-9]{3}[A-Z]/))
             getHeadcode(data[b], b.substring(0, 2));
     }
-}
-function hcSearch(evt)
-{
-    var h = prompt('pla:');
-
-    if (h != null && h.match(/([0-9][A-Z][0-9]{2}|[0-9]{3}[A-Z])/))
-    {
-        console.log(h);
-    }
-
-    evt.preventDefault();
-    return false;
 }
 function Counter(samples)
 {

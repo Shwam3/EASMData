@@ -107,6 +107,7 @@ function load()
     if (page == undefined || page == null || page == NaN)
         page = 0;
 
+    updatePageList(mapJSON);
     var pageData = mapJSON[page];
 
     document.getElementById('pageSelector').value = page;
@@ -141,8 +142,8 @@ function load()
     htmlIDToObj = {};
     map.innerHTML = defaultInner;
     // use pageData.data.panelUID to allow 'dev' images
-    document.getElementById('mapImage').src = '/webclient/images/maps/'+pageData.data.panelUID + getImgExt() + (dev ? '?r='+Date.now() : '');
-    document.getElementById('mapImage').onerror = function(evt) { if (!evt.srcElement.src.contains('github')) evt.srcElement.src = 'https://github.com/Shwam3/EASMData/raw/master/images/maps/'+pageData.data.panelUID+getImgExt(); };
+    document.getElementById('mapImage').src = 'https://sigmaps1s.signalmaps.co.uk/webclient/images/maps/'+pageData.data.panelUID + getImgExt() + (dev ? '?r='+Date.now() : '');
+    document.getElementById('mapImage').onerror = function(evt) { if (!(evt.srcElement.src && evt.srcElement.src.contains('github'))) evt.srcElement.src = 'https://github.com/Shwam3/EASMData/raw/master/images/maps/'+pageData.data.panelUID+getImgExt(); };
     document.getElementById('mapImage').draggable = false;
     berths = [];
     signals = [];
@@ -239,7 +240,7 @@ function createPanel(addTo, index, pageData)
     div.style.cursor = 'pointer';
     div.className = 'col-md-6';
     div.innerHTML = '<div class="overview panel panel-default" data-id="' + index + '"><div class="panel-heading">'
-        + pageData.panelName + '</div><div class="panel-body panel-img"><img src="/webclient/images/maps/previews/' + pageData.panelUID + getImgExt() + '"><br></div>'
+        + pageData.panelName + '</div><div class="panel-body panel-img"><img src="https://sigmaps1s.signalmaps.co.uk/webclient/images/maps/previews/' + pageData.panelUID + getImgExt() + '"><br></div>'
         + '<div class="panel-footer"><div id="desc">' + pageData.panelDescription + '</div></div></div>';
     addTo.appendChild(div);
 
@@ -256,6 +257,7 @@ function createPanel(addTo, index, pageData)
 window.onload = function()
 {
     document.getElementById('map').style.cursor = 'wait';
+    document.getElementById('fbh').addEventListener('click', hcSearch);
     obscureCheck(false);
 
     var canv = document.createElement('canvas');
@@ -564,9 +566,9 @@ function getData(id)
     else if (id.substring(2) == 'PGRN')
         return 1;
     else if (typeof(data[id]) != 'undefined')
-        return data[id];
-    else if (id.charAt(4) == '!')
-        return 1 - parseInt(data[id.split('!')[0]+':'+id.split('!')[1]]);
+        return id[4] == ':' ? parseInt(data[id]) : data[id];
+    else if (id[4] == '!')
+        return 1 - getData(id.split('!')[0]+':'+id.split('!')[1]);
     else
         return id[4] == ':' || id[4] == '!' ? 0 : '';
 }
@@ -657,6 +659,45 @@ function clockStr(date)
     }
 }
 
+function hcSearch(evt)
+{
+    var hc = prompt('Enter headcode to find:');
+
+    if (hc != null)
+    {
+        hc = hc.toUpperCase();
+        get('https://sigmaps1s.signalmaps.co.uk/search.php?r=' + Date.now() + '&hc=' + encodeURIComponent(hc) + (dev ? '&dev=true' : ''), (res) =>
+        {
+            var pagesOn = JSON.parse(res).filter(x => x.map != null)
+            if (pagesOn.length == 1)
+                loadPage(navIndex[pagesOn[0].map]);
+            else if (pagesOn.length > 1)
+            {
+                pagesOn = pagesOn.filter((value, index, self) => self.indexOf(value) === index);
+                var i = 1;
+                var pgSel = prompt("Choose a page (enter a number 1 to "
+                    + pagesOn.length + "):\n"
+                    + pagesOn.map(x => (i++) + ": " + unescapeHTML(mapJSON[navIndex[x.map]].panelName) + " (" + unescapeHTML(mapJSON[navIndex[x.map]].panelDescription) + ")").join('\n')
+                )
+                
+                if (pgSel != null)
+                {
+                    pgSel = parseInt(pgSel);
+                    if (pgSel <= pagesOn.length && pgSel > 0)
+                    {
+                        loadPage(navIndex[pagesOn[pgSel - 1].map]);
+                    }
+                }
+            }
+            else
+                alert("Headcode \'" + hc + "\' could not be found.");
+        }, (res) => alert("Could not retrieve search at this time."))
+    }
+
+    evt.preventDefault();
+    return false;
+}
+
 function get(url, succ, fail)
 {
     var request = new XMLHttpRequest();
@@ -717,6 +758,10 @@ function fade(el, out)
 function escapeHTML(string)
 {
     return string.match(/&(amp|lt|gt|quot);/) ? string : string.replace('&','&amp;').replace('<','&lt;').replace('>','&gt;').replace('"','&quot;');
+}
+function unescapeHTML(string)
+{
+    return string.replace('&amp;','&').replace('&lt;','<').replace('&gt;','>').replace('&quot;','"');
 }
 if (!String.prototype.endsWith)
 {
