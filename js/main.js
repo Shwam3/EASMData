@@ -59,6 +59,7 @@ function load()
     document.getElementById('map').style.cursor = 'wait';
 
     obscureCheck(false);
+    updatePageList(mapJSON);
 
     window.onhashchange = window.onhashchange || function()
     {
@@ -77,7 +78,7 @@ function load()
 
     if (!hashRead)
     {
-        if (location.hash != '' && location.hash != '#' || navIndex.hasOwnProperty(location.hash.substring(1)))
+        if (location.hash != '' && location.hash != '#' && navIndex.hasOwnProperty(location.hash.substring(1)))
         {
             var hashPage = location.hash.substring(1);
             page = isNaN(hashPage) && navIndex.hasOwnProperty(hashPage) ? navIndex[hashPage] : (+hashPage || 0);
@@ -107,7 +108,6 @@ function load()
     if (page == undefined || page == null || page == NaN)
         page = 0;
 
-    updatePageList(mapJSON);
     var pageData = mapJSON[page];
 
     document.getElementById('pageSelector').value = page;
@@ -125,7 +125,7 @@ function load()
 
     if (!pageData.hasOwnProperty('data') || pageData.data == {})
     {
-        downloadPage(pageData.panelUID);
+        downloadPage(pageData.panelUID, load);
         return;
     }
 
@@ -223,12 +223,7 @@ function updatePageList(json)
             pnls[pnl].addEventListener('click', function()
             {
                 loadPage(this.getAttribute('data-id'));
-                document.getElementById('lineSelector').style.display = 'none'
-                var bd = document.getElementsByClassName('modal-backdrop')[0];
-                if (bd['remove'])
-                    bd.remove();
-                else
-                    bd.removeNode();
+                $('#lineSelector').modal('hide');
             });
         }
     }
@@ -241,7 +236,7 @@ function createPanel(addTo, index, pageData)
     div.className = 'col-md-6';
     div.innerHTML = '<div class="overview panel panel-default" data-id="' + index + '"><div class="panel-heading">'
         + pageData.panelName + '</div><div class="panel-body panel-img"><img src="https://sigmaps1s.signalmaps.co.uk/webclient/images/maps/previews/' + pageData.panelUID + getImgExt() + '"><br></div>'
-        + '<div class="panel-footer"><div id="desc">' + pageData.panelDescription + '</div></div></div>';
+        + '<div class="panel-footer"><div class="panel-desc">' + pageData.panelDescription + '</div></div></div>';
     addTo.appendChild(div);
 
     if (index+1 % 2 == 0)
@@ -268,10 +263,6 @@ window.onload = function()
 
     get('/webclient/data/data.json', function(json)
     {
-        var sl = '-=' + ((document.documentElement.clientWidth - 1854)/2);
-        //$('#map').animate({ scrollLeft: sl });
-
-        updatePageList(json);
         mapJSON = json;
         load();
         console.log('Using main file (data.json)');
@@ -280,10 +271,6 @@ window.onload = function()
             console.log(e || 'fail');
             get('https://raw.githubusercontent.com/Shwam3/EASMData/master/data/data.json', function(json)
             {
-                var sl = '-=' + ((document.documentElement.clientWidth - 1854)/2);
-                //$('#map').animate({ scrollLeft: sl });
-
-                updatePageList(json);
                 mapJSON = json;
                 load();
                 console.log('Using secondary file (data.json)');
@@ -292,7 +279,7 @@ window.onload = function()
 
     var css = document.createElement('link');
     css.rel = 'stylesheet';
-    css.href = '/webclient/sprites.' + (canUseWebP ? 'webp.css' : 'css');
+    css.href = 'https://sigmaps1s.signalmaps.co.uk/webclient/css/sprites.' + (canUseWebP ? 'webp.css' : 'css');
     css.type = 'text/css';
     document.head.insertBefore(css, document.head.lastElementChild);
 
@@ -315,30 +302,37 @@ window.onload = function()
 
     ga('create', 'UA-72821900-1', 'auto');
     ga('send', 'pageview');
-
-    //$('html,body').animate({ scrollTop: 0 }, 500);
 };
 
 document.addEventListener('keydown', function(e)
 {
     if (!(e.ctrlKey||e.metaKey||e.altKey||e.shiftKey))
     {
-        switch(e.which)
+        switch(e.key)
         {
-            case 37: loadPage(--page); break; // left arrow
-            case 39: loadPage(++page); break; // right arrow
-            case 66: displayOpts.berths    = !displayOpts.berths; break; // b
-            case 67: displayOpts.trackC    = !displayOpts.trackC; break; // c
-            case 68: displayOpts.IDs       = !displayOpts.IDs; break; // d
-            case 72: displayOpts.headcodes = !displayOpts.headcodes; break; // h
-            case 76: displayOpts.railcam   = !displayOpts.railcam; localStorage.setItem('l', displayOpts.railcam); break; // l
-            case 80: displayOpts.points    = !displayOpts.points; break; // p
-            case 82: displayOpts.dataText  = !displayOpts.dataText; break; // r
-            case 83: displayOpts.signals   = !displayOpts.signals; break; // s
-            case 84: displayOpts.text      = !displayOpts.text; break; // t
+            case "ArrowLeft": loadPage(--page); break; // left arrow
+            case "ArrowRight": loadPage(++page); break; // right arrow
+            case "v":
+            case "V": displayOpts.berths    = !displayOpts.berths; break; // b
+            case "c":
+            case "C": displayOpts.trackC    = !displayOpts.trackC; break; // c
+            case "d":
+            case "D": displayOpts.IDs       = !displayOpts.IDs; break; // d
+            case "h":
+            case "H": displayOpts.headcodes = !displayOpts.headcodes; break; // h
+            case "l":
+            case "L": displayOpts.railcam   = !displayOpts.railcam; localStorage.setItem('l', displayOpts.railcam); break; // l
+            case "p":
+            case "P": displayOpts.points    = !displayOpts.points; break; // p
+            case "r":
+            case "R": displayOpts.dataText  = !displayOpts.dataText; break; // r
+            case "s":
+            case "S": displayOpts.signals   = !displayOpts.signals; break; // s
+            case "t":
+            case "T": displayOpts.text      = !displayOpts.text; break; // t
         }
 
-        if ([67,66,68,72,76,80,82,83,84].indexOf(e.which) >= 0)
+        if (["ArrowLeft","ArrowRight","v","V","c","C","d","D","h","H","l","L","p","P","r","R","s","S","t","T"].indexOf(e.key) >= 0)
         {
             displayOpts.changed = true;
             fillBerths();
@@ -412,7 +406,7 @@ function openSocket(ip)
         var jsonMsg = JSON.parse(e.data).Message;
         var jsonMsgData = jsonMsg.message;
 
-        var timestamp = Date.now(); //performance.now() + performance.timing.navigationStart; // odd bug when mobile unfocused
+        var timestamp = Date.now();
 
         if (window['messageRate'])
             messageRate.addTick(timestamp - lastMessage);
@@ -439,8 +433,9 @@ function openSocket(ip)
             for (var id in data)
                 data[id] = '';
 
-        for (var id in jsonMsgData)
-            data[id] = jsonMsgData[id].trim();
+        //for (var id in jsonMsgData)
+        //    data[id] = jsonMsgData[id];
+        Object.assign(data, jsonMsgData);
 
         fillBerths();
 
@@ -453,13 +448,15 @@ function openSocket(ip)
         obscureCheck(true);
     };
 }
-function downloadPage(uid)
+function downloadPage(uid, callback)
 {
+    if (!callback) callback = load;
+
     var pageNo = navIndex[uid] || 0;
     get('/webclient/data/' + (dev ? 'dev/' : '') + uid + '.json', function(json)
     {
         mapJSON[pageNo]['data'] = json;
-        load();
+        callback();
         console.log('Downloaded main file (' + uid + '.json)');
     }, function(e)
         {
@@ -467,7 +464,7 @@ function downloadPage(uid)
             get('https://raw.githubusercontent.com/Shwam3/EASMData/master/data/' + (dev ? 'dev/' : '') + uid + '.json', function(json)
             {
                 mapJSON[pageNo]['data'] = json;
-                load();
+                callback();
                 console.log('Downloaded secondary file (' + uid + '.json)');
             });
         });
@@ -475,7 +472,7 @@ function downloadPage(uid)
 
 function doClock()
 {
-    document.getElementById('clock').innerHTML = clockStr(new Date());
+    document.getElementById('clock').textContent = clockStr(new Date());
 }
 function obscureCheck(changed)
 {
@@ -539,9 +536,9 @@ function fillBerths0()
         displayOpts.changed = false;
 
     if (lastMessage < 0 || !connected)
-        document.getElementById('time').innerHTML = 'Last Update: Not Connected (' + attempt + ')';
+        document.getElementById('time').textContent = 'Last Update: Not Connected (' + attempt + ')';
     else
-        document.getElementById('time').innerHTML = 'Last Update: ' + clockStr(new Date(lastTimestamp));
+        document.getElementById('time').textContent = 'Last Update: ' + clockStr(new Date(lastTimestamp));
     var map = document.getElementById('map');
     map.style.left = null;
     var pos = map.getBoundingClientRect().left;
@@ -679,7 +676,7 @@ function hcSearch(evt)
                     + pagesOn.length + "):\n"
                     + pagesOn.map(x => (i++) + ": " + unescapeHTML(mapJSON[navIndex[x.map]].panelName) + " (" + unescapeHTML(mapJSON[navIndex[x.map]].panelDescription) + ")").join('\n')
                 )
-                
+
                 if (pgSel != null)
                 {
                     pgSel = parseInt(pgSel);
@@ -771,4 +768,31 @@ if (!String.prototype.endsWith)
 		}
 		return this.substring(this_len - search.length, this_len) === search;
 	};
+}
+if (typeof Object.assign != 'function') {
+  Object.defineProperty(Object, "assign", {
+    value: function assign(target, varArgs) {
+      'use strict';
+      if (target == null) {
+        throw new TypeError('Cannot convert undefined or null to object');
+      }
+
+      var to = Object(target);
+
+      for (var index = 1; index < arguments.length; index++) {
+        var nextSource = arguments[index];
+
+        if (nextSource != null) {
+          for (var nextKey in nextSource) {
+            if (Object.prototype.hasOwnProperty.call(nextSource, nextKey)) {
+              to[nextKey] = nextSource[nextKey];
+            }
+          }
+        }
+      }
+      return to;
+    },
+    writable: true,
+    configurable: true
+  });
 }

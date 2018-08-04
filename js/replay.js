@@ -170,7 +170,7 @@ function controllerSpeed()
 }
 doClock = function()
 {
-    document.getElementById('clock').innerHTML = clockStr(new Date(isReplaying ? (replayDate+replayTime) : Date.now()));
+    document.getElementById('clock').textContent = clockStr(new Date(isReplaying ? (replayDate+replayTime) : Date.now()));
 }
 var oldRecon = reconnect;
 reconnect = function()

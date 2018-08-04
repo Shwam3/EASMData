@@ -5,6 +5,7 @@ function Latch(jsonObj)
     this.posX = jsonObj['posX'];
     this.posY = jsonObj['posY'];
     this.colour = jsonObj['colour'] || 'G';
+    this.flash = jsonObj['flash'] || [];
     this.description = jsonObj['description'];
     this.dataValue = 0;
 
@@ -29,11 +30,19 @@ Latch.prototype.update = function()
             this.dataValue = 1;
             break;
         }
+
+    if (this.dataValue == 0)
+        for (var i = 0; i < this.flash.length; i++)
+            if (getData(this.flash[i]) == '1')
+            {
+                this.dataValue = 2;
+                break;
+            }
         
-    var clas = 'signal noPost spriteMain LATCH_' + this.colour + '_' + (this.dataValue == 1 ? 'ON' : 'OFF');
+    var clas = 'signal noPost spriteMain LATCH_' + this.colour + '_' + (this.dataValue == 1 ? 'ON' : 'OFF') + (this.dataValue == 2 ? ' LATCH_FLASH' : '');
     if (this.domElement.className != clas)
         this.domElement.className = clas;
-    this.domElement.title = displayOpts.IDs ? this.description + '\n' + this.dataIDs.join(', ') : this.description;
+    this.domElement.title = displayOpts.IDs ? this.description + '\n' + this.dataIDs.join(', ') + '\n' + this.flash.join(', ') : this.description;
 };
 
 Latch.prototype.display = function(disp)

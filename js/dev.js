@@ -53,6 +53,9 @@ function list(f,l)
     {
         ls.push(f);
         f = next(f);
+
+        if (ls.length > 2048)
+            throw "list() unbounded";
     }
     ls.push(l);
     return ls;
@@ -113,7 +116,7 @@ function devPage()
 {
     var map = document.getElementById('map');
 
-    document.getElementById('desc').innerHTML = 'Dev Page';
+    document.getElementById('desc').textContent = 'Dev Page';
     document.title = 'Signal Maps - Dev Page';
     window.location.replace(window.location.href.split('#')[0] + '#dev');
     map.innerHTML = defaultInner;
@@ -150,37 +153,37 @@ function devPage()
     var usedIDs = ['XXMOTD'];
     if (hideUsed)
     {
-        for (pag of mapJSON)
+        for (var pag of mapJSON)
         {
             if ((!('data' in pag) || pag.data == {}) && pag.areas.some(id => areasA.indexOf(id) >= 0 || areasS.indexOf(id) >= 0))
             {
-                downloadPage(pag.panelUID);
+                downloadPage(pag.panelUID, load);
                 return;
             }
         }
 
-        for (pag of mapJSON)
+        for (var pag of mapJSON)
         {
             var pag = pag.data || {};
-            for (var sg in pag.signals)
+            for (var sig of pag.signals)
             {
-                var sig = pag.signals[sg];
                 if (sig.dataID)  usedIDs.push(sig.dataID);
                 if (sig.dataIDs) usedIDs.push.apply(usedIDs, sig.dataIDs);
                 if (sig.routes)  usedIDs.push.apply(usedIDs, sig.routes);
+                if (sig.flash)   usedIDs.push.apply(usedIDs, sig.flash);
             }
 
-            for (var pt in pag.points)
+            for (var pts of pag.points)
             {
-                usedIDs.push.apply(usedIDs, pag.points[pt].dataIDs);
+                usedIDs.push.apply(usedIDs, pts.dataIDs);
             }
 
-            for (var bt in pag.berths)
+            for (var bths of pag.berths)
             {
-                usedIDs.push.apply(usedIDs, pag.berths[bt].dataIDs);
+                usedIDs.push.apply(usedIDs, bths.dataIDs);
             }
 
-            for (i = 0; i < usedIDs.length; i++)
+            for (var i = 0; i < usedIDs.length; i++)
             {
                 usedIDs[i] = usedIDs[i].replace('!', ':');
             }
@@ -297,8 +300,8 @@ function unused(a)
     {
         if ((!('data' in pag) || pag.data == {}) && pag.areas.some(id => a == id))
         {
-            downloadPage(pag.panelUID);
-            return [];
+            downloadPage(pag.panelUID, () => unused(a));
+            return;
         }
     }
 
@@ -311,6 +314,7 @@ function unused(a)
             if (sig.dataID)  usedIDs.push(sig.dataID);
             if (sig.dataIDs) usedIDs.push.apply(usedIDs, sig.dataIDs);
             if (sig.routes)  usedIDs.push.apply(usedIDs, sig.routes);
+            if (sig.flash)   usedIDs.push.apply(usedIDs, sig.flash);
         }
 
         for (var pt in pag.points)
@@ -329,7 +333,7 @@ function unused(a)
         }
     }
 
-	return list(a + '00:1', largestID(a)).filter(x => usedIDs.indexOf(x) < 0);
+	console.log(list(a + '00:1', largestID(a)).filter(x => usedIDs.indexOf(x) < 0).join(','));
 }
 function filterArea(evt)
 {
@@ -337,13 +341,15 @@ function filterArea(evt)
     area_filter[evt.name] = evt.checked;
     devPage();
 }
-function downloadPage(uid)
+function downloadPage(uid, callback)
 {
+    if (!callback) callback = load;
+
     var pageNo = navIndex[uid] || 0;
     get('/webclient/data/' + (dev ? 'dev/' : '') + uid + '.json?r='+Date.now(), function(json)
     {
         mapJSON[pageNo]['data'] = json;
-        load();
+        callback();
         console.log('Downloaded main file (' + uid + '.json)');
     }, function(e)
         {
@@ -351,7 +357,7 @@ function downloadPage(uid)
             get('https://raw.githubusercontent.com/Shwam3/EASMData/master/data/' + (dev ? 'dev/' : '') + uid + '.json', function(json)
             {
                 mapJSON[pageNo]['data'] = json;
-                load();
+                callback();
                 console.log('Downloaded secondary file (' + uid + '.json)');
             });
         });
@@ -378,7 +384,7 @@ function updatePageList(json)
             p = parseInt(p);
             navIndex[pageData.panelUID] = p;
             var opt = document.createElement('option');
-            opt.innerHTML = (1 + p) + '. ' + pageData.panelUID;
+            opt.textContent = (1 + p) + '. ' + pageData.panelUID;
             if (page == p) opt.selected = true;
             list.insertBefore(opt, null);
         }
@@ -388,7 +394,7 @@ function updatePageList(json)
         {
             navIndex['dev'] = ++maxPageId;
             var opt = document.createElement('option');
-            opt.innerHTML = (maxPageId+1) + '. dev';
+            opt.textContent = (maxPageId+1) + '. dev';
             if (page == p) opt.selected = true;
             list.insertBefore(opt, null);
         }
@@ -407,18 +413,18 @@ window.onload = function()
     canUseWebP = !!(canv.getContext && canv.getContext('2d')) && canv.toDataURL('image/webp').indexOf('data:image/webp') == 0;
     console.log('Using ' + getImgExt());
 
-    var modal = document.getElementById('modal');
+    /*var modal = document.getElementById('modal');
     var modalClose = document.getElementById('modal-close');
     modal.onclick = modalClose.onclick = function(e)
     {
         modal.style.display = 'none';
-    }
-    
+    }*/
+
     reload();
 
     var css = document.createElement('link');
     css.rel = 'stylesheet';
-    css.href = '/webclient/sprites.' + (canUseWebP ? 'webp.css' : 'css');
+    css.href = 'https://sigmaps1s.signalmaps.co.uk/webclient/css/sprites.' + (canUseWebP ? 'webp.css' : 'css');
     css.type = 'text/css';
     document.head.insertBefore(css, document.head.lastElementChild);
 
