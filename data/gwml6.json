@@ -475,7 +475,7 @@
 ],
 "text":[
 {"posX":287,"posY":114,"text":"APPLEFORD","url":"APF","type":"LOC"},
-{"posX":414,"posY":94,"text":"APPLEFORD LC","url":"APPLEFX","type":"LOC"},
+{"posX":406,"posY":94,"text":"APPLEFORD LC","url":"APPLEFX","type":"LOC"},
 {"posX":1730,"posY":410,"text":"CHOLSEY","url":"gwml5","type":"MNAV"},
 {"posX":1341,"posY":486,"text":"DIDCOT\\nEAST JN","url":"DIDCTEJ","type":"LOC"},
 {"posX":650,"posY":106,"text":"DIDCOT\\nNORTH JN","url":"DIDCTNJ","type":"LOC"},

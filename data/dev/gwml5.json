@@ -405,7 +405,7 @@
 {"posX":584,"posY":734,"description":"SB847","dataID":"D517:1","type":"RIGHT","routes":["D516:7"]},
 {"posX":520,"posY":798,"description":"SB901","dataID":"D525:6","type":"RIGHT","routes":["D517:2"]},
 {"posX":552,"posY":798,"description":"SB901BR","dataID":"D525:6","type":"RIGHT","isBanner":true},
-{"posX":520,"posY":734,"description":"SB903","dataID":"D525:7","type":"RIGHT","routes":["D517:3","D517:4"]},
+{"posX":520,"posY":734,"description":"SB903","dataID":"D525:7","type":"RIGHT","routes":["D517:3","D517:4","D51A:7"]},
 {"posX":1356,"posY":742,"description":"T1752","dataID":"D137:2","type":"LEFT","routes":["D104:3"]},
 {"posX":1356,"posY":678,"description":"T1754","dataID":"D135:4","type":"LEFT","routes":["D101:8","D102:1","D102:2","D102:3"]},
 {"posX":1324,"posY":678,"description":"T1754BR","dataID":"D135:4","type":"LEFT","isBanner":true},

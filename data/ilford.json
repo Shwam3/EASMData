@@ -197,6 +197,7 @@
 {"posX":908,"posY":166,"description":"L415","dataID":"Q15D:2","type":"LEFT"},
 {"posX":844,"posY":166,"description":"L415BR","dataID":"Q15D:2","type":"LEFT","isBanner":true},
 {"posX":230,"posY":302,"description":"L416","dataID":"Q124:6","type":"RIGHT","routes":["Q107:7","Q107:8"]},
+{"posX":302,"posY":302,"description":"L416BR","dataID":"Q124:6","type":"RIGHT","isBanner":true},
 {"posX":974,"posY":166,"description":"L417","dataID":"Q15D:3","type":"LEFT"},
 {"posX":296,"posY":222,"description":"L418","dataID":"Q158:2","type":"RIGHT"},
 {"posX":974,"posY":246,"description":"L419","dataID":"Q15D:4","type":"LEFT"},
