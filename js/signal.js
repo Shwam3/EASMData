@@ -93,7 +93,7 @@ function Signal(jsonObj)
 
     this.routeSet = false;
     this.mainAspect = this.mainAspects[0];
-    
+
     var sig = document.createElement('span');
     document.getElementById('map').appendChild(sig);
     sig.title = this.description;
@@ -116,8 +116,8 @@ function Signal(jsonObj)
 
 Signal.prototype.update = function()
 {
-    setData(this.dataID, getData(this.dataID) || 0);
-    this.mainAspect = this.mainAspects[getData(this.dataID)];
+    if (this.dataID)
+        this.mainAspect = this.mainAspects[getData(this.dataID)];
 
     this.routeSet = false;
     for (var i = 0; i < this.routeIDs.length; i++)
@@ -128,7 +128,7 @@ Signal.prototype.update = function()
             break;
         }
     }
-    
+
     var newC = this.css + ' ' + this.type + '_' + this.mainAspect + '_' + (this.routeSet ? 'SET' : 'UNSET');
     var newT = displayOpts.IDs ? this.description + '\naspect: ' + this.dataID + '\nroute: ' + this.routeIDs.join(', ') : this.description;
 

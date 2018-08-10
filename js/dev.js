@@ -164,7 +164,8 @@ function devPage()
 
         for (var pag of mapJSON)
         {
-            var pag = pag.data || {};
+            pag = pag.data || {};
+            if (pag.signals)
             for (var sig of pag.signals)
             {
                 if (sig.dataID)  usedIDs.push(sig.dataID);
@@ -173,11 +174,13 @@ function devPage()
                 if (sig.flash)   usedIDs.push.apply(usedIDs, sig.flash);
             }
 
+            if (pag.points)
             for (var pts of pag.points)
             {
                 usedIDs.push.apply(usedIDs, pts.dataIDs);
             }
 
+            if (pag.berths)
             for (var bths of pag.berths)
             {
                 usedIDs.push.apply(usedIDs, bths.dataIDs);
@@ -305,29 +308,31 @@ function unused(a)
         }
     }
 
-    for (pag of mapJSON)
+    for (var pag of mapJSON)
     {
-        var pag = pag.data || {};
-        for (var sg in pag.signals)
+        pag = pag.data || {};
+        if (pag.signals)
+        for (var sig of pag.signals)
         {
-            var sig = pag.signals[sg];
             if (sig.dataID)  usedIDs.push(sig.dataID);
             if (sig.dataIDs) usedIDs.push.apply(usedIDs, sig.dataIDs);
             if (sig.routes)  usedIDs.push.apply(usedIDs, sig.routes);
             if (sig.flash)   usedIDs.push.apply(usedIDs, sig.flash);
         }
 
-        for (var pt in pag.points)
+        if (pag.points)
+        for (var pts of pag.points)
         {
-            usedIDs.push.apply(usedIDs, pag.points[pt].dataIDs);
+            usedIDs.push.apply(usedIDs, pts.dataIDs);
         }
 
-        for (var bt in pag.berths)
+        if (pag.berths)
+        for (var bths of pag.berths)
         {
-            usedIDs.push.apply(usedIDs, pag.berths[bt].dataIDs);
+            usedIDs.push.apply(usedIDs, bths.dataIDs);
         }
 
-        for (i = 0; i < usedIDs.length; i++)
+        for (var i = 0; i < usedIDs.length; i++)
         {
             usedIDs[i] = usedIDs[i].replace('!', ':');
         }
@@ -349,16 +354,16 @@ function downloadPage(uid, callback)
     get('/webclient/data/' + (dev ? 'dev/' : '') + uid + '.json?r='+Date.now(), function(json)
     {
         mapJSON[pageNo]['data'] = json;
-        callback();
         console.log('Downloaded main file (' + uid + '.json)');
+        callback();
     }, function(e)
         {
             console.error(e || 'fail');
             get('https://raw.githubusercontent.com/Shwam3/EASMData/master/data/' + (dev ? 'dev/' : '') + uid + '.json', function(json)
             {
                 mapJSON[pageNo]['data'] = json;
-                callback();
                 console.log('Downloaded secondary file (' + uid + '.json)');
+                callback();
             });
         });
 }

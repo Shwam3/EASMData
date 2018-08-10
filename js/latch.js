@@ -38,7 +38,7 @@ Latch.prototype.update = function()
                 this.dataValue = 2;
                 break;
             }
-        
+
     var clas = 'signal noPost spriteMain LATCH_' + this.colour + '_' + (this.dataValue == 1 ? 'ON' : 'OFF') + (this.dataValue == 2 ? ' LATCH_FLASH' : '');
     if (this.domElement.className != clas)
         this.domElement.className = clas;

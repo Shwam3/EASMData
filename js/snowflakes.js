@@ -51,7 +51,7 @@ function generateSnowflakes()
         return;
 
     snowflakesActive = true;
-    
+
     var originalSnowflake = document.querySelector('.snowflake');
     var snowflakeContainer = originalSnowflake.parentNode;
 
@@ -78,7 +78,7 @@ function generateSnowflakes()
 function removeSnowflakes()
 {
     snowflakesActive = false;
-    
+
     if (updateID)
         clearInterval(updateID);
 

@@ -18,6 +18,7 @@ var latches = [];
 var dataText = [];
 var text = [];
 var trackc = [];
+var conds = [];
 var mapJSON;
 var maxPageId = 1;
 var loaded = false;
@@ -132,6 +133,7 @@ function load()
     var mapBerths = pageData.data.berths;
     var mapSignals = pageData.data.signals;
     var mapPoints = pageData.data.points;
+    var mapConditionals = pageData.data.conditionals;
     var mapText = pageData.data.text;
 
     doClock();
@@ -152,6 +154,7 @@ function load()
     dataText = [];
     text = [];
     trackc = [];
+    conds = [];
     setAreas(pageData.areas);
 
     for (var k in mapBerths)
@@ -180,7 +183,14 @@ function load()
     {
         if (!dev && mapPoints[k]['isDev'])
             continue;
-        points.push(new Points(mapPoints[k]))
+        points.push(new Points(mapPoints[k]));
+    }
+
+    for (var k in mapConditionals)
+    {
+        if (!dev && mapConditionals[k]['isDev'])
+            continue;
+        conds.push(new Conditional(mapConditionals[k]));
     }
 
     for (var k in mapText)
@@ -456,16 +466,16 @@ function downloadPage(uid, callback)
     get('/webclient/data/' + (dev ? 'dev/' : '') + uid + '.json', function(json)
     {
         mapJSON[pageNo]['data'] = json;
-        callback();
         console.log('Downloaded main file (' + uid + '.json)');
+        callback();
     }, function(e)
         {
             console.error(e || 'fail');
             get('https://raw.githubusercontent.com/Shwam3/EASMData/master/data/' + (dev ? 'dev/' : '') + uid + '.json', function(json)
             {
                 mapJSON[pageNo]['data'] = json;
-                callback();
                 console.log('Downloaded secondary file (' + uid + '.json)');
+                callback();
             });
         });
 }
@@ -531,6 +541,8 @@ function fillBerths0()
         dataText[d].update(displayOpts.changed);
     for (var c in trackc)
         trackc[c].update(displayOpts.changed);
+    for (var n in conds)
+        conds[n].update();
 
     if (displayOpts.changed)
         displayOpts.changed = false;
@@ -558,20 +570,24 @@ function getNextID()
 
 function getData(id)
 {
-    if (id == undefined || id.length != 6 || id.substring(2) == 'PRED')
+    if (id == undefined || id.substring(2) == 'PRED') //|| id.length != 6
         return 0;
     else if (id.substring(2) == 'PGRN')
         return 1;
     else if (typeof(data[id]) != 'undefined')
-        return id[4] == ':' ? parseInt(data[id]) : data[id];
+    {
+        var i = parseInt(data[id]);
+        return isNaN(i) || i.toString().length != data[id].length ? data[id] : parseInt(data[id]);
+    }
     else if (id[4] == '!')
         return 1 - getData(id.split('!')[0]+':'+id.split('!')[1]);
     else
         return id[4] == ':' || id[4] == '!' ? 0 : '';
 }
+
 function setData(id, value)
 {
-    if (id == undefined || id.length != 6)
+    if (id == undefined) //|| id.length != 6)
         return;
     else if (id[4] == '!')
         data[id.split('!')[0]+':'+id.split('!')[1]] = 1-value;
@@ -582,7 +598,7 @@ function setData(id, value)
 
 function getHeadcode(hc, berth)
 {
-    if (hc.match(/[0-9]{3}[A-Z]/) && displayOpts.headcodes)
+    if (typeof hc == "string" && hc.match(/[0-9]{3}[A-Z]/) && displayOpts.headcodes)
     {
         var td = typeof berth == "object" ? berth.dataIDs[0].substring(0, 2) : berth.substring(0, 2)
         var mapping = hcMap[hc];

@@ -48,7 +48,7 @@ Berth.prototype.update = function(force)
     var currId = this.dataIDs[0];
     for (var i = 0; i < this.dataIDs.length; i++)
     {
-        var d = getData(this.dataIDs[i]);
+        var d = getData(this.dataIDs[i]).toString();
         this.data[i] = d;
         if (this.dataValue == '')
         {
@@ -59,7 +59,7 @@ Berth.prototype.update = function(force)
 
     if (this.displayMainID)
         this.dataValue = this.dataIDs[0].substring(2);
-    
+
     if (!arraysEqual(this.lastData, this.data) || this.dataValue != this.lastDataValue || this.forceUpdate)
     {
         var bthA = this.domElement;
@@ -67,9 +67,9 @@ Berth.prototype.update = function(force)
         bthA.title = (this.description ? this.description + '\n' : '');
         for (var i in this.dataIDs)
             bthA.title += this.dataIDs[i] + ': ' + getData(this.dataIDs[i]) + (i<this.dataIDs.length-1?'\n':'');
-        
+
         bthP.innerHTML = getHeadcode(this.dataValue, this);
-        
+
         if (!this.displayMainID && this.dataValue.match(/([0-9][A-Z][0-9]{2}|[0-9]{3}[A-Z])/))
         {
             if (displayOpts.railcam)

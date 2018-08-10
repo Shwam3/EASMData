@@ -10,7 +10,7 @@ function Points(jsonObj)
     this.description = jsonObj['description'];
     this.dataValue = -1;
     this.displayImage = false;
-    
+
     var pts = document.createElement('span');
     document.getElementById('map').appendChild(pts);
     pts.title = this.description;
@@ -19,7 +19,7 @@ function Points(jsonObj)
     pts.style.left = this.posX + 'px';
     pts.style.top = this.posY + 'px';
     this.domElement = pts;
-    
+
     this.update();
     addObj(this.htmlID, this);
 }

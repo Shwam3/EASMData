@@ -32,11 +32,11 @@ DataText.prototype.update = function()
             dv = 1;
             break;
         }
-        
+
     if (dv != this.dataValue)
     {
         this.dataValue = dv;
-        
+
         var useHide = false;
         if (this.text[0] == undefined || this.text[1] == undefined)
           useHide = true;
