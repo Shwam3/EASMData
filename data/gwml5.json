@@ -238,7 +238,7 @@
 {"posX":1036,"posY":358,"description":"T1686","dataID":"D143:4","type":"LEFT","routes":["D128:7","D128:8"]},
 {"posX":1240,"posY":254,"description":"T1687","dataID":"D140:5","type":"RIGHT","routes":["D121:2","D121:3","D121:4","D121:5","D121:6","D121:7"]},
 {"posX":1038,"posY":326,"description":"T1688","dataID":"D143:5","type":"LEFT","routes":["D129:1","D129:2"]},
-{"posX":848,"posY":326,"description":"T1688BR","dataID":"D143:5","type":"LEFT","isBanner":true},
+{"posX":848,"posY":326,"description":"T1688BR","dataID":"$_1688_BR","type":"LEFT","isBanner":true},
 {"posX":1240,"posY":222,"description":"T1689","dataID":"D140:6","type":"RIGHT","routes":["D121:8","D122:1","D122:2","D122:3","D122:4","D122:5"]},
 {"posX":1036,"posY":294,"description":"T1690","dataID":"D143:6","type":"LEFT","routes":["D129:3"]},
 {"posX":1176,"posY":190,"description":"T1691","dataID":"D140:7","type":"RIGHT","routes":["D122:6","D122:7","D122:8","D123:1","D123:2","D123:3"]},
@@ -663,6 +663,9 @@
 {"posX":1258,"posY":778,"description":"8496A Rev","dataIDs":["D103:2","D103:4"],"type1":"RHzLfUp"},
 {"posX":1258,"posY":746,"description":"8496B Nrm","dataIDs":["D104:5","D104:6","D104:7"],"type1":"NHzRtDn"},
 {"posX":1258,"posY":746,"description":"8496B Rev","dataIDs":["D103:2","D103:4"],"type1":"RHzRtDn"}
+],
+"conditionals":[
+{"ID":"1688_BR","cond":["AND","D143:5","D152:6","D152:7"]}
 ],
 "text":[
 {"posX":42,"posY":572,"text":"< TO BASINGSTOKE","type":"TEXT"},

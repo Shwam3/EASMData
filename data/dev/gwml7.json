@@ -260,7 +260,7 @@
 {"posX":1564,"posY":574,"description":"SW1228","dataID":"D731:6","type":"LEFT","isRepeat":true},
 {"posX":1512,"posY":574,"description":"SW1229","dataID":"D731:7","type":"RIGHT"},
 {"posX":1500,"posY":518,"description":"SW1230","dataID":"D72F:3","type":"LEFT"},
-{"posX":1448,"posY":574,"description":"SW1231","dataID":"D731:8","type":"RIGHT"},
+{"posX":1448,"posY":574,"description":"SW1231","dataID":"D731:8","type":"RIGHT","flashY":["$_1231_FA"]},
 {"posX":1448,"posY":518,"description":"SW1233","dataID":"D72F:5","type":"RIGHT","isRepeat":true},
 {"posX":1436,"posY":518,"description":"SW1234","dataID":"D72F:4","type":"LEFT"},
 {"posX":1320,"posY":574,"description":"SW1235","dataID":"D732:1","type":"RIGHT","routes":["D718:6","D718:7","D718:8"]},
@@ -347,6 +347,9 @@
 {"posX":152,"posY":766,"description":"W88","type":"RIGHT","isAuto":true},
 {"posX":208,"posY":766,"description":"W88R","type":"RIGHT","isAuto":true},
 
+{"posX":1578,"posY":746,"description":"L(PCAHB)X(FAIL)","dataIDs":["D74B:1"],"type":"TEXT","text0":" FAILED ","text1":"POWER ON"},
+{"posX":1584,"posY":756,"description":"L(PCAHB)X(UP)","dataIDs":["D74B:2"],"type":"TEXT","text1":"RAISED"},
+{"posX":1581,"posY":766,"description":"L(PCAHB)X(WKG)","dataIDs":["D74B:3"],"type":"TEXT","text1":"WORKING"},
 {"posX":1356,"posY":656,"description":"L8659RELN","dataID":"D74D:2","type":"LATCH"},
 {"posX":1370,"posY":656,"description":"R8659","dataID":"D71E:7","type":"LATCH"},
 {"posX":1704,"posY":734,"description":"SW1313","dataID":"D733:3","type":"RIGHT","routes":["D71C:3"]},
@@ -558,6 +561,9 @@
 {"posX":1322,"posY":682,"description":"8659A GF","dataIDs":["D748:4"],"type0":"RHzRtUp","type1":"NHzRtUp"},
 {"posX":1322,"posY":650,"description":"8659B GF","dataIDs":["D748:4"],"type0":"RHzLfDn","type1":"NHzLfDn"}
 ],
+"conditionals":[
+{"ID":"1231_FA","cond":["AND","D731:8","D718:8","D732:1"]}
+],
 "text":[
 {"posX":1557,"posY":294,"text":"BOURTON","url":"SDONBOU","type":"LOC"},
 {"posX":1746,"posY":250,"text":"DIDCOT","url":"gwml6","type":"MNAV"},
@@ -595,7 +601,7 @@
 {"posX":1382,"posY":656,"text":"F","type":"TEXT"},
 {"posX":1092,"posY":702,"text":"TO GLOUCESTER","type":"TEXT"},
 {"posX":1280,"posY":746,"text":"KEMBLE","url":"KEM","type":"LOC"},
-{"posX":1409,"posY":658,"text":"MINETY CCTV","type":"TEXT"},
+{"posX":1409,"posY":658,"text":"MINETY CCTV","url":"MINTYX","type":"LOC"},
 {"posX":1566,"posY":650,"text":"PURTON\\nCOLLINS AHBC","type":"TEXT"}
 ]
 }

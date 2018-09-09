@@ -1,0 +1,17 @@
+{
+"panelUID":"gwml9","panelName":"TVSC Bristol","panelDescription":"Bristol Temple Meads","areas":["D0"],
+"berths":[
+{"posX":1370,"posY":522,"dataIDs":["D9UC09"]}
+],
+"signals":[
+{"posX":888,"posY":190,"description":"SDE1","type":"RIGHT","routes":["D90E:3"],"isShunt":true,"isAuto":true}
+],
+"points":[
+],
+"conditionals":[
+{"ID":"2043_M","cond":["AND","D937:4",["NOT","$_2043_S"]]}
+],
+"text":[
+{"posX":758,"posY":586,"text":"YATE","url":"YAE","type":"LOC"}
+]
+}
