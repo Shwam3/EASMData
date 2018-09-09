@@ -73,7 +73,7 @@ Berth.prototype.update = function(force)
         if (!this.displayMainID && this.dataValue.match(/([0-9][A-Z][0-9]{2}|[0-9]{3}[A-Z])/))
         {
             if (displayOpts.railcam)
-                bthA.href = 'http://railcam.co.uk/hc/RCTrainInfo.php?r=S&hc=' + this.dataValue + '&td=' + currId.substring(0,2);
+                bthA.href = 'https://diagramdata.railcam.co.uk/hc/RCData2_detail.php?r=S&hc=' + this.dataValue + '&td=' + currId.substring(0,2) + '&vip=true';
             else
                 bthA.href = 'http://www.realtimetrains.co.uk/search/advancedhandler?type=advanced&map=true&search=' + this.dataValue;
             bthA.rel = 'nofollow noreferrer noopener';

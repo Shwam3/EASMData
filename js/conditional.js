@@ -1,14 +1,13 @@
 function Conditional(jsonObj)
 {
-    this.outputID = '$_' +jsonObj['outputID'];
-    this.condition = jsonObj['condition'];
-    this.state = 0;
+    this.outputID = '$_' +jsonObj['ID'];
+    this.condition = jsonObj['cond'];
 }
 
 Conditional.prototype.update = function()
 {
     var b = data[this.outputID];
-    data[this.outputID] = logic(this.condition) ? "1" : "0";
+    data[this.outputID] = logic(this.condition) ? 1 : 0;
     
     if (b != data[this.outputID])
         fillBerths();

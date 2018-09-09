@@ -1,0 +1,363 @@
+@font-face {
+  font-family: "DotMatrix";
+  src: url("https://sigmaps1s.signalmaps.co.uk/webclient/DotMatrix.ttf");
+}
+@font-face {
+  font-family: "DotMatrix-Square";
+  src: url("https://sigmaps1s.signalmaps.co.uk/webclient/DotMatrix-Square-v2.ttf");
+}
+body {
+    background-color: #202020 !important;
+    color: #a7a7a7 !important;
+}
+.navbar, .footer, .panel, .panel-heading, .panel-footer, .modal-header, .modal-footer {
+    color: #a7a7a7 !important;
+    background-color: #101010 !important;
+    border-color: #101010 !important;
+}
+
+.panel { margin-bottom: 5px; }
+.overview { transition: box-shadow .1s cubic; }
+.overview:hover { box-shadow: 4px 4px 0px 3px rgba(0,0,0,0.15); }
+.container-full { width: 99% !important; }
+.section { padding: 10px 0 0 0; }
+.modal-content { border-color: #101010; background-color: #272727; } 
+
+.title {
+  max-width: 1854px;
+  margin: auto;
+}
+
+#map {
+  position: relative;
+  width: 1854px;
+  height: 860px;
+  font-family: 'DotMatrix-Square',monospace;
+}
+#mapContainer {
+  background-color: #000;
+  height: 860px;
+  max-width: 1854px;
+  font-family: 'DotMatrix-Square',monospace;
+  margin: auto;
+  overflow-x: auto;
+  overflow-y: hidden;
+}
+#mapImage {
+  position: absolute;
+  width: 100%;
+  min-width: 1854px;
+  top: 0px;
+  left: 0px;
+  
+  z-index: 0;
+  -ms-user-select: none;
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  user-select: none;
+}
+#time {
+    font-family: monospace;
+    font-size: 10pt;
+}
+
+p.motd {
+  position: initial;
+  background-color: transparent;
+  border: none;
+  margin: 2px;
+  overflow-y: scroll;
+}
+@keyframes error {
+    30% {background-color: #300;}
+    50% {background-color: #900;}
+    70% {background-color: #300;}
+}
+p.clock {
+  width: 100%;
+  color: #090;
+  font-family: 'DotMatrix',monospace;
+  font-size: 45px;
+  white-space: nowrap;
+  
+  background-color: transparent;
+}
+.berth {
+  position: absolute;
+
+  color: #090;
+  background-color: #404040;
+
+  height: 16px;
+  width: 48px;
+
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  white-space: nowrap;
+  text-align: center;
+  vertical-align: baseline;
+  /*font-family: 'DotMatrix',monospace;*/
+  line-height: 1;
+  font-size: 16px;
+  z-index: 10;
+}
+a.berth:hover {
+  opacity: 1;
+  background-color: #404040;
+}
+p.berth {
+  position: initial;
+  
+  background-color: transparent;
+  text-align: center;
+  padding: 0px 1px;
+  width: 48px;
+  height: 16px;
+  z-index: 10;
+}
+.berthBorder {
+  background-color: #000;
+  background-image: url('/webclient/images/berthBorder.png');
+}
+p.berthBorder {
+  background-color: transparent;
+}
+.text {
+  position: absolute;
+  background: rgba(0,0,0,0.65);
+  color: #090;
+  /*font-family: 'DotMatrix',monospace;*/
+  text-align: center;
+  white-space: pre;
+  line-height: 9px;
+  font-size: 8px;
+  z-index: 8;
+}
+.textLarge {
+  position: absolute;
+  background: transparent;
+  color: #090;
+  /*font-family: 'DotMatrix',monospace;*/
+  text-align: center;
+  white-space: pre;
+  line-height: 17px;
+  font-size: 16px;
+  z-index: 8;
+}
+.station {
+  position: absolute;
+  background-color: #000;
+  color: #090;
+  height: 8px;
+  width: auto;
+  /*font-family: 'DotMatrix',monospace;*/
+  text-align: center;
+  white-space: pre;
+  line-height: 1;
+  font-size: 8px;
+  z-index: 8;
+}
+.stationLarge {
+  position: absolute;
+  background-color: #000;
+  color: #090;
+  height: 16px;
+  width: auto;
+  /*font-family: 'DotMatrixmonospace;*/
+  text-align: center;
+  white-space: pre;
+  line-height: 1;
+  font-size: 16px;
+  z-index: 8;
+}
+.navButton {
+  position: absolute;
+  background-color: #000;
+  color: #090;
+  height: 16px;
+  width: auto;
+  /*font-family: 'DotMatrix',monospace;*/
+  text-align: center;
+  white-space: pre;
+  line-height: 1;
+  font-size: 16px;
+  z-index: 8;
+}
+.backText {
+    z-index: 7;
+}
+.signal {
+  position: absolute;
+  white-space: nowrap;
+  background-color: rgba(0,0,0,0.25);
+  color: #FFF;
+  height: 8px;
+  width: 14px;
+  z-index: 6;
+}
+.verticalPost {
+  height: 14px;
+  width: 8px;
+}
+.noPost {
+  height: 8px;
+  width: 8px;
+}
+
+.points
+{
+  position: absolute;
+  color: #000;
+  background-color: rgba(0,0,0,0);
+  width: 16px;
+  height: 16px;
+  z-index: 4;
+}
+
+.textOn {
+  position: absolute;
+  color: #090;
+  background-color: rgba(0,0,0,0.25);
+  /*font-family: 'DotMatrix',monospace;*/
+  text-align: center;
+  white-space: pre;
+  line-height: 1;
+  font-size: 8px;
+  height: 8px;
+  width: auto;
+}
+.textPlatOn {
+  position: absolute;
+  color: #090;
+  background-color: rgba(0,0,0,0.65);
+  /*font-family: 'DotMatrix',monospace;*/
+  text-align: center;
+  white-space: pre;
+  line-height: 1;
+  font-size: 8px;
+  height: 8px;
+  width: auto;
+}
+.textHide {
+  position: absolute;
+  color: #222;
+  background-color: 'transparent';
+  /*font-family: 'DotMatrix',monospace;*/
+  text-align: center;
+  white-space: pre;
+  line-height: 1;
+  font-size: 8px;
+  height: 8px;
+  width: auto;
+}
+.textOff {
+  position: absolute;
+  color: 'transparent';
+  background-color: 'transparent';
+  /*font-family: 'DotMatrix',monospace;*/
+  text-align: center;
+  white-space: pre;
+  line-height: 1;
+  font-size: 8px;
+  height: 8px;
+  width: auto;
+}
+.tcOcc {
+  position: absolute;
+  background-color: #900;
+}
+.tcUnocc {
+  position: absolute;
+  background-color: #404040;
+}
+.trackc {
+  position: absolute;
+  z-index: 2;
+}
+
+#obscure {
+  z-index: 50;
+  position: absolute;
+  display: inline-flex;
+  background: rgba(0,0,0,0.75);
+  width: 1854px;
+  height: 860px;
+  line-height: 110px;
+  font-family: 'DotMatrix', 'Source Sans Pro', sans-serif;
+  pointer-events: none;
+}
+#loading {
+  color: #090;
+  margin: auto;
+  vertical-align: middle;
+  background-color: #FFF;
+  border-radius: 10px;
+  border: 2px solid #FFF;
+  opacity: 0.6;
+}
+#compatText {
+  font-size: 16px;
+  font-family: Arial;
+  color: black;
+  line-height: 20px;
+}
+#loadText {
+  color: #090;
+  display: block;
+  margin-left: 115px;
+  text-align: left;
+  font-size: 60px;
+}
+#spinner {
+  display: block;
+  margin: 5px;
+  background-color: rgba(0,0,0,0);
+  float: left;
+  width: 100px;
+  -webkit-animation: spin 1s linear infinite;
+  -moz-animation: spin 1s linear infinite;
+  animation: spin 1s linear infinite;
+}
+@-moz-keyframes spin { 
+  100% { -moz-transform:rotate(360deg); }
+}
+@-webkit-keyframes spin {
+  100% { -webkit-transform:rotate(360deg); }
+}
+@keyframes spin {
+  100% { -webkit-transform:rotate(360deg); transform:rotate(360deg); }
+}
+.hide {
+    display: none;
+}
+@media only screen and (max-width: 993px) {
+    .panel-img {
+        display: none;
+    }
+}
+
+#snowflakeContainer {
+    position: absolute;
+    left: 0px;
+    top: 0px;
+}
+.snowflake {
+    padding-left: 15px;
+    font-family: Cambria, Georgia, serif;
+    font-size: 14px;
+    line-height: 24px;
+    position: fixed;
+    color: #FFFFFF;
+    user-select: none;
+    z-index: 1000;
+}
+.snowflake:hover {
+    cursor: default;
+}
+.devSpacer {
+    height: 42px;
+    width: 1px;
+    position: absolute;
+    left: 30px;
+}

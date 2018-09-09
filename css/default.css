@@ -1,0 +1,258 @@
+#ieMessage {
+  display: none;
+}
+
+body {
+  font-family: 'Source Sans Pro', sans-serif;
+  
+  background-color: #404040;
+  font-family: Arial;
+  font-size: 1em;
+}
+
+.noAA {
+    image-rendering: optimizeSpeed;
+    image-rendering: -moz-crisp-edges;
+    image-rendering: -o-crisp-edges;
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: pixelated;
+    image-rendering: optimize-contrast;
+    -ms-interpolation-mode: nearest-neighbor;
+    font-smooth: always;
+    -webkit-font-smoothing: antialiased;
+}
+
+a {
+  color: #e80;
+  text-decoration: none;
+}
+
+a:link {
+  text-decoration: none;
+}
+a:visited {
+  text-decoration: none;
+}
+a:hover {
+  text-decoration: underline;
+}
+a:active {
+  text-decoration: underline;
+}
+
+img {
+  border: 0;
+  max-width: 100%;
+}
+
+p {
+  margin: 0;
+  color: black;
+}
+
+abbr[title] {
+  cursor: help;
+  border-bottom: 1px dotted #999999;
+}
+
+/* Smartphones */
+@media screen and (max-width: 480px) {
+  p {
+    font-size: 0.5em;
+  }
+}
+
+/* Map Pages */
+.home {
+  text-align: center;
+  font-size: 16pt;
+  font-weight: bold;
+  text-align: center;
+  margin: 0px;
+  height: 22px;
+}
+.home:link {
+  text-decoration: none;
+  color: #009900;
+}
+.home:visited {
+  text-decoration: none;
+  color: #009900;
+}
+.home:hover {
+  color: #00AA00;
+  text-decoration: underline;
+}
+.home:active {
+  color: #005000;
+  text-decoration: underline;
+}
+
+.topBar {
+  width: 97%;
+  height: 22px;
+  max-width: 1860px;
+  max-height: 25px;
+  padding: 0px;
+  margin: 0 auto;
+}
+.topBarButton {
+  width: 33%;
+  height: 22px;
+  margin: 0px;
+}
+.topBarHome {
+  width: 33%;
+  height: 22px;
+  margin: 0px;
+  text-align: center;
+}
+.topBarTime {
+  width: 33%;
+  height: 22px;
+  margin: 0px;
+  float: right;
+}
+.reloadTime {
+  float: right;
+  text-align: right;
+  width: 150px;
+}
+
+#All {
+  box-shadow: 2px 2px 3px 2px #0F0F0F;
+  max-width: 5561px;
+  max-height: 3425px;
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.panelImage {
+  box-shadow: 2px 2px 3px 2px rgba(0, 0, 0, 0.7);
+  margin-bottom: 10px;
+  margin-left: 0 auto;
+  margin-right: 0 auto;
+}
+
+.panelContainer {
+  max-width: 1858px;
+  width: 97%;
+  margin: 0 auto;
+  text-align: center;
+  float: none;
+  overflow-x: auto;
+}
+
+/* Other Pages */
+#title {
+  font-size: 32px;
+  font-weight: bold;
+  float: center;
+  text-align: center;
+  margin: 0px auto;
+  vertical-align: middle;
+}
+#logo {
+  margin: auto 3px;
+}
+
+.ppmMain {
+  color: black;
+  
+  width: 90%;
+  
+  float: center;
+  
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: auto;
+  margin-bottom: auto;
+}
+
+.ppmTableTitle {
+  display: block;
+  
+  font-size: 1.17em;
+  font-weight: bold;
+  
+  margin-top: 1em;
+  margin-bottom: 10px;
+  margin-left: 0;
+  margin-right: 0;
+  
+  height: 1em;
+}
+
+.ppmTable {
+  border: 2px solid black;
+  border-collapse: collapse;
+  
+  padding: 2px 4px;
+  
+  text-align: left;
+}
+
+th.ppmTable {
+  border: 2px solid black;
+  border-collapse: collapse;
+  
+  padding: 2px 4px;
+  
+  text-align: center;
+  font-weight: bold;
+}
+#ppmIncidents {
+  margin: 15px 0px;
+  font-size: 0.9em;
+}
+
+.centerPanel {
+  width: 95%;
+  float: center;
+  margin: 0 auto;
+}
+
+.small {
+  font-size: 10px;
+}
+
+.ppmMeter {
+  overflow: hidden;
+  height: 20px;
+  margin-bottom: 4px;
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+.ppmMeterGreen {
+  background-color: #5eb95e;
+}
+.ppmMeterYellow {
+  background-color: #faa732;
+}
+.ppmMeterRed {
+  background-color: #dd514c;
+}
+
+#latest {
+  font-size: 24px;
+  font-style: bold;
+}
+.change {
+  width: 95%;
+  float: center;
+  margin: 0 auto;
+  
+  font-size: 0.9em;
+}
+.changep {
+  font-family: consolas;
+  margin-left: 2%;
+}
+
+.container {
+  width: 95%;
+  float: center;
+  margin: 0 auto;
+  margin-top: 40px;
+  font-size: 16px;
+}

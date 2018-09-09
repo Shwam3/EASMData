@@ -84,6 +84,8 @@ function loadReplay2()
             replayData.push(replayEvent);
         }
 
+        initContents = undefined;
+        logContents = undefined;
         replayData.sort(function(o1, o2)
         {
             return o1.time - o2.time;
@@ -210,7 +212,11 @@ function applyEvent(event, invert)
     }
     else if (event[0] == 'CC')
     {
-        setData(event[2], invert ? event[1] : (event.length == 4 ? event[3] : ''));
+        setData(event[2], invert ? (event.length == 4 ? event[3] : '') : event[1]);
+    }
+    else if (event[0][0] == 'S')
+    {
+        setData(event[1], invert ? event[2] : event[3]);
     }
 }
 function getTime(hr,mn,sc)

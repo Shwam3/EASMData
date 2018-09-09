@@ -271,7 +271,7 @@ window.onload = function()
     canUseWebP = !!(canv.getContext && canv.getContext('2d')) && canv.toDataURL('image/webp').indexOf('data:image/webp') == 0;
     console.log('Using ' + getImgExt());
 
-    get('/webclient/data/data.json', function(json)
+    get('https://sigmaps1s.signalmaps.co.uk/webclient/data/data.json', function(json)
     {
         mapJSON = json;
         load();
@@ -320,7 +320,9 @@ document.addEventListener('keydown', function(e)
     {
         switch(e.key)
         {
+            case "Left":
             case "ArrowLeft": loadPage(--page); break; // left arrow
+            case "Right":
             case "ArrowRight": loadPage(++page); break; // right arrow
             case "v":
             case "V": displayOpts.berths    = !displayOpts.berths; break; // b
@@ -380,6 +382,9 @@ function openSocket(ip)
     attempt++;
     fillBerths();
 
+    if (connection != undefined && connection.readyState != connection.CLOSING && connection.readyState != connection.CLOSED)
+        connection.close();
+
     console.log('WebSocket Opening @ wss://' + ip + ':' + port + (attempt > 0 ? ' (attempt ' + (attempt+1) + ')' : ''));
     connection = new WebSocket('wss://' + ip + ':' + port);
 
@@ -409,7 +414,7 @@ function openSocket(ip)
         console.error('WebSocket Error');
         console.error(e);
 
-        connection.close();
+        this.close();
     };
     connection.onmessage = connection.onmessage || function onmsg(e)
     {
@@ -441,10 +446,8 @@ function openSocket(ip)
 
         if (jsonMsg.type == 'SEND_ALL')
             for (var id in data)
-                data[id] = '';
-
-        //for (var id in jsonMsgData)
-        //    data[id] = jsonMsgData[id];
+                if (id.substring(0, 2) != '$_')
+                    data[id] = '';
         Object.assign(data, jsonMsgData);
 
         fillBerths();
@@ -463,7 +466,7 @@ function downloadPage(uid, callback)
     if (!callback) callback = load;
 
     var pageNo = navIndex[uid] || 0;
-    get('/webclient/data/' + (dev ? 'dev/' : '') + uid + '.json', function(json)
+    get('https://sigmaps1s.signalmaps.co.uk/webclient/data/' + (dev ? 'dev/' : '') + uid + '.json', function(json)
     {
         mapJSON[pageNo]['data'] = json;
         console.log('Downloaded main file (' + uid + '.json)');
@@ -679,18 +682,18 @@ function hcSearch(evt)
     if (hc != null)
     {
         hc = hc.toUpperCase();
-        get('https://sigmaps1s.signalmaps.co.uk/search.php?r=' + Date.now() + '&hc=' + encodeURIComponent(hc) + (dev ? '&dev=true' : ''), (res) =>
+        get('https://sigmaps1s.signalmaps.co.uk/search.php?r=' + Date.now() + '&hc=' + encodeURIComponent(hc) + (dev ? '&dev=true' : ''), function(res)
         {
-            var pagesOn = JSON.parse(res).filter(x => x.map != null)
+            var pagesOn = JSON.parse(res).filter(function(x) { return x.map != null; });
             if (pagesOn.length == 1)
                 loadPage(navIndex[pagesOn[0].map]);
             else if (pagesOn.length > 1)
             {
-                pagesOn = pagesOn.filter((value, index, self) => self.indexOf(value) === index);
+                pagesOn = pagesOn.filter(function(value, index, self) { return self.indexOf(value) === index; });
                 var i = 1;
                 var pgSel = prompt("Choose a page (enter a number 1 to "
                     + pagesOn.length + "):\n"
-                    + pagesOn.map(x => (i++) + ": " + unescapeHTML(mapJSON[navIndex[x.map]].panelName) + " (" + unescapeHTML(mapJSON[navIndex[x.map]].panelDescription) + ")").join('\n')
+                    + pagesOn.map(function(x) { return (i++) + ": " + unescapeHTML(mapJSON[navIndex[x.map]].panelName) + " (" + unescapeHTML(mapJSON[navIndex[x.map]].panelDescription) + ")"; }).join('\n')
                 )
 
                 if (pgSel != null)
@@ -704,7 +707,7 @@ function hcSearch(evt)
             }
             else
                 alert("Headcode \'" + hc + "\' could not be found.");
-        }, (res) => alert("Could not retrieve search at this time."))
+        }, function(res) { alert("Could not retrieve search at this time."); })
     }
 
     evt.preventDefault();
@@ -724,19 +727,19 @@ function get(url, succ, fail)
         try
         {
             if (request.status >= 200 && request.status < 400)
-                setTimeout(() => succ(json ? JSON.parse(request.responseText) : request.responseText));
+                setTimeout(function() { succ(json ? JSON.parse(request.responseText) : request.responseText); });
             else if (fail)
-                setTimeout(() => fail());
+                setTimeout(function() { fail(); });
         }
         catch(e)
         {
             if (fail)
-                setTimeout(() => fail(e));
+                setTimeout(function() { fail(e); });
         }
     };
 
     if (fail)
-        request.onerror = () => setTimeout(() => fail);
+        request.onerror = function(e) { setTimeout(function() { fail(e); }); };
 
     request.send();
 }

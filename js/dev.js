@@ -4,7 +4,7 @@ var wait = 2000;
 var area_filter = {'hideUsed':true};
 function reload()
 {
-    get('/webclient/data/dev/data.json?r='+Date.now(), function(json)
+    get('https://sigmaps1s.signalmaps.co.uk/webclient/data/dev/data.json?r='+Date.now(), function(json)
     {
         mapJSON = json;
         updatePageList(json);
@@ -332,6 +332,12 @@ function unused(a)
             usedIDs.push.apply(usedIDs, bths.dataIDs);
         }
 
+        if (pag.conditionals)
+        for (var conds of pag.conditionals)
+        {
+            usedIDs.push.apply(usedIDs, conds.cond.reduce((acc, val) => acc.concat(val), []).filter(a => a.length == 6));
+        }
+
         for (var i = 0; i < usedIDs.length; i++)
         {
             usedIDs[i] = usedIDs[i].replace('!', ':');
@@ -351,7 +357,7 @@ function downloadPage(uid, callback)
     if (!callback) callback = load;
 
     var pageNo = navIndex[uid] || 0;
-    get('/webclient/data/' + (dev ? 'dev/' : '') + uid + '.json?r='+Date.now(), function(json)
+    get('https://sigmaps1s.signalmaps.co.uk/webclient/data/' + (dev ? 'dev/' : '') + uid + '.json?r='+Date.now(), function(json)
     {
         mapJSON[pageNo]['data'] = json;
         console.log('Downloaded main file (' + uid + '.json)');
@@ -378,7 +384,7 @@ function updatePageList(json)
             var spd = document.getElementById('controllerSpeed');
             list = document.createElement('select');
             list.id = 'pageSelectorList';
-            list.addEventListener('change', evt => { loadPage(parseInt(evt.target.options[evt.target.selectedIndex].value.split(' ')) - 1); });
+            list.addEventListener('change', evt => loadPage(parseInt(evt.target.options[evt.target.selectedIndex].value.split(' ')) - 1));
             spd.parentElement.insertBefore(list, null);
         }
         list.innerHTML = '';
@@ -400,7 +406,7 @@ function updatePageList(json)
             navIndex['dev'] = ++maxPageId;
             var opt = document.createElement('option');
             opt.textContent = (maxPageId+1) + '. dev';
-            if (page == p) opt.selected = true;
+            if (page == maxPageId) opt.selected = true;
             list.insertBefore(opt, null);
         }
     }
