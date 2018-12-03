@@ -357,7 +357,7 @@ function downloadPage(uid, callback)
     if (!callback) callback = load;
 
     var pageNo = navIndex[uid] || 0;
-    get('https://sigmaps1s.signalmaps.co.uk/webclient/data/' + (dev ? 'dev/' : '') + uid + '.json?r='+Date.now(), function(json)
+    get('https://sigmaps1s.signalmaps.co.uk/webclient/data/' + (dev ? 'dev/' : '') + uid + '.json?r=' + (dev ? Date.now() : (mapJSON[pageNo]['r'] || '0')), function(json)
     {
         mapJSON[pageNo]['data'] = json;
         console.log('Downloaded main file (' + uid + '.json)');
@@ -365,7 +365,7 @@ function downloadPage(uid, callback)
     }, function(e)
         {
             console.error(e || 'fail');
-            get('https://raw.githubusercontent.com/Shwam3/EASMData/master/data/' + (dev ? 'dev/' : '') + uid + '.json', function(json)
+            get('https://raw.githubusercontent.com/Shwam3/EASMData/master/data/' + (dev ? 'dev/' : '') + uid + '.json?r=' + (dev ? Date.now() : (mapJSON[pageNo]['r'] || '0')), function(json)
             {
                 mapJSON[pageNo]['data'] = json;
                 console.log('Downloaded secondary file (' + uid + '.json)');
@@ -461,6 +461,17 @@ function getAllHCs()
         if (data[b].match(/[0-9]{3}[A-Z]/))
             getHeadcode(data[b], b.substring(0, 2));
     }
+}
+function previewPrep()
+{
+    closeSocket(false);
+    
+    berths.forEach(b => b.dataIDs.forEach(i => setData(i, '')));
+    signals.forEach(s => setData(s.dataID, 0));
+    signals.forEach(s => s.routeIDs.forEach(i => setData(i, 0)));
+    trackc.forEach(t => t.dataIDs.forEach(i => setData(i, 0)));
+    latches.forEach(l => l.dataIDs.forEach(i => setData(i, 0)));
+    dataText.forEach(d => d.dataIDs.forEach(i => setData(i, 0)));
 }
 function Counter(samples)
 {

@@ -144,7 +144,7 @@ function load()
     htmlIDToObj = {};
     map.innerHTML = defaultInner;
     // use pageData.data.panelUID to allow 'dev' images
-    document.getElementById('mapImage').src = 'https://sigmaps1s.signalmaps.co.uk/webclient/images/maps/'+pageData.data.panelUID + getImgExt() + (dev ? '?r='+Date.now() : '');
+    document.getElementById('mapImage').src = 'https://sigmaps1s.signalmaps.co.uk/webclient/images/maps/'+pageData.data.panelUID + getImgExt() + '?r=' + (dev ? Date.now() : (pageData['r'] || '0'));
     document.getElementById('mapImage').onerror = function(evt) { if (!(evt.srcElement.src && evt.srcElement.src.contains('github'))) evt.srcElement.src = 'https://github.com/Shwam3/EASMData/raw/master/images/maps/'+pageData.data.panelUID+getImgExt(); };
     document.getElementById('mapImage').draggable = false;
     berths = [];
@@ -271,7 +271,7 @@ window.onload = function()
     canUseWebP = !!(canv.getContext && canv.getContext('2d')) && canv.toDataURL('image/webp').indexOf('data:image/webp') == 0;
     console.log('Using ' + getImgExt());
 
-    get('https://sigmaps1s.signalmaps.co.uk/webclient/data/data.json', function(json)
+    get('https://sigmaps1s.signalmaps.co.uk/webclient/data/data.json?r='+Date.now(), function(json)
     {
         mapJSON = json;
         load();
@@ -279,7 +279,7 @@ window.onload = function()
     }, function(e)
         {
             console.log(e || 'fail');
-            get('https://raw.githubusercontent.com/Shwam3/EASMData/master/data/data.json', function(json)
+            get('https://raw.githubusercontent.com/Shwam3/EASMData/master/data/data.json?r='+Date.now(), function(json)
             {
                 mapJSON = json;
                 load();
@@ -466,7 +466,7 @@ function downloadPage(uid, callback)
     if (!callback) callback = load;
 
     var pageNo = navIndex[uid] || 0;
-    get('https://sigmaps1s.signalmaps.co.uk/webclient/data/' + (dev ? 'dev/' : '') + uid + '.json', function(json)
+    get('https://sigmaps1s.signalmaps.co.uk/webclient/data/' + (dev ? 'dev/' : '') + uid + '.json?r=' + (dev ? Date.now() : (mapJSON[pageNo]['r'] || '0')), function(json)
     {
         mapJSON[pageNo]['data'] = json;
         console.log('Downloaded main file (' + uid + '.json)');
@@ -474,7 +474,7 @@ function downloadPage(uid, callback)
     }, function(e)
         {
             console.error(e || 'fail');
-            get('https://raw.githubusercontent.com/Shwam3/EASMData/master/data/' + (dev ? 'dev/' : '') + uid + '.json', function(json)
+            get('https://raw.githubusercontent.com/Shwam3/EASMData/master/data/' + (dev ? 'dev/' : '') + uid + '.json?r=' + (dev ? Date.now() : (mapJSON[pageNo]['r'] || '0')), function(json)
             {
                 mapJSON[pageNo]['data'] = json;
                 console.log('Downloaded secondary file (' + uid + '.json)');

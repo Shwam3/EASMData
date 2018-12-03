@@ -207,7 +207,7 @@
 {"posX":676,"posY":310,"description":"SN174BR","dataID":"$_174_M","type":"LEFT","isBanner":true},
 {"posX":680,"posY":366,"description":"SN175","dataID":"D38A:3","type":"RIGHT","routes":["D340:8"],"flashY":["$_175_FA"]},
 {"posX":672,"posY":238,"description":"SN177","dataID":"$_177_M","type":"NONE"},
-{"posX":680,"posY":238,"description":"SN177","dataID":"$_177_M","type":"RIGHT","routes":["D341:1","D341:2","D341:3","D341:4","D341:5","D341:6","D343:2","D343:3","D343:8"],"isSubs":true},
+{"posX":680,"posY":238,"description":"SN177","dataID":"$_177_S","type":"RIGHT","routes":["D341:1","D341:2","D341:3","D341:4","D341:5","D341:6","D343:2","D343:3","D343:8"],"isSubs":true},
 {"posX":668,"posY":374,"description":"SN178","dataID":"D37C:1","type":"LEFT"},
 {"posX":578,"posY":374,"description":"SN178BR","dataID":"D37C:1","type":"LEFT","isBanner":true},
 {"posX":584,"posY":430,"description":"SN179","dataID":"D37C:3","type":"RIGHT"},

@@ -197,7 +197,7 @@
 {"posX":488,"posY":174,"description":"UR106","dataID":"UR04:6","type":"RIGHT","routes":["UR00:5","UR00:6","UR00:7","UR00:8","UR01:1","UR01:2"]},
 {"posX":604,"posY":118,"description":"UR107","dataID":"UR04:7","type":"LEFT","routes":["UR01:3"]},
 {"posX":552,"posY":174,"description":"UR108","dataID":"UR04:8","type":"RIGHT","routes":["UR01:4"]},
-{"posX":662,"posY":174,"description":"UR112","dataID":"UR05:1","type":"RIGHT","routes":["UR01:5","UR01:6"]},
+{"posX":664,"posY":174,"description":"UR112","dataID":"UR05:1","type":"RIGHT","routes":["UR01:5","UR01:6"]},
 {"posX":716,"posY":118,"description":"UR113","type":"LEFT","isAuto":true},
 {"posX":780,"posY":118,"description":"UR115","type":"LEFT","isAuto":true},
 {"posX":728,"posY":174,"description":"UR116","dataID":"UR05:2","type":"RIGHT","routes":["UR01:7"]},
