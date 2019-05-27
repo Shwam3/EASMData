@@ -231,7 +231,7 @@
 {"posX":1084,"posY":446,"description":"L713","dataID":"Q223:3","type":"LEFT","routes":["Q200:1","Q200:2"]},
 {"posX":390,"posY":446,"description":"L714","dataID":"Q22E:7","type":"RIGHT","routes":["Q248:3"]},
 {"posX":1196,"posY":390,"description":"L715","dataID":"Q223:4","type":"LEFT","routes":["Q200:3","Q200:4","Q200:5","Q242:3"]},
-{"posX":1102,"posY":380,"description":"L715BR","dataID":"Q223:4","type":"LEFT","isBanner":true},
+{"posX":1102,"posY":380,"description":"L715BR","dataID":"$_715_BR","type":"LEFT","isBanner":true},
 {"posX":504,"posY":390,"description":"L716","dataID":"Q22E:8","type":"RIGHT","routes":["Q248:4"]},
 {"posX":1198,"posY":446,"description":"L717","dataID":"Q223:5","type":"LEFT","routes":["Q242:4"]},
 {"posX":1150,"posY":422,"description":"L717BR","dataID":"Q223:5","type":"LEFT","isBanner":true},
@@ -260,7 +260,9 @@
 {"posX":1032,"posY":446,"description":"L756","dataID":"Q224:1","type":"RIGHT"},
 {"posX":1094,"posY":390,"description":"L758","dataID":"Q224:2","type":"RIGHT","routes":["Q201:2","Q201:3"]},
 {"posX":1094,"posY":446,"description":"L760","dataID":"Q224:3","type":"RIGHT","routes":["Q242:6"]},
-{"posX":1208,"posY":446,"description":"L760BR","dataID":"Q224:3","type":"RIGHT","isBanner":true},
+{"posX":1208,"posY":446,"description":"L760BR","dataID":"$_760_BR","type":"RIGHT","isBanner":true},
+{"posX":1098,"posY":401,"description":"TGGG","dataIDs":["Q260!4"],"type":"TRACKC","width":"96","height":"2"},
+{"posX":1098,"posY":433,"description":"THHH","dataIDs":["Q260!5"],"type":"TRACKC","width":"96","height":"2"},
 {"posX":1224,"posY":382,"description":"L762","dataID":"Q224:4","type":"RIGHT","routes":["Q201:4","Q242:7"]},
 {"posX":1224,"posY":414,"description":"L764","dataID":"Q224:5","type":"RIGHT","routes":["Q242:8"]},
 {"posX":1224,"posY":446,"description":"L766","dataID":"Q224:6","type":"RIGHT","routes":["Q243:1"]},
@@ -271,8 +273,8 @@
 {"posX":1560,"posY":446,"description":"L784","dataID":"Q22D:5","type":"RIGHT","routes":["Q247:1"]},
 {"posX":1704,"posY":390,"description":"L786","dataID":"Q22D:6","type":"RIGHT","routes":["Q212:4","Q212:5"]},
 {"posX":1704,"posY":446,"description":"L788","dataID":"Q22D:7","type":"RIGHT","routes":["Q212:6","Q212:7"]},
-{"posX":1180,"posY":358,"description":"L5185","dataID":"Q225:2","type":"LEFT","routes":["Q202:4","Q202:5","Q243:2"],"isShunt":true},
-{"posX":1224,"posY":326,"description":"L5186","dataID":"Q225:3","type":"RIGHT","routes":["Q243:3"],"isShunt":true},
+{"posX":1180,"posY":358,"description":"L5185","dataID":"Q225:2","type":"LEFT","routes":["Q202:4","Q243:2"],"isShunt":true},
+{"posX":1224,"posY":326,"description":"L5186","dataID":"Q225:3","type":"RIGHT","routes":["Q202:5","Q243:3"],"isShunt":true},
 {"posX":1288,"posY":350,"description":"L5188","dataID":"Q225:4","type":"RIGHT","routes":["Q243:4"],"isShunt":true}
 ],
 "points":[
@@ -347,6 +349,7 @@
 {"posX":666,"posY":170,"description":"L2375B Nrm","dataIDs":["Q21B:6","Q21B:8","Q21D:5","Q21E:4","Q24C:4","Q24D:6","Q24D:7"],"type0":"NONE","type1":"NHzRtDn"},
 {"posX":666,"posY":170,"description":"L2375B Rev","dataIDs":["Q21B:7","Q21D:4","Q24C:3","Q24D:5"],"type0":"NONE","type1":"RHzRtDn"},
 {"posX":650,"posY":234,"description":"L2376A Nrm","dataIDs":["Q21A:8","Q21B:4","Q21C:1","Q21D:7","Q21D:8","Q21E:2","Q21E:7","Q24C:6","Q24C:7","Q24D:8","Q24E:1","Q24E:2","Q24E:3","Q24E:4"],"type0":"NONE","type1":"NHzLfDn"},
+{"posX":650,"posY":234,"description":"L2376A Nrm","dataIDs":["Q21A:8","Q21B:4","Q21C:1","Q21D:7","Q21D:8","Q21E:2","Q21E:7","Q24C:6","Q24C:7","Q24D:8","Q24E:1","Q24E:2","Q24E:3","Q24E:4"],"type0":"NONE","type1":"NHzLfDn"},
 {"posX":650,"posY":234,"description":"L2376A Rev","dataIDs":["Q21E:3","Q24E:5"],"type0":"NONE","type1":"RHzLfDn"},
 {"posX":650,"posY":266,"description":"L2376B Nrm","dataIDs":["Q21A:8","Q21B:4","Q21C:1","Q21D:7","Q21D:8","Q21E:2","Q21E:7","Q24C:6","Q24C:7","Q24D:8","Q24E:1","Q24E:2","Q24E:3","Q24E:4"],"type0":"NONE","type1":"NHzRtUp"},
 {"posX":650,"posY":266,"description":"L2376B Rev","dataIDs":["Q21E:3","Q24E:5"],"type0":"NONE","type1":"RHzRtUp"},
@@ -393,6 +396,12 @@
 {"posX":1562,"posY":266,"description":"L2401A Rev","dataIDs":["Q219:3"],"type0":"NONE","type1":"RHzLfUp"},
 {"posX":1562,"posY":234,"description":"L2401B Nrm","dataIDs":["Q216:3","Q216:7","Q217:2","Q219:4"],"type0":"NONE","type1":"NHzRtDn"},
 {"posX":1562,"posY":234,"description":"L2401B Rev","dataIDs":["Q219:3"],"type0":"NONE","type1":"RHzRtDn"}
+],
+"conditionals":[
+{"ID":"715_S","cond":["AND","Q223:4",["OR","Q200:3","Q242:3"]]},
+{"ID":"715_M","cond":["AND","Q223:4",["NOT","$_715_S"]]},
+{"ID":"715_BR","cond":["AND","$_715_M","Q260:4"]},
+{"ID":"760_BR","cond":["AND","Q224:3","Q260:5"]}
 ],
 "text":[
 {"posX":907,"posY":170,"text":"BRAINTREE","url":"BTR","type":"LOC"},
