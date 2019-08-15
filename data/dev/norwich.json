@@ -415,6 +415,12 @@
 {"posX":1127,"posY":378,"text":"TROWSE JN","url":"TROWSEJ","type":"LOC"},
 {"posX":464,"posY":666,"text":"WEST\\nRUNTON","url":"WRN","type":"LOC"},
 {"posX":1120,"posY":426,"text":"WHITLINGHAM JN","url":"XWH","type":"LOC"},
-{"posX":850,"posY":514,"text":"WORSTEAD","url":"WRT","type":"LOC"}
+{"posX":850,"posY":514,"text":"WORSTEAD","url":"WRT","type":"LOC"},
+{"posX":1690,"posY":234,"text":"1","type":"TEXT","colour":"black"},
+{"posX":1698,"posY":242,"text":"2","type":"TEXT","colour":"black"},
+{"posX":1690,"posY":298,"text":"3","type":"TEXT","colour":"black"},
+{"posX":1698,"posY":306,"text":"4","type":"TEXT","colour":"black"},
+{"posX":1690,"posY":394,"text":"5","type":"TEXT","colour":"black"},
+{"posX":1698,"posY":402,"text":"6","type":"TEXT","colour":"black"}
 ]
 }

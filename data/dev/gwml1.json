@@ -275,9 +275,9 @@
 {"posX":240,"posY":254,"description":"SN133","dataID":"D383:4","type":"RIGHT","routes":["D33A:5","D33A:6","D33A:7"]},
 {"posX":284,"posY":326,"description":"SN134","dataID":"D382:5","type":"LEFT","routes":["D329:8","D32B:2"]},
 {"posX":232,"posY":478,"description":"SN135","dataID":"D37B:2","type":"RIGHT"},
-{"posX":328,"posY":478,"description":"SN135BR","dataID":"D37B:2","type":"RIGHT","isBanner":true},
+{"posX":328,"posY":478,"description":"SN135BR","dataID":"D37B:2","type":"RIGHT","isBanner":true,"green":["$_135BR_GRN"]},
 {"posX":232,"posY":382,"description":"SN137","dataID":"D384:1","type":"RIGHT","routes":["D32D:1"]},
-{"posX":312,"posY":382,"description":"SN137BR","dataID":"D384:1","type":"RIGHT","isBanner":true},
+{"posX":312,"posY":382,"description":"SN137BR","dataID":"D384:1","type":"RIGHT","isBanner":true,"green":["$_137BR_GRN"]},
 {"posX":232,"posY":222,"description":"SN141","dataID":"D382:7","type":"RIGHT","routes":["D32E:4","D32E:5","D32E:6"]},
 {"posX":232,"posY":190,"description":"SN145","dataID":"D384:8","type":"RIGHT","routes":["D330:7"]},
 {"posX":296,"posY":166,"description":"SN145BR","dataID":"D384:8","type":"RIGHT","isBanner":true},
@@ -608,7 +608,9 @@
 {"ID":"131_S","cond":["AND","D382:3",["OR","D33A:2","D33A:4"]]},
 {"ID":"131_M","cond":["AND","D382:3",["NOT","$_131_S"]]},
 {"ID":"132_S","cond":["AND","D382:4",["OR","D32B:5","D32A:4"]]},
-{"ID":"132_M","cond":["AND","D382:4",["NOT","$_132_S"]]}
+{"ID":"132_M","cond":["AND","D382:4",["NOT","$_132_S"]]},
+{"ID":"135BR_GRN","cond":["AND","D37B:2","D37B:5","D37B:6"]},
+{"ID":"137BR_GRN","cond":["AND","D384:1","D32D:1","D389:1","D33E:1","D389:5",["OR","D33F:4","D33F:5"]]}
 ],
 "text":[
 {"posX":1439,"posY":150,"text":"(PLATFORM BANNER REPEATERS NOT SHOWN)","type":"TEXT"},

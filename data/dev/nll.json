@@ -169,8 +169,8 @@
 {"posX":570,"posY":826,"dataIDs":["U3WS23"]}
 ],
 "signals":[
-{"posX":1610,"posY":158,"description":"NL1402 TRTS","dataIDs":["U317:7"],"text1":"TRTS","type":"TEXT"},
-{"posX":1610,"posY":190,"description":"NL1404 TRTS","dataIDs":["U317:8"],"text1":"TRTS","type":"TEXT"},
+{"posX":1610,"posY":190,"description":"L1402TRS","dataIDs":["U317:7"],"text1":"TRTS","type":"TEXT"},
+{"posX":1610,"posY":158,"description":"L1404TRS","dataIDs":["U317:8"],"text1":"TRTS","type":"TEXT"},
 {"posX":220,"posY":214,"description":"NL1251","dataID":"U311:8","type":"LEFT"},
 {"posX":286,"posY":214,"description":"NL1257","dataID":"U312:3","type":"LEFT"},
 {"posX":168,"posY":270,"description":"NL1258","dataID":"U312:4","type":"RIGHT"},

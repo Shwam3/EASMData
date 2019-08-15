@@ -160,7 +160,7 @@
 {"posX":1134,"posY":390,"text":"REEDHAM\\nSWING BRIDGE","type":"TEXT"},
 {"posX":400,"posY":390,"text":"WHITLINGHAM JN","url":"XWH","type":"LOC"},
 
-{"posX":574,"posY":618,"text":"BECCLES","url":"ipswich","type":"MNAV"},
+{"posX":574,"posY":618,"text":"BECCLES","url":"esk","type":"MNAV"},
 {"posX":663,"posY":498,"text":"HADDISCOE","url":"HAD","type":"LOC"},
 {"posX":1248,"posY":614,"text":"LOWESTOFT","url":"LWT","type":"MLOC"},
 {"posX":926,"posY":490,"text":"OULTON BROAD\\nNORTH","url":"OUN","type":"LOC"},

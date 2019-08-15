@@ -459,11 +459,23 @@
 {"posX":276,"posY":146,"text":"MANNINGTREE","url":"MNG","type":"MLOC"},
 {"posX":681,"posY":378,"text":"MISTLEY","url":"MIS","type":"LOC"},
 {"posX":942,"posY":378,"text":"WRABNESS","url":"WRB","type":"LOC"},
+{"posX":1412,"posY":306,"text":"1","type":"TEXT","colour":"black"},
+{"posX":1412,"posY":362,"text":"2","type":"TEXT","colour":"black"},
+{"posX":1418,"posY":370,"text":"3","type":"TEXT","colour":"black"},
+{"posX":358,"posY":258,"text":"1","type":"TEXT","colour":"black"},
+{"posX":364,"posY":250,"text":"2","type":"TEXT","colour":"black"},
+{"posX":358,"posY":194,"text":"3","type":"TEXT","colour":"black"},
 
 {"posX":1314,"posY":666,"text":"ARDLEIGH\\nMCB-CCTV","type":"TEXT"},
 {"posX":373,"posY":666,"text":"CHITTS HILL\\nMCB-CCTV","type":"TEXT"},
 {"posX":1086,"posY":674,"text":"CLACTON","url":"clacton","type":"MNAV"},
 {"posX":802,"posY":770,"text":"COLCHESTER","url":"COL","type":"MLOC"},
-{"posX":166,"posY":618,"text":"WITHAM","url":"witham","type":"MNAV"}
+{"posX":166,"posY":618,"text":"WITHAM","url":"witham","type":"MNAV"},
+{"posX":846,"posY":586,"text":"1","type":"TEXT","colour":"black"},
+{"posX":854,"posY":594,"text":"2","type":"TEXT","colour":"black"},
+{"posX":816,"posY":650,"text":"3","type":"TEXT","colour":"black"},
+{"posX":902,"posY":682,"text":"4","type":"TEXT","colour":"black"},
+{"posX":910,"posY":690,"text":"5","type":"TEXT","colour":"black"},
+{"posX":822,"posY":658,"text":"6","type":"TEXT","colour":"black"}
 ]
 }

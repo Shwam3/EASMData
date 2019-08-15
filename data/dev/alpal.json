@@ -1,5 +1,5 @@
 {
-"panelUID":"alpal","panelName":"Alexandra Palace","panelDescription":"Potters Bar - Alexandra Palace","areas":["KX","Y8"],
+"panelUID":"alpal","panelName":"Alexandra Palace","panelDescription":"Potters Bar &amp; Gordon Hill - Hornsey","areas":["KX","Y8"],
 "berths":[
 {"posX":1242,"posY":186,"dataIDs":["KX0476"]},
 {"posX":1242,"posY":218,"dataIDs":["KX0831"]},
@@ -284,7 +284,7 @@
 {"posX":311,"posY":470,"text":"BROOKMANS\\nPARK","url":"BPK","type":"LOC"},
 {"posX":1698,"posY":385,"text":"FINSBURY\\nPARK","url":"kingsx","type":"MNAV"},
 {"posX":672,"posY":474,"text":"HADLEY\\nWOOD","url":"HDW","type":"LOC"},
-{"posX":1615,"posY":398,"text":"HARRINGEY","url":"HGY","type":"LOC"},
+{"posX":1621,"posY":398,"text":"HORNSEY","url":"HRN","type":"LOC"},
 {"posX":1594,"posY":270,"text":"HORNSEY EMUD","url":"XHE","type":"LOC"},
 {"posX":800,"posY":470,"text":"NEW\\nBARNET","url":"NBA","type":"LOC"},
 {"posX":1095,"posY":470,"text":"NEW\\nSOUTHGATE","url":"NSG","type":"LOC"},
