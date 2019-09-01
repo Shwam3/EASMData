@@ -1,5 +1,5 @@
 {
-"panelUID":"cambs1_2","panelName":"Cambridge (CA)","panelDescription":"Elsenham - Ely","areas":["CA"],
+"panelUID":"cambs1_2","panelName":"Cambridge (CA)","panelDescription":"Elsenham - Ely","areas":["CA","Y8"],
 "berths":[
 {"posX":184,"posY":234,"dataIDs":["CAX200"]},
 {"posX":184,"posY":186,"dataIDs":["CA0210"]},
@@ -124,11 +124,11 @@
 {"posX":1648,"posY":442,"dataIDs":["CA0195"]},
 {"posX":1048,"posY":362,"dataIDs":["CA0653"]},
 {"posX":1048,"posY":386,"dataIDs":["CA0655"]},
-{"posX":144,"posY":346,"dataIDs":["CA0986"]},
 {"posX":1200,"posY":378,"dataIDs":["CA1150"]},
 {"posX":1200,"posY":410,"dataIDs":["CA1152"]},
 {"posX":1280,"posY":378,"dataIDs":["CA1171"]},
 {"posX":1280,"posY":410,"dataIDs":["CA1173"]},
+{"posX":144,"posY":346,"dataIDs":["Y80986"]},
 
 {"posX":128,"posY":666,"dataIDs":["CA0019"]},
 {"posX":128,"posY":698,"dataIDs":["CA0020"]},
@@ -430,7 +430,7 @@
 {"posX":1758,"posY":572,"description":"CA738","dataID":"CA24:2","type":"RIGHT","isShunt":true,"routes":["CA3C:6"]},
 {"posX":1698,"posY":576,"description":"CA739","dataID":"CA24:3","type":"LEFT","isShunt":true,"routes":["CA3C:7"]},
 {"posX":1758,"posY":596,"description":"CA740","dataID":"CA24:4","type":"RIGHT","isShunt":true,"routes":["CA3C:8"]},
-{"posX":142,"posY":366,"description":"K986","type":"RIGHT","isAuto":true},
+{"posX":142,"posY":366,"description":"K986","dataID":"Y810:1","type":"RIGHT","routes":["Y803:3","Y803:4"]},
 
 {"posX":178,"posY":662,"description":"CA19","dataID":"CA66:8","type":"LEFT"},
 {"posX":124,"posY":718,"description":"CA20","type":"RIGHT","isAuto":true},

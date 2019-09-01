@@ -1,5 +1,5 @@
 {
-"panelUID":"huntingdon","panelName":"Sandy, St Neots & Huntingdon","panelDescription":"Biggleswade - Holme Jn","areas":["KX","PB"],
+"panelUID":"huntingdon","panelName":"Sandy, St Neots, &amp; Huntingdon","panelDescription":"Biggleswade - Holme Jn","areas":["PB","Y8"],
 "berths":[
 {"posX":266,"posY":250,"dataIDs":["PB0261"]},
 {"posX":266,"posY":282,"dataIDs":["PB0263"]},
@@ -71,8 +71,8 @@
 {"posX":1482,"posY":282,"dataIDs":["PB0339"]},
 {"posX":330,"posY":314,"dataIDs":["PB0796"]},
 {"posX":330,"posY":346,"dataIDs":["PB0798"]},
-{"posX":266,"posY":314,"dataIDs":["KX0776"]},
-{"posX":266,"posY":346,"dataIDs":["KX0778"]},
+{"posX":266,"posY":314,"dataIDs":["Y80776"]},
+{"posX":266,"posY":346,"dataIDs":["Y80778"]},
 
 {"posX":266,"posY":570,"dataIDs":["PB0338"]},
 {"posX":266,"posY":538,"dataIDs":["PB0340"]},
