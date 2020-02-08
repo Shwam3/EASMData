@@ -3,6 +3,7 @@ var logFile;
 var initContents;
 var logContents;
 var replayData;
+var initData;
 var isReplaying = false;
 var lastReplayTime = -1;
 var replayState = 0; // 0: pause, -1: rev, 1: fwd
@@ -38,24 +39,32 @@ function loadReplay()
     initContents = undefined;
     logContents = undefined;
 
-    document.getElementById('replayGo').setAttribute('disabled',true);
-    document.getElementById('controllerPlayRev').removeAttribute('disabled');
-    document.getElementById('controllerPause').removeAttribute('disabled');
-    document.getElementById('controllerPlayFor').removeAttribute('disabled');
-    document.getElementById('controllerSpeed').removeAttribute('disabled');
+    document.getElementById('replayGo').setAttribute('disabled', true);
+    document.title = "Signal Maps - Loading";
 
-    var initReader = new FileReader();
-    initReader.onload = function(e) { initContents = e.target.result; loadReplay2(); }
-    initReader.readAsText(initFile);
     var logReader = new FileReader();
+    var initReader = new FileReader();
     logReader.onload = function(e) { logContents = e.target.result; loadReplay2(); }
-    logReader.readAsText(logFile);
+    initReader.onload = function(e) { initContents = e.target.result; loadReplay2(); }
+    if (logFile.size > 0 && initFile.size > 0)
+    {
+        var logRead = 0;
+        var initRead = 0;
+        document.title = "Signal Maps - Loading Replay (0%, 0%, 0%)";
+        logReader.onprogress  = function(e) { logRead  = e.loaded; document.title = "Signal Maps - Loading (" + Math.floor(100 * initRead / initFile.size) + "%, " + Math.floor(100 * e.loaded / logFile.size) + "%, 0%)"; }
+        initReader.onprogress = function(e) { initRead = e.loaded; document.title = "Signal Maps - Loading (" + Math.floor(100 * e.loaded / initFile.size) + "%, " + Math.floor(100 * logRead / logFile.size)  + "%, 0%)"; }
+    }
+    logReader.readAsArrayBuffer(logFile);
+    initReader.readAsText(initFile);
 }
 
 function loadReplay2()
 {
     if (initContents == undefined || logContents == undefined)
         return;
+
+    if (initFile.size > 0 && logFile.size > 0)
+        document.title = "Signal Maps - Loading (100%, 100%, 0.00%)";
 
     try
     {
@@ -65,41 +74,140 @@ function loadReplay2()
         replayDataIndex = 0;
         replayState = 0;
 
-        var initData = JSON.parse(initContents).TDData;
-        closeSocket(true);
-        data = initData;
-        fillBerths();
-
-        replayData = [];
-        var logSplit = logContents.split('\n');
-        for (line in logSplit)
+        var parser = new Worker(URL.createObjectURL(new Blob(["("+worker_logParser.toString()+")()"], {type: 'text/javascript'})));
+        parser.onmessage = function(evt)
         {
-            if (!logSplit[line] || logSplit[line].length < 30)
-                continue;
-
-            var replayEvent = {};
-            var lineTimeBits = logSplit[line].substring(10,18).split(':')
-            replayEvent['time'] = getTime(lineTimeBits[0],lineTimeBits[1],lineTimeBits[2]);
-            replayEvent['event'] = logSplit[line].substring(20).replace('\r', '').split(' ');
-            replayData.push(replayEvent);
+            if (evt.data[0] == "title")
+                document.title = evt.data[1];
+            else if (evt.data[0] == "result")
+                loadReplay3(JSON.parse(evt.data[1]));
+            parser = undefined;
         }
+        parser.onerror = (err) => console.error(err);
+        parser.postMessage(logContents, [logContents]);
 
+        initData = JSON.parse(initContents).TDData;
         initContents = undefined;
-        logContents = undefined;
-        replayData.sort(function(o1, o2)
-        {
-            return o1.time - o2.time;
-        });
 
-        isReplaying = true;
+        if (initFile.size > 0 && logFile.size > 0)
+        {
+            var logFrac = 10000 * logFile.size / (initFile.size + logFile.size);
+            var initPerc = Math.ceil(10000 - logFrac) / 100;
+            document.title = "Signal Maps - Loading (100%, 100%, " + initPerc + "%)";
+        }
+        parser.postMessage([initPerc, logFrac, areasA, areasS]);
     }
     catch(err)
     {
-        alert('File read failed');
+        document.title = "Signal Maps";
         console.error(err);
+        alert('File read failed');
+
+        return;
+    }
+}
+function worker_logParser()
+{
+    var running = false;
+    var logContents = undefined;
+    var initPerc = undefined;
+    var logFrac = undefined;
+    var areasA = undefined;
+    var areasS = undefined;
+
+    onmessage = function(evt)
+    {
+        if (Array.isArray(evt.data))
+        {
+            initPerc = evt.data[0];
+            logFrac = evt.data[1];
+            areasA = evt.data[2];
+            areasS = evt.data[3];
+
+            if (!running && logContents != undefined)
+                parse();
+        }
+        else
+        {
+            logContents = new TextDecoder("UTF-8").decode(evt.data);
+
+            if (!running && initPerc != undefined && logFrac != undefined)
+                parse()
+        }
     }
 
+    function parse()
+    {
+        console.log('Parsing for (A) ' + areasA.join(',') + ' and (S) ' + areasS.join(','));
+        
+        initPerc *= 100;
+        running = true;
+        var logSplit = logContents.split('\n');
+        logContents = undefined;
+        var logLineCount = logSplit.length;
+        var replayData = new Array(1000);
+        var i = 0;
+        var j = 0;
+
+        for (var line of logSplit)
+        {
+            j++;
+            if (j % 1000 == 0)
+                postMessage(["title", "Signal Maps - Loading (100%, 100%, " + (Math.floor(initPerc + logFrac * j / logLineCount) / 100) + "%)"]);
+
+            if (!line || line.length < 30)
+                continue;
+            
+            if (line.substring(20, 22) == 'CT' || (line[20] == 'S' ? areasS.indexOf(line.substring(23, 25)) : areasA.indexOf(line.substring(28, 30))) == -1)
+                continue;
+
+            replayData[i++] = {time: getTime(line[10]+line[11], line[13]+line[14], line[16]+line[17]), event: line.substring(20).replace('\r', '').split(' ')};
+        }
+
+        logSplit = undefined;
+        replayData.sort((o1, o2) => o1.time - o2.time);
+
+        postMessage(["title", "Signal Maps - Loading (100%, 100%, 100%)"]);
+        postMessage(["result", JSON.stringify(replayData)]);
+
+        running = false;
+        close();
+    }
+
+    function getTime(hr,mn,sc)
+    {
+        return hr*3600000 + mn*60000 + sc*1000;
+    }
+
+    console.log('Worker initialised');
+}
+function loadReplay3(parsedData)
+{
+    closeSocket(true);
+    data = initData;
+    replayData = parsedData;
+    fillBerths();
+
+    document.getElementById('controllerPlayRev').removeAttribute('disabled');
+    document.getElementById('controllerPause').removeAttribute('disabled');
+    document.getElementById('controllerPlayFor').removeAttribute('disabled');
+    document.getElementById('controllerSpeed').removeAttribute('disabled');
+    document.title = "Signal Maps - Replay";
+    isReplaying = true;
     console.log('Reading complete');
+}
+function resetReplay(time)
+{
+    controllerPause();
+    
+    data = initData;
+    lastReplayTime = performance.now();
+    replayDataIndex = 0;
+    replayTime = time;
+    
+    replayState = 1;
+    replayUpdate();
+    controllerPause();
 }
 function replayUpdate()
 {
@@ -221,7 +329,7 @@ function applyEvent(event, invert)
 }
 function getTime(hr,mn,sc)
 {
-  return hr*3600000 + mn*60000 + sc*1000;
+    return hr*3600000 + mn*60000 + sc*1000;
 }
 
 document.getElementById('replayInit').addEventListener('change', function(e) { if (e.target.files[0]) initFile = e.target.files[0]; showReplay(); }, false);

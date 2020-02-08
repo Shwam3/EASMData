@@ -82,11 +82,12 @@ function checkboxEvt(e)
         case 'b': displayOpts.berths = e.checked; break;
         case 'c': displayOpts.trackC = e.checked; break;
         case 'd': displayOpts.IDs = e.checked; break;
-        case 'h': displayOpts.headcodes = e.checked; break;
+        case 'h': displayOpts.headcodes = e.checked; localStorage.setItem('h',displayOpts.headcodes); break;
         case 'p': displayOpts.points = e.checked; break;
         case 'r': displayOpts.dataText = e.checked; break;
         case 's': displayOpts.signals = e.checked; break;
         case 't': displayOpts.text = e.checked; break;
+        case 'e': displayOpts.delays = e.checked; localStorage.setItem('e',displayOpts.delays); setAreas(null); break;
     }
     displayOpts.changed = true;
     fillBerths();
@@ -106,6 +107,7 @@ fillBerths0 = function()
     document.getElementById('r').checked = displayOpts.dataText;
     document.getElementById('s').checked = displayOpts.signals;
     document.getElementById('t').checked = displayOpts.text;
+    document.getElementById('e').checked = displayOpts.delays;
 }
 var areasA = ['A2','AW','CA','CC','CT','D0','D1','D3','D4','D5','D6','D7','D9','EN','IH','K2','KX','LS','NJ','NX','PB','Q1','Q2','SO','SX','UR','U2','U3','WC','WG','WH','WJ','WY','WS','X0','XX'];
 var areasS = ['A2','AW','CA','CC','CT','D0','D1','D3','D4','D5','D6','D7','D9','EN','IH','K2',     'LS','NJ','NX',     'Q1','Q2',     'SX','UR','U2','U3',          'WH','WJ',          'X0'     ];
@@ -117,10 +119,9 @@ function devPage()
     var map = document.getElementById('map');
 
     document.getElementById('desc').textContent = 'Dev Page';
-    document.title = 'Signal Maps - Dev Page';
     window.location.replace(window.location.href.split('#')[0] + '#dev');
     map.innerHTML = defaultInner;
-    document.getElementById('mapImage').src = '/webclient/images/blank.png';
+    document.getElementById('mapImage').src = 'https://sigmaps1s.signalmaps.co.uk/webclient/images/blank.png';
     document.getElementById('mapImage').style.minWidth = 'initial';
     document.getElementById('mapImage').style.display = 'none';
     document.getElementById('map').style.overflowY = 'auto';
@@ -133,7 +134,9 @@ function devPage()
     dataText = [];
     text = [];
     trackc = [];
-    setAreas(areasA);
+    areasA = areasA.sort();
+    areasS = areasS.sort();
+    setAreas([...new Set([...areasA, ...areasS])].sort());
 
     var div = document.createElement('div');
     div.style.margin = '5px 26px';
@@ -150,17 +153,24 @@ function devPage()
     document.getElementById('map').appendChild(div);
     hideUsed = area_filter.hideUsed;
 
-    var usedIDs = ['XXMOTD'];
+    var usedIDs = [];
     if (hideUsed)
     {
+        var downloaded = false;
         for (var pag of mapJSON)
         {
             if ((!('data' in pag) || pag.data == {}) && pag.areas.some(id => areasA.indexOf(id) >= 0 || areasS.indexOf(id) >= 0))
             {
-                downloadPage(pag.panelUID, load);
-                return;
+                if (!pag['downloading'])
+                {
+                    pag.downloading = true;
+                    downloadPage(pag.panelUID, load);
+                }
+                downloaded = true;
             }
         }
+        if (downloaded)
+            return;
 
         for (var pag of mapJSON)
         {
@@ -186,6 +196,12 @@ function devPage()
                 usedIDs.push.apply(usedIDs, bths.dataIDs);
             }
 
+            if (pag.conditionals)
+            for (var cond of pag.conditionals)
+            {
+                usedIDs.push.apply(usedIDs, cond.cond.flat(10).filter(i => i.length == 6 && (i.indexOf(':') == 4 || i.indexOf('!') == 4)));
+            }
+            
             for (var i = 0; i < usedIDs.length; i++)
             {
                 usedIDs[i] = usedIDs[i].replace('!', ':');
@@ -299,14 +315,21 @@ function devPage()
 function unused(a)
 {
     var usedIDs = [];
+    var downloaded = false;
     for (pag of mapJSON)
     {
         if ((!('data' in pag) || pag.data == {}) && pag.areas.some(id => a == id))
         {
-            downloadPage(pag.panelUID, () => unused(a));
-            return;
+            if (!pag['downloading'])
+            {
+                pag.downloading = true;
+                downloadPage(pag.panelUID, () => unused(a));
+            }
+            downloaded = true;
         }
     }
+    if (downloaded)
+        return;
 
     for (var pag of mapJSON)
     {
@@ -335,7 +358,7 @@ function unused(a)
         if (pag.conditionals)
         for (var conds of pag.conditionals)
         {
-            usedIDs.push.apply(usedIDs, conds.cond.reduce((acc, val) => acc.concat(val), []).filter(a => a.length == 6));
+            usedIDs.push.apply(usedIDs, conds.cond.flat(10).filter(i => i.length == 6 && (i.indexOf(':') == 4 || i.indexOf('!') == 4)));
         }
 
         for (var i = 0; i < usedIDs.length; i++)
@@ -356,22 +379,24 @@ function downloadPage(uid, callback)
 {
     if (!callback) callback = load;
 
-    var pageNo = navIndex[uid] || 0;
-    get('https://sigmaps1s.signalmaps.co.uk/webclient/data/' + (dev ? 'dev/' : '') + uid + '.json?r=' + (dev ? Date.now() : (mapJSON[pageNo]['r'] || '0')), function(json)
-    {
-        mapJSON[pageNo]['data'] = json;
-        console.log('Downloaded main file (' + uid + '.json)');
-        callback();
-    }, function(e)
+    setTimeout(() => {
+        var pageNo = navIndex[uid] || 0;
+        get('https://sigmaps1s.signalmaps.co.uk/webclient/data/' + (dev ? 'dev/' : '') + uid + '.json?r=' + (dev ? Date.now() : (mapJSON[pageNo]['r'] || '0')), function(json)
         {
-            console.error(e || 'fail');
-            get('https://raw.githubusercontent.com/Shwam3/EASMData/master/data/' + (dev ? 'dev/' : '') + uid + '.json?r=' + (dev ? Date.now() : (mapJSON[pageNo]['r'] || '0')), function(json)
+            mapJSON[pageNo]['data'] = json;
+            console.log('Downloaded main file (' + uid + '.json)');
+            callback();
+        }, function(e)
             {
-                mapJSON[pageNo]['data'] = json;
-                console.log('Downloaded secondary file (' + uid + '.json)');
-                callback();
+                console.error(e || 'fail');
+                get('https://raw.githubusercontent.com/Shwam3/EASMData/master/data/' + (dev ? 'dev/' : '') + uid + '.json?r=' + (dev ? Date.now() : (mapJSON[pageNo]['r'] || '0')), function(json)
+                {
+                    mapJSON[pageNo]['data'] = json;
+                    console.log('Downloaded secondary file (' + uid + '.json)');
+                    callback();
+                });
             });
-        });
+    }, 0);
 }
 function updatePageList(json)
 {
@@ -424,18 +449,11 @@ window.onload = function()
     canUseWebP = !!(canv.getContext && canv.getContext('2d')) && canv.toDataURL('image/webp').indexOf('data:image/webp') == 0;
     console.log('Using ' + getImgExt());
 
-    /*var modal = document.getElementById('modal');
-    var modalClose = document.getElementById('modal-close');
-    modal.onclick = modalClose.onclick = function(e)
-    {
-        modal.style.display = 'none';
-    }*/
-
     reload();
 
     var css = document.createElement('link');
     css.rel = 'stylesheet';
-    css.href = 'https://sigmaps1s.signalmaps.co.uk/webclient/css/sprites.' + (canUseWebP ? 'webp.css' : 'css');
+    css.href = 'https://sigmaps1s.signalmaps.co.uk/webclient/css/sprites.' + (canUseWebP ? 'webp.css' : 'css') + '?r=' + Date.now();
     css.type = 'text/css';
     document.head.insertBefore(css, document.head.lastElementChild);
 
@@ -465,7 +483,7 @@ function getAllHCs()
 function previewPrep()
 {
     closeSocket(false);
-    
+
     berths.forEach(b => b.dataIDs.forEach(i => setData(i, '')));
     signals.forEach(s => setData(s.dataID, 0));
     signals.forEach(s => s.routeIDs.forEach(i => setData(i, 0)));
@@ -481,13 +499,17 @@ function Counter(samples)
     this.tickSum = 0;
     this.tickList = [];
 
+    this.totalData = 0;
+
     for (var i = 0; i < this.MAX_SAMPLES; i++)
     {
         this.tickList[i] = 0;
     }
 
-    this.addTick = function addTick(tick)
+    this.addTick = function addTick(tick, data)
     {
+        this.totalData += data;
+
         this.tickSum -= this.tickList[this.tickIndex];
         this.tickSum += tick;
         this.tickList[this.tickIndex] = tick;

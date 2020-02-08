@@ -1,5 +1,4 @@
-var port = 8443;
-var host = 'sigmaps1s.signalmaps.co.uk';
+var host = 'ws.signalmaps.co.uk';
 var page = 0;
 var dev = false;
 var connection;
@@ -10,7 +9,7 @@ var lastTimestamp = -1;
 var needsFilling = true;
 var data = {};
 var navIndex = {};
-var displayOpts = {'IDs': false, 'berths': true, 'points': true, 'signals': true, 'text': true, 'dataText': true, 'trackC': true, 'railcam': !!localStorage.getItem('l'), 'headcodes': false};
+var displayOpts = {'IDs': false, 'berths': true, 'points': true, 'signals': true, 'text': true, 'dataText': true, 'trackC': true, 'railcam': "true" == localStorage.getItem('l'), 'headcodes': "true" == localStorage.getItem('h'), 'delays': !('e' in localStorage) || "true" == localStorage.getItem('e')};
 var berths = [];
 var signals = [];
 var points = [];
@@ -27,16 +26,14 @@ var connectError = false;
 var defaultInner = document.getElementById('map').innerHTML;
 var htmlIDToObj = {};
 var hashRead = false;
-var hcMap = {}; //JSON.parse(localStorage.getItem('hcMap')) || {};
+var hcMap = {};
 var active_areas = [];
 var canUseWebP = false;
 var searchData = [];
+var delayData = {data: [], lastUpdate: Date.now()};
+var isReplaying = false;
 
-var localeTime = false;
-try { new Date().toLocaleString('i'); }
-catch (e) { localeTime = e instanceof RangeError; }
-
-var snowflakes = new Date().getMonth() == 11;
+var snowflakesMonth = new Date().getMonth() == 11;
 var snowflakesActive = false;
 
 if (typeof String.prototype.replaceAll !== 'function')
@@ -82,19 +79,18 @@ function load()
         if (location.hash != '' && location.hash != '#' && navIndex.hasOwnProperty(location.hash.substring(1)))
         {
             var hashPage = location.hash.substring(1);
-            page = isNaN(hashPage) && navIndex.hasOwnProperty(hashPage) ? navIndex[hashPage] : (+hashPage || 0);
-            hashRead = true;
+            if (hashPage != 'dev')
+            {
+                page = isNaN(hashPage) && navIndex.hasOwnProperty(hashPage) ? navIndex[hashPage] : (+hashPage || 0);
+                hashRead = true;
+            }
         }
-        else
+        
+        if (!hashRead)
         {
             var lStorePage = localStorage.getItem('page');
             if (isNaN(lStorePage))
-            {
-                if (navIndex.hasOwnProperty(lStorePage))
-                    page = navIndex[lStorePage];
-                else
-                    page = 0;
-            }
+                page = navIndex.hasOwnProperty(lStorePage) ? navIndex[lStorePage] : 0;
             else
                 page = +lStorePage;
 
@@ -138,7 +134,7 @@ function load()
 
     doClock();
     document.getElementById('desc').innerHTML = pageData.panelDescription;
-    document.title = 'Signal Maps - ' + pageData.panelName;
+    //document.title = 'Signal Maps - ' + pageData.panelName;
     window.location.replace(window.location.href.split('#')[0] + '#' + pageData.panelUID);
 
     htmlIDToObj = {};
@@ -226,7 +222,7 @@ function updatePageList(json)
         if (dev)
         {
             navIndex['dev'] = maxPageId+1;
-            pnls.push(createPanel(list, ++maxPageId, {panelName:'Dev page',panelDescription:'',panelUID:'dev'}));
+            pnls.push(createPanel(list, ++maxPageId, {panelName:'Dev page',panelDescription:'',panelUID:'dev',r:Date.now()}));
         }
         for (pnl in pnls)
         {
@@ -245,7 +241,7 @@ function createPanel(addTo, index, pageData)
     div.style.cursor = 'pointer';
     div.className = 'col-md-6';
     div.innerHTML = '<div class="overview panel panel-default" data-id="' + index + '"><div class="panel-heading">'
-        + pageData.panelName + '</div><div class="panel-body panel-img"><img src="https://sigmaps1s.signalmaps.co.uk/webclient/images/maps/previews/' + pageData.panelUID + getImgExt() + '"><br></div>'
+        + pageData.panelName + '</div><div class="panel-body panel-img"><img src="https://sigmaps1s.signalmaps.co.uk/webclient/images/maps/previews/' + pageData.panelUID + getImgExt() + '?r=' + (dev ? Date.now() : (pageData['r'] || '0')) + '"><br></div>'
         + '<div class="panel-footer"><div class="panel-desc">' + pageData.panelDescription + '</div></div></div>';
     addTo.appendChild(div);
 
@@ -271,7 +267,7 @@ window.onload = function()
     canUseWebP = !!(canv.getContext && canv.getContext('2d')) && canv.toDataURL('image/webp').indexOf('data:image/webp') == 0;
     console.log('Using ' + getImgExt());
 
-    get('https://sigmaps1s.signalmaps.co.uk/webclient/data/data.json?r='+Date.now(), function(json)
+    get('https://sigmaps1s.signalmaps.co.uk/webclient/data/data.json?r=' + Math.floor(Date.now() / 3600000) * 3600000, function(json)
     {
         mapJSON = json;
         load();
@@ -279,7 +275,7 @@ window.onload = function()
     }, function(e)
         {
             console.log(e || 'fail');
-            get('https://raw.githubusercontent.com/Shwam3/EASMData/master/data/data.json?r='+Date.now(), function(json)
+            get('https://raw.githubusercontent.com/Shwam3/EASMData/master/data/data.json?r=' + Math.floor(Date.now() / 3600000) * 3600000, function(json)
             {
                 mapJSON = json;
                 load();
@@ -289,7 +285,7 @@ window.onload = function()
 
     var css = document.createElement('link');
     css.rel = 'stylesheet';
-    css.href = 'https://sigmaps1s.signalmaps.co.uk/webclient/css/sprites.' + (canUseWebP ? 'webp.css' : 'css');
+    css.href = 'https://sigmaps1s.signalmaps.co.uk/webclient/css/sprites.' + (canUseWebP ? 'webp.css' : 'css') + '?r=2019-06-30';
     css.type = 'text/css';
     document.head.insertBefore(css, document.head.lastElementChild);
 
@@ -321,30 +317,32 @@ document.addEventListener('keydown', function(e)
         switch(e.key)
         {
             case "Left":
-            case "ArrowLeft": loadPage(--page); break; // left arrow
+            case "ArrowLeft": loadPage(--page); break;
             case "Right":
-            case "ArrowRight": loadPage(++page); break; // right arrow
+            case "ArrowRight": loadPage(++page); break;
             case "v":
-            case "V": displayOpts.berths    = !displayOpts.berths; break; // b
+            case "V": displayOpts.berths    = !displayOpts.berths; break;
             case "c":
-            case "C": displayOpts.trackC    = !displayOpts.trackC; break; // c
+            case "C": displayOpts.trackC    = !displayOpts.trackC; break;
             case "d":
-            case "D": displayOpts.IDs       = !displayOpts.IDs; break; // d
+            case "D": displayOpts.IDs       = !displayOpts.IDs; break;
             case "h":
-            case "H": displayOpts.headcodes = !displayOpts.headcodes; break; // h
+            case "H": displayOpts.headcodes = !displayOpts.headcodes; localStorage.setItem('h',displayOpts.headcodes); break;
             case "l":
-            case "L": displayOpts.railcam   = !displayOpts.railcam; localStorage.setItem('l', displayOpts.railcam); break; // l
+            case "L": displayOpts.railcam   = !displayOpts.railcam; localStorage.setItem('l', displayOpts.railcam); break;
             case "p":
-            case "P": displayOpts.points    = !displayOpts.points; break; // p
+            case "P": displayOpts.points    = !displayOpts.points; break;
             case "r":
-            case "R": displayOpts.dataText  = !displayOpts.dataText; break; // r
+            case "R": displayOpts.dataText  = !displayOpts.dataText; break;
             case "s":
-            case "S": displayOpts.signals   = !displayOpts.signals; break; // s
+            case "S": displayOpts.signals   = !displayOpts.signals; break;
             case "t":
-            case "T": displayOpts.text      = !displayOpts.text; break; // t
+            case "T": displayOpts.text      = !displayOpts.text; break;
+            case "e":
+            case "E": displayOpts.delays    = !displayOpts.delays; localStorage.setItem('e', displayOpts.delays); setAreas(null); break;
         }
 
-        if (["ArrowLeft","ArrowRight","v","V","c","C","d","D","h","H","l","L","p","P","r","R","s","S","t","T"].indexOf(e.key) >= 0)
+        if (["ArrowLeft","ArrowRight","v","V","c","C","d","D","h","H","l","L","p","P","r","R","s","S","t","T","e","E"].indexOf(e.key) >= 0)
         {
             displayOpts.changed = true;
             fillBerths();
@@ -371,8 +369,6 @@ function reconnect()
         console.log('Closing connection (reconnect)');
         connection.close();
     }
-
-    openSocket(host);
 }
 function openSocket(ip)
 {
@@ -385,18 +381,23 @@ function openSocket(ip)
     if (connection != undefined && connection.readyState != connection.CLOSING && connection.readyState != connection.CLOSED)
         connection.close();
 
-    console.log('WebSocket Opening @ wss://' + ip + ':' + port + (attempt > 0 ? ' (attempt ' + (attempt+1) + ')' : ''));
-    connection = new WebSocket('wss://' + ip + ':' + port);
+    console.log('WebSocket Opening @ wss://' + ip + (attempt > 0 ? ' (attempt ' + (attempt+1) + ')' : ''));
+    connection = new WebSocket('wss://' + ip);
 
     connection.onopen = connection.onopen || function onopn(e)
     {
-        console.log('WebSocket Open @ wss://' + ip + ':' + port);
+        if (connection !== this)
+        {
+            console.error("connection !== this");
+            this.close();
+        }
+        console.log('WebSocket Open @ wss://' + ip/* + ':' + port*/);
         attempt = -1;
         setAreas(null);
     };
     connection.onclose = connection.onclose || function oncls(e)
     {
-        if (!disconn)
+        if (!disconn && connection === this)
         {
             connected = false;
             connectError = false;
@@ -407,14 +408,15 @@ function openSocket(ip)
             setTimeout(function() { openSocket(host); }, 3000 + Math.min(attempt * 2000, 27000));
         }
         else
-            console.log('WebSocket Closed');
+            console.log('WebSocket Closed' + (disconn ? '' : ' (too many sockets)'));
     };
     connection.onerror = connection.onerror || function onerr(e)
     {
         console.error('WebSocket Error');
         console.error(e);
 
-        this.close();
+        if (this.readyState != WebSocket.CLOSING && this.readyState != WebSocket.CLOSED)
+            this.close();
     };
     connection.onmessage = connection.onmessage || function onmsg(e)
     {
@@ -424,7 +426,7 @@ function openSocket(ip)
         var timestamp = Date.now();
 
         if (window['messageRate'])
-            messageRate.addTick(timestamp - lastMessage);
+            messageRate.addTick(timestamp - lastMessage, e.data.length);
 
         if (timestamp > lastMessage)
         {
@@ -432,7 +434,7 @@ function openSocket(ip)
             lastTimestamp = parseInt(jsonMsg.timestamp);
         }
 
-        if (snowflakes)
+        if (snowflakesMonth)
         {
             var tsDate = new Date(lastTimestamp);
             if (tsDate.getDate() == 25 && tsDate.getMonth() == 11)
@@ -444,11 +446,20 @@ function openSocket(ip)
                 removeSnowflakes();
         }
 
-        if (jsonMsg.type == 'SEND_ALL')
-            for (var id in data)
-                if (id.substring(0, 2) != '$_')
-                    data[id] = '';
-        Object.assign(data, jsonMsgData);
+        if (jsonMsg.type.startsWith('SEND_'))
+        {
+            if (jsonMsg.type == 'SEND_ALL')
+                for (var id in data)
+                    if (id.substring(0, 2) != '$_' && (jsonMsg['td_area'] ? jsonMsg.td_area == id.substring(0, 2) : true))
+                        data[id] = '';
+            Object.assign(data, jsonMsgData);
+        }
+        else if (jsonMsg.type == 'DELAYS')
+        {
+            delayData['data'] = jsonMsgData;
+            delayData['lastUpdate'] = jsonMsg.timestamp;
+            displayOpts.changed = true;
+        }
 
         fillBerths();
 
@@ -532,6 +543,8 @@ function fillBerths0()
     for (var c in trackc)
         trackc[c].display(displayOpts.trackC);
 
+    for (var n in conds)
+        conds[n].update();
     for (var b in berths)
         berths[b].update(displayOpts.changed);
     for (var s in signals)
@@ -544,8 +557,6 @@ function fillBerths0()
         dataText[d].update(displayOpts.changed);
     for (var c in trackc)
         trackc[c].update(displayOpts.changed);
-    for (var n in conds)
-        conds[n].update();
 
     if (displayOpts.changed)
         displayOpts.changed = false;
@@ -601,7 +612,7 @@ function setData(id, value)
 
 function getHeadcode(hc, berth)
 {
-    if (typeof hc == "string" && hc.match(/[0-9]{3}[A-Z]/) && displayOpts.headcodes)
+    if (typeof hc == "string" && hc.match(/[0-9]{3}[A-Z]/) && (displayOpts.headcodes || hc[0].match(/[12]/)) && !isReplaying)
     {
         var td = typeof berth == "object" ? berth.dataIDs[0].substring(0, 2) : berth.substring(0, 2)
         var mapping = hcMap[hc];
@@ -615,7 +626,7 @@ function getHeadcode(hc, berth)
         {
             mapping.init = true;
             mapping.expire = Date.now()+60000;
-            get('/webclient/get_hc.php?hc='+hc+'&td='+td, function(json)
+            get('https://sigmaps1.signalmaps.co.uk/webclient/get_hc.php?hc='+hc+'&td='+td, function(json)
             {
                 json = JSON.parse(json);
                 mapping.hc = json.hc;
@@ -638,15 +649,16 @@ function setAreas(areas)
 {
     try
     {
+        var options = displayOpts.delays ? ['split_full_messages','delay_colouration'] : ['split_full_messages'];
         if (areas == null)
         {
             if (active_areas.length > 0 && connected)
-                connection.send(JSON.stringify({Message:{type:'SET_AREAS',areas:active_areas,timestamp:Date.now()}}));
+                connection.send(JSON.stringify({Message:{type:'SET_OPTIONS',areas:active_areas,timestamp:Date.now(),options:options}}));
         }
         else if (areas.toString() != active_areas.toString())
         {
             if (connected)
-                connection.send(JSON.stringify({Message:{type:'SET_AREAS',areas:areas,timestamp:Date.now()}}));
+                connection.send(JSON.stringify({Message:{type:'SET_OPTIONS',areas:areas,timestamp:Date.now(),options:options}}));
             active_areas = areas;
         }
     }
@@ -665,7 +677,7 @@ function clockStr(date)
 {
     try
     {
-        return date.toLocaleString('en-GB', {hour: '2-digit', hour12: false, timeZone: 'Europe/London', minute: '2-digit', second: '2-digit' });
+        return date.toLocaleString('en-GB', {hour: '2-digit', hour12: false, timeZone: 'Europe/London', minute: '2-digit', second: '2-digit'});
     }
     catch(e)
     {

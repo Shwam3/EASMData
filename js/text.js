@@ -6,11 +6,12 @@ function Text(jsonObj)
     this.text = escapeHTML(jsonObj['text']).replaceAll('\\n','<br/>');
     this.type = jsonObj['type'];
     this.url = jsonObj['url'];
+    this.colour = jsonObj['colour'];
     this.description = jsonObj['description'] || jsonObj['text'].replaceAll('\\n','<br/>').replaceAll('<br/>',' ');
 
     //types: 'TEXT', 'LINK', (LOCATION) 'LOC', (MAJOR LOCATION) 'MLOC', (NAVIGATION) 'NAV', (MAJOR NAVIGATION) 'MNAV'
 
-    var txt = document.createElement(this.type == 'TEXT' ? 'p' : 'a');
+    var txt = document.createElement(this.type == 'TEXT' || this.type == 'MTEXT' ? 'p' : 'a');
     map.appendChild(txt);
     txt.title = this.description;
     txt.id = this.htmlID;
@@ -30,6 +31,9 @@ function Text(jsonObj)
     }
     else
         txt.className += ' backText';
+    
+    if (this.colour != undefined)
+        txt.style.color = this.colour;
 
     if (this.type == 'LINK' || this.type == 'MLINK')
     {

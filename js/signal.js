@@ -8,6 +8,7 @@ function Signal(jsonObj)
     this.type = jsonObj['type'];
     this.description = jsonObj['description'];
     this.flashY = jsonObj['flashY'] || [];
+    this.greenBanner = jsonObj['green'] || [];
 
     if (this.type == 'TEST')
         this.type = 'NONE';
@@ -58,7 +59,7 @@ function Signal(jsonObj)
         }
         else
         {
-            this.mainAspects = ['B_ON', 'B_OFF'];
+            this.mainAspects = ['B_ON', 'B_OFF', 'B_GRN'];
         }
     }
     else if (isAuto)
@@ -132,12 +133,25 @@ Signal.prototype.update = function()
             break;
         }
     }
+    
+    if (this.mainAspects[0][0] == 'B' && this.mainAspects.length > 2)
+    {
+        for (var i = 0; i < this.greenBanner.length; i++)
+        {
+            if (getData(this.greenBanner[i]) == 1)
+            {
+                this.mainAspect = this.mainAspects[2];
+                break;
+            }
+        }
+    }
 
     var newC = this.css + ' ' + this.type + '_' + this.mainAspect + '_' + (this.routeSet ? 'SET' : 'UNSET') + (flash ? ' SIG_FLASH' : '');
     var newT = displayOpts.IDs ? this.description
         + (this.dataID ? '\naspect: ' + this.dataID : '')
         + (this.routeIDs.length > 0 ? '\nroute: ' + this.routeIDs.join(', ') : '')
-        + (this.flashY.length > 0 ? '\nflashY: ' + this.flashY.join(', ') : '') :
+        + (this.flashY.length > 0 ? '\nflashY: ' + this.flashY.join(', ') : '')
+        + (this.greenBanner.length > 0 ? '\ngreen: ' + this.greenBanner.join(', ') : '') :
         this.description;
 
     if (this.domElement.className != newC) this.domElement.className = newC;
