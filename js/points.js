@@ -1,27 +1,24 @@
 function Points(jsonObj)
 {
     this.htmlID = getNextID();
-    this.dataIDs = jsonObj['dataIDs'];
-    this.posX = jsonObj['posX'];
-    this.posY = jsonObj['posY'];
+    this.dataIDs = jsonObj['i'] || jsonObj['dataIDs'];
+    this.posX = jsonObj['x'] || jsonObj['posX'];
+    this.posY = jsonObj['y'] || jsonObj['posY'];
     this.images = [];
-    this.images[0] = jsonObj['type0'] || 'NONE';
-    this.images[1] = jsonObj['type1'] || 'NONE';
-    this.description = jsonObj['description'];
+    this.images[0] = jsonObj['0'] || jsonObj['type0'] || 'NONE';
+    this.images[1] = jsonObj['1'] || jsonObj['type1'] || 'NONE';
+    this.description = jsonObj['d'] || jsonObj['description'];
     this.dataValue = -1;
     this.displayImage = false;
 
     var pts = document.createElement('span');
     document.getElementById('map').appendChild(pts);
     pts.title = this.description;
-    pts.id = this.htmlID;
+    pts.dataset.id = this.htmlID;
     pts.className = 'points spritePoints NONE';
     pts.style.left = this.posX + 'px';
     pts.style.top = this.posY + 'px';
     this.domElement = pts;
-
-    this.update();
-    addObj(this.htmlID, this);
 }
 
 Points.prototype.update = function()

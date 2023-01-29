@@ -1,27 +1,26 @@
 function DataText(jsonObj)
 {
     this.htmlID = getNextID();
-    this.dataIDs = jsonObj['dataIDs'];
-    this.posX = jsonObj['posX'];
-    this.posY = jsonObj['posY'];
+    this.dataIDs = jsonObj['i'] || jsonObj['dataIDs'];
+    this.posX = jsonObj['x'] || jsonObj['posX'];
+    this.posY = jsonObj['y'] || jsonObj['posY'];
     this.text = [];
-    this.text[0] = typeof jsonObj['text0'] !== 'undefined' ? escapeHTML(jsonObj['text0']).replaceAll('\\n','<br/>') : undefined;
-    this.text[1] = typeof jsonObj['text1'] !== 'undefined' ? escapeHTML(jsonObj['text1']).replaceAll('\\n','<br/>') : undefined;
-    this.description = jsonObj['description'];
+    this.text[0] = typeof jsonObj['0'] !== 'undefined' ? escapeHTML(jsonObj['0']).replaceAll('\\n','<br/>') : (typeof jsonObj['text0'] !== 'undefined' ? escapeHTML(jsonObj['text0']).replaceAll('\\n','<br/>') : undefined);
+    this.text[1] = typeof jsonObj['1'] !== 'undefined' ? escapeHTML(jsonObj['1']).replaceAll('\\n','<br/>') : (typeof jsonObj['text1'] !== 'undefined' ? escapeHTML(jsonObj['text1']).replaceAll('\\n','<br/>') : undefined);
+    this.description = jsonObj['d'] || jsonObj['description'];
+    this.colour = jsonObj['c'] || jsonObj['colour'];
     this.dataValue = null;
 
     var txt = document.createElement('p');
     map.appendChild(txt);
     txt.title = this.description;
-    txt.id = this.htmlID;
+    txt.dataset.id = this.htmlID;
     txt.className = 'text';
     txt.style.left = this.posX + 'px';
     txt.style.top  = this.posY + 'px';
-    txt.innerHTML = this.text[0];
+    txt.style.color = this.text[0] ? this.colour : null;
+    txt.innerHTML = this.text[0] || '';
     this.domElement = txt;
-
-    addObj(this.htmlID, this);
-    this.update();
 }
 
 DataText.prototype.update = function()
@@ -43,7 +42,18 @@ DataText.prototype.update = function()
           useHide = true;
 
         this.domElement.innerHTML = this.text[this.dataValue] || this.text[1 - this.dataValue];
-        this.domElement.className = (this.text[this.dataValue]||'').trim() ? 'textOn' : (useHide ? 'textHide' : 'textOff');
+        if ((this.text[this.dataValue] || '').trim())
+        {
+            this.domElement.className = 'textOn';
+            if (this.colour != undefined)
+                this.domElement.style.color = this.colour;
+        }
+        else
+        {
+            this.domElement.className = useHide ? 'textHide' : 'textOff';
+            if (this.colour != undefined)
+                this.domElement.style.color = null;
+        }
     }
     this.domElement.title = displayOpts.IDs ? this.description + '\n' + this.dataIDs.join(', ') : this.description;
 };

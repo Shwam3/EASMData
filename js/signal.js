@@ -1,33 +1,53 @@
 function Signal(jsonObj)
 {
     this.htmlID = getNextID();
-    this.dataID = jsonObj['dataID'];
-    this.routeIDs = jsonObj['routes'] || [];
-    this.posX = jsonObj['posX'];
-    this.posY = jsonObj['posY'];
-    this.type = jsonObj['type'];
-    this.description = jsonObj['description'];
-    this.flashY = jsonObj['flashY'] || [];
-    this.greenBanner = jsonObj['green'] || [];
+    this.dataID = jsonObj['i'] || jsonObj['dataID'];
+    this.routeIDs = jsonObj['r'] || jsonObj['routes'] || [];
+    this.posX = jsonObj['x'] || jsonObj['posX'];
+    this.posY = jsonObj['y'] || jsonObj['posY'];
+    this.type = jsonObj['t'] || jsonObj['type'];
+    this.description = jsonObj['d'] || jsonObj['description'];
+    this.flashY = jsonObj['f'] || jsonObj['flashY'] || [];
+    this.greenBanner = jsonObj['g'] || jsonObj['green'] || [];
 
-    if (this.type == 'TEST')
+    if (this.type.length == 1)
+        this.type = {L:'LEFT',R:'RIGHT',U:'UP',D:'DOWN',N:'NONE',T:'NONE'}[this.type]
+    else if (this.type == 'TEST')
         this.type = 'NONE';
 
-    var isAuto    = jsonObj['isAuto']    || false;
-    var isShunt   = jsonObj['isShunt']   || false;
-    var isSubs    = jsonObj['isSubs']    || false;
-    var isRepeat  = jsonObj['isRepeat']  || false;
-    var isBanner  = jsonObj['isBanner']  || false;
-    var isTVM430  = jsonObj['isTVM430']  || false;
-    var isRHS     = jsonObj['isRHS']     || false;
-    var isSBoard  = jsonObj['isSBoard']  || false;
-    var isDBoard  = jsonObj['isDBoard']  || false;
+    var isAuto   = Boolean(jsonObj['iAu'] || jsonObj['isAuto']   || false);
+    var isShunt  = Boolean(jsonObj['iSh'] || jsonObj['isShunt']  || false);
+    var isSubs   = Boolean(jsonObj['iSu'] || jsonObj['isSubs']   || false);
+    var isRepeat = Boolean(jsonObj['iRe'] || jsonObj['isRepeat'] || false);
+    var isBanner = Boolean(jsonObj['iBa'] || jsonObj['isBanner'] || false);
+    var isTVM430 = Boolean(jsonObj['iTV'] || jsonObj['isTVM430'] || false);
+    var isCBTC   = Boolean(jsonObj['iCB'] || jsonObj['isCBTC']   || false);
+    var isETCS   = Boolean(jsonObj['iET'] || jsonObj['isETCS']   || false);
+    var isRHS    = Boolean(jsonObj['iRH'] || jsonObj['isRHS']    || false);
+    var isSBoard = Boolean(jsonObj['iSB'] || jsonObj['isSBoard'] || false);
+    var isDBoard = Boolean(jsonObj['iDB'] || jsonObj['isDBoard'] || false);
 
     this.mainAspects = [];
     if (isTVM430)
     {
-        var asp = 'T' + (isShunt ? 'S' : '') + (isRHS ? 'R' : 'L') + '_BLANK';
-        this.mainAspects = [asp, asp];
+        if (isAuto || true)
+        {
+            var asp = 'T' + (isShunt ? 'S' : '') + (isRHS ? 'R' : 'L') + '_BLANK';
+            this.mainAspects = [asp, asp];
+        }
+    }
+    else if (isCBTC || isETCS)
+    {
+        if (isAuto || isShunt)
+        {
+            var asp = 'T' + (isShunt ? 'S' : '') + (isRHS ? 'R' : 'L') + '_BLANK';
+            this.mainAspects = [asp, asp];
+        }
+        else
+        {
+            var asp = 'T' + (isRHS ? 'R' : 'L') + '_';
+            this.mainAspects = [asp + 'BLANK', asp + 'OFF'];
+        }
     }
     else if (isSubs)
     {
@@ -45,6 +65,10 @@ function Signal(jsonObj)
         if (isAuto)
         {
             this.mainAspects = ['S_AUTO', 'S_AUTO'];
+        }
+        else if (isRepeat)
+        {
+            this.mainAspects = ['S_YELLOW', 'S_WHITE'];
         }
         else
         {
@@ -82,15 +106,20 @@ function Signal(jsonObj)
     var sig = document.createElement('span');
     document.getElementById('map').appendChild(sig);
     sig.title = this.description;
-    sig.id = this.htmlID;
+    sig.dataset.id = this.htmlID;
     sig.className = 'signal';
-    
+
     if (this.type == 'UP' || this.type == 'DOWN')
         sig.className += ' verticalPost';
     if (this.type == 'NONE')
         sig.className += ' noPost';
+
     if (isTVM430)
         sig.className += ' spriteTVM430';
+    else if (isCBTC)
+        sig.className += ' spriteCBTC';
+    else if (isETCS)
+        sig.className += ' spriteETCS';
     else if (isSBoard || isDBoard)
         sig.className += ' spriteBoard';
     else if (isShunt || isSubs)
@@ -101,12 +130,10 @@ function Signal(jsonObj)
         sig.className += ' spriteMain';
     this.css = sig.className;
     sig.className += ' ' + this.type + '_' + this.mainAspect + '_UNSET';
-    
+
     sig.style.left = this.posX + (this.type == 'LEFT' ? -10 : -4) + 'px';
     sig.style.top  = this.posY + (this.type == 'UP'   ? -10 : -4) + 'px';
     this.domElement = sig;
-
-    addObj(this.htmlID, this);
 }
 
 Signal.prototype.update = function()
@@ -123,7 +150,7 @@ Signal.prototype.update = function()
             break;
         }
     }
-    
+
     var flash = false;
     for (var i = 0; i < this.flashY.length; i++)
     {
@@ -133,7 +160,7 @@ Signal.prototype.update = function()
             break;
         }
     }
-    
+
     if (this.mainAspects[0][0] == 'B' && this.mainAspects.length > 2)
     {
         for (var i = 0; i < this.greenBanner.length; i++)

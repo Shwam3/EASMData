@@ -1,31 +1,29 @@
 function Latch(jsonObj)
 {
     this.htmlID = getNextID();
-    this.dataIDs = jsonObj['dataIDs'] || [jsonObj['dataID']];
-    this.posX = jsonObj['posX'];
-    this.posY = jsonObj['posY'];
-    this.colour = jsonObj['colour'] || 'G';
-    this.flash = jsonObj['flash'] || [];
-    this.description = jsonObj['description'];
+    this.dataIDs = jsonObj['i'] || jsonObj['dataIDs'] || [jsonObj['dataID']];
+    this.posX = jsonObj['x'] || jsonObj['posX'];
+    this.posY = jsonObj['y'] || jsonObj['posY'];
+    this.colour = jsonObj['c'] || jsonObj['colour'] || 'G';
+    this.flash = jsonObj['f'] || jsonObj['flash'] || [];
+    this.description = jsonObj['d'] || jsonObj['description'];
     this.dataValue = 0;
 
     var lat = document.createElement('span');
     map.appendChild(lat);
     lat.title = this.description;
-    lat.id = this.htmlID;
+    lat.dataset.id = this.htmlID;
     lat.className = 'signal noPost spriteMain LATCH_'+this.colour+'_OFF';
     lat.style.left = this.posX + 'px';
     lat.style.top  = this.posY + 'px';
     this.domElement = lat;
-
-    addObj(this.htmlID, this);
 }
 
 Latch.prototype.update = function()
 {
     this.dataValue = 0;
     for (var i = 0; i < this.dataIDs.length; i++)
-        if (getData(this.dataIDs[i]) == '1')
+        if (getData(this.dataIDs[i]) == '1' || getData(this.dataIDs[i]) != '')
         {
             this.dataValue = 1;
             break;
@@ -33,7 +31,7 @@ Latch.prototype.update = function()
 
     if (this.dataValue == 0)
         for (var i = 0; i < this.flash.length; i++)
-            if (getData(this.flash[i]) == '1')
+            if (getData(this.flash[i]) == '1' || getData(this.flash[i]) != '')
             {
                 this.dataValue = 2;
                 break;

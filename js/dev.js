@@ -2,12 +2,21 @@ dev = true;
 hideUsed = true;
 var wait = 2000;
 var area_filter = {'hideUsed':true};
+var warned = [];
 function reload()
 {
-    get('https://sigmaps1s.signalmaps.co.uk/webclient/data/dev/data.json?r='+Date.now(), function(json)
+    lastDataReload = Date.now();
+    var dataFile = '_data.json';
+    if (custom)
+        dataFile = '_custom.json';
+    else if (dev)
+        dataFile = 'dev/_data.json';
+
+    get('https://sigmaps1s.signalmaps.co.uk/webclient/data/' + dataFile + '?r=' + lastDataReload, function(json)
     {
         mapJSON = json;
         updatePageList(json);
+        scrollTo = map.parentElement.scrollLeft + map.parentElement.clientWidth / 2;
         load();
     }, function(e) { console.error(e); });
 }
@@ -82,7 +91,6 @@ function checkboxEvt(e)
         case 'b': displayOpts.berths = e.checked; break;
         case 'c': displayOpts.trackC = e.checked; break;
         case 'd': displayOpts.IDs = e.checked; break;
-        case 'h': displayOpts.headcodes = e.checked; localStorage.setItem('h',displayOpts.headcodes); break;
         case 'p': displayOpts.points = e.checked; break;
         case 'r': displayOpts.dataText = e.checked; break;
         case 's': displayOpts.signals = e.checked; break;
@@ -102,7 +110,6 @@ fillBerths0 = function()
     document.getElementById('b').checked = displayOpts.berths;
     document.getElementById('c').checked = displayOpts.trackC;
     document.getElementById('d').checked = displayOpts.IDs;
-    document.getElementById('h').checked = displayOpts.headcodes;
     document.getElementById('p').checked = displayOpts.points;
     document.getElementById('r').checked = displayOpts.dataText;
     document.getElementById('s').checked = displayOpts.signals;
@@ -117,27 +124,36 @@ if (localStorage.getItem('areasS') != null) areasS = localStorage.getItem('areas
 function devPage()
 {
     var map = document.getElementById('map');
+    var areasAll = [...new Set([...areasA, ...areasS])].sort();
 
-    document.getElementById('desc').textContent = 'Dev Page';
-    window.location.replace(window.location.href.split('#')[0] + '#dev');
+    document.title = 'Signal Maps - Dev Page';
+    document.getElementById('desc').textContent = 'Dev Page (' + areasAll.join(', ') + ')';
+    //window.location.replace(window.location.href.split('#')[0] + '#dev');
     map.innerHTML = defaultInner;
-    document.getElementById('mapImage').src = 'https://sigmaps1s.signalmaps.co.uk/webclient/images/blank.png';
+    document.getElementById('mapImage').src = 'data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==';
     document.getElementById('mapImage').style.minWidth = 'initial';
     document.getElementById('mapImage').style.display = 'none';
-    document.getElementById('map').style.overflowY = 'auto';
-    document.getElementById('map').style.width = '1854px';
+    map.style.overflowY = 'auto';
+    map.style.width = '1854px';
+    map.parentElement.style.maxWidth = '1854px';
+    document.querySelector('.title.row').style.maxWidth = '1854px';
 
     doClock();
+    
+    //mapJSON[navIndex.dev] = {'panelUID':'dev','panelName':'Dev Page','panelDescription':'Dev Page','areas':areasAll,'r':''},
 
     berths = [];
     signals = [];
+    latches = [];
     points = [];
     dataText = [];
     text = [];
     trackc = [];
+    conds = [];
+    dataConds = {};
     areasA = areasA.sort();
     areasS = areasS.sort();
-    setAreas([...new Set([...areasA, ...areasS])].sort());
+    setAreas(areasAll);
 
     var div = document.createElement('div');
     div.style.margin = '5px 26px';
@@ -151,7 +167,7 @@ function devPage()
     var lab = document.createElement('label');
     lab.innerHTML = '<input type="checkbox" id="area_hideUsed" name="hideUsed" onchange="filterArea(this)"'+(area_filter.hideUsed ? ' checked' : '')+'>hideUsed';
     div.appendChild(lab);
-    document.getElementById('map').appendChild(div);
+    map.appendChild(div);
     hideUsed = area_filter.hideUsed;
 
     var usedIDs = [];
@@ -179,30 +195,33 @@ function devPage()
             if (pag.signals)
             for (var sig of pag.signals)
             {
+                if (sig.i)       typeof sig.i === 'string' ? usedIDs.push(sig.i) : usedIDs.push.apply(usedIDs, sig.i);
                 if (sig.dataID)  usedIDs.push(sig.dataID);
                 if (sig.dataIDs) usedIDs.push.apply(usedIDs, sig.dataIDs);
+                if (sig.r)       usedIDs.push.apply(usedIDs, sig.r);
                 if (sig.routes)  usedIDs.push.apply(usedIDs, sig.routes);
+                if (sig.f)       usedIDs.push.apply(usedIDs, sig.f);
                 if (sig.flash)   usedIDs.push.apply(usedIDs, sig.flash);
             }
 
             if (pag.points)
             for (var pts of pag.points)
             {
-                usedIDs.push.apply(usedIDs, pts.dataIDs);
+                usedIDs.push.apply(usedIDs, pts.i || pts.dataIDs);
             }
 
             if (pag.berths)
             for (var bths of pag.berths)
             {
-                usedIDs.push.apply(usedIDs, bths.dataIDs);
+                usedIDs.push.apply(usedIDs, bths.i || bths.dataIDs);
             }
 
             if (pag.conditionals)
-            for (var cond of pag.conditionals)
+            for (var conds of pag.conditionals)
             {
-                usedIDs.push.apply(usedIDs, cond.cond.flat(10).filter(i => i.length == 6 && (i.indexOf(':') == 4 || i.indexOf('!') == 4)));
+                usedIDs.push.apply(usedIDs, (conds.c || conds.cond).flat(10).filter(i => i.length == 6 && (i.indexOf(':') == 4 || i.indexOf('!') == 4)));
             }
-            
+
             for (var i = 0; i < usedIDs.length; i++)
             {
                 usedIDs[i] = usedIDs[i].replace('!', ':');
@@ -219,7 +238,7 @@ function devPage()
         ids.push.apply(ids, list(ar + '00:1', largestID(ar)));
 
     if (area_filter[areasS[0]])
-        text.push(new Text({type:'TEXT',posX:x,posY:y-12,text:areasS[0]}));
+        text.push(new Text({t:'TEXT',x:x,y:y-12,e:areasS[0]}));
     for (id of ids)
     {
         if (area_filter[id.substring(0, 2)])
@@ -243,11 +262,11 @@ function devPage()
             if (lastArea && lastArea != id.substring(0,2))
             {
                 x = 26;
-                text.push(new Text({type:'TEXT',posX:x,posY:y+12,text:id.substring(0,2)}));
+                text.push(new Text({t:'TEXT',x:x,y:y+12,e:id.substring(0,2)}));
                 y += 24;
             }
 
-            signals.push(new Signal({type:'TEST',posX:x+4,posY:y+4,dataID:id,description:id}));
+            signals.push(new Signal({t:'NONE',x:x+4,y:y+4,i:id,d:id}));
 
             x += 12;
             if (x+12 > 1828)
@@ -255,8 +274,9 @@ function devPage()
                 x = 26;
                 y += 12;
             }
+
+            lastArea = id.substring(0,2);
         }
-        lastArea = id.substring(0,2);
     }
 
     x = 26;
@@ -270,7 +290,7 @@ function devPage()
             ids.push(key);
 
     if (area_filter[areasA[0]])
-        text.push(new Text({type:'TEXT',posX:x,posY:y-14,text:areasA[0]}));
+        text.push(new Text({t:'TEXT',x:x,y:y-14,e:areasA[0]}));
     for (id of ids)
     {
         if (id[4] == ':' || id[4] == '!'
@@ -284,11 +304,11 @@ function devPage()
             if (lastArea && lastArea != id.substring(0,2))
             {
                 x = 26;
-                text.push(new Text({type:'TEXT',posX:x,posY:y+20,text:id.substring(0,2)}));
+                text.push(new Text({y:'TEXT',x:x,y:y+20,e:id.substring(0,2)}));
                 y += 32;
             }
 
-            berths.push(new Berth({hasBorder:true,posX:x,posY:y,dataIDs:[id],allowLU:id.startsWith('WS')}));
+            berths.push(new Berth({b:true,x:x,y:y,i:[id],l:id.startsWith('WS')}));
 
             x += 56;
             if (x+48 > 1828)
@@ -296,19 +316,21 @@ function devPage()
                 x = 26;
                 y += 24;
             }
+
+            lastArea = id.substring(0,2);
         }
-        lastArea = id.substring(0,2);
     }
+    loadingPage = false;
+    fillBerths();
 
     var spacer = document.createElement('span');
     spacer.className = 'devSpacer';
     spacer.style.top = y+'px';
     spacer.innerHTML = '&nbsp;';
-    document.getElementById('map').appendChild(spacer);
+    map.appendChild(spacer);
 
     document.body.scrollTop = document.documentElement.scrollTop = 0;
     map.style.cursor = 'crosshair';
-    fillBerths();
     loaded = true;
     console.log('Dev page loaded')
     obscureCheck(true);
@@ -338,28 +360,31 @@ function unused(a)
         if (pag.signals)
         for (var sig of pag.signals)
         {
+            if (sig.i)       typeof sig.i === 'string' ? usedIDs.push(sig.i) : usedIDs.push.apply(usedIDs, sig.i);
             if (sig.dataID)  usedIDs.push(sig.dataID);
             if (sig.dataIDs) usedIDs.push.apply(usedIDs, sig.dataIDs);
+            if (sig.r)       usedIDs.push.apply(usedIDs, sig.r);
             if (sig.routes)  usedIDs.push.apply(usedIDs, sig.routes);
+            if (sig.f)       usedIDs.push.apply(usedIDs, sig.f);
             if (sig.flash)   usedIDs.push.apply(usedIDs, sig.flash);
         }
 
         if (pag.points)
         for (var pts of pag.points)
         {
-            usedIDs.push.apply(usedIDs, pts.dataIDs);
+            usedIDs.push.apply(usedIDs, pts.i || pts.dataIDs);
         }
 
         if (pag.berths)
         for (var bths of pag.berths)
         {
-            usedIDs.push.apply(usedIDs, bths.dataIDs);
+            usedIDs.push.apply(usedIDs, bths.i || bths.dataIDs);
         }
 
         if (pag.conditionals)
         for (var conds of pag.conditionals)
         {
-            usedIDs.push.apply(usedIDs, conds.cond.flat(10).filter(i => i.length == 6 && (i.indexOf(':') == 4 || i.indexOf('!') == 4)));
+            usedIDs.push.apply(usedIDs, (conds.c || conds.cond).flat(10).filter(i => i.length == 6 && (i.indexOf(':') == 4 || i.indexOf('!') == 4)));
         }
 
         for (var i = 0; i < usedIDs.length; i++)
@@ -368,7 +393,7 @@ function unused(a)
         }
     }
 
-	console.log(list(a + '00:1', largestID(a)).filter(x => usedIDs.indexOf(x) < 0).join(','));
+    console.log(list(a + '00:1', largestID(a)).filter(x => usedIDs.indexOf(x) < 0).join(','));
 }
 function filterArea(evt)
 {
@@ -382,7 +407,7 @@ function downloadPage(uid, callback)
 
     setTimeout(() => {
         var pageNo = navIndex[uid] || 0;
-        get('https://sigmaps1s.signalmaps.co.uk/webclient/data/' + (dev ? 'dev/' : '') + uid + '.json?r=' + (dev ? Date.now() : (mapJSON[pageNo]['r'] || '0')), function(json)
+        get('https://sigmaps1s.signalmaps.co.uk/webclient/data/' + (dev ? 'dev/' : '') + uid + '.json?r=' + lastDataReload, function(json)
         {
             mapJSON[pageNo]['data'] = json;
             console.log('Downloaded main file (' + uid + '.json)');
@@ -390,7 +415,7 @@ function downloadPage(uid, callback)
         }, function(e)
             {
                 console.error(e || 'fail');
-                get('https://raw.githubusercontent.com/Shwam3/EASMData/master/data/' + (dev ? 'dev/' : '') + uid + '.json?r=' + (dev ? Date.now() : (mapJSON[pageNo]['r'] || '0')), function(json)
+                get('https://raw.githubusercontent.com/Shwam3/EASMData/master/data/' + (dev ? 'dev/' : '') + uid + '.json?r=' + (dev ? lastDataReload : (mapJSON[pageNo]['r'] || '0')), function(json)
                 {
                     mapJSON[pageNo]['data'] = json;
                     console.log('Downloaded secondary file (' + uid + '.json)');
@@ -415,6 +440,7 @@ function updatePageList(json)
         }
         list.innerHTML = '';
         var pnls = [];
+        var count = 0;
         for (var p in json)
         {
             var pageData = json[p];
@@ -422,65 +448,27 @@ function updatePageList(json)
             navIndex[pageData.panelUID] = p;
             var opt = document.createElement('option');
             opt.textContent = (1 + p) + '. ' + pageData.panelUID;
-            if (page == p) opt.selected = true;
+            if (page == p)
+                opt.selected = true;
             list.insertBefore(opt, null);
+            count++;
         }
-        maxPageId = list.children.length-1;
+        maxPageId = count - 1;
 
         if (dev)
         {
-            navIndex['dev'] = ++maxPageId;
+            maxPageId++;
+            
+            navIndex['dev'] = maxPageId;
             var opt = document.createElement('option');
-            opt.textContent = (maxPageId+1) + '. dev';
-            if (page == maxPageId) opt.selected = true;
+            opt.textContent = (maxPageId + 1) + '. dev';
+            if (page == maxPageId)
+                opt.selected = true;
             list.insertBefore(opt, null);
         }
     }
 }
-
-window.onload = function()
-{
-    document.getElementById('map').style.cursor = 'wait';
-    document.getElementById('fbh').addEventListener('click', hcSearch);
-    obscureCheck(false);
-
-    var canv = document.createElement('canvas');
-    canv.width = 1;
-    canv.height = 1;
-    canUseWebP = !!(canv.getContext && canv.getContext('2d')) && canv.toDataURL('image/webp').indexOf('data:image/webp') == 0;
-    console.log('Using ' + getImgExt());
-
-    reload();
-
-    var css = document.createElement('link');
-    css.rel = 'stylesheet';
-    css.href = 'https://sigmaps1s.signalmaps.co.uk/webclient/css/sprites.' + (canUseWebP ? 'webp.css' : 'css') + '?r=' + Date.now();
-    css.type = 'text/css';
-    document.head.insertBefore(css, document.head.lastElementChild);
-
-    openSocket(host);
-
-    messageRate = new Counter(100);
-
-    setInterval(doClock, 100);
-    setInterval(fillBerths0, 100);
-    setInterval(function()
-    {
-        if (connected && lastMessage > 0 && Date.now() - lastMessage > 75000)
-        {
-            console.log('Closing connection (timeout)');
-            connection.close();
-        }
-    }, 100);
-};
-function getAllHCs()
-{
-    for (var b in data)
-    {
-        if (data[b].match(/[0-9]{3}[A-Z]/))
-            getHeadcode(data[b], b.substring(0, 2));
-    }
-}
+window.addEventListener('load', function(){ messageRate = new Counter(100); });
 function previewPrep()
 {
     closeSocket(false);

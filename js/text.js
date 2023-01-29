@@ -1,20 +1,24 @@
 function Text(jsonObj)
 {
     this.htmlID = getNextID();
-    this.posX = jsonObj['posX'];
-    this.posY = jsonObj['posY'];
-    this.text = escapeHTML(jsonObj['text']).replaceAll('\\n','<br/>');
-    this.type = jsonObj['type'];
-    this.url = jsonObj['url'];
-    this.colour = jsonObj['colour'];
-    this.description = jsonObj['description'] || jsonObj['text'].replaceAll('\\n','<br/>').replaceAll('<br/>',' ');
+    this.posX = jsonObj['x'] || jsonObj['posX'];
+    this.posY = jsonObj['y'] || jsonObj['posY'];
+    this.text = escapeHTML(jsonObj['e'] || jsonObj['text']).replaceAll('\\n','<br/>');
+    this.type = jsonObj['t'] || jsonObj['type'];
+    this.url = jsonObj['u'] || jsonObj['url'];
+    this.colour = jsonObj['c'] || jsonObj['colour'];
+    this.description = jsonObj['d'] || jsonObj['description'] || (jsonObj['e'] || jsonObj['text']).replaceAll('\\n','<br/>').replaceAll('<br/>',' ');
+    this.goToX = jsonObj['g'];
+    this.goToXAlign = jsonObj['ga'] || '';
+    this.align = jsonObj['a'];
+    this.customNav = Boolean(jsonObj['n'] || false);
 
     //types: 'TEXT', 'LINK', (LOCATION) 'LOC', (MAJOR LOCATION) 'MLOC', (NAVIGATION) 'NAV', (MAJOR NAVIGATION) 'MNAV'
 
     var txt = document.createElement(this.type == 'TEXT' || this.type == 'MTEXT' ? 'p' : 'a');
     map.appendChild(txt);
     txt.title = this.description;
-    txt.id = this.htmlID;
+    txt.dataset.id = this.htmlID;
     txt.className = 'text';
     txt.style.left = this.posX + 'px';
     txt.style.top  = this.posY + 'px';
@@ -31,9 +35,12 @@ function Text(jsonObj)
     }
     else
         txt.className += ' backText';
-    
+
     if (this.colour != undefined)
         txt.style.color = this.colour;
+
+    if (this.align != undefined && (this.align == 'L' || this.align == 'R'))
+        txt.style.textAlign = this.align == 'L' ? 'left' : 'right';
 
     if (this.type == 'LINK' || this.type == 'MLINK')
     {
@@ -43,27 +50,41 @@ function Text(jsonObj)
     }
     else if (this.type == 'LOC' || this.type == 'MLOC')
     {
-        txt.href = 'https://www.realtimetrains.co.uk/search/detailed/' + this.url + '?stp=WVS&show=all&order=actual';
+        txt.href = 'https://www.realtimetrains.co.uk/search/detailed/gb-nr:' + this.url + '?stp=WVS&show=all&order=actual';
         if (this.type == 'MLOC')
             txt.className = 'textLarge';
     }
     else if (this.type == 'NAV' || this.type == 'MNAV')
     {
         txt.title = this.description = 'GOTO: ' + this.description;
-        txt.href = '#' + this.url;
-        txt.onclick = function(e)
+        txt.dataset.page = this.url;
+        txt.dataset.gotoX = this.goToX;
+        txt.dataset.gotoXAlign = this.goToXAlign;
+        if (window.custom && !this.customNav)
         {
-            loadPage(navIndex[e.currentTarget.hash.substring(1)]);
-            e.preventDefault();
-            return false;
-        };
-        txt.target = '_self';
+            txt.href = 'https://signalmaps.co.uk/#' + this.url + ':' + this.goToX + this.goToXAlign;
+            txt.target = '_blank';
+        }
+        else
+        {
+            txt.href = '#' + this.url + ':' + this.goToX + this.goToXAlign;
+            txt.onclick = function(e)
+            {
+                scrollTo = parseInt(e.currentTarget.dataset.gotoX);
+                if (e.currentTarget.dataset.gotoXAlign === 'L')
+                    scrollTo -= map.parentElement.clientWidth / 2 - 10;
+                else if (e.currentTarget.dataset.gotoXAlign === 'R')
+                    scrollTo += map.parentElement.clientWidth / 2 + 10;
+                loadPage(navIndex[e.currentTarget.dataset.page]);
+                e.preventDefault();
+                return false;
+            };
+            txt.target = '_self';
+        }
         if (this.type == 'MNAV')
             txt.className = 'textLarge';
     }
     this.domElement = txt;
-
-    addObj(this.htmlID, this);
 }
 
 Text.prototype.display = function(disp)

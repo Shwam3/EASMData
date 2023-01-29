@@ -1,18 +1,19 @@
 function Berth(jsonObj)
 {
     this.htmlID = getNextID();
-    this.dataIDs = jsonObj['dataIDs'];
-    this.posX = jsonObj['posX'];
-    this.posY = jsonObj['posY'];
-    this.description = jsonObj['description'];
-    this.hasBorder = jsonObj['hasBorder'] || false;
+    this.dataIDs = jsonObj['i'] || jsonObj['dataIDs'];
+    this.posX = jsonObj['x'] || jsonObj['posX'];
+    this.posY = jsonObj['y'] || jsonObj['posY'];
+    this.description = jsonObj['d'] || jsonObj['description'];
+    this.hasBorder = Boolean(jsonObj['b'] || jsonObj['hasBorder'] || false);
     this.displayMainID = false;
     this.lastDataValue = null;
     this.dataValue = '';
-    this.allowLU = jsonObj['allowLU'] || false;
-    this.showBerth = jsonObj['showBerth'] || [];
+    this.allowLU = Boolean(jsonObj['l'] || jsonObj['allowLU'] || false);
+    this.showBerth = jsonObj['s'] || jsonObj['showBerth'] || [];
     this.lastData = null;
     this.data = [];
+    this.td = jsonObj['td'] || null;
     this.forceUpdate = true;
     this.lastUpdate = -1;
 
@@ -30,16 +31,11 @@ function Berth(jsonObj)
     bthA.title = (this.description ? this.description + '\n' : '');
     for (var i in this.dataIDs)
       bthA.title += this.dataIDs[i] + ': ' + getData(this.dataIDs[i]) + (i < this.dataIDs.length - 1 ? '\n' : '');
-    bthA.id = this.htmlID;
+    bthA.dataset.id = this.htmlID;
 
     this.domElement = bthA;
 
-    bthP.addEventListener('mouseover', function(e){e.target.style.backgroundColor ='#404040';});
-    bthP.addEventListener('mouseleave', function(e){e.target.style.backgroundColor = 'transparent';});
-
     setData(this.dataIDs[0], getData(this.dataIDs[0]) || '');
-    this.update();
-    addObj(this.htmlID, this);
 }
 
 Berth.prototype.update = function(force)
@@ -81,9 +77,9 @@ Berth.prototype.update = function(force)
         for (var i in this.dataIDs)
             bthA.title += this.dataIDs[i] + ': ' + getData(this.dataIDs[i]) + (i<this.dataIDs.length-1?'\n':'');
 
-        bthP.innerHTML = getHeadcode(this.dataValue, this);
+        bthP.innerHTML = this.dataValue;
 
-        if (!this.displayMainID && this.dataValue.match(/([0-9][A-Z][0-9]{2}|[0-9]{3}[A-Z])/))
+        if (!this.displayMainID && (this.dataValue.match(/[0-9][A-Z][0-9]{2}/) || displayOpts.delays && this.allowLU && this.dataValue.match(/[A-Z][0-9]{3}/)))
         {
             if (displayOpts.railcam)
                 bthA.href = 'https://railcam.uk/rcdata/RCData2_detail.php?r=S&hc=' + this.dataValue + '&td=' + currId.substring(0,2) + '&vip=Y';
@@ -108,18 +104,20 @@ Berth.prototype.update = function(force)
 
         if (this.dataValue)
         {
+            var luDescription = false;
+            if (this.allowLU && this.dataValue.match(/[A-Z][0-9]{3}/))
+                var luDescription = this.dataValue[1] + this.dataValue[0] + this.dataValue[2] + this.dataValue[3];
+
             var delayFound = false;
             if (this.displayMainID)
                 bthP.style.color = '#000';
             else if (this.dataValue == '1Z99')
                 bthP.style.color = '#0FF';
-            else if (this.dataValue.match(/([0-9][A-Z][0-9]{2}|[0-9]{3}[A-Z])/))
+            else if (this.dataValue.match(/[0-9][A-Z][0-9]{2}/) || luDescription !== false)
             {
                 if (displayOpts.delays && !isReplaying)
                 {
-                    var matches = delayData.data.filter(d => d.tds.includes(currId.substring(0, 2)) && (d.train_id_current.substring(2, 6) == this.dataValue || d.train_id.substring(2, 6) == this.dataValue)).sort((a,b) => b.next_expected_update - a.next_expected_update).sort((a,b) => b.next_expected_update - a.next_expected_update);
-                    if (matches.length == 0 && this.dataValue.match(/([0-9]{3}[A-Z])/))
-                        matches = delayData.data.filter(d => d.tds.includes(currId.substring(0, 2)) && (d.train_id_current.substring(2, 6) == getHeadcode(this.dataValue, this) || d.train_id.substring(2, 6) == this.dataValue)).sort((a,b) => b.next_expected_update - a.next_expected_update).sort((a,b) => b.next_expected_update - a.next_expected_update);
+                    var matches = delayData.data.filter(d => d.tds.includes(this.td || currId.substring(0, 2)) && (d.train_id_current.substring(2, 6) == (luDescription !== false ? luDescription : this.dataValue) || d.train_id.substring(2, 6) == (luDescription !== false ? luDescription : this.dataValue))).sort((a,b) => b.next_expected_update - a.next_expected_update).sort((a,b) => b.last_update - a.last_update);
                     if (matches.length > 0)
                     {
                         var train = matches[0];
@@ -129,9 +127,10 @@ Berth.prototype.update = function(force)
                         bthA.style.backgroundImage = bthP.style.backgroundImage = 'none';
                         if (dev)
                         {
-                            bthA.title += '\n' + train.origin_dep.substring(0,2) + ':' + train.origin_dep.substring(2).trim().replace('H','½') + ' ' + train.loc_origin + ' - ' + train.loc_dest + 
+                            bthA.title += '\n' + train.origin_dep.substring(0,2) + ':' + train.origin_dep.substring(2).trim().replace('H','½') + ' ' + train.loc_origin + ' - ' + train.loc_dest +
                                 '\nTrain ID: ' + train.train_id_current + (train.train_id_current != train.train_id ? ' (' + train.train_id + ')' : '') +
                                 '\nUID: ' + train.schedule_uid +
+                                '\nOperator: ' + (train['toc_code'] || 'ZZ') +
                                 '\nDelay: ' + (colours.dl == 0 ? 'RT' : (Math.abs(colours.dl) + (colours.dl < 0 ? 'E' : 'L')).replace('0.5','½').replace('.5','½')) +
                                     (train.off_route ? ' (Off Route)' : '') +
                                 '\nTDs: ' + train.tds.join(',');
@@ -142,21 +141,27 @@ Berth.prototype.update = function(force)
                         {
                             bthA.title += '\n' + train.origin_dep.substring(0,2) + ':' + train.origin_dep.substring(2).trim().replace('H','½') + ' ' + train.loc_origin + ' - ' + train.loc_dest +
                                 '\nDelay: ' + (colours.dl == 0 ? 'RT' : (Math.abs(colours.dl) + (colours.dl < 0 ? 'E' : 'L')).replace('0.5','½').replace('.5','½')) +
-                                    (train.off_route ? ' (Off Route)' : '');
+                                '\nOperator: ' + (train['toc_code'] || 'ZZ') + (train.off_route ? ' (Off Route)' : '');
                         }
 
+                        var d = new Date();
+                        var ds = parseInt(train.train_id.substring(8));
+                        if (d.getDate() > ds)
+                            d = new Date(Date.now() - 86400000);
+                        else if (d.getDate() < ds)
+                            d = new Date(Date.now() + 86400000);
+
+                        if (ds != d.getDate() && dev)
+                            console.warn('Mismatch for link', ds, d.getDate(), this);
+
                         if (displayOpts.railcam)
+                        {
                             //bthA.href = 'https://railcam.uk/rcdata/RCData2_detail.php?r=S&tid=' + train.train_id + '&vip=Y';
-                            bthA.href = 'https://sigmaps1.signalmaps.co.uk/schedule/search?tid=' + train.train_id;
+                            //bthA.href = 'https://sigmaps1s.signalmaps.co.uk/schedule/search?tid=' + train.train_id;
+                            bthA.href = 'https://sigmaps1s.signalmaps.co.uk/schedule/search?uid=' + train.schedule_uid + '&date=' + d.getFullYear() + '-' + (d.getMonth()+1 < 10 ? '0'+(d.getMonth()+1) : (d.getMonth()+1))  + '-' + (d.getDate() < 10 ? '0'+d.getDate() : d.getDate());
+                        }
                         else
                         {
-                            var d = new Date();
-                            var ds = parseInt(train.train_id.substring(8));
-                            if (d.getDate() > ds) d = new Date(Date.now() - 86400000);
-                            else if (d.getDate() < ds) d = new Date(Date.now() + 86400000);
-
-                            if (ds != d.getDate() && dev)
-                                console.warn('Mismatch for link', ds, d.getDate(), this);
                             bthA.href = 'https://www.realtimetrains.co.uk/train/' + train.schedule_uid.replace('O','') + '/' + d.getFullYear() + '-' + (d.getMonth()+1 < 10 ? '0'+(d.getMonth()+1) : (d.getMonth()+1))  + '-' + (d.getDate() < 10 ? '0'+d.getDate() : d.getDate()) + '/detailed';
                         }
                         delayFound = true;
@@ -165,12 +170,15 @@ Berth.prototype.update = function(force)
 
                 if (!delayFound)
                 {
-                    bthP.style.color = '#090';
+                    if (luDescription !== false)
+                        bthP.style.color = '#FFA0FF';
+                    else
+                        bthP.style.color = '#090';
                     bthA.style.backgroundColor = '#404040';
                     bthA.style.backgroundImage = bthP.style.backgroundImage = null;
                 }
             }
-            else if (this.allowLU && this.dataValue.match(/([A-Z][0-9]{3})/))
+            else if (luDescription !== false)
                 bthP.style.color = '#FFA0FF';
             else
                 bthP.style.color = '#FFF';
@@ -184,7 +192,7 @@ Berth.prototype.update = function(force)
         }
         else
         {
-            bthA.style.backgroundColor = 'transparent';
+            bthA.style.backgroundColor = null;
             bthA.style.backgroundImage = bthP.style.backgroundImage = null;
         }
         this.lastUpdate = delayData.lastUpdate;
