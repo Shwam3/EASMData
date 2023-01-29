@@ -117,7 +117,6 @@ function load()
         return;
     }
     var map = document.getElementById('map');
-    map.style.overflowY = null;
     localStorage.setItem('page', pageData.panelUID);
 
     if (!pageData.hasOwnProperty('data') || pageData.data == {})
@@ -125,6 +124,8 @@ function load()
         downloadPage(pageData.panelUID, load);
         return;
     }
+    map.style.overflowY = null;
+    map.style.width = (pageData['width'] || 1854) + 'px';
 
     var mapBerths = pageData.data.berths;
     var mapSignals = pageData.data.signals;
@@ -265,13 +266,11 @@ window.onload = function()
     canv.width = 1;
     canv.height = 1;
     canUseWebP = !!(canv.getContext && canv.getContext('2d')) && canv.toDataURL('image/webp').indexOf('data:image/webp') == 0;
-    console.log('Using ' + getImgExt());
 
     get('https://sigmaps1s.signalmaps.co.uk/webclient/data/data.json?r=' + Math.floor(Date.now() / 3600000) * 3600000, function(json)
     {
         mapJSON = json;
         load();
-        console.log('Using main file (data.json)');
     }, function(e)
         {
             console.log(e || 'fail');
@@ -561,7 +560,9 @@ function fillBerths0()
     if (displayOpts.changed)
         displayOpts.changed = false;
 
-    if (lastMessage < 0 || !connected)
+    if (isReplaying)
+        document.getElementById('time').textContent = 'Last Update: Replaying';
+    else if (lastMessage < 0 || !connected)
         document.getElementById('time').textContent = 'Last Update: Not Connected (' + attempt + ')';
     else
         document.getElementById('time').textContent = 'Last Update: ' + clockStr(new Date(lastTimestamp));
@@ -630,7 +631,7 @@ function getHeadcode(hc, berth)
             {
                 json = JSON.parse(json);
                 mapping.hc = json.hc;
-                mapping.expire = Date.now() + (json.err == null ? 3600000 + Math.round(Math.random()*900000) : 300000);
+                mapping.expire = Date.now() + (json.found ? 3600000 + Math.round(Math.random()*900000) : 300000);
 
                 console.log(hc, '=>', json.hc, clockStr(new Date(mapping.expire)), berth);
 

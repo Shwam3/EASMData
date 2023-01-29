@@ -1,5 +1,5 @@
 {
-"panelUID":"ctrl4","panelName":"Dollands Moor/Eurotunnel","panelDescription":"Westenhanger - France","areas":["CT","A2"],
+"panelUID":"ctrl4","panelName":"Dollands Moor/Eurotunnel","panelDescription":"Westenhanger - France","areas":["A2","CT"],
 "berths":[
 {"posX":1482,"posY":538,"dataIDs":["A2ET04"]},
 {"posX":1482,"posY":602,"dataIDs":["A2ET05"]},
@@ -282,7 +282,7 @@
 ],
 "text":[
 {"posX":810,"posY":132,"text":"/   /    /","type":"TEXT"},
-{"posX":126,"posY":458,"text":"ASHFORD","url":"ctrl3","type":"MNAV"},
+{"posX":126,"posY":458,"text":"ASHFORD","url":"ctrl3","type":"MNAV","g":1690},
 {"posX":1650,"posY":570,"text":"TO CALAIS FRETHUN\\n& FRANCE","type":"TEXT"},
 {"posX":780,"posY":132,"text":"COLAS","url":"DOLMCR","type":"LOC"},
 {"posX":816,"posY":132,"text":"DBS","url":"XLM","type":"LOC"},
@@ -294,6 +294,8 @@
 {"posX":870,"posY":132,"text":"LHS","url":"DOLMLHS","type":"LOC"},
 {"posX":322,"posY":602,"text":"SANDLING","url":"SDG","type":"LOC"},
 {"posX":648,"posY":586,"text":"SALTWOOD JN","url":"SLWDJN","type":"LOC"},
-{"posX":168,"posY":558,"text":"TO WESTENHANGER\\n& ASHFORD","type":"TEXT"}
+{"posX":168,"posY":558,"text":"TO WESTENHANGER\\n& ASHFORD","type":"TEXT"},
+{"x":343,"y":586,"e":"1","t":"TEXT","c":"black"},
+{"x":343,"y":530,"e":"2","t":"TEXT","c":"black"}
 ]
 }

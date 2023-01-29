@@ -1,7 +1,7 @@
 {
-"panelUID":"newark","panelName":"Grantham, Newark, &amp; Retford","panelDescription":"Stoke Tunnel - Retford","areas":["DR","LN","NM","PB","TH"],
+"panelUID":"newark","panelName":"Grantham, Newark, & Retford","panelDescription":"Stoke Tunnel - Retford","areas":["DR","LN","NM","PB","TH"],
 "berths":[
-{"posX":266,"posY":162,"dataIDs":["DR0001"],"hasBorder":true,"showBerth":["$_DR0001"]},
+{"posX":250,"posY":162,"dataIDs":["DR0001"],"hasBorder":true,"showBerth":["$_DR0001"]},
 {"posX":362,"posY":218,"dataIDs":["DR0002"]},
 {"posX":362,"posY":186,"dataIDs":["DR0003"]},
 {"posX":538,"posY":218,"dataIDs":["DR0004"]},
@@ -46,7 +46,7 @@
 {"posX":1050,"posY":90,"dataIDs":["DR0048"]},
 {"posX":1050,"posY":58,"dataIDs":["DRA342"]},
 {"posX":282,"posY":218,"dataIDs":["PB0612"]},
-{"posX":282,"posY":186,"dataIDs":["PB0617"]},
+{"posX":282,"posY":186,"dataIDs":["PBZ617"]},
 
 {"posX":106,"posY":410,"dataIDs":["DR0046"]},
 {"posX":138,"posY":378,"dataIDs":["DR0051"]},
@@ -146,6 +146,8 @@
 {"posX":1466,"posY":586,"dataIDs":["TH8371"]}
 ],
 "signals":[
+{"posX":1010,"posY":138,"description":"D24/25UP","dataIDs":["$_DR0024"],"type":"TEXT","text1":"<-"},
+{"posX":1002,"posY":114,"description":"D24/25DN","dataIDs":["$_DR0025"],"type":"TEXT","text1":"->"},
 {"posX":332,"posY":182,"description":"D1","type":"LEFT","isAuto":true},
 {"posX":360,"posY":238,"description":"D2","type":"RIGHT","isAuto":true},
 {"posX":360,"posY":238,"description":"D2","type":"RIGHT","isAuto":true},
@@ -202,7 +204,10 @@
 {"posX":940,"posY":54,"description":"D1291","type":"LEFT","isShunt":true,"isAuto":true},
 {"posX":958,"posY":238,"description":"LOS","type":"LEFT","isShunt":true,"isAuto":true},
 {"posX":1100,"posY":54,"description":"AL3421","type":"LEFT","isAuto":true},
+{"posX":280,"posY":238,"description":"P612","type":"RIGHT","isAuto":true},
 
+{"posX":1026,"posY":458,"description":"D78/83UP","dataIDs":["$_DR0078"],"type":"TEXT","text1":"<-"},
+{"posX":1018,"posY":434,"description":"D78/83DN","dataIDs":["$_DR0083"],"type":"TEXT","text1":"->"},
 {"posX":104,"posY":430,"description":"D46","type":"RIGHT","isAuto":true},
 {"posX":188,"posY":374,"description":"D51","type":"LEFT","isAuto":true},
 {"posX":168,"posY":430,"description":"D52","type":"RIGHT","isAuto":true},
@@ -328,10 +333,15 @@
 {"posX":1516,"posY":582,"description":"T8371","type":"LEFT","isAuto":true}
 ],
 "conditionals":[
-{"ID":"DR0001","cond":["NEQ","DR0001","PB0617"]}
+{"ID":"DR0001","cond":["NEQ","DR0001","PBZ617"]},
+{"ID":"DR0024","cond":["NEQ","DR0024","''"]},
+{"ID":"DR0025","cond":["NEQ","DR0025","''"]},
+{"ID":"DR0078","cond":["NEQ","DR0078","''"]},
+{"ID":"DR0083","cond":["NEQ","DR0083","''"]}
 ],
 "text":[
-{"posX":1138,"posY":74,"text":"TO ALLINGTON JN\\n&amp; NOTTINGHAM","type":"TEXT"},
+{"posX":241,"posY":150,"text":"APPROACHING","type":"TEXT"},
+{"posX":1138,"posY":74,"text":"TO ALLINGTON JN\\n& NOTTINGHAM","type":"TEXT"},
 {"posX":1381,"posY":246,"text":"FORMER BARKSTON\\nSOUTH JN","url":"BRKSTSJ","type":"LOC"},
 {"posX":850,"posY":250,"text":"GRANTHAM","url":"GRA","type":"MLOC"},
 {"posX":1042,"posY":242,"text":"GRANTHAM\\nNORTH JN","url":"GTHMNJN","type":"LOC"},
@@ -339,8 +349,12 @@
 {"posX":1012,"posY":34,"text":"NOTTINGHAM\\nBRANCH JN","url":"GTHMNBJ","type":"LOC"},
 {"posX":1231,"posY":146,"text":"PEASCLIFF\\nTUNNEL","type":"TEXT"},
 {"posX":1356,"posY":162,"text":"PEASCLIFF\\nCROSSOVERS","type":"TEXT"},
-{"posX":98,"posY":202,"text":"PETERBOROUGH","url":"peterborough","type":"MNAV"},
+{"posX":98,"posY":202,"text":"PETERBOROUGH","url":"peterborough","type":"MNAV","g":4314},
 {"posX":328,"posY":146,"text":"STOKE\\nTUNNEL","type":"TEXT"},
+{"posX":895,"posY":234,"text":"1","type":"TEXT","colour":"black"},
+{"posX":895,"posY":178,"text":"2","type":"TEXT","colour":"black"},
+{"posX":930,"posY":146,"text":"3","type":"TEXT","colour":"black"},
+{"posX":895,"posY":138,"text":"4","type":"TEXT","colour":"black"},
 
 {"posX":714,"posY":350,"text":"BARNBY\\nMCB-CCTV","type":"TEXT"},
 {"posX":385,"posY":318,"text":"BARNBY LANE\\nMCB-CCTV","type":"TEXT"},
@@ -358,21 +372,28 @@
 {"posX":1451,"posY":350,"text":"CROMWELL LANE\\nMCB-CCTV","type":"TEXT"},
 {"posX":1191,"posY":550,"text":"LANGFORD\\nAHBC","type":"TEXT"},
 {"posX":1442,"posY":506,"text":"TO LINCOLN\\nCENTRAL","type":"TEXT"},
-{"posX":898,"posY":298,"text":"TO NEWARK CASTLE\\n&amp; NOTTINGHAM","type":"TEXT"},
+{"posX":898,"posY":298,"text":"TO NEWARK CASTLE\\n& NOTTINGHAM","type":"TEXT"},
 {"posX":1114,"posY":350,"text":"NEWARK FLAT\\nCROSSING   ","url":"XNK","type":"LOC"},
 {"posX":870,"posY":330,"text":"NEWARK\\nNORTH GATE","url":"NNG","type":"MLOC"},
 {"posX":1326,"posY":350,"text":"NORWELL LANE\\nMCB-CCTV","type":"TEXT"},
 {"posX":330,"posY":438,"text":"OSTERFEN\\nMCB-CCTV","type":"TEXT"},
 {"posX":1167,"posY":462,"text":"WINTHORPE\\nAHBC","type":"TEXT"},
+{"posX":927,"posY":370,"text":"1","type":"TEXT","colour":"black"},
+{"posX":924,"posY":426,"text":"2","type":"TEXT","colour":"black"},
+{"posX":930,"posY":434,"text":"3","type":"TEXT","colour":"black"},
+{"posX":1367,"posY":482,"text":"1","type":"TEXT","colour":"black"},
+{"posX":1367,"posY":538,"text":"2","type":"TEXT","colour":"black"},
 
 {"posX":808,"posY":658,"text":"ASKHAM\\nTUNNEL","type":"TEXT"},
 {"posX":1588,"posY":670,"text":"BOTANY BAY\\nMCB-CCTV","type":"TEXT"},
-{"posX":1714,"posY":714,"text":"DONCASTER","type":"MTEXT"},
-{"posX":394,"posY":670,"text":"EGMATON\\nMCB-CCTV","type":"TEXT"},
+{"posX":1714,"posY":714,"text":"DONCASTER","url":"doncaster","type":"MNAV","g":124},
+{"posX":394,"posY":670,"text":"EGMANTON\\nMCB-CCTV","type":"TEXT"},
 {"posX":178,"posY":670,"text":"GRASSTHORPE LANE\\nMCG","type":"TEXT"},
 {"posX":1140,"posY":670,"text":"GROVE ROAD\\nMCB-CCTV","type":"TEXT"},
 {"posX":1272,"posY":796,"text":"RETFORD","url":"RET","type":"MLOC"},
 {"posX":533,"posY":682,"text":"TUXFORD","type":"TEXT"},
-{"posX":1554,"posY":606,"text":"TO WORKSOP","type":"TEXT"}
+{"posX":1554,"posY":606,"text":"TO WORKSOP","type":"TEXT"},
+{"posX":1311,"posY":778,"text":"1","type":"TEXT","colour":"black"},
+{"posX":1311,"posY":682,"text":"2","type":"TEXT","colour":"black"}
 ]
 }

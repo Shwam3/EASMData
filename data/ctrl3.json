@@ -1,5 +1,5 @@
 {
-"panelUID":"ctrl3","panelName":"Ashford International","panelDescription":"Nashenden - Westenhanger","areas":["CT","A2"],
+"panelUID":"ctrl3","panelName":"Ashford International","panelDescription":"Nashenden - Westenhanger","areas":["A2","CT"],
 "berths":[
 {"posX":218,"posY":90,"dataIDs":["CT232C","CT553C"]},
 {"posX":298,"posY":90,"dataIDs":["CT249C","CT552C"]},
@@ -372,7 +372,7 @@
 "points":[],
 "text":[
 {"posX":480,"posY":26,"text":"BOXELY\\nTUNNEL","type":"TEXT"},
-{"posX":70,"posY":74,"text":"EBBSFLEET","url":"ctrl2","type":"MNAV"},
+{"posX":70,"posY":74,"text":"EBBSFLEET","url":"ctrl2","type":"MNAV","g":1738},
 {"posX":734,"posY":26,"text":"CRISMILL\\nCROSSOVERS","url":"XXG","type":"LOC"},
 {"posX":1426,"posY":26,"text":"CHARING\\nCROSSOVER","url":"XXG","type":"LOC"},
 {"posX":1031,"posY":26,"text":"LENHAM\\nCROSSOVER","url":"XXB","type":"LOC"},
@@ -381,7 +381,7 @@
 {"posX":385,"posY":26,"text":"NORTH DOWNS\\nTUNNEL","type":"TEXT"},
 
 {"posX":652,"posY":698,"text":"ASHFORD\\nINTERNATIONAL","url":"AFK","type":"MLOC"},
-{"posX":1698,"posY":322,"text":"DOLLANDS\\nMOOR","url":"ctrl4","type":"MNAV"},
+{"posX":1698,"posY":322,"text":"DOLLANDS\\nMOOR","url":"ctrl4","type":"MNAV","g":218},
 {"posX":1066,"posY":514,"text":"EAST JN","url":"ASHFEJN","type":"LOC"},
 {"posX":1262,"posY":398,"text":"EAST JN CTRL","url":"XIE","type":"LOC"},
 {"posX":1114,"posY":782,"text":"TO HASTINGS","type":"TEXT"},
@@ -391,7 +391,13 @@
 {"posX":381,"posY":658,"text":"WEST JN","url":"ASHFWJN","type":"LOC"},
 {"posX":126,"posY":398,"text":"WEST JN CTRL","url":"XIW","type":"LOC"},
 {"posX":1446,"posY":290,"text":"WESTENHANGER\\nCROSSOVERS","url":"XXX","type":"LOC"},
-{"posX":1426,"posY":586,"text":"TO WESTENHANGER\\n & FOLKESTONE","type":"TEXT"},
-{"posX":1346,"posY":234,"text":"TO WYE &\\nCANTERBURY","type":"TEXT"}
+{"posX":1434,"posY":586,"text":"TO WESTENHANGER\\n & FOLKESTONE","type":"TEXT"},
+{"posX":1346,"posY":234,"text":"TO WYE &\\nCANTERBURY","type":"TEXT"},
+{"x":684,"y":658,"e":"1","t":"TEXT","c":"black"},
+{"x":690,"y":650,"e":"2","t":"TEXT","c":"black"},
+{"x":748,"y":530,"e":"3","t":"TEXT","c":"black"},
+{"x":754,"y":522,"e":"4","t":"TEXT","c":"black"},
+{"x":748,"y":466,"e":"5","t":"TEXT","c":"black"},
+{"x":754,"y":458,"e":"6","t":"TEXT","c":"black"}
 ]
 }

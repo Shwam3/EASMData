@@ -1,5 +1,5 @@
 {
-"panelUID":"cambs1","panelName":"Cambridge (CA)","panelDescription":"Elsenham - Ely","areas":["CA","Y8"],
+"panelUID":"cambs1","panelName":"Cambridge","panelDescription":"Elsenham - Ely","areas":["CA","Y8"],
 "berths":[
 {"posX":184,"posY":234,"dataIDs":["CAX200"]},
 {"posX":184,"posY":186,"dataIDs":["CA0210"]},
@@ -116,8 +116,8 @@
 {"posX":1328,"posY":442,"dataIDs":["CA0175"]},
 {"posX":1328,"posY":474,"dataIDs":["CA0177"]},
 {"posX":1296,"posY":506,"dataIDs":["CA0179"]},
-{"posX":1296,"posY":538,"dataIDs":["CA0181"]},
 {"posX":1456,"posY":474,"dataIDs":["CA0180"]},
+{"posX":1296,"posY":538,"dataIDs":["CA0181"]},
 {"posX":1632,"posY":506,"dataIDs":["CA0188"]},
 {"posX":1632,"posY":474,"dataIDs":["CA0190"]},
 {"posX":1632,"posY":410,"dataIDs":["CA0193"]},
@@ -177,8 +177,8 @@
 {"posX":1712,"posY":698,"dataIDs":["CA0076"]},
 {"posX":1648,"posY":666,"dataIDs":["CA0077"]},
 {"posX":1712,"posY":666,"dataIDs":["CA0079"]},
-{"posX":40,"posY":666,"dataIDs":["CAL187"],"hasBorder":true},
-{"posX":40,"posY":698,"dataIDs":["CAL188"],"hasBorder":true}
+{"posX":40,"posY":666,"dataIDs":["CAL187"],"b":true},
+{"posX":40,"posY":698,"dataIDs":["CAL188"],"b":true}
 ],
 "signals":[
 {"posX":182,"posY":254,"description":"CA200","dataID":"CA21:5","type":"RIGHT","routes":["CA39:8"]},
@@ -721,14 +721,14 @@
 ],
 "text":[
 {"posX":355,"posY":218,"text":"CAMBRIDGE NORTH","url":"CMB","type":"LOC"},
-{"posX":264,"posY":238,"text":"DULLINGHAM","url":"cambs2","type":"NAV"},
+{"posX":264,"posY":238,"text":"DULLINGHAM","url":"cambs2","type":"NAV","g":1594},
 {"posX":1478,"posY":122,"text":"ELY","url":"ELY","type":"MLOC"},
-{"posX":1736,"posY":162,"text":"ELY\\nNORTH JN","url":"cambs2","type":"MNAV"},
+{"posX":1736,"posY":162,"text":"ELY\\nNORTH JN","url":"cambs2","type":"MNAV","g":90},
 {"posX":618,"posY":218,"text":"WATERBEACH","url":"WBC","type":"LOC"},
 
 {"posX":518,"posY":378,"text":"FOXTON","url":"FXN","type":"LOC"},
 {"posX":272,"posY":378,"text":"MELDRETH","url":"MEL","type":"LOC"},
-{"posX":20,"posY":330,"text":"ROYSTON","url":"hitchin","type":"MNAV"},
+{"posX":20,"posY":330,"text":"ROYSTON","url":"hitchin","type":"MNAV","g":122},
 {"posX":392,"posY":378,"text":"SHEPRETH","url":"STH","type":"LOC"},
 
 {"posX":1202,"posY":346,"text":"CAMBRIDGE","url":"CBG","type":"MLOC"},

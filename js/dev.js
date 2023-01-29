@@ -125,6 +125,7 @@ function devPage()
     document.getElementById('mapImage').style.minWidth = 'initial';
     document.getElementById('mapImage').style.display = 'none';
     document.getElementById('map').style.overflowY = 'auto';
+    document.getElementById('map').style.width = '1854px';
 
     doClock();
 

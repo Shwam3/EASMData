@@ -29,355 +29,355 @@ BYTE |BIT  | FUNCTION
      |     |
 ----------------------
 */
-0     0     R3533AM
-      1     R3533BS
-      2     R3538AM
-      3     R3538BM
-      4     R3538BC
-      5     R3542AM
-      6     R6278AS
-      7     R6269AS
-1     0     R489AM
-      1     R501AM
-      2     R501BM
-      3     R505AM
-      4     R510AM
-      5     R519AM
-      6     R519BS
-      7     R519CM
-2     0     R519DM
-      1     R6282AS
-      2     R6282BS
-      3     R6282CS
-      4     R6282DS
-      5     R557AM
-      6     R569AM
-      7     R6269BS
-3     0     R569CM
-      1     R569DM
-      2     R569BM
-      3     R569EM
-      4     R570BM
-      5     R570AM
-      6     R534AM
-      7     R534BM
-4     0     R534CM
-      1     R534DM
-      2     R512AM
-      3     R6271AS
-      4     R504AM
-      5     R504BM
-      6     R487AM
-      7     R487BSNP
-5     0     R487BSP
-      1     R6264ASNP
-      2     R6264ASP
-      3     R491AM
-      4     R503AM
-      5     R503BM
-      6     R507AM
-      7     R511AM
-6     0     R511BM
-      1     R514AM
-      2     R523AM
-      3     R529AM
-      4     R529BM
-      5     R6284AS
-      6     R6284BS
-      7     R6284CS
-7     0     R6284DS
-      1     R571AM
-      2     R571BM
-      3     R571CM
-      4     R571CC
-      5     R577AM
-      6     R6298ASNP
-      7     R6298BS
-8     0     R594AM
-      1     R579AM
-      2     R579BM
-      3     R579CM
-      4     R574AM
-      5     R574BM
-      6     R572AM
-      7     R573AM
-9     0     R6298ASP
-      1     R544AM
-      2     R536AM
-      3     R536AC
-      4     R536BM
-      5     R536CM
-      6     R536DM
-      7     R536EM
-10    0     R531AM
-      1     R531BM
-      2     R526BM
-      3     R525AM
-      4     R525BS
-      5     R525CSNP
-      6     R516AM
-      7     R508AM
-11    0     R506AM
-      1     R506BM
-      2     R502AM
-      3     R490ASNP
-      4     R490ASP
-      5     R490BM
-      6     R6261AS
-      7     R6261BSNP
-12    0     R6261BSP
-      1     R484AM
-      2     R484AC
-      3     R484BM
-      4     R478AM
-      5     R3570AM
-      6     R3570AC
-      7     R574CM
-13    0     R6296AS
-      1     R581AM
-      2     R576AM
-      3     R576BM
-      4     R6287AS
-      5     R532AS
-      6     R532BM
-      7     R6279ASNP
-14    0     R6279ASP
-      1     R6279BS
-      2     R6280AS
-      3     R6280BS
-      4     R6277AS
-      5     R6276ASNP
-      6     R6276BS
-      7     R6275ASNP
-15    0     R6263AS
-      1     R6263BS
-      2     R6262AS
-      3     R480AM
-      4     R480AC
-      5     R525CSP
-      6     R6276ASP
-      7     R6275ASP
-16    0     S3533
-      1     S3538
-      2     S3542
-      3     S6278
-      4
-      5
-      6
-      7
-17    0     S481
-      1     S485
-      2     S489
-      3     S501
-      4     S505
-      5     S510
-      6     S519
-      7     S6282
-18    0     S533
-      1     S545
-      2     S549
-      3     S553
-      4     S557
-      5     S569
-      6     S573
-      7     S593
-19    0     S1601
-      1     S1605
-      2
-      3
-      4
-      5
-      6
-      7
-20    0     S476
-      1     S482
-      2     S488
-      3     S500
-      4     S504
-      5     S6271
-      6     S512
-      7     S534
-21    0     S542
-      1     S546
-      2     S550
-      3     S554
-      4     S566
-      5     S570
-      6     S592
-      7     S596
-22    0     S1602
-      1     S1606
-      2     S1610
-      3
-      4
-      5
-      6
-      7
-23    0     S483
-      1     S487
-      2     S6264
-      3     S491
-      4     S503
-      5     S507
-      6     S511
-      7     S514
-24    0     S523
-      1     S529
-      2     S6284
-      3     S535
-      4     S547
-      5     S551
-      6     S555
-      7     S559
-25    0     S571
-      1     S577
-      2     S6298
-      3     S595
-      4     S1603
-      5     S1607
-      6     S572
-      7     S578
-26    0     S478
-      1     S484
-      2     S6261
-      3     S490
-      4     S502
-      5     S506
-      6     S508
-      7     S516
-27    0     S525
-      1     S526
-      2     S531
-      3     S536
-      4     S544
-      5     S548
-      6     S552
-      7     S556
-28    0     S568
-      1
-      2     S574
-      3     S579
-      4     S594
-      5     S598
-      6     S1604
-      7     S1608
-29    0     S1612
-      1     S580
-      2     S582
-      3     S584
-      4     S586
-      5     S588
-      6     S590
-      7
-30    0     S480
-      1     S6262
-      2     S6263
-      3     S6275
-      4     S6276
-      5     S6277
-      6     S6279
-      7     S532
-31    0     S6280
-      1     S6287
-      2     S576
-      3     S581
-      4     S6296
-      5     S3570
-      6     S6269
-      7
-32    0     TDMB
-      1     TDSC
-      2     TDLR
-      3     TDLT
-      4     TDLU
-      5     TDLV
-      6     TDLY
-      7     TDLK
-33    0     TDLZ
-      1     TDSE
-      2     TDNC
-      3     TDRD
-      4     TDGB
-      5     TDGX
-      6
-      7     TDED
-34    0     TDPG
-      1     TDPF
-      2     TDJS
-      3     TDCX
-      4     TDCP
-      5     TDCT
-      6
-      7
-35    0     TCHC
-      1     TCHJ
-      2     TCBM
-      3     TCAH
-      4     TDTP
-      5     TCWJ
-      6     TCWE
-      7     TCWA
-36    0     R8295
-      1     TDTA
-      2     TDTB
-      3     TDTC
-      4     TDTD
-      5     TDTE
-      6     TDTF
-      7     TDLW
-37    0     R576CM
-      1     R577BM
-      2     R578AM
-      3     R578BM
-      4     R579DM
-      5     R579EM
-      6     R579FM
-      7     R579GM
-38    0     R579HM
-      1     R580AM
-      2     R580BM
-      3     R581BM
-      4     R581CM
-      5     R581DM
-      6     R581EM
-      7     R581FM
-39    0     R581GM
-      1     R581HS
-      2     R581JM
-      3     R582AM
-      4     R582BM
-      5     R584AM
-      6     R584BM
-      7     R586AM
-40    0     R586BM
-      1     R588AM
-      2     R588BM
-      3     R590AM
-      4     R590BM
-      5     R592AM
-      6     R594BM
-      7     R598AM
-41    0     R6298CS
-      1
-      2
-      3
-      4
-      5
-      6
-      7
-42    0
-      1
-      2
-      3
-      4
-      5
-      6
-      7
-43    0     LST578TRS
-      1     LT580TRS
-      2     LT582TRS
-      3     LT584TRS
-      4     LT586TRS
-      5     LT588TRS
-      6     LT590TRS
-      7
+0	0	R3533AM
+	1	R3533BS
+	2	R3538AM
+	3	R3538BM
+	4	R3538BC
+	5	R3542AM
+	6	R6278AS
+	7	R6269AS
+1	0	R489AM
+	1	R501AM
+	2	R501BM
+	3	R505AM
+	4	R510AM
+	5	R519AM
+	6	R519BS
+	7	R519CM
+2	0	R519DM
+	1	R6282AS
+	2	R6282BS
+	3	R6282CS
+	4	R6282DS
+	5	R557AM
+	6	R569AM
+	7	R6269BS
+3	0	R569CM
+	1	R569DM
+	2	R569BM
+	3	R569EM
+	4	R570BM
+	5	R570AM
+	6	R534AM
+	7	R534BM
+4	0	R534CM
+	1	R534DM
+	2	R512AM
+	3	R6271AS
+	4	R504AM
+	5	R504BM
+	6	R487AM
+	7	R487BSNP
+5	0	R487BSP
+	1	R6264ASNP
+	2	R6264ASP
+	3	R491AM
+	4	R503AM
+	5	R503BM
+	6	R507AM
+	7	R511AM
+6	0	R511BM
+	1	R514AM
+	2	R523AM
+	3	R529AM
+	4	R529BM
+	5	R6284AS
+	6	R6284BS
+	7	R6284CS
+7	0	R6284DS
+	1	R571AM
+	2	R571BM
+	3	R571CM
+	4	R571CC
+	5	R577AM
+	6	R6298ASNP
+	7	R6298BS
+8	0	R594AM
+	1	R579AM
+	2	R579BM
+	3	R579CM
+	4	R574AM
+	5	R574BM
+	6	R572AM
+	7	R573AM
+9	0	R6298ASP
+	1	R544AM
+	2	R536AM
+	3	R536AC
+	4	R536BM
+	5	R536CM
+	6	R536DM
+	7	R536EM
+10	0	R531AM
+	1	R531BM
+	2	R526BM
+	3	R525AM
+	4	R525BS
+	5	R525CSNP
+	6	R516AM
+	7	R508AM
+11	0	R506AM
+	1	R506BM
+	2	R502AM
+	3	R490ASNP
+	4	R490ASP
+	5	R490BM
+	6	R6261AS
+	7	R6261BSNP
+12	0	R6261BSP
+	1	R484AM
+	2	R484AC
+	3	R484BM
+	4	R478AM
+	5	R3570AM
+	6	R3570AC
+	7	R574CM
+13	0	R6296AS
+	1	R581AM
+	2	R576AM
+	3	R576BM
+	4	R6287AS
+	5	R532AS
+	6	R532BM
+	7	R6279ASNP
+14	0	R6279ASP
+	1	R6279BS
+	2	R6280AS
+	3	R6280BS
+	4	R6277AS
+	5	R6276ASNP
+	6	R6276BS
+	7	R6275ASNP
+15	0	R6263AS
+	1	R6263BS
+	2	R6262AS
+	3	R480AM
+	4	R480AC
+	5	R525CSP
+	6	R6276ASP
+	7	R6275ASP
+16	0	S3533
+	1	S3538
+	2	S3542
+	3	S6278
+	4
+	5
+	6
+	7
+17	0	S481
+	1	S485
+	2	S489
+	3	S501
+	4	S505
+	5	S510
+	6	S519
+	7	S6282
+18	0	S533
+	1	S545
+	2	S549
+	3	S553
+	4	S557
+	5	S569
+	6	S573
+	7	S593
+19	0	S1601
+	1	S1605
+	2
+	3
+	4
+	5
+	6
+	7
+20	0	S476
+	1	S482
+	2	S488
+	3	S500
+	4	S504
+	5	S6271
+	6	S512
+	7	S534
+21	0	S542
+	1	S546
+	2	S550
+	3	S554
+	4	S566
+	5	S570
+	6	S592
+	7	S596
+22	0	S1602
+	1	S1606
+	2	S1610
+	3
+	4
+	5
+	6
+	7
+23	0	S483
+	1	S487
+	2	S6264
+	3	S491
+	4	S503
+	5	S507
+	6	S511
+	7	S514
+24	0	S523
+	1	S529
+	2	S6284
+	3	S535
+	4	S547
+	5	S551
+	6	S555
+	7	S559
+25	0	S571
+	1	S577
+	2	S6298
+	3	S595
+	4	S1603
+	5	S1607
+	6	S572
+	7	S578
+26	0	S478
+	1	S484
+	2	S6261
+	3	S490
+	4	S502
+	5	S506
+	6	S508
+	7	S516
+27	0	S525
+	1	S526
+	2	S531
+	3	S536
+	4	S544
+	5	S548
+	6	S552
+	7	S556
+28	0	S568
+	1
+	2	S574
+	3	S579
+	4	S594
+	5	S598
+	6	S1604
+	7	S1608
+29	0	S1612
+	1	S580
+	2	S582
+	3	S584
+	4	S586
+	5	S588
+	6	S590
+	7
+30	0	S480
+	1	S6262
+	2	S6263
+	3	S6275
+	4	S6276
+	5	S6277
+	6	S6279
+	7	S532
+31	0	S6280
+	1	S6287
+	2	S576
+	3	S581
+	4	S6296
+	5	S3570
+	6	S6269
+	7
+32	0	TDMB
+	1	TDSC
+	2	TDLR
+	3	TDLT
+	4	TDLU
+	5	TDLV
+	6	TDLY
+	7	TDLK
+33	0	TDLZ
+	1	TDSE
+	2	TDNC
+	3	TDRD
+	4	TDGB
+	5	TDGX
+	6
+	7	TDED
+34	0	TDPG
+	1	TDPF
+	2	TDJS
+	3	TDCX
+	4	TDCP
+	5	TDCT
+	6
+	7
+35	0	TCHC
+	1	TCHJ
+	2	TCBM
+	3	TCAH
+	4	TDTP
+	5	TCWJ
+	6	TCWE
+	7	TCWA
+36	0	R8295
+	1	TDTA
+	2	TDTB
+	3	TDTC
+	4	TDTD
+	5	TDTE
+	6	TDTF
+	7	TDLW
+37	0	R576CM
+	1	R577BM
+	2	R578AM
+	3	R578BM
+	4	R579DM
+	5	R579EM
+	6	R579FM
+	7	R579GM
+38	0	R579HM
+	1	R580AM
+	2	R580BM
+	3	R581BM
+	4	R581CM
+	5	R581DM
+	6	R581EM
+	7	R581FM
+39	0	R581GM
+	1	R581HS
+	2	R581JM
+	3	R582AM
+	4	R582BM
+	5	R584AM
+	6	R584BM
+	7	R586AM
+40	0	R586BM
+	1	R588AM
+	2	R588BM
+	3	R590AM
+	4	R590BM
+	5	R592AM
+	6	R594BM
+	7	R598AM
+41	0	R6298CS
+	1
+	2
+	3
+	4
+	5
+	6
+	7
+42	0
+	1
+	2
+	3
+	4
+	5
+	6
+	7
+43	0	LST578TRS
+	1	LT580TRS
+	2	LT582TRS
+	3	LT584TRS
+	4	LT586TRS
+	5	LT588TRS
+	6	LT590TRS
+	7

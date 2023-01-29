@@ -1,5 +1,5 @@
 {
-"panelUID":"ctrl2","panelName":"Ebbsfleet International","panelDescription":"Dagenham - Nashenden","areas":["CT","U2"],
+"panelUID":"ctrl2","panelName":"Ebbsfleet International","panelDescription":"Dagenham - Nashenden","areas":["CT","Q6"],
 "berths":[
 {"posX":618,"posY":202,"dataIDs":["CT092C"]},
 {"posX":554,"posY":170,"dataIDs":["CT094C"]},
@@ -48,8 +48,8 @@
 {"posX":1418,"posY":170,"dataIDs":["CT854C"]},
 {"posX":1530,"posY":202,"dataIDs":["CT855C"]},
 {"posX":426,"posY":122,"dataIDs":["CT880C"]},
-{"posX":266,"posY":250,"dataIDs":["U20832"],"hasBorder":true},
-{"posX":282,"posY":122,"dataIDs":["U20834"],"hasBorder":true},
+{"posX":266,"posY":250,"dataIDs":["Q60832"],"hasBorder":true},
+{"posX":282,"posY":122,"dataIDs":["Q60834"],"hasBorder":true},
 
 {"posX":186,"posY":570,"dataIDs":["CT116C","CT533C"]},
 {"posX":186,"posY":538,"dataIDs":["CT118C","CT531C"]},
@@ -125,12 +125,12 @@
 {"posX":1434,"posY":506,"dataIDs":["CTSDMD"],"hasBorder":true}
 ],
 "signals":[
-{"posX":616,"posY":222,"description":"AF92","type":"RIGHT","isTVM430":true},
-{"posX":552,"posY":166,"description":"AF94","type":"RIGHT","isTVM430":true,"isRHS":true},
-{"posX":412,"posY":118,"description":"AF95","type":"LEFT","isTVM430":true},
-{"posX":476,"posY":166,"description":"AF97","type":"LEFT","isTVM430":true},
-{"posX":508,"posY":222,"description":"AF99","type":"LEFT","isTVM430":true,"isRHS":true},
-{"posX":508,"posY":246,"description":"AF101","type":"LEFT","isTVM430":true},
+{"posX":616,"posY":222,"description":"AF092","type":"RIGHT","isTVM430":true},
+{"posX":552,"posY":166,"description":"AF094","type":"RIGHT","isTVM430":true,"isRHS":true},
+{"posX":412,"posY":118,"description":"AF095","type":"LEFT","isAuto":true},
+{"posX":476,"posY":166,"description":"AF097","type":"LEFT","isTVM430":true},
+{"posX":508,"posY":222,"description":"AF099","type":"LEFT","isTVM430":true,"isRHS":true},
+{"posX":508,"posY":246,"description":"AF101","type":"LEFT","isAuto":true},
 {"posX":792,"posY":222,"description":"AF102","type":"RIGHT","isTVM430":true},
 {"posX":828,"posY":166,"description":"AF105","type":"LEFT","isTVM430":true},
 {"posX":936,"posY":222,"description":"AF106","type":"RIGHT","isTVM430":true},
@@ -157,8 +157,8 @@
 {"posX":1404,"posY":166,"description":"AF755","type":"LEFT","isTVM430":true},
 {"posX":1480,"posY":222,"description":"AF756","type":"RIGHT","isTVM430":true},
 {"posX":1580,"posY":166,"description":"AF757","type":"LEFT","isTVM430":true},
-{"posX":344,"posY":270,"description":"AF782","type":"RIGHT","isTVM430":true},
-{"posX":408,"posY":270,"description":"AF784","type":"RIGHT","isTVM430":true},
+{"posX":344,"posY":246,"description":"AF782","type":"RIGHT","isTVM430":true,"isRHS":true},
+{"posX":408,"posY":246,"description":"AF784","type":"RIGHT","isTVM430":true,"isRHS":true},
 {"posX":230,"posY":166,"description":"AF834","type":"RIGHT","isTVM430":true,"isRHS":true},
 {"posX":332,"posY":222,"description":"AF835","type":"LEFT","isTVM430":true,"isRHS":true},
 {"posX":344,"posY":166,"description":"AF836","type":"RIGHT","isTVM430":true,"isRHS":true},
@@ -254,13 +254,13 @@
 "text":[
 {"posX":465,"posY":98,"text":"DAGENHAM JN","url":"XXH","type":"LOC"},
 {"posX":286,"posY":144,"text":"<- LONDON TUNNEL 2","type":"TEXT"},
-{"posX":208,"posY":124,"text":"RIPPLE LANE","url":"lts3","type":"NAV"},
-{"posX":192,"posY":254,"text":"RIPPLE LANE","url":"lts3","type":"NAV"},
-{"posX":86,"posY":186,"text":"STRATFORD","url":"ctrl1","type":"MNAV"},
+{"posX":208,"posY":124,"text":"RIPPLE LANE","url":"lts3","type":"NAV","g":1850},
+{"posX":192,"posY":254,"text":"RIPPLE LANE","url":"lts3","type":"NAV","g":1850},
+{"posX":86,"posY":186,"text":"STRATFORD","url":"ctrl1","type":"MNAV","g":1724},
 {"posX":1298,"posY":138,"text":"THAMES TUNNEL ->","type":"TEXT"},
 {"posX":828,"posY":136,"text":"WENNINGTON\\nCROSSOVERS","url":"XXU","type":"LOC"},
 
-{"posX":1746,"posY":554,"text":"ASHFORD","url":"ctrl3","type":"MNAV"},
+{"posX":1746,"posY":554,"text":"ASHFORD","url":"ctrl3","type":"MNAV","g":186},
 {"posX":725,"posY":658,"text":"EAST JN","url":"XXJ","type":"LOC"},
 {"posX":580,"posY":666,"text":"EBBSFLEET\\nINTERNATIONAL","url":"EBD","type":"MLOC"},
 {"posX":866,"posY":393,"text":"TO GRAVESEND\\n& NORTH KENT","type":"TEXT"},
@@ -270,6 +270,12 @@
 {"posX":1051,"posY":482,"text":"SOUTHFLEET JN","url":"XXO","type":"LOC"},
 {"posX":836,"posY":617,"text":"TO FAWKHAM JN\\n(OOU)","type":"TEXT"},
 {"posX":146,"posY":506,"text":"<- THAMES TUNNEL","type":"TEXT"},
-{"posX":405,"posY":698,"text":"WEST JN","url":"XXI","type":"LOC"}
+{"posX":405,"posY":698,"text":"WEST JN","url":"XXI","type":"LOC"},
+{"x":655,"y":618,"e":"1","t":"TEXT","c":"black"},
+{"x":652,"y":562,"e":"2","t":"TEXT","c":"black"},
+{"x":658,"y":554,"e":"3","t":"TEXT","c":"black"},
+{"x":655,"y":522,"e":"4","t":"TEXT","c":"black"},
+{"x":652,"y":402,"e":"5","t":"TEXT","c":"black"},
+{"x":658,"y":394,"e":"6","t":"TEXT","c":"black"}
 ]
 }

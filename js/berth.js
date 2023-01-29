@@ -92,7 +92,7 @@ Berth.prototype.update = function(force)
                 if (dev)
                     bthA.href = 'https://sigmaps1s.signalmaps.co.uk/schedule/search/?hc=' + this.dataValue + '&td=' + currId.substring(0, 2) + '&rtt=true';
                 else
-                    bthA.href = 'http://www.realtimetrains.co.uk/search/advancedhandler?type=advanced&map=true&search=' + this.dataValue;
+                    bthA.href = 'https://www.realtimetrains.co.uk/search/handler?qsearch=' + this.dataValue;
             }
             bthA.rel = 'nofollow noreferrer noopener';
             bthA.target = '_blank';
@@ -157,7 +157,7 @@ Berth.prototype.update = function(force)
 
                             if (ds != d.getDate() && dev)
                                 console.warn('Mismatch for link', ds, d.getDate(), this);
-                            bthA.href = 'http://www.realtimetrains.co.uk/train/' + train.schedule_uid + '/' + d.getFullYear() + '/' + (d.getMonth()+1 < 10 ? '0'+(d.getMonth()+1) : (d.getMonth()+1))  + '/' + (d.getDate() < 10 ? '0'+d.getDate() : d.getDate()) + '/advanced';
+                            bthA.href = 'https://www.realtimetrains.co.uk/train/' + train.schedule_uid.replace('O','') + '/' + d.getFullYear() + '-' + (d.getMonth()+1 < 10 ? '0'+(d.getMonth()+1) : (d.getMonth()+1))  + '-' + (d.getDate() < 10 ? '0'+d.getDate() : d.getDate()) + '/detailed';
                         }
                         delayFound = true;
                     }

@@ -21,6 +21,7 @@ function DataText(jsonObj)
     this.domElement = txt;
 
     addObj(this.htmlID, this);
+    this.update();
 }
 
 DataText.prototype.update = function()

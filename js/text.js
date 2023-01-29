@@ -43,7 +43,7 @@ function Text(jsonObj)
     }
     else if (this.type == 'LOC' || this.type == 'MLOC')
     {
-        txt.href = 'http://www.realtimetrains.co.uk/search/advanced/' + this.url + '?stp=WVS&show=all&order=actual';
+        txt.href = 'https://www.realtimetrains.co.uk/search/detailed/' + this.url + '?stp=WVS&show=all&order=actual';
         if (this.type == 'MLOC')
             txt.className = 'textLarge';
     }
