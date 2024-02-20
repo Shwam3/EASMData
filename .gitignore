@@ -1,9 +1,12 @@
-Mappings template.csv
-*.csv#
+*.csv
 *.bak
-images/points/index.php
-images/points/Old
+images/points/
+images/signals/
 images/signals/index.php
-images/maps/nlltest.png
 images/station.png
 images/waypoint.png
+data/dev/
+SOPs/
+fig6.png
+Overview.png
+berths.txt
