@@ -441,7 +441,7 @@
 {"x":2276,"y":413,"e":"SPRINGWELL\\nAHBC","t":"TEXT"},
 {"x":1294,"y":442,"e":"THIRSK","u":"THI","t":"MLOC"},
 {"x":382,"y":294,"e":"TOLLERTON JN","u":"TOLERTN","t":"LOC"},
-{"x":34,"y":362,"e":"YORK","u":"york","t":"MNAV","g":3130},
+{"x":34,"y":362,"e":"YORK","u":"york","t":"MNAV","g":3290,"ga":"R"},
 {"x":1327,"y":402,"e":"1","t":"TEXT","c":"black"},
 {"x":1327,"y":330,"e":"2","t":"TEXT","c":"black"},
 {"x":2047,"y":394,"e":"1","t":"TEXT","c":"black"},
