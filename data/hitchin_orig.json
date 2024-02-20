@@ -1,5 +1,5 @@
 {
-"panelUID":"hitchin","panelName":"YKROC Hitchin","panelDescription":"Royston & Biggleswade - Stevenage","areas":["CA","PB","Y8"],
+"panelUID":"hitchin","panelName":"YKROC Hitchin","panelDescription":"Royston & Biggleswade - Stevenage","areas":["CA","Y8","YD"],
 "berths":[
 {"x":1642,"y":186,"i":["Y80237"]},
 {"x":1562,"y":218,"i":["Y80238"]},
@@ -131,8 +131,8 @@
 {"x":1114,"y":314,"i":["Y80945","Y80234"]},
 {"x":1050,"y":282,"i":["Y80946"]},
 {"x":1050,"y":314,"i":["Y80947"]},
-{"x":170,"y":474,"i":["PB0261"]},
-{"x":170,"y":442,"i":["PB0263"]}
+{"x":170,"y":474,"i":["YD0261"]},
+{"x":170,"y":442,"i":["YD0263"]}
 ],
 "signals":[
 {"x":1710,"y":174,"d":"LOS (L)","t":"LEFT","iSB":1},
