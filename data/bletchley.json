@@ -616,7 +616,7 @@
 {"x":538,"y":310,"e":"MCB-CCTV","d":"LIDLINGTON MCB-CCTV","t":"TEXT"},
 {"x":445,"y":310,"e":"MARSTON\\nAHBC-X","t":"TEXT"},
 {"x":964,"y":678,"e":"MILTON KEYNES\\nCENTRAL","u":"MKC","t":"MLOC"},
-{"x":46,"y":570,"e":"NORTHAMPTON","u":"northampton","t":"MTEXT","g":4106},
+{"x":46,"y":570,"e":"NORTHAMPTON","u":"northampton","t":"MNAV","g":4106},
 {"x":766,"y":226,"e":"RIDGMONT","u":"RID","t":"LOC"},
 {"x":746,"y":310,"e":"MCB-CCTV","d":"RIDGMONT MCB-CCTV","t":"TEXT"},
 {"x":2530,"y":570,"e":"TRING","u":"tring","t":"MNAV","g":170},
