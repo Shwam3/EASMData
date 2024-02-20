@@ -1,95 +1,105 @@
 [
-{"panelUID":"livst","panelName":"Liverpool Street IECC - East W/S & West W/S","panelDescription":"London Liverpool Street - Bow Junction","areas":["Q1","Q4"],"r":"2021-12-12"},
-{"panelUID":"nll","panelName":"North London Line - West","panelDescription":"Richmond - West Hampstead","areas":["AW","B1","BS","DA","ME","NJ","U3","VC","WH","WS","WY"],"width":2628,"r":"2022-06-28a"},
-{"panelUID":"nll2","panelName":"North London Line - East","panelDescription":"West Hampstead - Woodgrange Park & Stratford","areas":["CA","CT","NX","Q1","Q3","Q4","SO","U3","WY","Y9"],"width":3828,"r":"2022-10-25"},
-{"panelUID":"stratford","panelName":"Liverpool Street IECC - Stratford W/S","panelDescription":"Bow Junction - Manor Park, Coppermill Jnc & Orient Way","areas":["Q0","Q1","Q3","Q4","Q5","U3"],"width":2462,"r":"2022-12-25"},
-{"panelUID":"ilford","panelName":"Liverpool Street IECC - Ilford W/S","panelDescription":"Forest Gate - Harold Wood","areas":["Q1","Q2"],"width":4142,"r":"2022-12-25"},
-{"panelUID":"chelmsford","panelName":"Liverpool Street IECC - Shenfield W/S & Witham W/S","panelDescription":"Harold Wood - Marks Tey, Southminster, & Southend Victoria","areas":["CC","Q1","Q2"],"width":6730,"r":"2022-10-23a"},
-{"panelUID":"tottenham","panelName":"Liverpool Street IECC - Hackney W/S & Brimsdown W/S","panelDescription":"Lea Bridge & Hackney Downs - Chingford, Enfield Town, & Broxbourne","areas":["Q1","Q3","Q4","SO","U3"],"width":4116,"r":"2022-12-25"},
-{"panelUID":"harlow","panelName":"Liverpool Street IECC - Harlow W/S","panelDescription":"Cheshunt - Elsenham, Hertford East & Stansted Airport","areas":["CA","Q3"],"width":4740,"r":"2022-10-25"},
+{"panelUID":"livst","panelName":"Liverpool Street IECC - East W/S & West W/S","panelDescription":"London Liverpool Street - Bow Junction","areas":["NX","Q1","Q4"],"region":"anglia","r":"2023-09-26"},
+{"panelUID":"nll","panelName":"North London Line - West","panelDescription":"Richmond - West Hampstead","areas":["AW","B1","BS","DA","ME","NJ","U3","VC","WH","WS","WY"],"region":"anglia","width":2628,"r":"2023-10-09"},
+{"panelUID":"nll2","panelName":"North London Line - East","panelDescription":"West Hampstead - Woodgrange Park & Stratford","areas":["CA","CT","NX","Q1","Q3","Q4","SO","U3","WY","Y9"],"region":"anglia","width":3828,"r":"2023-09-26"},
+{"panelUID":"ell","panelName":"East London Line","panelDescription":"Highbury & Islington - New Cross & New Cross Gate","areas":["NX","U3","X1","X3","Y9"],"region":"tfl","width":4196,"r":"2023-09-26"},
+{"panelUID":"stratford","panelName":"Liverpool Street IECC - Stratford W/S","panelDescription":"Bow Junction - Manor Park, Coppermill Jnc & Orient Way","areas":["Q0","Q1","Q3","Q4","Q5","U3"],"region":"anglia","width":2462,"r":"2022-12-25"},
+{"panelUID":"ilford","panelName":"Liverpool Street IECC - Ilford W/S","panelDescription":"Forest Gate - Harold Wood","areas":["Q1","Q2"],"region":"anglia","width":4142,"r":"2023-07-26"},
+{"panelUID":"chelmsford","panelName":"Liverpool Street IECC - Shenfield W/S & Witham W/S","panelDescription":"Harold Wood - Marks Tey, Southminster, & Southend Victoria","areas":["CC","Q1","Q2"],"region":"anglia","width":6730,"r":"2023-10-09"},
+{"panelUID":"tottenham","panelName":"Liverpool Street IECC - Hackney W/S & Brimsdown W/S","panelDescription":"Lea Bridge & Hackney Downs - Chingford, Enfield Town, & Broxbourne","areas":["Q1","Q3","Q4","SO","U3"],"region":"anglia","width":4116,"r":"2022-12-25"},
+{"panelUID":"harlow","panelName":"Liverpool Street IECC - Harlow W/S","panelDescription":"Cheshunt - Elsenham, Hertford East & Stansted Airport","areas":["CA","Q3"],"region":"anglia","width":4740,"r":"2022-10-25"},
 
-{"panelUID":"lts1","panelName":"Upminster IECC - London W/S","panelDescription":"London Fenchurch Street - Upminster","areas":["Q1","Q5","Q6"],"width":5236,"r":"2022-05-05"},
-{"panelUID":"lts2","panelName":"Upminster IECC - Southend W/S","panelDescription":"Upminster - Shoeburyness","areas":["Q5","Q6"],"width":5572,"r":"2021-09-01"},
-{"panelUID":"lts3","panelName":"Upminster IECC - Tilbury W/S","panelDescription":"Barking - Pitsea via Grays","areas":["CT","Q5","Q6"],"width":5220,"r":"2022-09-19"},
-{"panelUID":"colch","panelName":"Colchester","panelDescription":"Colchester - Ipswich","areas":["CC","Q2"],"r":"2022-10-23"},
-{"panelUID":"clacton","panelName":"Clacton MCS","panelDescription":"Colchester - Colchester Town, Clacton-on-Sea, & Walton-on-the-Naze","areas":["CC"],"width":2580,"r":"2021-03-15"},
-{"panelUID":"ipswich","panelName":"Ipswich and Stowmarket","panelDescription":"Ipswich - Stowmarket & Westerfield","areas":["CC"],"r":"2020-10-25"},
-{"panelUID":"esk","panelName":"East Suffolk and Felixstowe","panelDescription":"Westerfield - Oulton Broad & Felixstowe","areas":["CC","NL","SX"],"width":2932,"r":"2021-11-18a"},
-{"panelUID":"whittlesford","panelName":"Cambridge PSB - Panel A","panelDescription":"Elsenham & Letchworth - Cambridge","areas":["CA","Q3","Y8"],"width":3476,"r":"2022-10-25"},
-{"panelUID":"cambridge","panelName":"Cambridge PSB - Panel B & North","panelDescription":"Shepreth Branch Jn - Ely & Haughley Jn","areas":["CA","CC"],"width":2452,"r":"2022-10-25a"},
-{"panelUID":"ely","panelName":"Cambridge PSB - Panel C, Thetford W/S, & King's Lynn line","panelDescription":"Waterbeach & Soham - Manea, King's Lynn, & Wymondham","areas":["CA","CC","EN"],"width":5156,"r":"2022-10-30a"},
-{"panelUID":"norwich","panelName":"Norwich","panelDescription":"Stowmarket - Norwich","areas":["CC","EN"],"r":"2022-10-25"},
-{"panelUID":"wherry","panelName":"Bittern & Wherry Lines","panelDescription":"Whitlingham Jn - Sheringham, Gt. Yarmouth, & Lowestoft","areas":["CC","NL","SX"],"width":2318,"r":"2021-11-18a"},
-
-
-
-
-{"panelUID":"kingsx","panelName":"YKROC King's Cross & Finsbury Park","panelDescription":"London King's Cross & Moorgate - Hornsey","areas":["SO","U3","X0","Y8","Y9"],"width":2606,"r":"2022-10-25"},
-{"panelUID":"alpal","panelName":"YKROC Wood Green","panelDescription":"Hornsey - Potters Bar & Gordon Hill","areas":["Y8","Y9"],"r":"2022-10-25"},
-{"panelUID":"welwyn","panelName":"YKROC Langley","panelDescription":"Potters Bar & Gordon Hill - Stevenage","areas":["Y8"],"width":2708,"r":"2022-10-25"},
-{"panelUID":"hitchin","panelName":"YKROC Hitchin","panelDescription":"Stevenage - Royston & Biggleswade","areas":["CA","PB","Y8"],"width":2164,"r":"2022-10-25"},
-{"panelUID":"huntingdon","panelName":"Sandy, St Neots, & Huntingdon","panelDescription":"Biggleswade - Holme Jn","areas":["PB","Y8"],"width":3716,"r":"2022-10-25a"},
-{"panelUID":"peterborough","panelName":"Peterborough","panelDescription":"Holme Jn - Stoke Tunnel","areas":["DR","L2","PB"],"width":4468,"r":"2022-10-25"},
-{"panelUID":"newark","panelName":"Grantham, Newark, & Retford","panelDescription":"Stoke Tunnel - Retford","areas":["DR","LN","NM","PB","TH"],"r":"2022-10-25"},
-{"panelUID":"doncaster","panelName":"Doncaster","panelDescription":"Doncaster","areas":["DR","Y3","Y4"],"width":4710,"r":"2021-04-04"},
-{"panelUID":"ardsley","panelName":"YKROC Leeds Ardsley","panelDescription":"Bolton-on-Dearne & Adwick - Holbeck Jn","areas":["DR","FE","Y2","Y3","Y4"],"r":"2021-04-04"},
-{"panelUID":"shipley","panelName":"YKROC Leeds Northwest & Harrogate IECC","panelDescription":"Harrogate, Hellifield, Ilkley, & Bradford F.S. - Leeds","areas":["HG","Y2","Y3"],"width":3604,"r":"2022-04-05a"},
-{"panelUID":"leedscity","panelName":"YKROC Leeds City","panelDescription":"Leeds","areas":["Y2","Y3"],"width":4100,"r":"2022-12-25"},
-{"panelUID":"york","panelName":"YKROC York","panelDescription":"Hambleton Junctions - Thirsk","areas":["DR","Y1","Y2"],"width":3278,"r":"2022-09-02"},
-{"panelUID":"thirsk","panelName":"YKROC Thirsk","panelDescription":"Skelton Bridge - Northallerton","areas":["T2","Y1"],"width":2804,"r":"2022-12-25"},
-{"panelUID":"darlington","panelName":"Tyneside ROC - Darlington W/S","panelDescription":"Northallerton - Durham","areas":["Y1","YA","T2"],"width":5748,"r":"2022-12-25"},
-{"panelUID":"hartlepool","panelName":"YKROC - Hartlepool W/S & Middlesborough W/S","panelDescription":"Hartlepool & Middlesborough","areas":["T2","T3","Y1","YA","YB"],"width":5204,"r":"2022-12-26"},
-{"panelUID":"newcastle","panelName":"Tyneside ROC - Gateshead W/S & Newcastle W/S","panelDescription":"Durham - Morpeth","areas":["MO","T1","T2","T3"],"width":5892,"r":"2022-12-25"},
-{"panelUID":"sunderland","panelName":"Tyneside ROC - Sunderland W/S","panelDescription":"Seaham & South Hylton - Heworth","areas":["T1","T3","YA"],"width":4196,"r":"2022-12-25"},
-{"panelUID":"ashington","panelName":"Tyneside ROC - Ashington W/S","panelDescription":"Benton Jn - Morpeth, Ashington, & Lynemouth","areas":["MO","T0","T1"],"width":2564,"r":"2022-12-25"},
-
-
-
-{"panelUID":"ctrl1","panelName":"St. Pancras International","panelDescription":"St. Pancras International - Dagenham","areas":["CT","U3","Y9"],"r":"2022-10-25"},
-{"panelUID":"ctrl2","panelName":"Ebbsfleet International","panelDescription":"Dagenham - Nashenden","areas":["CT","Q6"],"r":"2021-11-21"},
-{"panelUID":"ctrl3","panelName":"Ashford International","panelDescription":"Nashenden - Westenhanger","areas":["A2","CT"],"r":"2021-11-18"},
-{"panelUID":"ctrl4","panelName":"Dollands Moor/Eurotunnel","panelDescription":"Westenhanger - France","areas":["A2","CT"],"r":"2021-11-18"},
-
-{"panelUID":"inverdeen","panelName":"Inverness Highlands","panelDescription":"Keith - Nairn","areas":["IH"],"r":"2019-09-01"},
-{"panelUID":"gwml9","panelName":"TVSC Bristol","panelDescription":"Bristol Temple Meads","areas":["D0","D9"],"width":2580,"r":"2021-11-20a"},
-{"panelUID":"gwml8","panelName":"TVSC Stoke Gifford","panelDescription":"Patchway & Filton Abbey Wood - Hullavington & Standish Jn","areas":["C1","D0","D7","D9"],"width":3220,"r":"2022-07-03"},
-{"panelUID":"gwml7","panelName":"TVSC Swindon","panelDescription":"Chippenham & Hullavington - Bourton","areas":["D0","D7","D9"],"width":3700,"r":"2021-11-21a"},
-{"panelUID":"cherval1","panelName":"TVSC Oxford","panelDescription":"Heyford - Appleford","areas":["CV","D5","ME"],"width":3316,"r":"2022-07-04"},
-{"panelUID":"gwml6","panelName":"TVSC Didcot","panelDescription":"Uffington - Cholsey","areas":["D1","D5","D7"],"width":3348,"r":"2021-11-20a"},
-{"panelUID":"gwml5","panelName":"TVSC Reading","panelDescription":"Cholsey, Theale, & Basingstoke - Twyford","areas":["BE","D1","D2","D5"],"width":2948,"r":"2022-05-23a"},
-{"panelUID":"gwml4","panelName":"TVSC Slough","panelDescription":"Twyford - Langley","areas":["D1","D6"],"width":3002,"r":"2021-11-20a"},
-{"panelUID":"gwml3","panelName":"TVSC Hayes","panelDescription":"Langley & Heathrow - Hanwell","areas":["DA","D4","D6"],"width":3140,"r":"2022-09-19"},
-{"panelUID":"gwml2","panelName":"TVSC Acton","panelDescription":"Hanwell - Acton","areas":["AW","DA","D3","D4"],"width":2452,"r":"2022-11-04"},
-{"panelUID":"gwml1","panelName":"TVSC Paddington","panelDescription":"Acton - Paddington","areas":["DA","D3","Q0"],"width":2516,"r":"2022-11-07"},
-
-{"panelUID":"chiltern3","panelName":"WMSC Cherwell Valley","panelDescription":"Warwick - Aynho Jn","areas":["CV","D5","LC","ME"],"width":4420,"r":"2022-12-29c"},
-{"panelUID":"chiltern2","panelName":"Marylebone IECC North","panelDescription":"Aynho Jn - Princes Risborough","areas":["CV","D5","ME"],"width":2644,"r":"2022-06-28a"},
-{"panelUID":"chiltern1","panelName":"Marylebone IECC South","panelDescription":"Princes Risborough - London Marylebone","areas":["ME","NJ"],"width":4740,"r":"2021-11-20a"},
-{"panelUID":"claydon","panelName":"Rugby ROC - Claydon W/S (East-West Rail)","panelDescription":"Bletchley - Bicester","areas":["ME","R1","R5","RT"],"width":2212,"r":"2022-06-28"},
-{"panelUID":"waterloo","panelName":"Wimbledon ASC Panels 1 & 2","panelDescription":"Waterloo - Earlesfield & Putney","areas":["BS","VC","WI","WX","XA"],"width":2900,"r":"2022-12-25"},
-{"panelUID":"wimbledon","panelName":"Wimbledon ASC Panel 3","panelDescription":"Earlesfield & Putney - Surbiton","areas":["B1","SU","WI","X5"],"width":2500,"r":"2022-12-25"},
-{"panelUID":"twickenham","panelName":"Feltham ASC East","panelDescription":"Barnes - Feltham, Shepperton, & Norbiton","areas":["AW","B1","BS","FH","WI"],"width":2592,"r":"2022-04-17"},
-{"panelUID":"feltham","panelName":"Feltham ASC West & Wokingham SB","panelDescription":"Feltham - Staines, Reaing, & branches","areas":["B2","D1","FH","GD","SU","W2","ZG"],"width":3732,"r":"2022-12-25"},
-{"panelUID":"woking","panelName":"Woking ASC","panelDescription":"Berrylands - Farnborough","areas":["B2","BE","GD","SU","WI","W2","ZG"],"width":4468,"r":"2022-12-25"},
-{"panelUID":"farnham","panelName":"Woking ASC - Farnham","panelDescription":"Pirbright Jn & Frimley - Alton","areas":["B2","GD","SU","W2","ZG"],"width":2476,"r":"2022-12-25"},
-{"panelUID":"basingstoke","panelName":"Basingstoke ASC","panelDescription":"Farnborough - Micheldever & Andover","areas":["BE","EH","SU"],"width":3812,"r":"2021-11-02"},
-
-
-{"panelUID":"crossrail","panelName":"Crossrail Central Operating Section","panelDescription":"Crossrail/Elizabeth Line: Paddington - Stratford & Abbey Wood","areas":["D3","NK","Q0","Q1"],"width":7130,"r":"2022-11-07"},
+{"panelUID":"lts1","panelName":"Upminster IECC - London W/S","panelDescription":"London Fenchurch Street - Upminster","areas":["Q1","Q5","Q6"],"region":"anglia","width":5236,"r":"2023-07-27"},
+{"panelUID":"lts2","panelName":"Upminster IECC - Southend W/S","panelDescription":"Upminster - Shoeburyness","areas":["Q5","Q6"],"region":"anglia","width":5572,"r":"2021-09-01"},
+{"panelUID":"lts3","panelName":"Upminster IECC - Tilbury W/S","panelDescription":"Barking - Pitsea via Grays","areas":["CT","Q5","Q6"],"region":"anglia","width":5220,"r":"2022-09-19"},
+{"panelUID":"colch","panelName":"Colchester","panelDescription":"Colchester - Ipswich","areas":["CC","Q2"],"region":"anglia","r":"2022-10-23"},
+{"panelUID":"clacton","panelName":"Clacton MCS","panelDescription":"Colchester - Colchester Town, Clacton-on-Sea, & Walton-on-the-Naze","areas":["CC"],"region":"anglia","width":2580,"r":"2021-03-15"},
+{"panelUID":"ipswich","panelName":"Ipswich and Stowmarket","panelDescription":"Ipswich - Stowmarket & Westerfield","areas":["CC"],"region":"anglia","r":"2020-10-25"},
+{"panelUID":"esk","panelName":"East Suffolk and Felixstowe","panelDescription":"Westerfield - Oulton Broad & Felixstowe","areas":["CC","NL","SX"],"region":"anglia","width":2932,"r":"2021-11-18a"},
+{"panelUID":"whittlesford","panelName":"Cambridge PSB - Panel A","panelDescription":"Elsenham & Letchworth - Cambridge","areas":["CA","Q3","Y8"],"region":"anglia","width":3476,"r":"2023-01-30"},
+{"panelUID":"cambridge","panelName":"Cambridge PSB - Panel B & North","panelDescription":"Shepreth Branch Jn - Ely & Haughley Jn","areas":["CA","CC"],"region":"anglia","width":3572,"r":"2023-01-30"},
+{"panelUID":"ely","panelName":"Cambridge PSB - Panel C, Thetford W/S, & King's Lynn line","panelDescription":"Waterbeach & Soham - Manea, King's Lynn, & Wymondham","areas":["CA","CC","EN"],"region":"anglia","width":5156,"r":"2023-09-26"},
+{"panelUID":"norwich","panelName":"Norwich","panelDescription":"Stowmarket - Norwich","areas":["CC","EN"],"region":"anglia","r":"2023-01-30"},
+{"panelUID":"wherry","panelName":"Bittern & Wherry Lines","panelDescription":"Whitlingham Jn - Sheringham, Gt. Yarmouth, & Lowestoft","areas":["CC","NL","SX"],"region":"anglia","width":2318,"r":"2023-10-09"},
 
 
 
 
+{"panelUID":"kingsx","panelName":"YKROC King's Cross & Finsbury Park","panelDescription":"London King's Cross & Moorgate - Hornsey","areas":["SO","U3","X0","Y8","Y9"],"region":"eastcoast","width":2606,"r":"2022-10-25"},
+{"panelUID":"alpal","panelName":"YKROC Wood Green","panelDescription":"Hornsey - Potters Bar & Gordon Hill","areas":["Y8","Y9"],"region":"eastcoast","r":"2022-10-25"},
+{"panelUID":"welwyn","panelName":"YKROC Langley","panelDescription":"Potters Bar & Gordon Hill - Stevenage","areas":["Y8"],"region":"eastcoast","width":2708,"r":"2022-10-25"},
+{"panelUID":"hitchin","panelName":"YKROC Hitchin","panelDescription":"Stevenage - Royston & Biggleswade","areas":["CA","Y8","YD"],"region":"eastcoast","width":2164,"r":"2023-08-28"},
+{"panelUID":"huntingdon","panelName":"Sandy, St Neots, & Huntingdon","panelDescription":"Biggleswade - Holme Jn","areas":["Y8","YC","YD"],"region":"eastcoast","width":3732,"r":"2023-08-28a"},
+{"panelUID":"peterborough","panelName":"Peterborough","panelDescription":"Holme Jn - Stoke Tunnel","areas":["DR","L2","YC","YD"],"region":"eastcoast","width":4468,"r":"2023-08-29"},
+{"panelUID":"newark","panelName":"Grantham, Newark, & Retford","panelDescription":"Stoke Tunnel - Retford","areas":["DR","LN","NM","TH","YC"],"region":"eastcoast","r":"2023-09-26"},
+{"panelUID":"doncaster","panelName":"Doncaster","panelDescription":"Doncaster","areas":["DR","Y3","Y4"],"region":"eastcoast","width":4710,"r":"2023-10-09"},
+{"panelUID":"ardsley","panelName":"YKROC Leeds Ardsley","panelDescription":"Bolton-on-Dearne & Adwick - Holbeck Jn","areas":["DR","FE","WK","Y2","Y3","Y4"],"region":"eastcoast","width":3476,"r":"2023-10-09"},
+{"panelUID":"shipley","panelName":"YKROC Leeds Northwest & Harrogate IECC","panelDescription":"Harrogate, Hellifield, Ilkley, & Bradford F.S. - Leeds","areas":["HG","Y2","Y3"],"region":"northeast","width":3604,"r":"2023-10-09"},
+{"panelUID":"leedscity","panelName":"YKROC Leeds City","panelDescription":"Leeds","areas":["HG","Y2","Y3","Y6","Y7"],"region":"northeast","width":4596,"r":"2023-10-09"},
+{"panelUID":"york","panelName":"YKROC York","panelDescription":"Hambleton Junctions - Thirsk","areas":["DR","Y1","Y2"],"region":"eastcoast","width":3332,"r":"2023-10-09"},
+{"panelUID":"thirsk","panelName":"YKROC Thirsk","panelDescription":"Skelton Bridge - Northallerton","areas":["T2","Y1"],"region":"eastcoast","width":2804,"r":"2023-10-09"},
+{"panelUID":"darlington","panelName":"Tyneside ROC - Darlington W/S","panelDescription":"Northallerton - Durham","areas":["Y1","YA","T2"],"region":"eastcoast","width":5748,"r":"2022-12-25"},
+{"panelUID":"hartlepool","panelName":"YKROC - Hartlepool W/S & Middlesborough W/S","panelDescription":"Hartlepool & Middlesborough","areas":["T2","T3","Y1","YA","YB"],"region":"northeast","width":5204,"r":"2022-12-26"},
+{"panelUID":"newcastle","panelName":"Tyneside ROC - Gateshead W/S & Newcastle W/S","panelDescription":"Durham - Morpeth","areas":["MO","T1","T2","T3"],"region":"eastcoast","width":5892,"r":"2023-07-28"},
+{"panelUID":"sunderland","panelName":"Tyneside ROC - Sunderland W/S","panelDescription":"Seaham & South Hylton - Heworth","areas":["T1","T3","YA"],"region":"northeast","width":4196,"r":"2022-12-25"},
+{"panelUID":"ashington","panelName":"Tyneside ROC - Ashington W/S","panelDescription":"Benton Jn - Morpeth, Ashington, & Lynemouth","areas":["MO","T0","T1"],"region":"northeast","width":2564,"r":"2023-07-28"},
+{"panelUID":"berwick","panelName":"Morpeth, Alnmouth, & Tweedmouth","panelDescription":"Cramlington - Berwick-upon-Tweed","areas":["AL","EA","MO","T1","TW"],"region":"eastcoast","width":7700,"r":"2023-07-28"},
+{"panelUID":"dunbar","panelName":"Edinburgh IECC - Workstation 1","panelDescription":"Berwick - Monktonhall Jn","areas":["EA","TW"],"region":"scotland","width":6020,"r":"2023-07-28"},
+{"panelUID":"edinburgh","panelName":"Edinburgh IECC - Workstation 2, 3, & 4","panelDescription":"Monktonhall Jn - Edinburgh Park & Gateway","areas":["EA","EB","EC","G4"],"region":"scotland","width":6116,"r":"2023-10-09"},
+
+{"panelUID":"ctrl1","panelName":"St. Pancras International","panelDescription":"St. Pancras International - Dagenham","areas":["CT","U3","Y9"],"region":"kenths","r":"2022-10-25"},
+{"panelUID":"ctrl2","panelName":"Ebbsfleet International","panelDescription":"Dagenham - Nashenden","areas":["CT","Q6"],"region":"kenths","r":"2021-11-21"},
+{"panelUID":"ctrl3","panelName":"Ashford International","panelDescription":"Nashenden - Westenhanger","areas":["A2","CT"],"region":"kenths","r":"2021-11-18"},
+{"panelUID":"ctrl4","panelName":"Dollands Moor/Eurotunnel","panelDescription":"Westenhanger - France","areas":["A2","CT"],"region":"kenths","r":"2021-11-18"},
+
+{"panelUID":"inverdeen","panelName":"Inverness Highlands","panelDescription":"Keith - Nairn","areas":["IH"],"region":"scotland","r":"2019-09-01"},
+
+{"panelUID":"gwml9","panelName":"TVSC Bristol","panelDescription":"Bristol Temple Meads","areas":["D0","D9"],"region":"western","width":2580,"r":"2021-11-20a"},
+{"panelUID":"gwml8","panelName":"TVSC Stoke Gifford","panelDescription":"Patchway & Filton Abbey Wood - Hullavington & Standish Jn","areas":["C1","D0","D7","D9"],"region":"western","width":3220,"r":"2022-07-03"},
+{"panelUID":"gwml7","panelName":"TVSC Swindon","panelDescription":"Chippenham & Hullavington - Bourton","areas":["D0","D7","D9"],"region":"western","width":3700,"r":"2021-11-21a"},
+{"panelUID":"cherval1","panelName":"TVSC Oxford","panelDescription":"Heyford - Appleford","areas":["CV","D5","ME"],"region":"western","width":3316,"r":"2023-04-07"},
+{"panelUID":"gwml6","panelName":"TVSC Didcot","panelDescription":"Uffington - Cholsey","areas":["D1","D5","D7"],"region":"western","width":3348,"r":"2021-11-20a"},
+{"panelUID":"gwml5","panelName":"TVSC Reading","panelDescription":"Cholsey, Theale, & Basingstoke - Twyford","areas":["BE","D1","D2","D5"],"region":"western","width":2948,"r":"2023-08-27"},
+{"panelUID":"gwml4","panelName":"TVSC Slough","panelDescription":"Twyford - Langley","areas":["D1","D6"],"region":"western","width":3002,"r":"2021-11-20a"},
+{"panelUID":"gwml3","panelName":"TVSC Hayes","panelDescription":"Langley & Heathrow - Hanwell","areas":["DA","D4","D6"],"region":"western","width":3140,"r":"2022-09-19"},
+{"panelUID":"gwml2","panelName":"TVSC Acton","panelDescription":"Hanwell - Acton","areas":["AW","DA","D3","D4"],"region":"western","width":2452,"r":"2022-11-04"},
+{"panelUID":"gwml1","panelName":"TVSC Paddington","panelDescription":"Acton - Paddington","areas":["DA","D3","Q0"],"region":"western","width":2516,"r":"2022-11-07"},
+
+{"panelUID":"chiltern3","panelName":"WMSC Cherwell Valley","panelDescription":"Warwick - Aynho Jn","areas":["CV","D5","LC","ME"],"region":"central","width":4420,"r":"2022-12-29c"},
+{"panelUID":"chiltern2","panelName":"Marylebone IECC North","panelDescription":"Aynho Jn - Princes Risborough","areas":["CV","D5","ME"],"region":"central","width":2644,"r":"2022-06-28a"},
+{"panelUID":"chiltern1","panelName":"Marylebone IECC South","panelDescription":"Princes Risborough - London Marylebone","areas":["ME","NJ"],"region":"central","width":4740,"r":"2021-11-20a"},
+{"panelUID":"claydon","panelName":"Rugby ROC - Claydon W/S (East-West Rail)","panelDescription":"Bletchley - Bicester","areas":["ME","R1","R5","RT"],"region":"eastmidlands","width":2212,"r":"2022-06-28"},
+{"panelUID":"waterloo","panelName":"Wimbledon ASC Panels 1 & 2","panelDescription":"Waterloo - Earlesfield & Putney","areas":["BS","VC","WI","WX","XA"],"region":"wessex","width":2900,"r":"2022-12-25"},
+{"panelUID":"wimbledon","panelName":"Wimbledon ASC Panel 3","panelDescription":"Earlesfield & Putney - Surbiton","areas":["B1","SU","WI","XB"],"region":"wessex","width":2500,"r":"2023-05-28"},
+{"panelUID":"twickenham","panelName":"BAROC Strawberry Hill W/S & Staines W/S","panelDescription":"Barnes - Feltham, Shepperton, & Norbiton","areas":["AW","B1","BS","WI"],"region":"wessex","width":2708,"r":"2023-09-26"},
+{"panelUID":"feltham","panelName":"BAROC Staines W/S, Ascot W/S, & Wokingham SB","panelDescription":"Feltham - Windsor, Reading, Chertsey, & Frimley","areas":["B1","B2","D1","GD","SU","W2","ZG"],"region":"wessex","width":4148,"r":"2023-09-26"},
+{"panelUID":"woking","panelName":"Woking ASC","panelDescription":"Berrylands - Farnborough","areas":["B2","BE","GD","SU","WI","W2","ZG"],"region":"wessex","width":4468,"r":"2023-09-26"},
+{"panelUID":"farnham","panelName":"Woking ASC - Farnham","panelDescription":"Pirbright Jn & Frimley - Alton","areas":["B2","GD","SU","W2","ZG"],"region":"wessex","width":2476,"r":"2023-08-27"},
+{"panelUID":"basingstoke","panelName":"Basingstoke ASC","panelDescription":"Farnborough - Micheldever & Andover","areas":["BE","EH","SU"],"region":"wessex","width":3812,"r":"2021-11-02"},
 
 
-{"panelUID":"newstreet","panelName":"Birmingham New Street","panelDescription":"Birmingham New Street and approaches","areas":["BN","KN","NS","PJ","SV","WN"],"width":2356,"r":"2022-12-27a"},
+{"panelUID":"crossrail","panelName":"Crossrail Central Operating Section","panelDescription":"Crossrail/Elizabeth Line: Paddington - Stratford & Abbey Wood","areas":["D3","NK","Q0","Q1"],"region":"tfl","width":7130,"r":"2023-07-11"},
 
 
 
 
-{"panelUID":"bletchley","panelName":"Bletchley","panelDescription":"Wolverton - Linslade","areas":["R1","R2","R5","RT"],"width":2644,"r":"2022-07-06"},
-{"panelUID":"tring","panelName":"Tring","panelDescription":"Linslade - Hemel Hempstead","areas":["R1"],"width":3172,"r":"2022-06-28b"},
-{"panelUID":"watford","panelName":"Watford","panelDescription":"Hemel Hempstead - Wembley Central","areas":["R1","WJ","WS"],"width":2596,"r":"2022-12-25"},
-{"panelUID":"wembley","panelName":"Wembley","panelDescription":"Wembley Central - Queen's Park","areas":["AW","NJ","U3","WJ","WS","WY","XA"],"width":3850,"r":"2022-12-25"},
-{"panelUID":"euston","panelName":"London Euston","panelDescription":"Camden Jn - London Euston","areas":["U3","WS","WY"],"r":"2022-06-28a"}
+{"panelUID":"carstairs","panelName":"WSSC Carstairs & Lockerbie","panelDescription":"Carluke - Gretna Jn","areas":["EB","G4"],"region":"scotland","width":7838,"r":"2023-07-28"},
+
+{"panelUID":"newstreet","panelName":"Birmingham New Street","panelDescription":"Birmingham New Street and approaches","areas":["AS","CY","KN","NS","PJ","SV","WN"],"region":"central","width":3668,"r":"2023-05-05"},
+
+
+
+{"panelUID":"northampton","panelName":"Northampton","panelDescription":"Hilmorton Jn - Wolverton","areas":["R1","R2"],"region":"westcoast","width":4228,"r":"2023-05-05"},
+{"panelUID":"bletchley","panelName":"Bletchley","panelDescription":"Wolverton - Linslade","areas":["R1","R2","R5","RT"],"region":"westcoast","width":2644,"r":"2023-05-05"},
+{"panelUID":"tring","panelName":"Tring","panelDescription":"Linslade - Hemel Hempstead","areas":["R1"],"region":"westcoast","width":3172,"r":"2022-06-28b"},
+{"panelUID":"watford","panelName":"Watford","panelDescription":"Hemel Hempstead - Wembley Central","areas":["R1","WJ","WS"],"region":"westcoast","width":2596,"r":"2023-04-10"},
+
+{"panelUID":"wembley","panelName":"Wembley","panelDescription":"Wembley Central - Queen's Park","areas":["AW","NJ","U3","WJ","WS","WY","XA"],"region":"westcoast","width":3850,"r":"2023-09-26"},
+{"panelUID":"euston","panelName":"London Euston","panelDescription":"Camden Jn - London Euston","areas":["U3","WS","WY"],"region":"westcoast","r":"2022-06-28a"},
+{"panelUID":"victoria","panelName":"London Victoria","panelDescription":"London Victoria - Streatham","areas":["TB","VC","WI","WX","WY","X8","XA","XB"],"region":"sussex","width":3028,"r":"2023-09-26"}
+
+
+
+
+
 ]

@@ -1,8 +1,9 @@
 [
 {"panelUID":"bis","panelName":"Bishop's Stortford Custom View","panelDescription":"Bishop's Stortford - Station & Approaches","areas":["CA","Q3"],"width":1854,"r":"2022-01-09a"},
-{"panelUID":"el_cos","panelName":"Crossrail Central Operating Section - Custom View","panelDescription":"Crossrail/Elizabeth Line: Paddington to Stratford & Abbey Wood (Compact)","areas":["D3","NK","Q0","Q1"],"width":1512,"r":"2022-11-07"},
-{"panelUID":"hitchin_orig","panelName":"YKROC Hitchin","panelDescription":"Royston & Biggleswade - Stevenage","areas":["CA","PB","Y8"],"r":"2022-10-25"},
+{"panelUID":"el_cos","panelName":"Crossrail Central Operating Section - Custom View","panelDescription":"Crossrail/Elizabeth Line: Paddington to Stratford & Abbey Wood (Compact)","areas":["D3","NK","Q0","Q1"],"width":1512,"r":"2023-07-11"},
+{"panelUID":"hitchin_orig","panelName":"YKROC Hitchin","panelDescription":"Royston & Biggleswade - Stevenage","areas":["CA","Y8","YD"],"region":"custom","r":"2023-08-28"},
 {"panelUID":"welwyn_orig","panelName":"YKROC Langley","panelDescription":"Stevenage - Potters Bar & Gordon Hill","areas":["Y8"],"r":"2022-10-25"},
 {"panelUID":"alpal_orig","panelName":"YKROC Wood Green","panelDescription":"Potters Bar & Gordon Hill - Hornsey","areas":["Y8","Y9"],"r":"2022-10-25a"},
-{"panelUID":"kingsx_orig","panelName":"YKROC King's Cross & Finsbury Park","panelDescription":"Hornsey - London King's Cross & Moorgate","areas":["SO","U3","X0","Y8","Y9"],"width":2606,"r":"2022-10-25a"}
+{"panelUID":"kingsx_orig","panelName":"YKROC King's Cross & Finsbury Park","panelDescription":"Hornsey - London King's Cross & Moorgate","areas":["SO","U3","X0","Y8","Y9"],"width":2606,"r":"2022-10-25a"},
+{"panelUID":"watforddc","panelName":"Wembley Suburban / Watford DC","panelDescription":"Watford (DC Lines) - South Hampstead (DC Lines)","areas":["U3","WJ","WS","WY"],"width":3044,"r":"2023-09-18"}
 ]
